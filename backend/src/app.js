@@ -23,6 +23,8 @@ app.use(
 // init database
 require("./dbs/init.postgres");
 
+require("./dbs/init.redis");
+
 // init swagger
 swaggerDocs(app);
 

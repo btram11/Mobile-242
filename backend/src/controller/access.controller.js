@@ -9,7 +9,10 @@ class AccessController {
   };
 
   logout = async (req, res) => {
-    const response = await AccessService.logout(req.headers["authorization"]);
+    const response = await AccessService.logout({
+      access_token: req.headers["authorization"],
+      id: req.headers["client_id"],
+    });
     return res.status(200).json(response);
   };
 

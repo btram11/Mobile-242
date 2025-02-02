@@ -9,6 +9,8 @@ const {
   updatePasswordById,
 } = require("../dbs/repositories/user.repo");
 
+const getRedisClient = require("../dbs/init.redis");
+
 const { generateKey } = require("../auth/authUtils");
 
 class AccessService {
@@ -19,6 +21,7 @@ class AccessService {
    * 4 - return data
    */
   static login = async ({ email, password }) => {
+    const redisClient = await getRedisClient();
     const foundUser = await getUserByEmail(email);
     if (!foundUser) {
       throw new BadRequestError("User not found");
@@ -39,10 +42,12 @@ class AccessService {
       }
     );
 
+    await redisClient.setEx(`access_token:${foundUser.id}`, 60, token);
+
     const setToken = await setTokenById(token, foundUser.id);
 
     if (!setToken) {
-      throw new BadRequestError("Failed to update access token");
+      throw new BadRequestError("Failed to save access token");
     }
 
     return {
@@ -55,7 +60,8 @@ class AccessService {
     };
   };
 
-  static logout = async (access_token) => {
+  static logout = async ({ access_token, id }) => {
+    const redisClient = await getRedisClient();
     if (!access_token) {
       throw new BadRequestError("Bad Requests");
     }
@@ -64,6 +70,8 @@ class AccessService {
     if (!deleteToken) {
       throw new BadRequestError("Failed to logout");
     }
+
+    await redisClient.del(`access_token:${id}`);
     return {
       status: 200,
       message: "Successfully",
