@@ -1,7 +1,6 @@
 "use strict";
 
 const { BadRequestError, AuthFailureError } = require("../core/error.response");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {
   getUserByEmail,
