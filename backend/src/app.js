@@ -1,13 +1,19 @@
-require("dotenv").config();
 const compression = require("compression");
 const express = require("express");
-const morgan = require("morgan");
 const app = express();
+const swaggerDocs = require("./swagger");
+const cors = require("cors");
 
 // init middlewares
-app.use(morgan("dev"));
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+  const morgan = require("morgan");
+  app.use(morgan("dev"));
+}
+
 app.use(compression());
 app.use(express.json());
+app.use(cors());
 app.use(
   express.urlencoded({
     extended: true,
@@ -16,6 +22,9 @@ app.use(
 
 // init database
 require("./dbs/init.postgres");
+
+// init swagger
+swaggerDocs(app);
 
 // init routes
 app.use("/", require("./routes/index"));

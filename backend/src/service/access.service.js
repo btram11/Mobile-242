@@ -11,11 +11,6 @@ const {
 
 const { generateKey } = require("../auth/authUtils");
 
-const ROLE = {
-  USER: 1,
-  ADMIN: 999,
-};
-
 class AccessService {
   /**
    * 1 - Check email in dbs
@@ -56,6 +51,7 @@ class AccessService {
       access_token: token,
       userId: foundUser.id,
       salt: foundUser.salt,
+      role: foundUser.role,
     };
   };
 

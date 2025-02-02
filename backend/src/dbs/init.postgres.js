@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 var { Pool } = require("pg");
 
 const pg_hostname = process.env.DB_HOSTNAME || "localhost";

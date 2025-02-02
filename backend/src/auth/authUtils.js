@@ -86,6 +86,7 @@ const generateKey = async (password, existingSalt) => {
 };
 
 const authentication = asyncHandler(async (req, res, next) => {
+  console.log(req.headers);
   const userId = req.headers[HEADER.CLIENT_ID];
   if (!userId) {
     throw new AuthFailureError("Invalid Requests");
