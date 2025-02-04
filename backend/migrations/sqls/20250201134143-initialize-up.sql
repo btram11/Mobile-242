@@ -38,3 +38,12 @@ VALUES ('Quan',
         'NvxPruJLPCaLrKPJ+QC2k8o9YViq23RII9UhBeJX43leeLofjK6Z7kxfuoArlutAiEoiwZqoXT4r5r0+Fr+J5g==',
         'customer', 
         '0123456789');
+    
+INSERT INTO users (firstname, lastname, email, password_hash, salt, role, phone_number)
+VALUES ('Nguyen',
+        'Quan',
+        'quan@hcmut.edu.vn',
+        'uavu9e5/HrtdkgwQMJkPZSU61LX2fV59logGqvT0pVw=',
+        'bv2gb5m/lUmC6w7NHEJ1yfepAVo/dXJF6FAbQpeYGHjUm8sKb9KsJeF9pz4L8NF0yyT4I8X20epDQTTs+ETkqg==',
+        'customer', 
+        '0123456789');

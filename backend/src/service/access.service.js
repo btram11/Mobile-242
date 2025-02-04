@@ -21,6 +21,11 @@ class AccessService {
    * 4 - return data
    */
   static login = async ({ email, password }) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@hcmut\.edu\.vn$/;
+    if (!emailRegex.test(email)) {
+      throw new AuthFailureError("Invalid email");
+    }
+
     const redisClient = await getRedisClient();
     const foundUser = await getUserByEmail(email);
     if (!foundUser) {
