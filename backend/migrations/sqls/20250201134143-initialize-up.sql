@@ -30,6 +30,7 @@ BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 
+# Password is 123456
 INSERT INTO users (firstname, lastname, email, password_hash, salt, role, phone_number)
 VALUES ('Quan',
         'Nguyen',
@@ -39,6 +40,7 @@ VALUES ('Quan',
         'customer', 
         '0123456789');
     
+# Password is 111111
 INSERT INTO users (firstname, lastname, email, password_hash, salt, role, phone_number)
 VALUES ('Nguyen',
         'Quan',
