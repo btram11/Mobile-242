@@ -1,6 +1,9 @@
 const db = require("../init.postgres");
+const { PrismaClient } = require('@prisma/client');
 
-const InsertUser = async (user) => {
+const prisma = new PrismaClient();
+
+const InsertUserOld = async (user) => {
   try {
     const query = ` INSERT INTO users (firstname, lastname, email, password_hash, salt, role, phone_number)
                     VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -23,18 +26,29 @@ const InsertUser = async (user) => {
   }
 };
 
+const InsertUser = async (user) => {
+  const result = await prisma.users.create(user).catch((error) => { console.error(error); throw error; });
+  return result;
+}
+
+const getAllUsers = async () => {
+  const result = await prisma.users.findMany().catch((error) => { console.error(error); throw error; });
+  return result;
+}
+
 const getUserByEmail = async (email) => {
-  const query = `SELECT * FROM  users WHERE email = $1;`;
-  try {
-    const result = await db.pool.query(query, [email]);
-    return result.rows[0];
-  } catch (error) {
+  const result = await prisma.users.findUnique({
+    where: {
+      email: email,
+    },
+  }).catch((error) => {
     console.error(error);
     throw error;
-  }
-};
+  });
+  return result;
+}
 
-const removeToken = async (access_token) => {
+const removeTokenOld = async (access_token) => {
   const query = `UPDATE users SET access_token = '' WHERE access_token = $1 RETURNING *;`;
   try {
     const result = await db.pool.query(query, [access_token]);
@@ -44,7 +58,21 @@ const removeToken = async (access_token) => {
   }
 };
 
-const setTokenById = async (access_token, id) => {
+const removeToken = async (access_token) => {
+  const result = await prisma.users.update({
+    where: {
+      access_token: access_token,
+    },
+    data: {
+      access_token: "",
+    },
+  }).catch((error) => {
+    console.error(error);
+    throw error;
+  });
+}
+
+const setTokenByIdOld = async (access_token, id) => {
   const query = `UPDATE users SET access_token = $1 WHERE id = $2 RETURNING *;`;
   try {
     const result = await db.pool.query(query, [access_token, id]);
@@ -54,7 +82,22 @@ const setTokenById = async (access_token, id) => {
   }
 };
 
-const updatePasswordById = async (new_password, salt, id) => {
+const setTokenById = async (access_token, id) => {
+  const result = await prisma.users.update({
+    where: {
+      id: id,
+    },
+    data: {
+      access_token: access_token,
+    },
+  }).catch((error) => {
+    console.error(error);
+    throw error;
+  });
+  return result;
+}
+
+const updatePasswordByIdOld = async (new_password, salt, id) => {
   const query = `UPDATE users SET password_hash = $1, salt = $2 WHERE id = $3 RETURNING *;`;
   try {
     const result = await db.pool.query(query, [new_password, salt, id]);
@@ -63,6 +106,22 @@ const updatePasswordById = async (new_password, salt, id) => {
     console.error(error);
   }
 };
+
+const updatePasswordById = async (new_password, salt, id) => {
+  const result = await prisma.users.update({
+    where: {
+      id: id,
+    },
+    data: {
+      password_hash: new_password,
+      salt: salt,
+    },
+  }).catch((error) => {
+    console.error(error);
+    throw error;
+  });
+  return result;
+}
 
 // const user = {
 //   firstname: "Quan",
@@ -80,4 +139,5 @@ module.exports = {
   removeToken,
   setTokenById,
   updatePasswordById,
+  getAllUsers,
 };
