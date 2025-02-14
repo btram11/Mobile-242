@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 sudo apt install postgresql-client-16 -y
 sudo apt install nodejs npm -y
 mkdir app
@@ -13,4 +13,5 @@ cd backend
 npm install
 npm run migrate_dev
 npm run seed_dev
-npm run start
+# dont run this is prod lol
+PORT=80 npm run start

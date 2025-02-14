@@ -21,30 +21,43 @@ resource "local_file" "ssh_private_key" {
 }
 
 module "postgres" {
-  source                  = "../modules/postgres"
-  resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
-  resource_group_location = azurerm_resource_group.Mobile-242-dev.location
-  delegated_subnet_id     = module.vnet.postgres_subnet_id
-  private_dns_zone_id     = module.vnet.postgres_private_dns_zone_id
-  ssl                     = "off"
+  source                         = "../modules/postgres"
+  virtual_network_id             = module.vnet.virtual_network_id
+  virtual_network_name           = module.vnet.virtual_network_name
+  resource_group_name            = azurerm_resource_group.Mobile-242-dev.name
+  resource_group_location        = azurerm_resource_group.Mobile-242-dev.location
+  ssl                            = "off"
+  postgres_subnet_address_prefix = var.postgres_subnet_address_prefix
+}
+
+module "redis" {
+  source                           = "../modules/redis"
+  virtual_network_id               = module.vnet.virtual_network_id
+  virtual_network_name             = module.vnet.virtual_network_name
+  resource_group_name              = azurerm_resource_group.Mobile-242-dev.name
+  resource_group_location          = azurerm_resource_group.Mobile-242-dev.location
+  redis_subnet_address_prefix      = var.redis_subnet_address_prefix
+  non_ssl_port_enabled             = true
+  allowed_subnets_address_prefixes = var.backend_subnet_address_prefix
 }
 
 locals {
-  connection_string = "postgresql://${module.postgres.postgres_username}:${module.postgres.postgres_password}@${module.postgres.postgres_fqdn}:5432/mobiledev?schema=public"
-  user_data         = <<-EOF
+  postgres_connection_string = "postgresql://${module.postgres.postgres_username}:${module.postgres.postgres_password}@${module.postgres.postgres_fqdn}:5432/mobiledev?schema=public"
+  user_data                  = <<-EOF
     #!/bin/bash
-    export DATABASE_URL=${local.connection_string}
+    export DATABASE_URL=${local.postgres_connection_string}
+    export REDIS_URL=redis://${module.redis.redis_hostname}:6379
     ${file("${path.module}/scripts/backend_user_data.sh")}
   EOF
 }
 
 module "backend" {
-  source                  = "../modules/backend"
-  resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
-  resource_group_location = azurerm_resource_group.Mobile-242-dev.location
-  network_interface_ids   = [module.vnet.network_interface_id]
-  public_ssh_key          = tls_private_key.ssh.public_key_openssh
-  user_data               = base64encode(local.user_data)
-
-  depends_on = [module.postgres]
+  source                        = "../modules/backend"
+  virtual_network_id            = module.vnet.virtual_network_id
+  virtual_network_name          = module.vnet.virtual_network_name
+  resource_group_name           = azurerm_resource_group.Mobile-242-dev.name
+  resource_group_location       = azurerm_resource_group.Mobile-242-dev.location
+  public_ssh_key                = tls_private_key.ssh.public_key_openssh
+  user_data                     = base64encode(local.user_data)
+  backend_subnet_address_prefix = var.backend_subnet_address_prefix
 }

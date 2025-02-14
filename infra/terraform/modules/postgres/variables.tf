@@ -1,3 +1,8 @@
+variable "postgres_subnet_address_prefix" {
+  description = "The address prefix for the PostgreSQL Server subnet."
+  default     = ["10.0.1.0/24"]
+}
+
 variable "pg_admin_login" {
   description = "The administrator login for the PostgreSQL Server."
   default     = "dbadmin"
@@ -10,7 +15,7 @@ variable "pg_admin_password" {
 
 variable "random_suffix" {
   description = "A random suffix to append to the PostgreSQL Server name."
-  default     = "lola"
+  default     = "meomeo"
 }
 
 variable "resource_group_name" {
@@ -21,15 +26,15 @@ variable "resource_group_location" {
   description = "The location of the resource group in which to create the PostgreSQL Server."
 }
 
-variable "delegated_subnet_id" {
-  description = "The ID of the subnet to which the PostgreSQL Server should be delegated."
-}
-
-variable "private_dns_zone_id" {
-  description = "The ID of the private DNS zone for the PostgreSQL Server."
-}
-
 variable "ssl" {
   description = "The SSL enforcement setting for the PostgreSQL Server."
   default     = "on"
+}
+
+variable "virtual_network_id" {
+  description = "The ID of the virtual network in which to create the PostgreSQL Server."
+}
+
+variable "virtual_network_name" {
+  description = "The name of the virtual network in which to create the PostgreSQL Server."
 }
