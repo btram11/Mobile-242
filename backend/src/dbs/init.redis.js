@@ -6,7 +6,9 @@ let client;
 
 async function getRedisClient() {
   if (!client) {
-    client = redis.createClient();
+    client = redis.createClient({
+      url: process.env.REDIS_URL | "redis://localhost:6379",
+    });
   }
   try {
     await client.connect();

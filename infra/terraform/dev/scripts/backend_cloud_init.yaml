@@ -1,0 +1,23 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - postgresql-client-16
+  - nodejs
+  - npm
+runcmd:
+  - mkdir app
+  - cd app
+  - git init
+  - git config core.sparseCheckout true
+  - git remote add -f origin https://github.com/btram11/Mobile-242.git
+  - echo "backend/*" > .git/info/sparse-checkout
+  - git checkout main
+  - cd backend
+  - touch .env
+  - |
+    TOKEN=$(curl -s -H "Metadata: true" "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://vault.azure.net" | jq -r .access_token) 
+    echo "DATABASE_URL=$(curl -H "Authorization: Bearer $TOKEN" "https://kv-meomeo.vault.azure.net/secrets/postgres-connection-string?api-version=7.4" | jq -r .value)" >> .env 
+    echo "REDIS_URL=$(curl -H "Authorization: Bearer $TOKEN" "https://kv-meomeo.vault.azure.net/secrets/redis-connection-string?api-version=7.4" | jq -r .value)" >> .env
+  - npm install
+  - npm run migrate_dev
+  - PORT=80 npm run start
