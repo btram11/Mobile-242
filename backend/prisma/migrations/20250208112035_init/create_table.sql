@@ -1,11 +1,3 @@
------------------- Drop all tables ---------------------
-SELECT 'drop table if exists ' || tablename || ' cascade;' from pg_tables;
-
-drop table if exists DATABASE_BOOK cascade;
-drop table if exists LISTED_BOOK cascade;
-drop table if exists "user" cascade;
-drop table if exists IS_SOLD;
-
 ------------------ Create tables ---------------------
 CREATE TABLE DATABASE_BOOK (
     book_id UUID PRIMARY KEY,
@@ -13,15 +5,18 @@ CREATE TABLE DATABASE_BOOK (
     author VARCHAR(255) NOT NULL,
     publisher VARCHAR(255),
     publishing_year INT,
-    summary TEXT
+    summary TEXT,
+    price DECIMAL(10, 2) DEFAULT 0.00
 );
 
 CREATE TABLE LISTED_BOOK (
     listing_id UUID,  --partial key
     book_id UUID,
     condition VARCHAR(255),
-    price DECIMAL(10, 2),
-    is_bought BOOLEAN,
+    is_sold BOOLEAN,
+    sold_price DECIMAL(10, 2),
+    is_leased BOOLEAN,
+    leased_price DECIMAL(10, 2),
     PRIMARY KEY(book_id, listing_id),
     FOREIGN KEY (book_id) REFERENCES DATABASE_BOOK(book_id)
 );
@@ -52,16 +47,18 @@ CREATE TABLE IS_SOLD (
     listing_id UUID,
     provider_id UUID,
     PRIMARY KEY (book_id, listing_id, provider_id),
-    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id)
+    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id),
+    FOREIGN KEY (provider_id) REFERENCES PROVIDER(provider_id)
 );
 
 CREATE TABLE IS_LEASED (
     book_id UUID,
     listing_id UUID,
     provider_id UUID,
-    rented_period INT,
+    rented_period INT,  -- in days
     PRIMARY KEY (book_id, listing_id, provider_id),
-    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id)
+    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id),
+    FOREIGN KEY (provider_id) REFERENCES PROVIDER(provider_id)
 );
 
 CREATE TABLE IS_BOUGHT (
@@ -72,32 +69,34 @@ CREATE TABLE IS_BOUGHT (
     pickup_date DATE,
     modifiable BOOLEAN,
     PRIMARY KEY (book_id, listing_id, user_id),
-    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id)
+    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id),
+    FOREIGN KEY (user_id) REFERENCES "user"(user_id)
 );
 
 CREATE TABLE IS_RENTED (
     book_id UUID,
     listing_id UUID,
-    provider_id UUID,
+    user_id UUID,
     location VARCHAR(255),
     pickup_date DATE,
     modifiable BOOLEAN,
     end_date DATE,
     policy TEXT,
-    PRIMARY KEY (book_id, listing_id, provider_id),
-    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id)
+    PRIMARY KEY (book_id, listing_id, user_id),
+    FOREIGN KEY (book_id, listing_id) REFERENCES LISTED_BOOK(book_id, listing_id),
+    FOREIGN KEY (user_id) REFERENCES "user"(user_id)
 );
 
 ------------------ Insert data ---------------------
 -- Insert data into DATABASE_BOOK
-INSERT INTO DATABASE_BOOK (book_id, title, author, publisher, publishing_year, summary) VALUES
-('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Charles Scribner''s Sons', 1925, 'A story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.'),
-('b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', '1984', 'George Orwell', 'Secker & Warburg', 1949, 'A dystopian novel set in Airstrip One, formerly Great Britain, a province of the superstate Oceania.');
+INSERT INTO DATABASE_BOOK (book_id, title, author, publisher, publishing_year, summary, price) VALUES
+('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Charles Scribner''s Sons', 1925, 'A story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.', 20.50),
+('b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', '1984', 'George Orwell', 'Secker & Warburg', 1949, 'A dystopian novel set in Airstrip One, formerly Great Britain, a province of the superstate Oceania.', 30.50);
 
 -- Insert data into LISTED_BOOK
-INSERT INTO LISTED_BOOK (listing_id, book_id, condition, price) VALUES
-('c2eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Good', 15.99),
-('d3eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Excellent', 20.50);
+INSERT INTO LISTED_BOOK (listing_id, book_id, condition, is_sold, sold_price, is_leased, leased_price) VALUES
+('c2eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Good', TRUE, 15.99, FALSE, NULL),
+('d3eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Excellent', FALSE, NULL, TRUE, 20.50);
 
 -- Insert data into USER
 INSERT INTO "user" (user_id, username, password_hased, email, faculty, phone_number, access_token, salt) VALUES
@@ -125,6 +124,6 @@ INSERT INTO IS_BOUGHT (book_id, listing_id, user_id, location, pickup_date, modi
 ('b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'd3eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'f5eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'London', '2023-10-05', FALSE);
 
 -- Insert data into IS_RENTED
-INSERT INTO IS_RENTED (book_id, listing_id, provider_id, location, pickup_date, modifiable, end_date, policy) VALUES
+INSERT INTO IS_RENTED (book_id, listing_id, user_id, location, pickup_date, modifiable, end_date, policy) VALUES
 ('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'c2eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'e4eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'New York', '2023-10-01', TRUE, '2023-11-01', 'No late returns'),
 ('b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'd3eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'f5eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'London', '2023-10-05', FALSE, '2023-12-05', 'Flexible return policy');
