@@ -51,3 +51,9 @@ resource "azurerm_postgresql_flexible_server_configuration" "postgres" {
   server_id = azurerm_postgresql_flexible_server.main.id
   value     = var.ssl
 }
+
+resource "azurerm_key_vault_secret" "postgres_connection_string" {
+  name         = "postgres-connection-string"
+  key_vault_id = var.key_vault_id
+  value        = "postgresql://${azurerm_postgresql_flexible_server.main.administrator_login}:${azurerm_postgresql_flexible_server.main.administrator_password}@${azurerm_postgresql_flexible_server.main.fqdn}:5432/mobiledev?schema=public"
+}

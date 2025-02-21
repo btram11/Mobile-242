@@ -94,3 +94,9 @@ resource "azurerm_private_dns_a_record" "redis" {
   ttl                 = 300
   records             = [data.azurerm_network_interface.redis_private_endpoint_nic.ip_configuration[0].private_ip_address]
 }
+
+resource "azurerm_key_vault_secret" "redis_non_ssl_connection_string" {
+  name         = "redis-connection-string"
+  key_vault_id = var.key_vault_id
+  value        = "${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.port},password=${azurerm_redis_cache.redis.primary_access_key},ssl=False,abortConnect=False"
+}

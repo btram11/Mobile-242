@@ -32,3 +32,7 @@ variable "non_ssl_port_enabled" {
   description = "Flag to enable non-SSL port"
   default     = false
 }
+
+variable "key_vault_id" {
+  description = "ID of the key vault"
+}

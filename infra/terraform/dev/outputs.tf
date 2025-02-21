@@ -13,12 +13,6 @@ output "postgres_fqdn" {
   value       = module.postgres.postgres_fqdn
 }
 
-output "user_data" {
-  description = "Value of the user data"
-  value       = local.user_data
-  sensitive   = true
-}
-
 output "backend_fqdn" {
   description = "Value of the backend FQDN"
   value       = module.backend.backend_fqdn

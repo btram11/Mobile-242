@@ -25,15 +25,18 @@ variable "admin_username" {
   default     = "backendadmin"
 }
 
-variable "user_data" {
-  description = "The user data to use for the virtual machine."
-  default     = ""
-}
-
 variable "virtual_network_id" {
   description = "The ID of the virtual network in which the resources will be created."
 }
 
 variable "virtual_network_name" {
   description = "The name of the virtual network in which the resources will be created."
+}
+
+variable "key_vault_id" {
+  description = "The ID of the key vault to use for storing secrets."
+}
+
+variable "custom_data" {
+  description = "The custom data to use for the virtual machine."
 }

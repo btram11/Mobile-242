@@ -89,7 +89,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
   size                  = "Standard_B1s"
   admin_username        = var.admin_username
   network_interface_ids = [azurerm_network_interface.backend.id]
-  user_data             = var.user_data
+  custom_data           = var.custom_data
 
   admin_ssh_key {
     username   = var.admin_username
@@ -108,4 +108,19 @@ resource "azurerm_linux_virtual_machine" "backend" {
     version   = "latest"
   }
 
+  identity {
+    type = "SystemAssigned"
+  }
+}
+
+resource "azurerm_role_assignment" "keyvault_secrets_reader" {
+  scope                = var.key_vault_id
+  role_definition_name = "Reader"
+  principal_id         = azurerm_linux_virtual_machine.backend.identity[0].principal_id
+}
+
+resource "azurerm_role_assignment" "keyvault_secrets_reader_permissions" {
+  scope                = var.key_vault_id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_linux_virtual_machine.backend.identity[0].principal_id
 }

@@ -38,3 +38,7 @@ variable "virtual_network_id" {
 variable "virtual_network_name" {
   description = "The name of the virtual network in which to create the PostgreSQL Server."
 }
+
+variable "key_vault_id" {
+  description = "The ID of the Key Vault in which to store the PostgreSQL Server connection string."
+}

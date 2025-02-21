@@ -3,6 +3,12 @@ resource "azurerm_resource_group" "Mobile-242-dev" {
   location = "South East Asia"
 }
 
+module "key_vault" {
+  source                  = "../modules/key_vault"
+  resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
+  resource_group_location = azurerm_resource_group.Mobile-242-dev.location
+}
+
 module "vnet" {
   source                  = "../modules/vnet"
   resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
@@ -28,6 +34,7 @@ module "postgres" {
   resource_group_location        = azurerm_resource_group.Mobile-242-dev.location
   ssl                            = "off"
   postgres_subnet_address_prefix = var.postgres_subnet_address_prefix
+  key_vault_id                   = module.key_vault.key_vault_id
 }
 
 module "redis" {
@@ -39,16 +46,7 @@ module "redis" {
   redis_subnet_address_prefix      = var.redis_subnet_address_prefix
   non_ssl_port_enabled             = true
   allowed_subnets_address_prefixes = var.backend_subnet_address_prefix
-}
-
-locals {
-  postgres_connection_string = "postgresql://${module.postgres.postgres_username}:${module.postgres.postgres_password}@${module.postgres.postgres_fqdn}:5432/mobiledev?schema=public"
-  user_data                  = <<-EOF
-    #!/bin/bash
-    export DATABASE_URL=${local.postgres_connection_string}
-    export REDIS_URL=redis://${module.redis.redis_hostname}:6379
-    ${file("${path.module}/scripts/backend_user_data.sh")}
-  EOF
+  key_vault_id                     = module.key_vault.key_vault_id
 }
 
 module "backend" {
@@ -58,6 +56,7 @@ module "backend" {
   resource_group_name           = azurerm_resource_group.Mobile-242-dev.name
   resource_group_location       = azurerm_resource_group.Mobile-242-dev.location
   public_ssh_key                = tls_private_key.ssh.public_key_openssh
-  user_data                     = base64encode(local.user_data)
+  custom_data                   = base64encode(file("${path.module}/scripts/backend_cloud_init.yaml"))
   backend_subnet_address_prefix = var.backend_subnet_address_prefix
+  key_vault_id                  = module.key_vault.key_vault_id
 }

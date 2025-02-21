@@ -1,6 +1,6 @@
 variable "random_suffix" {
   description = "The random suffix to append to the key vault name."
-  default     = "lola"
+  default     = "meomeo"
 }
 
 variable "resource_group_name" {
