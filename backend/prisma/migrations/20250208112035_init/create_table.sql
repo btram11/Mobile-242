@@ -1,10 +1,10 @@
--- ------------------ Drop all tables ---------------------
--- SELECT 'drop table if exists ' || tablename || ' cascade;' from pg_tables;
+------------------ Drop all tables ---------------------
+SELECT 'drop table if exists ' || tablename || ' cascade;' from pg_tables;
 
--- drop table if exists DATABASE_BOOK cascade;
--- drop table if exists LISTED_BOOK cascade;
--- drop table if exists "user" cascade;
--- drop table if exists IS_SOLD;
+drop table if exists DATABASE_BOOK cascade;
+drop table if exists LISTED_BOOK cascade;
+drop table if exists "user" cascade;
+drop table if exists IS_SOLD;
 
 ------------------ Create tables ---------------------
 CREATE TABLE DATABASE_BOOK (
