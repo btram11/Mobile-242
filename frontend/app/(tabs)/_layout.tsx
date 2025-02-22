@@ -7,6 +7,7 @@ import { View, Text, Image } from 'react-native'
 import { house, bookmark, create, profile } from '../../constants/icons'
 import { useGlobalContext } from '@/context/GlobalProvider'
 // import { Bookmark, Create, Profile } from 'lucide-react-native'
+import '@/global.css'
 
 const TabIcon = ({ focused, icon, name, color }) => {
     return (
