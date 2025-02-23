@@ -16,6 +16,12 @@ module.exports = {
         secondary: "#FFFFFF",
         secondarylight: "#B0DDC9",
         secondarydark: "#00664F",
+        secondarydarkdark: "#024435",
+        lightred: '#DB5E5E', 
+        darkred: '#C61010',
+        lightyellow: '#FFBB29',
+        lightorange: '#FFD5C7',
+        lightblue: '#B1D3FF'
       },
       fontFamily: {
         latolight: ["Lato-Light", "sans-serif"],
