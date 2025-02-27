@@ -2,6 +2,6 @@
 
 const router = require("express").Router();
 
-router.use("/v1/api", require("./access"));
+router.use("/api/v1", require("./access"));
 
 module.exports = router;
