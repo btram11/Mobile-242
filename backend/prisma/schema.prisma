@@ -1,30 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
+
+generator dmbl {
+  provider = "prisma-dbml-generator"
+}
+
+
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id            Int       @id @default(autoincrement())
-  firstname     String    @db.VarChar(50)
-  lastname      String    @db.VarChar(50)
-  email         String    @unique @db.VarChar(255)
-  password_hash String    @db.VarChar(255)
-  role          user_role @default(customer)
-  phone_number  String?   @db.VarChar(20)
-  access_token  String?   @default("") @db.VarChar(255)
-  salt          String?   @default("") @db.VarChar(255)
-  created_at    DateTime  @default(now()) @db.Timestamp(6)
-  updated_at    DateTime  @updatedAt @db.Timestamp(6)
+model database_book {
+  book_id         String        @id @default(uuid())
+  title           String
+  author          String
+  publisher       String
+  publishing_year Int
+  summary         String
+  price           Float
+  listed_books    listed_book[]
 
-  @@index([email], map: "idx_users_email")
+  @@unique([title, author, publisher])
 }
 
-enum user_role {
-  customer
-  provider
-  admin
+model listed_book {
+  listing_id    String        @default(uuid())
+  book_id       String
+  condition     String
+  listed_at     DateTime      @default(now())
+  price         Float
+  book          database_book @relation(fields: [book_id], references: [book_id])
+  is_sold       Boolean
+  sold_price    Float
+  is_leased     Boolean
+  leased_price  Float
+  is_sold_rel   is_sold[]
+  is_leased_rel is_leased[]
+  is_bought_rel is_bought[]
+  is_rented_rel is_rented[]
+
+  @@id([book_id, listing_id])
+}
+
+model user {
+  user_id         String      @id @default(uuid())
+  username        String
+  password_hashed String
+  email           String      @unique
+  faculty         String
+  phone_number    String?
+  access_token    String      @default("")
+  salt            String      @default("")
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+  provider        provider?
+  is_bought_rel   is_bought[]
+  is_rented_rel   is_rented[]
+}
+
+model provider {
+  provider_id        String      @id @default(uuid())
+  average_rating     Float?
+  preferred_location String?
+  policy             String?
+  user               user        @relation(fields: [provider_id], references: [user_id])
+  is_sold_rel        is_sold[]
+  is_leased_rel      is_leased[]
+}
+
+model is_sold {
+  book_id     String
+  listing_id  String
+  provider_id String
+  provider    provider    @relation(fields: [provider_id], references: [provider_id])
+  listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
+  @@id([book_id, listing_id, provider_id])
+}
+
+model is_leased {
+  book_id       String
+  listing_id    String
+  provider_id   String
+  rented_period Int
+  provider      provider    @relation(fields: [provider_id], references: [provider_id])
+  listed_book   listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
+  @@id([book_id, listing_id, provider_id])
+}
+
+model is_bought {
+  book_id     String
+  listing_id  String
+  user_id     String
+  location    String?
+  pickup_date DateTime?
+  modifiable  Boolean
+  user        user        @relation(fields: [user_id], references: [user_id])
+  listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
+  @@id([book_id, listing_id, user_id])
+}
+
+model is_rented {
+  book_id     String
+  listing_id  String
+  user_id     String
+  location    String?
+  pickup_date DateTime?
+  modifiable  Boolean
+  end_date    DateTime?
+  policy      String?
+  user        user        @relation(fields: [user_id], references: [user_id])
+  listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
+  @@id([book_id, listing_id, user_id])
 }
