@@ -1,7 +1,5 @@
 "use strict";
 const AccessService = require("../service/access.service");
-const { SuccessResponse } = require("../core/success.response");
-const { getAllUsers } = require("../dbs/repositories/user.repo");
 
 class AccessController {
   login = async (req, res) => {
