@@ -7,7 +7,7 @@ import { Slot } from 'expo-router'
 
 // alternative way to routing
 import { Stack } from 'expo-router'
-import "../global.css";
+import "@/global.css";
 
 // import fonts
 import { useFonts } from 'expo-font'
@@ -46,10 +46,11 @@ const RootLayout = () => {
 
 	return (
 		<GlobalProvider>
-		<Stack>
-			<Stack.Screen name='index' options={{ title: "Homepage", headerShown: true }}/>
-			<Stack.Screen name='(auth)' options={{ title: "Authentication", headerShown: false }}/>
-		</Stack>
+			<Stack>
+				<Stack.Screen name='index' options={{ title: "Homepage", headerShown: true }} />
+				<Stack.Screen name='(auth)' options={{ title: "Authentication", headerShown: true }} />
+				<Stack.Screen name='(tabs)' options={{ title: "Tabs", headerShown: true }} />
+			</Stack>
 		</GlobalProvider>
 	)
 }
