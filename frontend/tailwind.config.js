@@ -21,7 +21,8 @@ module.exports = {
         darkred: '#C61010',
         lightyellow: '#FFBB29',
         lightorange: '#FFD5C7',
-        lightblue: '#B1D3FF'
+        lightblue: '#B1D3FF',
+        darkblue: '#0358C6'
       },
       fontFamily: {
         latolight: ["Lato-Light", "sans-serif"],
