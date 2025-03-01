@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  ImageBackground,
-  useWindowDimensions,
-  Dimensions,
-} from "react-native";
+import { View, Text, ImageBackground, useWindowDimensions } from "react-native";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
