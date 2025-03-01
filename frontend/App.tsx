@@ -6,7 +6,10 @@ import { Link } from 'expo-router'
 
 import "./global.css";
 import { Redirect, router } from 'expo-router'
+
+// import HomeScreen from "./app/(auth)/login"
 import HomeScreen from "./app/index"
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
