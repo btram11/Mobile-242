@@ -24,6 +24,7 @@ datasource db {
 model database_book {
   book_id         String        @id @default(uuid())
   title           String
+  img_url         String
   author          String
   publisher       String
   publishing_year Int
@@ -35,20 +36,21 @@ model database_book {
 }
 
 model listed_book {
-  listing_id    String        @default(uuid())
-  book_id       String
-  condition     String
-  listed_at     DateTime      @default(now())
-  price         Float
-  book          database_book @relation(fields: [book_id], references: [book_id])
-  is_sold       Boolean
-  sold_price    Float
-  is_leased     Boolean
-  leased_price  Float
-  is_sold_rel   is_sold[]
-  is_leased_rel is_leased[]
-  is_bought_rel is_bought[]
-  is_rented_rel is_rented[]
+  listing_id       String        @default(uuid())
+  book_id          String
+  provider_img_url String
+  condition        String
+  listed_at        DateTime      @default(now())
+  price            Float
+  book             database_book @relation(fields: [book_id], references: [book_id])
+  is_sold          Boolean
+  sold_price       Float
+  is_leased        Boolean
+  leased_price     Float
+  is_sold_rel      is_sold[]
+  is_leased_rel    is_leased[]
+  is_bought_rel    is_bought[]
+  is_rented_rel    is_rented[]
 
   @@id([book_id, listing_id])
 }
@@ -56,6 +58,7 @@ model listed_book {
 model user {
   user_id         String      @id @default(uuid())
   username        String
+  user_img_url    String
   password_hashed String
   email           String      @unique
   faculty         String
@@ -71,8 +74,10 @@ model user {
 
 model provider {
   provider_id        String      @id @default(uuid())
+  provider_name      String      // different from username, avatar = user's avatar
   average_rating     Float?
   preferred_location String?
+  description        String?
   policy             String?
   user               user        @relation(fields: [provider_id], references: [user_id])
   is_sold_rel        is_sold[]

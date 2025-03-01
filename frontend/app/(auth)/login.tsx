@@ -2,8 +2,8 @@
 
 import { TextInput, View, TouchableOpacity, Text } from "react-native";
 import { CustomInput } from "@/components/CustomInput";
-import { CustomButtonLight } from "@/components/CustomButton";
-import { CustomButtonSecondary } from "@/components/CustomButton";
+import { CustomButtonLight } from "@/components/CustomRoundButton";
+import { CustomButtonSecondary } from "@/components/CustomRoundButton";
 
 import { FormField } from "@/components/FormField"
 import { useState } from "react";
