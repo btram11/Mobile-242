@@ -3,7 +3,7 @@
 const { asyncHandler } = require("../helper/asyncHandler");
 const { AuthFailureError } = require("../core/error.response");
 const crypto = require("crypto");
-const getRedisClient = require("../dbs/init.redis");
+const { getRedisClient } = require("../dbs/init.redis");
 
 const HEADER = {
   AUTHORIZATION: "authorization",
@@ -87,7 +87,6 @@ const generateKey = async (password, existingSalt) => {
 };
 
 const authentication = asyncHandler(async (req, res, next) => {
-  const redisClient = await getRedisClient();
   const userId = req.headers[HEADER.CLIENT_ID];
   if (!userId) {
     throw new AuthFailureError("Invalid Requests");
@@ -99,6 +98,8 @@ const authentication = asyncHandler(async (req, res, next) => {
   }
 
   try {
+    const redisClient = await getRedisClient();
+
     const token = await redisClient.get(`access_token:${userId}`);
     if (!accessToken || accessToken !== token) {
       throw new AuthFailureError("Invalid or Expired session");
