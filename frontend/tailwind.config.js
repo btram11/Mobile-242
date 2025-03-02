@@ -10,12 +10,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#02a393",
-        primarylight: "#c7f0eb",
-        primarydark: "#006e63",
-        secondary: "#ffa705",
-        secondarylight: "#f5e7ce",
-        secondarydark: "#d98d02",
+        primary: "#000000",
+        primarylight: "#BCC1CD",
+        primarydark: "#FFFFFF",
+        secondary: "#FFFFFF",
+        secondarylight: "#B0DDC9",
+        secondarydark: "#00664F",
+        secondarydarkdark: "#024435",
+        lightred: '#DB5E5E', 
+        darkred: '#C61010',
+        lightyellow: '#FFBB29',
+        lightorange: '#FFD5C7',
+        lightblue: '#B1D3FF',
+        darkblue: '#0358C6'
       },
       fontFamily: {
         latolight: ["Lato-Light", "sans-serif"],

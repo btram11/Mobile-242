@@ -1,35 +1,73 @@
-// @ts-nocheck
+//@ts-nocheck
 
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import { CustomInput } from "@/components/CustomInput";
+import { CustomButtonLight } from "@/components/CustomRoundButton";
+import { CustomButtonSecondary } from "@/components/CustomRoundButton";
+import { FormField } from "@/components/FormField"
+
+import { useState } from "react";
+import { router, Redirect, Link } from "expo-router";
+
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { Link } from 'expo-router'
-
-import { logo1 } from '../constants/logos'
-import { CustomButtonPrimary, CustomButtonSecondary } from '../components/CustomButton'
-
-import { Redirect, router } from 'expo-router'
-
 import RootLayout from '@/layouts/RootLayout'
-import { useGlobalContext } from '@/context/GlobalProvider'
 
-export default function HomeScreen() {
+import { login } from '@/lib/appwrite'
+import { useGlobalContext } from "@/context/GlobalProvider";
 
-  return (
-    <RootLayout>
-      <View className='flex-1 h-full w-full justify-center items-center'>
-        <Text className=' text-secondary font-latobold text-4xl m-2'>Start here, go anywhere!</Text>
-        <Text className='text-secondary font-lato my-8 mx-2 text-center'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a euismod sapien. Ut nec posuere nisl, ut pretium est. Mauris sed maximus velit, at varius enim.
-        </Text>
+import LoadingScreen from "./(loading)/loading";
 
-        <CustomButtonPrimary
-          text="Get started"
-          buttonStyle=""
-          textStyle=""
-          handlePress={() => { router.push('./(tabs)/home') }} />
-      </View>
-    </RootLayout>
-  )
+
+export default function Login() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const { setUser, setLoggedIn, loggedIn, isLoading } = useGlobalContext()
+
+    if (!isLoading && loggedIn ) {
+        router.replace('/(tabs)/home')
+    }
+    else if (!isLoading && loggedIn) {
+        router.replace('/(auth)/login')
+    }
+
+    // async function handleLogIn() {
+    //     try {
+    //         console.log("Attempt to log in...")
+    //         const loggedInUser = await login(email, password)
+    //         setUser(loggedInUser)
+    //         setLoggedIn(true)
+    //         router.replace('../(tabs)/home')
+    //     }
+    //     catch (error) {
+    //         console.error('Error logging in:', error);
+    //         throw new Error(error.message || 'Unknown error occurred');
+    //     }
+    // }
+    
+    // return (
+    //     <RootLayout>
+    //         <View className="items-center justify-center h-full w-full flex-1">
+
+    //             <FormField name="Email" value={email} placeholder="John Doe" handleTextChange={(e) => { setEmail(e) }} labelColor="" inputStyle="" />
+
+    //             <FormField name="Password" value={password} placeholder="At least 8 characters." handleTextChange={(e) => { setPassword(e) }} labelColor="" inputStyle="" />
+
+    //             <CustomButtonSecondary text="Login" buttonStyle="px-8" textStyle="" handlePress={() => handleLogIn()} />
+
+    //             <View className="flex-row justify-center items-center">
+    //                 <Text className="text-white">Don't have an account? </Text>
+    //                 {/* <TouchableOpacity onPress={() => router.push('./signup')}> 
+    //                     <Text className="text-secondarydark font-bold underline">Sign up</Text> 
+    //                 </TouchableOpacity> */}
+    //                 <Link href="./signup" className="text-secondarydark font-bold underline">Sign up</Link>
+    //             </View>
+
+    //         </View>
+    //     </RootLayout>
+
+    // )
+    return (
+        <LoadingScreen />
+    )
 }

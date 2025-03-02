@@ -1,6 +1,6 @@
 import { TextInput, View, Text } from 'react-native'
 import { CustomInput } from './CustomInput'
-import { CustomButtonSecondary } from './CustomButton'
+import { CustomButtonSecondary } from './CustomRoundButton'
 
 
 interface FormFieldProps {
