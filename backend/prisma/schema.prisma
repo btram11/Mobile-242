@@ -24,15 +24,14 @@ datasource db {
 model database_book {
   book_id         String        @id @default(uuid())
   title           String
-  img_url         String
+  img_url         String?
   author          String
   publisher       String
   publishing_year Int
-  summary         String
-  price           Float
+  subject         String?
+  summary         String?
+  price           Float?
   listed_books    listed_book[]
-
-  @@unique([title, author, publisher])
 }
 
 model listed_book {
