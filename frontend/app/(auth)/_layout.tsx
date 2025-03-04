@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { SafeAreaView, ScrollView, View, Image } from "react-native";
+import { SafeAreaView, ScrollView, View, Image, Text } from "react-native";
 import { logo1 } from "../../constants/logos";
 import { Stack, router } from "expo-router";
 import { GlobalProvider } from "@/context/GlobalProvider";
@@ -10,6 +10,7 @@ export default function AuthLayout() {
     if (loggedIn && !isLoading) {
         router.replace('/(tabs)/home')
     }
+    
     return (
         <GlobalProvider>
             <Stack>

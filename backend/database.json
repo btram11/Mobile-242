@@ -1,9 +1,0 @@
-{
-  "dev": {
-    "driver": "pg",
-    "user": "root",
-    "password": "root123",
-    "host": "localhost",
-    "database": "mobiledev"
-  }
-}

@@ -25,4 +25,5 @@ frontend/.DS_Store
 frontend/*.pem
 frontend/.env*.local
 frontend/*.tsbuildinfo
+frontend/app-example
 ####################
