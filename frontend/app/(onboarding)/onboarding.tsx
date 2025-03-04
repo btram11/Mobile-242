@@ -61,7 +61,7 @@ function Onboarding1({ handleNext }: { handleNext: () => void }) {
           <CustomButtonLight
             text="NEXT"
             buttonStyle="px-8 bg-white items-center mt-10 w-3/4 rounded-full shadow-md"
-            textStyle="text-[#000000]"
+            textStyle="text-black"
             handlePress={handleNext}
           />
         </View>

@@ -28,10 +28,11 @@ const CustomButtonLight = ({ buttonStyle, textStyle, text, handlePress }) =>
         </TouchableOpacity>
     )
 
-const CustomButtonOnboarding = ({ buttonStyle, textStyle="", text, handlePress }) =>
+const CustomButtonOnboarding = ({ buttonStyle, textStyle="", text, handlePress, ...rest }) =>
     (
         <TouchableOpacity
-            className={` bg-secondarydark p-4 rounded-full ${buttonStyle}`}
+            {...rest}
+            className={`  p-4 rounded-full ${buttonStyle} bg-secondarydark`}
             onPress={handlePress}>
             <Text className={`text-secondary font-bold ${textStyle}`}>{text}</Text>
         </TouchableOpacity>

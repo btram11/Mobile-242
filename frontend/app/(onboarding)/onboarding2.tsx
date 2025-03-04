@@ -15,19 +15,9 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { CustomButtonOnboarding } from "@/components/CustomButton";
 import { router } from "expo-router";
 import Onboarding1 from "./onboarding";
-// import { request, PERMISSIONS, RESULTS } from "react-native-permissions";
+import Permissions from "@/lib/permissions";
 
-// const requestCameraPermission = async () => {
-//   const permission =
-//     Platform.OS === "ios" ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA;
-//   const result = await request(permission);
-//   return result === RESULTS.GRANTED;
-// };
-
-// const requestNotificationPermission = async () => {
-//   const { status } = await requestNotifications(["alert", "sound", "badge"]);
-//   return status === "granted";
-// };
+const scrollX = new Animated.Value(0);
 
 const OnboardingScreens = [
   {
@@ -52,6 +42,17 @@ const OnboardingScreens = [
       </Text>,
       "?",
     ],
+    permission: (handleNext: () => void) => (
+      <CustomButtonOnboarding
+        text="Enable"
+        buttonStyle="w-full items-center max-w-[300px]"
+        textStyle=""
+        handlePress={async () => {
+          const granted = await Permissions.getCameraPermissions();
+          if (granted) handleNext();
+        }}
+      />
+    ),
   },
   {
     id: "3",
@@ -65,6 +66,17 @@ const OnboardingScreens = [
       </Text>,
       "?",
     ],
+    permission: (handleNext: () => void) => (
+      <CustomButtonOnboarding
+        text="Enable"
+        buttonStyle="w-full items-center max-w-[300px]"
+        textStyle=""
+        handlePress={async () => {
+          const granted = await Permissions.getNotificationPermissions();
+          if (granted) handleNext();
+        }}
+      />
+    ),
   },
 ];
 
@@ -72,6 +84,9 @@ export default function Onboarding2() {
   const { height, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
+  const flatListRef = useRef<FlatList<any>>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const renderItem = ({ item }: any) => {
     if (item.id == 0) return item.screen(handleNext);
     return (
@@ -89,7 +104,21 @@ export default function Onboarding2() {
             position: "absolute",
             top: 0,
           }}
-        />
+        >
+          <CustomButtonOnboarding
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              paddingVertical: 8,
+              paddingHorizontal: 14,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+            }}
+            text="Skip"
+            buttonStyle="items-center max-w-[100px] absolute right-0 top-16"
+            textStyle="text-xs"
+            handlePress={handleSkip}
+          />
+        </ImageBackground>
         <View
           className="w-full flex-1 flex flex-col-reverse"
           style={{ width: width }}
@@ -101,15 +130,12 @@ export default function Onboarding2() {
               </Text>
               <Text className="text-center text-[#756F6F]">{item.descrip}</Text>
               <View className="w-full flex flex-col mt-10 gap-6 items-center justify-center">
-                {/* <CustomButtonOnboarding
-                  text="Allow"
-                  buttonStyle=" w-full items-center max-w-[300px]"
-                  textStyle=""
-                  handlePress={() => {}}
-                /> */}
+                {item.permission && item.permission(handleNext)}
+
                 <CustomButtonOnboarding
+                  style={{ backgroundColor: "#000000" }}
                   text="Next"
-                  buttonStyle="bg-[#000000] w-full items-center max-w-[300px]"
+                  buttonStyle="bg-black w-full items-center max-w-[300px]"
                   textStyle=""
                   handlePress={handleNext}
                 />
@@ -142,8 +168,6 @@ export default function Onboarding2() {
       </SafeAreaView>
     );
   };
-  const flatListRef = useRef<FlatList<any>>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
     if (currentIndex < OnboardingScreens.length - 1 && flatListRef.current) {
@@ -152,14 +176,25 @@ export default function Onboarding2() {
       router.replace("/(auth)/login");
     }
   };
+
+  const handleSkip = () => {
+    new Promise((resolve) => {
+      flatListRef.current?.scrollToIndex({
+        index: OnboardingScreens.length - 1,
+        animated: true,
+      });
+      setTimeout(resolve, 300);
+    }).then(() => {
+      router.replace("/(auth)/login");
+    });
+  };
   return (
     <SafeAreaView
-      //   className="bg-[#F6F6F7] flex flex-col justify-between items-center"
       style={{ width: width, height: height - headerHeight + insets.top }}
     >
       <FlatList
         style={{ marginTop: -insets.top }}
-        // scrollEnabled={false}
+        scrollEnabled={false}
         ref={flatListRef}
         data={OnboardingScreens}
         keyExtractor={(item) => item.id}
@@ -168,10 +203,10 @@ export default function Onboarding2() {
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
-        // onScroll={Animated.event(
-        //   [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-        //   { useNativeDriver: false }
-        // )}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: false }
+        )}
         onMomentumScrollEnd={(event) => {
           const index = Math.round(event.nativeEvent.contentOffset.x / width);
           setCurrentIndex(index);
