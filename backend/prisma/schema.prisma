@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
+model user {
   id            Int       @id @default(autoincrement())
   firstname     String    @db.VarChar(50)
   lastname      String    @db.VarChar(50)
@@ -27,4 +27,16 @@ enum user_role {
   customer
   provider
   admin
+}
+
+model database_book {
+  book_id         String  @id @default(uuid())
+  title           String
+  img_url         String?
+  author          String
+  publisher       String
+  publishing_year Int
+  summary         String?
+  subject         String?
+  price           Float?
 }
