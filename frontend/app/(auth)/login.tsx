@@ -39,7 +39,7 @@ export default function Login() {
     <AuthLayout>
       <View className="items-center justify-end h-full w-full flex-col flex">
         <View className="flex h-1/4 items-end justify-end"></View>
-        <View className="flex h-1/3 items-center justify-center">
+        <View className="flex h-[43%] items-center justify-center">
           <Text className="font-black text-2xl mb-14">LOG IN</Text>
           <View className="flex flex-col gap-3">
             <FormField2

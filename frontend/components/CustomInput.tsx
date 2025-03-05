@@ -105,7 +105,7 @@ const CustomInput2 = ({
       <TextInput
         placeholder={isFocused ? placeholder : ""}
         // type={type}
-        className={`text-primarydark w-full py-4 pr-4 pl-6 ${inputStyle}`}
+        className={`text-black w-full py-4 pr-4 pl-6 placeholder:text-[rgba(3,0,71,0.5)] ${inputStyle}`}
         onChangeText={handleTextChange}
         onFocus={() => {
           setIsFocused(true);
