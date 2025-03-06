@@ -60,6 +60,7 @@ resource "azurerm_public_ip" "backend" {
   name                = "backend-public-ip"
   resource_group_name = var.resource_group_name
   location            = var.resource_group_location
+  sku                 = "Basic"
   allocation_method   = "Dynamic"
   domain_name_label   = var.backend_domain_name_label
 }
