@@ -51,9 +51,7 @@ function Onboarding1({ handleNext }: { handleNext: () => void }) {
             </Text>
             <Text className="font-bold text-4xl text-white">
               <Text className="text-[#004435]">B</Text>oo
-              <Text className="text-[#004435]">kU</Text>ni
-              <Text className="text-[#004435]">ve</Text>rs
-              <Text className="text-[#004435]">e</Text>
+              <Text className="text-[#004435]">kU</Text>niverse
             </Text>
           </View>
         </View>
