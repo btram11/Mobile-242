@@ -5,6 +5,7 @@
 Table database_book {
   book_id String [pk]
   title String [not null]
+  img_url String [not null]
   author String [not null]
   publisher String [not null]
   publishing_year Int [not null]
@@ -20,6 +21,7 @@ Table database_book {
 Table listed_book {
   listing_id String [not null]
   book_id String [not null]
+  provider_img_url String [not null]
   condition String [not null]
   listed_at DateTime [default: `now()`, not null]
   price Float [not null]
@@ -41,6 +43,7 @@ Table listed_book {
 Table user {
   user_id String [pk]
   username String [not null]
+  user_img_url String [not null]
   password_hashed String [not null]
   email String [unique, not null]
   faculty String [not null]
@@ -56,8 +59,10 @@ Table user {
 
 Table provider {
   provider_id String [pk]
+  provider_name String [not null]
   average_rating Float
   preferred_location String
+  description String
   policy String
   user user [not null]
   is_sold_rel is_sold [not null]
