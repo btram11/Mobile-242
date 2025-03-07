@@ -60,3 +60,9 @@ module "backend" {
   backend_subnet_address_prefix = var.backend_subnet_address_prefix
   key_vault_id                  = module.key_vault.key_vault_id
 }
+
+module "cdn" {
+  source                  = "../modules/cdn"
+  resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
+  resource_group_location = azurerm_resource_group.Mobile-242-dev.location
+}

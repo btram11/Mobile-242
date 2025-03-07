@@ -2,6 +2,7 @@
 /backend/node_modules
 /backend/.env
 /backend/test.js
+/backend/prisma/migrations
 ###################
 
 ##### FRONTEND #####
@@ -24,4 +25,5 @@ frontend/.DS_Store
 frontend/*.pem
 frontend/.env*.local
 frontend/*.tsbuildinfo
+frontend/app-example
 ####################

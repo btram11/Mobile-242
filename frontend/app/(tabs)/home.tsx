@@ -17,10 +17,11 @@ import ProviderCard from '@/components/ProviderCard'
 
 import '../../global.css'
 
+// import mockedBooks from '../../../backend/prisma/data/database_books.json'
 const mockedBooks = [
-	{ title: "The Great Gatsby", img_src: require('@/assets/images/book1.jpg'), rating: 4.5, price: 20, is_leased: false, is_sold: true },
-	{ title: "If on a Winter's Night a Traveler", img_src: require('@/assets/images/book2.jpg'), rating: 4.5, price: 15, is_leased: true, is_sold: true },
-	{ title: "The Catcher in the Rye", img_src: require('@/assets/images/book3.jpg'), rating: 5, price: 25, is_leased: true, is_sold: false },
+	{ id: 1, title: "The Great Gatsby", img_src: require('@/assets/images/book1.jpg'), leased_price: null, sold_price: 20, is_leased: false, is_sold: true, is_from: false },
+	{ id: 2, title: "If on a Winter's Night a Traveler", img_src: require('@/assets/images/book2.jpg'), leased_price: 15, sold_price: 20, is_leased: true, is_sold: true, is_from: true },
+	{ id: 3, title: "The Catcher in the Rye", img_src: require('@/assets/images/book3.jpg'), leased_price: 25, sold_price: 30, is_leased: true, is_sold: false, is_from: true },
 ]
 
 const mockedNews = [
@@ -101,7 +102,7 @@ export default function HomePage() {
 							showsHorizontalScrollIndicator={false}
 						>
 							{mockedBooks.map((book, idx) => (
-								<BookCard key={book.title} title={book.title} img_src={book.img_src} rating={book.rating} price={book.price} is_leased={book.is_leased} is_sold={book.is_sold} color={idx%2==0?'gray':'green'} />
+								<BookCard key={book.id} id={book.id} img_src={book.img_src} title={book.title} sold_price={book.sold_price} is_sold={book.is_sold} is_leased={book.leased_price} leased_price={book.leased_price} is_from={book.is_from} color={idx%2==0?'gray':'green'} />
 							))}
 						</ScrollView>
 					</View>

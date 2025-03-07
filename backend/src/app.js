@@ -21,7 +21,8 @@ app.use(
 );
 
 // init database
-require("./dbs/init.redis");
+const initRedis = require("./dbs/init.redis");
+initRedis.initRedis();
 
 // init swagger
 swaggerDocs(app);

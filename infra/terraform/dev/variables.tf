@@ -12,3 +12,8 @@ variable "backend_subnet_address_prefix" {
   description = "The address prefix for the backend subnet."
   default     = ["10.0.3.0/24"]
 }
+
+variable "subscription_id" {
+  description = "The subscription ID."
+  sensitive   = true
+}
