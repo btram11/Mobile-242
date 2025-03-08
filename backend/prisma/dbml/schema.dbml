@@ -27,10 +27,11 @@ Table listed_book {
   sold_price Float [not null]
   is_leased Boolean [not null]
   leased_price Float [not null]
-  is_sold_rel is_sold [not null]
-  is_leased_rel is_leased [not null]
-  is_bought_rel is_bought [not null]
-  is_rented_rel is_rented [not null]
+  leased_period Int [not null]
+  is_bought_rel is_bought
+  is_rented_rel is_rented
+  provider_id String [not null]
+  provider provider [not null]
 
   indexes {
     (book_id, listing_id) [pk]
@@ -62,33 +63,7 @@ Table provider {
   description String
   policy String
   user user [not null]
-  is_sold_rel is_sold [not null]
-  is_leased_rel is_leased [not null]
-}
-
-Table is_sold {
-  book_id String [not null]
-  listing_id String [not null]
-  provider_id String [not null]
-  provider provider [not null]
   listed_book listed_book [not null]
-
-  indexes {
-    (book_id, listing_id, provider_id) [pk]
-  }
-}
-
-Table is_leased {
-  book_id String [not null]
-  listing_id String [not null]
-  provider_id String [not null]
-  rented_period Int [not null]
-  provider provider [not null]
-  listed_book listed_book [not null]
-
-  indexes {
-    (book_id, listing_id, provider_id) [pk]
-  }
 }
 
 Table is_bought {
@@ -102,7 +77,7 @@ Table is_bought {
   listed_book listed_book [not null]
 
   indexes {
-    (book_id, listing_id, user_id) [pk]
+    (book_id, listing_id) [pk]
   }
 }
 
@@ -119,26 +94,20 @@ Table is_rented {
   listed_book listed_book [not null]
 
   indexes {
-    (book_id, listing_id, user_id) [pk]
+    (book_id, listing_id) [pk]
   }
 }
 
 Ref: listed_book.book_id > database_book.book_id
 
+Ref: listed_book.provider_id > provider.provider_id
+
 Ref: provider.provider_id - user.user_id
-
-Ref: is_sold.provider_id > provider.provider_id
-
-Ref: is_sold.(book_id, listing_id) > listed_book.(book_id, listing_id)
-
-Ref: is_leased.provider_id > provider.provider_id
-
-Ref: is_leased.(book_id, listing_id) > listed_book.(book_id, listing_id)
 
 Ref: is_bought.user_id > user.user_id
 
-Ref: is_bought.(book_id, listing_id) > listed_book.(book_id, listing_id)
+Ref: is_bought.(book_id, listing_id) - listed_book.(book_id, listing_id)
 
 Ref: is_rented.user_id > user.user_id
 
-Ref: is_rented.(book_id, listing_id) > listed_book.(book_id, listing_id)
+Ref: is_rented.(book_id, listing_id) - listed_book.(book_id, listing_id)
