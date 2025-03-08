@@ -19,6 +19,7 @@ generator docs {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  // url         = "postgresql://postgres:Baotram2004@localhost:5432/mydb" // chạy thử local, có gì sửa lại nha :v
 }
 
 model database_book {
@@ -47,10 +48,11 @@ model listed_book {
   sold_price       Float
   is_leased        Boolean
   leased_price     Float
-  is_sold_rel      is_sold[]
-  is_leased_rel    is_leased[]
-  is_bought_rel    is_bought[]
-  is_rented_rel    is_rented[]
+  leased_period    Int    // # of days
+  is_bought_rel    is_bought?
+  is_rented_rel    is_rented?
+  provider_id      String
+  provider         provider      @relation(fields: [provider_id], references: [provider_id])
 
   @@id([book_id, listing_id])
 }
@@ -69,7 +71,7 @@ model user {
   updated_at      DateTime    @updatedAt
   provider        provider?
   is_bought_rel   is_bought[]
-  is_rented_rel   is_rented[]
+  is_rented_rel   is_rented[]   
 }
 
 model provider {
@@ -80,29 +82,7 @@ model provider {
   description        String?
   policy             String?
   user               user        @relation(fields: [provider_id], references: [user_id])
-  is_sold_rel        is_sold[]
-  is_leased_rel      is_leased[]
-}
-
-model is_sold {
-  book_id     String
-  listing_id  String
-  provider_id String
-  provider    provider    @relation(fields: [provider_id], references: [provider_id])
-  listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
-
-  @@id([book_id, listing_id, provider_id])
-}
-
-model is_leased {
-  book_id       String
-  listing_id    String
-  provider_id   String
-  rented_period Int
-  provider      provider    @relation(fields: [provider_id], references: [provider_id])
-  listed_book   listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
-
-  @@id([book_id, listing_id, provider_id])
+  listed_book        listed_book[]
 }
 
 model is_bought {
@@ -114,8 +94,7 @@ model is_bought {
   modifiable  Boolean
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
-
-  @@id([book_id, listing_id, user_id])
+  @@id([book_id, listing_id])
 }
 
 model is_rented {
@@ -130,5 +109,5 @@ model is_rented {
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 
-  @@id([book_id, listing_id, user_id])
+  @@id([book_id, listing_id])
 }
