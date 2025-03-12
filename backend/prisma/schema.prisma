@@ -35,21 +35,20 @@ model database_book {
 }
 
 model listed_book {
-  listing_id       String        @default(uuid())
-  book_id          String
-  provider_img_url String
-  condition        String
-  listed_at        DateTime      @default(now())
-  price            Float
-  book             database_book @relation(fields: [book_id], references: [book_id])
-  is_sold          Boolean
-  sold_price       Float
-  is_leased        Boolean
-  leased_price     Float
-  is_sold_rel      is_sold[]
-  is_leased_rel    is_leased[]
-  is_bought_rel    is_bought[]
-  is_rented_rel    is_rented[]
+  listing_id            String        @default(uuid())
+  book_id               String
+  provider_book_img_url String?
+  condition             String
+  listed_at             DateTime      @default(now())
+  book                  database_book @relation(fields: [book_id], references: [book_id])
+  is_sold               Boolean
+  sold_price            Float
+  is_leased             Boolean
+  leased_price          Float
+  is_sold_rel           is_sold[]
+  is_leased_rel         is_leased[]
+  is_bought_rel         is_bought[]
+  is_rented_rel         is_rented[]
 
   @@id([book_id, listing_id])
 }

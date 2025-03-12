@@ -2,7 +2,14 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const main = async () => {
-  const tables = ["user", "provider", "database_book"];
+  const tables = [
+    "user",
+    "provider",
+    "database_book",
+    "listed_book",
+    "is_leased",
+    "is_sold",
+  ];
   for (const table of tables.slice().reverse()) {
     await prisma[table].deleteMany();
   }
