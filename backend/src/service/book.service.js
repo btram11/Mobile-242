@@ -19,7 +19,7 @@ class BookService {
 
   static async getBooks(
     page = 1,
-    pageSize = 100,
+    pageSize = 10,
     isSold = null,
     isLeased = null,
     keyword = null,
