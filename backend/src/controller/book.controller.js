@@ -3,7 +3,7 @@ const BookService = require("../service/book.service");
 
 class BookController {
   getBooks = async (req, res) => {
-    const response = await BookService.getBooks();
+    const response = await BookService.getBooks(1, 10, null, true, "Python");
     return res.status(200).json(response);
   };
 
