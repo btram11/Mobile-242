@@ -13,10 +13,10 @@ pipeline{
                 checkout scm
             }
         }
+        // Assuming dependencies (expo-cli, eas, gdrive) are installed globally on the machine
         stage('Build'){
             steps{
                 dir('frontend'){
-                    sh 'pwd'
                     sh 'eas build -p android --profile preview --local --output=build-test.apk'
                 }
             }
