@@ -16,7 +16,7 @@ pipeline{
         stage('Build'){
             steps{
                 dir('frontend'){
-                    sh 'npm -v'
+                    sh 'pwd'
                     sh 'eas build -p android --profile preview --local --output=build-test.apk'
                 }
             }
