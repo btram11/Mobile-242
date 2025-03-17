@@ -1,20 +1,23 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const main = async () => {
-    // Seed user data
-    const users = require('./data/users.json');
-    await prisma.users.createMany({
-        data: users,
+  const tables = ["user", "database_book"];
+  for (const table of tables.reverse()) {
+    await prisma[table].deleteMany();
+  }
+  for (const table of tables) {
+    const data = require(`./data/${table}.json`);
+    await prisma[table].createMany({
+      data: data,
     });
-
-    // Seed other data
-}
+  }
+};
 
 main()
-    .catch(e => {
-        throw e
-    })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })
+  .catch((e) => {
+    throw e;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
