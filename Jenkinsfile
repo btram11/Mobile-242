@@ -1,5 +1,7 @@
 pipeline{
-    agent label: 'physical'
+    agent {
+        label 'physical'
+    }
 
     environment{
         GOOGLE_DRIVE_FOLDER_ID = '1NSr37wYq8B245NRWQLNbv6vi7rPS0SY1'
@@ -12,8 +14,8 @@ pipeline{
             }
         }
         stage('Build'){
-            dir('frontend'){
-                steps{
+            steps{
+                dir('frontend'){
                     sh 'eas build -p android --profile preview --local --output=build-test.apk'
                 }
             }
