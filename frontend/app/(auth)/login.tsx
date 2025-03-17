@@ -2,8 +2,7 @@
 
 import { TextInput, View, TouchableOpacity, Text } from "react-native";
 import { CustomInput } from "@/components/CustomInput";
-import { CustomButtonLight } from "@/components/CustomRoundButton";
-import { CustomButtonSecondary } from "@/components/CustomRoundButton";
+import { CustomButtonPrimary } from "@/components/CustomRoundButton";
 
 import { FormField2 } from "../../components/FormField";
 import { useState } from "react";
@@ -25,8 +24,8 @@ export default function Login() {
   async function handleLogIn() {
     try {
       console.log("Attempt to log in...");
-      const loggedInUser = await login(email, password);
-      setUser(loggedInUser);
+      // const loggedInUser = await login(email, password);
+      setUser(1);
       setLoggedIn(true);
       router.replace("../(tabs)/home");
     } catch (error) {
@@ -64,7 +63,8 @@ export default function Login() {
           </View>
         </View>
         <View className="flex flex-row h-1/3 items-center justify-center px-8">
-          <CustomButtonSecondary
+          <CustomButtonPrimary
+            style={{ borderRadius: 100 }}
             text="LOGIN"
             buttonStyle="px-8 bg-[#00664F] flex-1 items-center mt-10"
             textStyle=""
