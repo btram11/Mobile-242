@@ -12,7 +12,7 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { useHeaderHeight } from "@react-navigation/elements";
-import { CustomButtonOnboarding } from "@/components/CustomButton";
+import { CustomButtonOnboarding } from "@/components/CustomRoundButton";
 import { router } from "expo-router";
 import Onboarding1 from "./onboarding";
 import Permissions from "@/lib/permissions";

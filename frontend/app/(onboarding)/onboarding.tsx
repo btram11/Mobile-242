@@ -14,7 +14,7 @@ import {
   SafeAreaView,
 } from "react-native-safe-area-context";
 import { logo1 } from "@/constants/logos";
-import { CustomButtonLight } from "@/components/CustomButton";
+import { CustomButtonLight } from "@/components/CustomRoundButton";
 
 function Onboarding1({ handleNext }: { handleNext: () => void }) {
   const { height, width } = useWindowDimensions();
