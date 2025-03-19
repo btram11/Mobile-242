@@ -13,8 +13,6 @@ const { getRedisClient } = require("../dbs/init.redis");
 
 const { generateKey } = require("../auth/authUtils");
 
-const redisClient = getRedisClient();
-
 class AccessService {
   /**
    * 1 - Check email in dbs
@@ -30,7 +28,6 @@ class AccessService {
     }
 
     const foundUser = await getUserByEmail(email);
-    console.log(foundUser);
     if (!foundUser) {
       throw new BadRequestError("User not found");
     }
@@ -44,16 +41,13 @@ class AccessService {
 
     const token = jwt.sign(
       { userId: foundUser.user_id, email: foundUser.email },
-      process.env.SECREC_KEY || "HCMUT",
-      {
-        expiresIn: "1h",
-      }
+      process.env.SECREC_KEY || "HCMUT"
     );
 
     const redisClient = await getRedisClient();
 
     await redisClient.set(`access_token:${foundUser.user_id}`, token, {
-      EX: 60,
+      EX: 900,
     });
 
     const setToken = await setTokenById(token, foundUser.user_id);
