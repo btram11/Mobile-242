@@ -46,7 +46,6 @@ Table user {
   email String [unique, not null]
   faculty String [not null]
   phone_number String
-  access_token String [not null, default: '']
   salt String [not null, default: '']
   created_at DateTime [default: `now()`, not null]
   updated_at DateTime [not null]

@@ -33,37 +33,6 @@ const getUserByEmail = async (email) => {
   return result;
 };
 
-const removeToken = async (access_token) => {
-  const result = await prisma.user
-    .update({
-      where: {
-        access_token: access_token,
-      },
-      data: {
-        access_token: "",
-      },
-    })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
-};
-const setTokenById = async (access_token, id) => {
-  const result = await prisma.user
-    .update({
-      where: {
-        user_id: id,
-      },
-      data: {
-        access_token: access_token,
-      },
-    })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
-  return result;
-};
 const updatePasswordById = async (new_password, salt, id) => {
   const result = await prisma.user
     .update({
@@ -84,8 +53,6 @@ const updatePasswordById = async (new_password, salt, id) => {
 
 module.exports = {
   getUserByEmail,
-  removeToken,
-  setTokenById,
   updatePasswordById,
   getAllUsers,
 };
