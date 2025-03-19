@@ -47,9 +47,6 @@ const { authentication } = require("../../auth/authUtils");
  *                userId:
  *                  type: string
  *                  description: The ID of user
- *                salt:
- *                  type: string
- *                  description: Salt for hash password
  *                role:
  *                  type: string
  *                  description: Role of user
