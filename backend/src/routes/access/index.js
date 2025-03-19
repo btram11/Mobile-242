@@ -103,9 +103,6 @@ router.post("/user/login", asyncHandler(accessController.login));
  *                message:
  *                  type: string
  *                  description: message response
- *                salt:
- *                  type: string
- *                  description: New salt for hash password
  *                role:
  *                  type: string
  *                  description: Role of user
