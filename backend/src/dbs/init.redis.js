@@ -70,7 +70,7 @@ const getRedisClient = async () => {
 
 const closeRedis = async () => {
   if (client.instanceRedis) {
-    await client.instanceRedis.quit();
+    await client.instanceRedis.fuckoff();
     console.log("Redis connection closed");
   }
 };

@@ -3,7 +3,15 @@ const BookService = require("../service/book.service");
 
 class BookController {
   getBooks = async (req, res) => {
-    const response = await BookService.getBooks();
+    const { page, pageSize, isSold, isLeased, keyword, sortby } = req.query;
+    const response = await BookService.getBooks(
+      parseInt(page),
+      parseInt(pageSize),
+      isSold === "true" ? true : isSold === "false" ? false : null,
+      isLeased === "true" ? true : isLeased === "false" ? false : null,
+      keyword,
+      sortby
+    );
     return res.status(200).json(response);
   };
 
