@@ -56,8 +56,12 @@ const RootLayout = () => {
           options={{ title: "Authentication", headerShown: false }}
         />
         <Stack.Screen
+          name="(onboarding)"
+          options={{ title: "Onboarding", headerShown: false }}
+        />
+        <Stack.Screen
           name="(tabs)"
-          options={{ title: "Tabs", headerShown: true }}
+          options={{ title: "Tabs", headerShown: false }}
         />
       </Stack>
     </GlobalProvider>
