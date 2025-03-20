@@ -62,7 +62,6 @@ model user {
   email           String      @unique
   faculty         String
   phone_number    String?
-  access_token    String      @default("")
   salt            String      @default("")
   created_at      DateTime    @default(now())
   updated_at      DateTime    @updatedAt

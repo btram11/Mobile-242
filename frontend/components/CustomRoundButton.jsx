@@ -1,9 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, Text } from "react-native"
 
-const CustomButtonPrimary = ({ buttonStyle, textStyle, text, handlePress }) =>
+const CustomButtonPrimary = ({ buttonStyle, textStyle, text, handlePress, ...props}) =>
 (
     <TouchableOpacity
+        style={props.style}
         className={`bg-secondarydark p-4 rounded-xl m-4 ${buttonStyle}`}
         onPress={handlePress}>
         <Text className={`text-white font-latobold ${textStyle}`}>{text}</Text>
