@@ -98,5 +98,5 @@ resource "azurerm_private_dns_a_record" "redis" {
 resource "azurerm_key_vault_secret" "redis_non_ssl_connection_string" {
   name         = "redis-connection-string"
   key_vault_id = var.key_vault_id
-  value        = "${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.port},password=${azurerm_redis_cache.redis.primary_access_key},ssl=False,abortConnect=False"
+  value        = "redis://${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.port}?password=${azurerm_redis_cache.redis.primary_access_key}&ssl=False&abortConnect=False"
 }
