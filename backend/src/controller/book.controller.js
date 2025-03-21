@@ -4,6 +4,7 @@ const BookService = require("../service/book.service");
 class BookController {
   getBooks = async (req, res) => {
     const { page, pageSize, isSold, isLeased, keyword, sortby } = req.query;
+    console.log(req.query);
     const response = await BookService.getBooks(
       parseInt(page),
       parseInt(pageSize),
@@ -16,7 +17,14 @@ class BookController {
   };
 
   searchBook = async (req, res) => {
-    const response = await BookService.searchBook(req.query);
+    const { title, author, keywords, subject } = req.query;
+    console.log(req.query);
+    const response = await BookService.searchBook(
+      title,
+      author,
+      keywords,
+      subject
+    );
     return res.status(200).json(response);
   };
 
@@ -25,8 +33,12 @@ class BookController {
     return res.status(200).json(response);
   };
 
-  getDetailBook = async (req, res) => {
-    const response = await BookService.getDetailBook(req.body);
+  getBookDetail = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.getBookDetail(
+      bookid,
+      listingid
+    );
     return res.status(200).json(response);
   };
 
