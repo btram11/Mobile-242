@@ -3,12 +3,12 @@ const BookService = require("../service/book.service");
 
 class BookController {
   getBooks = async (req, res) => {
-    const response = await BookService.getBooks();
+    const response = await BookService.getBooks(req.query);
     return res.status(200).json(response);
   };
 
   searchBook = async (req, res) => {
-    const response = await BookService.searchBook(req.body);
+    const response = await BookService.searchBook(req.query);
     return res.status(200).json(response);
   };
 

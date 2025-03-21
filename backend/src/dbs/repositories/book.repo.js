@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const getBooks = async (page, pageSize) => {
   const skip = (page - 1) * pageSize;
   const take = pageSize;
+  console.log(skip, take);
   const result = await prisma.database_book
     .findMany({
       skip: skip,

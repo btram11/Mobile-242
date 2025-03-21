@@ -19,7 +19,6 @@ generator docs {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // url         = "postgresql://postgres:Baotram2004@localhost:5432/mydb" // chạy thử local, có gì sửa lại nha :v
 }
 
 model database_book {
@@ -69,7 +68,7 @@ model user {
   updated_at      DateTime    @updatedAt
   provider        provider?
   is_bought_rel   is_bought[]
-  is_rented_rel   is_rented[]   
+  is_rented_rel   is_rented[]
 }
 
 model provider {
@@ -92,6 +91,7 @@ model is_bought {
   modifiable  Boolean
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
   @@id([book_id, listing_id])
 }
 

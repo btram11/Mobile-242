@@ -1,15 +1,15 @@
 services:
-  db:
-    image: postgres:17.2-alpine3.21
-    container_name: postgres_container
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root123
-      POSTGRES_DB: mobiledev
-    volumes:
-      - ./data:/var/lib/postgresql/mobiledev/data
-    ports:
-      - 5432:5432
+  # db:
+  #   image: postgres:17.2-alpine3.21
+  #   container_name: postgres_container
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root123
+  #     POSTGRES_DB: mobiledev
+  #   volumes:
+  #     - ./data:/var/lib/postgresql/mobiledev/data
+  #   ports:
+  #     - 5432:5432
   redis:
     image: redis:7.4.2-alpine
     container_name: redis_container
@@ -22,7 +22,7 @@ services:
     command: ["redis-server", "--requirepass", "quangamingvn123"]
 
 volumes:
-  db:
-    driver: local
+  # db:
+  #   driver: local
   redis:
     driver: local

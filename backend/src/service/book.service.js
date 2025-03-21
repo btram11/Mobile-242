@@ -5,7 +5,7 @@ const { getBooks, searchBook } = require("../dbs/repositories/book.repo");
 
 class BookService {
   static async getBooks({ page, pageSize }) {
-    const result = await getBooks(page, pageSize);
+    const result = await getBooks(parseInt(page), parseInt(pageSize));
     if (!result) {
       throw new BadRequestError("Book not found");
     }
@@ -17,25 +17,26 @@ class BookService {
     };
   }
   static async searchBook({ title, author, keywords, category }) {
+    console.log(title)
     const filters = {};
     if (title) {
       filters.title = {
         contains: title,
-        mode: "intensive",
+        mode: "insensitive",
       };
     }
 
     if (author) {
       filters.author = {
         contains: author,
-        mode: "intensive",
+        mode: "insensitive",
       };
     }
 
     if (keywords) {
       filters.keywords = {
         contains: keywords,
-        mode: "intensive",
+        mode: "insensitive",
       };
     }
 
