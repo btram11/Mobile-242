@@ -25,8 +25,8 @@ export default function Login() {
     try {
       console.log("Attempt to log in...");
       // const loggedInUser = await login(email, password);
-      setUser(1);
-      setLoggedIn(true);
+      // setUser(1);
+      // setLoggedIn(true);
       router.replace("../(tabs)/home");
     } catch (error) {
       console.error("Error logging in:", error);

@@ -36,16 +36,16 @@ export default function HomePage() {
 
   useEffect(() => {
     setIsLoading(true);
-    getAllPosts()
-      .then((data) => {
-        console.log(data);
-        setData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-        throw Error("Error catched in HomePage(): ", error);
-      })
-      .finally(setIsLoading(false));
+    // getAllPosts()
+    //   .then((data) => {
+    //     console.log(data);
+    //     setData(data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     throw Error("Error catched in HomePage(): ", error);
+    //   })
+    //   .finally(setIsLoading(false));
   }, []);
 
   const [isRefreshing, setIsRefreshing] = useState(false);

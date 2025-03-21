@@ -16,18 +16,18 @@ export function GlobalProvider({ children }) {
     // login to the current user for every screen
     () => {
       // useEffect must not return a Promise => can only write an async function and execute it inside the arrow function
-      getCurrentUser()
-        .then((currentUserInfo) => {
-          setLoggedIn(true);
-          setUser(currentUserInfo);
-        })
-        .catch((error) => {
-          console.error("Error in GlobalProvider.", error);
-          // setLoggedIn(false)
-          // setUser(null)
-          setLoggedIn(true);
-        })
-        .finally(setIsLoading(false));
+      // getCurrentUser()
+      //   .then((currentUserInfo) => {
+      //     setLoggedIn(true);
+      //     setUser(currentUserInfo);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error in GlobalProvider.", error);
+      //     // setLoggedIn(false)
+      //     // setUser(null)
+      //     setLoggedIn(true);
+      //   })
+      //   .finally(setIsLoading(false));
     },
     []
   );
