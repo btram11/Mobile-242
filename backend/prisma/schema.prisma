@@ -25,15 +25,14 @@ datasource db {
 model database_book {
   book_id         String        @id @default(uuid())
   title           String
-  img_url         String
+  img_url         String?
   author          String
   publisher       String
   publishing_year Int
-  summary         String
-  price           Float
+  subject         String?
+  summary         String?
+  price           Float?
   listed_books    listed_book[]
-
-  @@unique([title, author, publisher])
 }
 
 model listed_book {
@@ -48,7 +47,7 @@ model listed_book {
   sold_price       Float
   is_leased        Boolean
   leased_price     Float
-  leased_period    Int    // # of days
+  leased_period    Int // # of days
   is_bought_rel    is_bought?
   is_rented_rel    is_rented?
   provider_id      String
@@ -65,7 +64,6 @@ model user {
   email           String      @unique
   faculty         String
   phone_number    String?
-  access_token    String      @default("")
   salt            String      @default("")
   created_at      DateTime    @default(now())
   updated_at      DateTime    @updatedAt
@@ -75,13 +73,13 @@ model user {
 }
 
 model provider {
-  provider_id        String      @id @default(uuid())
-  provider_name      String      // different from username, avatar = user's avatar
+  provider_id        String        @id @default(uuid())
+  provider_name      String // different from username, avatar = user's avatar
   average_rating     Float?
   preferred_location String?
   description        String?
   policy             String?
-  user               user        @relation(fields: [provider_id], references: [user_id])
+  user               user          @relation(fields: [provider_id], references: [user_id])
   listed_book        listed_book[]
 }
 

@@ -55,7 +55,9 @@ const handleEventConnection = ({ connectionRedis }) => {
 
 const initRedis = () => {
   const instanceRedis = redis.createClient({
-    url: process.env.REDIS_URL || "redis://localhost:6379",
+    url:
+      process.env.REDIS_URL ||
+      "redis://:quangamingvn123@localhost:6379?ssl=false&abortConnect=true",
   });
   client.instanceRedis = instanceRedis.connect();
   handleEventConnection({ connectionRedis: instanceRedis });

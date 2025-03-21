@@ -5,17 +5,14 @@
 Table database_book {
   book_id String [pk]
   title String [not null]
-  img_url String [not null]
+  img_url String
   author String [not null]
   publisher String [not null]
   publishing_year Int [not null]
-  summary String [not null]
-  price Float [not null]
+  subject String
+  summary String
+  price Float
   listed_books listed_book [not null]
-
-  indexes {
-    (title, author, publisher) [unique]
-  }
 }
 
 Table listed_book {
@@ -49,7 +46,6 @@ Table user {
   email String [unique, not null]
   faculty String [not null]
   phone_number String
-  access_token String [not null, default: '']
   salt String [not null, default: '']
   created_at DateTime [default: `now()`, not null]
   updated_at DateTime [not null]
