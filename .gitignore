@@ -1,8 +1,13 @@
+##### EVERYWHERE ###
+**/PipTram/**
+
 ##### BACKEND #####
 /backend/node_modules
 /backend/.env
 /backend/test.js
 /backend/prisma/migrations
+/backend/prisma/dbml
+/backend/prisma/docs
 ###################
 
 ##### FRONTEND #####

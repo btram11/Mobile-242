@@ -1,5 +1,6 @@
 [
     {
+        "book_id": "00000000-0000-0000-0000-000000000000",
         "title": "Lậptrìnhcơ bản - Tự học Python bằng hình ảnh / Nguyễn Quốc Huy, Nguyễn Tất Bảo Thiện, Nguyễn Khắc Chiến.",
         "author": "Nguyễn, Quốc Huy.",
         "publisher": "Hà Nội : Thanh niên",
@@ -8,6 +9,7 @@
         "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
     },
     {
+        "book_id": "00000000-0000-0000-0000-000000000001",
         "title": "Kỹ thuậtlậptrìnhPython nâng cao / Nguyễn Quốc Huy, Nguyễn Tất Bảo Thiện.",
         "author": "Lê, Cảnh Trung.",
         "publisher": "Hà Nội : Thanh niên",
@@ -16,6 +18,7 @@
         "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
     },
     {
+        "book_id": "00000000-0000-0000-0000-000000000002",
         "title": "Tài liệu hướng dẫn thực hànhLậptrìnhmạng căn bản / Đỗ Thị Hương Lan, Trần Hồng Nghi.",
         "author": "Đỗ, Thị Hương Lan",
         "publisher": "TP.HCM : Đại học Quốc gia TP.HCM",
@@ -24,6 +27,7 @@
         "subject": "Ngôn ngữlậptrình"
     },
     {
+        "book_id": "00000000-0000-0000-0000-000000000003",
         "title": "GiáotrìnhlậptrìnhPython / Huỳnh Phước Hải chủ biên, Nguyễn Văn Hòa.",
         "author": "Huỳnh, Phước Hải, TS.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",

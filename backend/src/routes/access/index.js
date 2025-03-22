@@ -6,7 +6,7 @@ const { authentication } = require("../../auth/authUtils");
 // login
 /**
  * @swagger
- * '/api/v1/user/login':
+ * '/api/v1/access/user/login':
  *  post:
  *     tags:
  *     - User controller
@@ -64,7 +64,7 @@ router.post("/user/login", asyncHandler(accessController.login));
 // reset-password
 /**
  * @swagger
- * '/api/v1/user/reset-password':
+ * '/api/v1/access/user/reset-password':
  *  post:
  *     tags:
  *     - User controller
@@ -136,7 +136,7 @@ router.use(authentication);
  *       in: header
  *       name: client_id
  *       description: "Client ID for identifying the client application"
- * '/api/v1/user/logout':
+ * '/api/v1/access/user/logout':
  *  post:
  *     tags:
  *     - User controller
