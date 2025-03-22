@@ -171,7 +171,14 @@ export default function Onboarding2() {
 
   const handleNext = () => {
     if (currentIndex < OnboardingScreens.length - 1 && flatListRef.current) {
-      flatListRef.current.scrollToIndex({ index: currentIndex + 1 });
+      const nextIndex = currentIndex + 1;
+      flatListRef.current.scrollToOffset({
+        offset: nextIndex * width,
+        animated: true,
+      });
+      setCurrentIndex(nextIndex);
+      // flatListRef.current.scrollToIndex({ index: currentIndex + 1 });
+      // console.log("press next ", currentIndex, flatListRef.current);
     } else {
       router.replace("/(auth)/login");
     }
@@ -194,7 +201,7 @@ export default function Onboarding2() {
     >
       <FlatList
         style={{ marginTop: -insets.top }}
-        scrollEnabled={false}
+        scrollEnabled={true}
         ref={flatListRef}
         data={OnboardingScreens}
         keyExtractor={(item) => item.id}

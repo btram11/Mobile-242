@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import AuthLayout from "@/layouts/AuthLayout";
 
-import { login } from "@/lib/appwrite";
+import { login } from "@/api/auth";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
 
@@ -24,10 +24,14 @@ export default function Login() {
   async function handleLogIn() {
     try {
       console.log("Attempt to log in...");
-      // const loggedInUser = await login(email, password);
+      try {
+        const loggedInUser = await login(email, password);
+        router.replace("../(tabs)/home");
+      } catch (exception) {
+        console.log(exception);
+      }
       // setUser(1);
       // setLoggedIn(true);
-      router.replace("../(tabs)/home");
     } catch (error) {
       console.error("Error logging in:", error);
       throw new Error(error.message || "Unknown error occurred");
@@ -40,7 +44,7 @@ export default function Login() {
         <View className="flex h-1/4 items-end justify-end"></View>
         <View className="flex h-[43%] items-center justify-center">
           <Text className="font-black text-2xl mb-14">LOG IN</Text>
-          <View className="flex flex-col gap-3">
+          <View className="flex flex-col gap-12">
             <FormField2
               name="Email"
               value={email}

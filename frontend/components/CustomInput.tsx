@@ -7,6 +7,7 @@ import {
   Text,
   Image,
   Animated,
+  StyleSheet,
 } from "react-native";
 import { useRef, useState } from "react";
 
@@ -72,6 +73,7 @@ const CustomInput2 = ({
   handleTextChange,
   inputStyle = "",
   icon = "",
+  ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -92,20 +94,28 @@ const CustomInput2 = ({
 
   return (
     <View
-      className={` rounded-full relative ${
+      style={[
+        {
+          borderRadius: 999999,
+          position: "relative",
+        },
+        rest.style,
+      ]}
+      className={`rounded-full relative ${
         isFocused ? "border-2 border-primarydark" : "border-primary"
       } w-full flex-row justify-stretch items-center`}
     >
       <Animated.Text
+        style={[styles.labelStyle2, floatingLabelStyle]}
         className={`absolute left-6 color-[rgba(3,0,71,0.33)] font-bold w-full border-primary`}
-        style={floatingLabelStyle}
       >
         {name}
       </Animated.Text>
       <TextInput
+        style={rest.style}
         placeholder={isFocused ? placeholder : ""}
         // type={type}
-        className={`text-black w-full py-4 pr-4 pl-6 placeholder:text-[rgba(3,0,71,0.5)] ${inputStyle}`}
+        className={`text-black w-full py-4 pr-4 pl-6  ${inputStyle}`}
         onChangeText={handleTextChange}
         onFocus={() => {
           setIsFocused(true);
@@ -133,7 +143,11 @@ const CustomInput2 = ({
 
       {!isFocused && !value && icon && (
         <View className="absolute right-0 p-4">
-          <Image source={icon} className="w-6 h-6 text-primarydark" />
+          <Image
+            source={icon}
+            style={styles.icon}
+            className="w-6 h-6 text-primarydark"
+          />
         </View>
       )}
 
@@ -160,4 +174,15 @@ const CustomInput2 = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  labelStyle2: {
+    position: "absolute",
+    left: 24,
+  },
+});
 export { CustomInput, CustomInput2 };

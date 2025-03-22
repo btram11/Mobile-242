@@ -55,10 +55,10 @@ const RootLayout = () => {
           name="(auth)"
           options={{ title: "Authentication", headerShown: false }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="(onboarding)"
           options={{ title: "Onboarding", headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           name="(tabs)"
           options={{ title: "Tabs", headerShown: false }}
