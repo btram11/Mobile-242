@@ -47,6 +47,32 @@ const bookController = require("../../controller/book.controller");
  */
 router.get("/", asyncHandler(bookController.getBooks));
 router.get("/search", asyncHandler(bookController.searchBook));
+/**
+ * @swagger
+ * /api/v1/book/{bookid}/listing/{listingid}:
+ *   get:
+ *     tags: [Book]
+ *     summary: Get detailed information about a specific book listing
+ *     description: Retrieves detailed information for a book by its ID and listing ID
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book to retrieve
+ *       - in: path
+ *         name: listingid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the listing to retrieve
+ *     responses:
+ *       200:
+ *         description: Detailed information about the book listing
+ *       404:
+ *         description: Book or listing not found
+ */
 router.get("/:bookid/listing/:listingid", asyncHandler(bookController.getBookDetail));
 
 module.exports = router;
