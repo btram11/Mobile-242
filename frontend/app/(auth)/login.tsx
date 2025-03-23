@@ -1,6 +1,13 @@
 //@ts-nocheck
 
-import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import {
+  Modal,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+} from "react-native";
 import { CustomInput } from "@/components/CustomInput";
 import { CustomButtonPrimary } from "@/components/CustomRoundButton";
 
@@ -17,6 +24,8 @@ import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
 
 export default function Login() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, setLoggedIn } = useGlobalContext();
@@ -29,6 +38,8 @@ export default function Login() {
         router.replace("../(tabs)/home");
       } catch (exception) {
         console.log(exception);
+        setModalVisible(true);
+        setErrorMessage(exception.message || "Unknown error occurred");
       }
       // setUser(1);
       // setLoggedIn(true);
@@ -76,6 +87,26 @@ export default function Login() {
           />
         </View>
       </View>
+      <Modal
+        style={{ height: Dimensions.get("screen").height }}
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View className="flex-1 justify-center items-center bg-black/50">
+          <View className="bg-white p-6 rounded-lg shadow-lg w-4/5">
+            <Text className="text-lg font-bold text-red-600">Error</Text>
+            <Text className="mt-2 text-gray-700">{errorMessage}</Text>
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              className="mt-4 bg-red-600 px-4 py-2 rounded-lg"
+            >
+              <Text className="text-white text-center">Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </AuthLayout>
   );
 }
