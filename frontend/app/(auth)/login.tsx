@@ -15,17 +15,22 @@ import { FormField2 } from "../../components/FormField";
 import { useState } from "react";
 import { router, Redirect, Link } from "expo-router";
 
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  useSafeAreaInsets,
+  SafeAreaView,
+} from "react-native-safe-area-context";
 
 import AuthLayout from "@/layouts/AuthLayout";
 
 import { login } from "@/api/auth";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
+import { useModal } from "@/context/ModalContext";
 
 export default function Login() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const { openModal } = useModal();
   const [errorMessage, setErrorMessage] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, setLoggedIn } = useGlobalContext();
@@ -33,19 +38,15 @@ export default function Login() {
   async function handleLogIn() {
     try {
       console.log("Attempt to log in...");
-      try {
-        const loggedInUser = await login(email, password);
-        router.replace("../(tabs)/home");
-      } catch (exception) {
-        console.log(exception);
-        setModalVisible(true);
-        setErrorMessage(exception.message || "Unknown error occurred");
-      }
-      // setUser(1);
-      // setLoggedIn(true);
-    } catch (error) {
-      console.error("Error logging in:", error);
-      throw new Error(error.message || "Unknown error occurred");
+      if (!email || !password) throw new Error("Please fill in missing field");
+      await login(email, password);
+      router.replace("../(tabs)/home");
+    } catch (exception) {
+      console.log("Error logging in:", exception);
+      openModal("ErrorModal", {
+        errorMessage: exception.message || "Unknown error occurred",
+      });
+      setErrorMessage(exception.message || "Unknown error occurred");
     }
   }
 
@@ -87,26 +88,6 @@ export default function Login() {
           />
         </View>
       </View>
-      <Modal
-        style={{ height: Dimensions.get("screen").height }}
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View className="flex-1 justify-center items-center bg-black/50">
-          <View className="bg-white p-6 rounded-lg shadow-lg w-4/5">
-            <Text className="text-lg font-bold text-red-600">Error</Text>
-            <Text className="mt-2 text-gray-700">{errorMessage}</Text>
-            <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              className="mt-4 bg-red-600 px-4 py-2 rounded-lg"
-            >
-              <Text className="text-white text-center">Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </AuthLayout>
   );
 }
