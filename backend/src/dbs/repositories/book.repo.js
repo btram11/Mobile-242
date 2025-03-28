@@ -44,6 +44,7 @@ const getBooks = async (
 
   // Search keyword
   if (keyword) {
+    // only take books with keywords in these fields
     joinCondition.OR = [
       {
         title: { search: keyword },
@@ -55,7 +56,7 @@ const getBooks = async (
         summary: { search: keyword },
       },
     ];
-    if (!sortby) sortby = "relevance";
+    if (!sortby) sortby = "relevance";  // sort by relevance
     orderBy._relevance = {
       fields: ["title", "subject", "summary"],
       search: keyword,
@@ -70,16 +71,7 @@ const getBooks = async (
     where: joinCondition,
     orderBy: orderBy,
   });
-  return result;
-};
-
-const searchBook = async (filters) => {
-  const result = await prisma.database_book
-    .findMany({
-      where: filters,
-    })
-    .catch((error) => console.error(error));
-
+  
   return result;
 };
 
@@ -100,4 +92,4 @@ const getBookDetail = async (bookid, listingid) => {
 
 const sortBy = async (filters) => {};
 
-module.exports = { getBooks, searchBook, getBookDetail };
+module.exports = { getBooks, getBookDetail };

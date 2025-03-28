@@ -16,18 +16,6 @@ class BookController {
     return res.status(200).json(response);
   };
 
-  searchBook = async (req, res) => {
-    const { title, author, keywords, subject } = req.query;
-    console.log(req.query);
-    const response = await BookService.searchBook(
-      title,
-      author,
-      keywords,
-      subject
-    );
-    return res.status(200).json(response);
-  };
-
   sortByCondition = async (req, res) => {
     const response = await BookService.sortByCondition(req.body);
     return res.status(200).json(response);
