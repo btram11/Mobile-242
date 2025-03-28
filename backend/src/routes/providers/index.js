@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /providers:
+ * /api/v1/providers:
  *   get:
  *     summary: Get a list of all providers
  *     tags: [Providers]
@@ -20,7 +20,7 @@
 
 /**
  * @swagger
- * /providers/{id}:
+ * /api/v1/providers/{id}:
  *   get:
  *     summary: Get a provider by ID
  *     tags: [Providers]
@@ -42,7 +42,7 @@
 
 /**
  * @swagger
- * /providers/{id}/books:
+ * /api/v1/providers/{id}/books:
  *   get:
  *     summary: Get books by a specific provider
  *     tags: [Providers]
