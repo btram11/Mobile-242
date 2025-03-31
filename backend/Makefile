@@ -13,6 +13,9 @@ migrate-up:
 migrate-down:
 	db-migrate down 
 
+azurite:
+	azurite --skipApiVersionCheck --location /azurite
+
 start: 
 	npm run start
 

@@ -20,6 +20,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@azure/storage-blob": "^12.27.0",
     "@prisma/client": "^6.4.1",
     "backend": "file:",
     "compression": "^1.7.5",
