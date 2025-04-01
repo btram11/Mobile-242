@@ -35,12 +35,7 @@ const main = async () => {
         const blobName = `${book.book_id}.jpg`;
         const blockBlobClient = containerClient.getBlockBlobClient(blobName);
         await blockBlobClient.upload(imageContent, imageContent.length);
-        const sasToken = await blockBlobClient.generateSasUrl({
-          expiresOn: new Date(new Date().valueOf() + 3600 * 1000),
-          permissions: "r",
-          contentType: "image/jpeg",
-        });
-        book.img_url = `${blockBlobClient.url}?${sasToken}`;
+        book.img_url = blockBlobClient.url;
       }
       await prisma[table].createMany({
         data: books,
