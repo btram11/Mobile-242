@@ -1,13 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, Text } from "react-native"
 
-const CustomButtonPrimary = ({ buttonStyle, textStyle, text, handlePress,...props }) =>
+const CustomButtonPrimary = ({ buttonStyle, textStyle, text, handlePress,  ...props }) =>
 (
     <TouchableOpacity
         {...props}
         className={`bg-secondarydark p-4 rounded-md m-4 ${buttonStyle}`}
         onPress={handlePress}>
-        <Text className={`text-white font-latobold ${textStyle}`}>{text}</Text>
+        {text && <Text className={`text-white font-latobold ${textStyle}`}>{text}</Text>}
     </TouchableOpacity>
 )
 
@@ -30,4 +30,13 @@ const CustomButtonLight = ({ buttonStyle, textStyle, text, handlePress, ...props
         </TouchableOpacity>
     )
 
-export { CustomButtonPrimary, CustomButtonSecondary, CustomButtonLight }
+const CustomButtonOutlined = ({ title, onPress, containerStyle, textStyle, ...props }) => (
+    <TouchableOpacity
+        style={containerStyle}
+        onPress={onPress}
+        {...props}>
+        <Text style={textStyle}>{title}</Text>
+    </TouchableOpacity>
+)
+
+export { CustomButtonPrimary, CustomButtonSecondary, CustomButtonLight, CustomButtonOutlined }

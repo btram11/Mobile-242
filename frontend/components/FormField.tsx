@@ -1,4 +1,4 @@
-import { TextInput, View, Text } from "react-native";
+import { TextInput, View, Text, StyleSheet, Dimensions } from "react-native";
 import { CustomInput, CustomInput2 } from "./CustomInput";
 import { CustomButtonSecondary } from "./CustomRoundButton";
 
@@ -48,8 +48,12 @@ function FormField2({
   icon = "",
 }: FormFieldProps & { icon?: string }) {
   return (
-    <View className="w-5/6 justify-center items-center mb-8">
+    <View
+      style={styles.formStyle2}
+      // className="w-5/6 flex justify-center items-center mb-8"
+    >
       <CustomInput2
+        style={styles.formStyle2}
         name={name}
         placeholder={placeholder}
         value={value}
@@ -60,5 +64,13 @@ function FormField2({
     </View>
   );
 }
+
+const screenWidth = Dimensions.get("window").width;
+const styles = StyleSheet.create({
+  formStyle2: {
+    width: screenWidth * 0.8,
+    // marginBottom: 6,
+  },
+});
 
 export { FormField, FormField2 };

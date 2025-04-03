@@ -1,6 +1,13 @@
 //@ts-nocheck
 
-import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import {
+  Modal,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+} from "react-native";
 import { CustomInput } from "@/components/CustomInput";
 import { CustomButtonPrimary } from "@/components/CustomRoundButton";
 
@@ -8,15 +15,22 @@ import { FormField2 } from "../../components/FormField";
 import { useState } from "react";
 import { router, Redirect, Link } from "expo-router";
 
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  useSafeAreaInsets,
+  SafeAreaView,
+} from "react-native-safe-area-context";
 
 import AuthLayout from "@/layouts/AuthLayout";
 
-import { login } from "@/lib/appwrite";
+import { login } from "@/api/auth";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
+import { useModal } from "@/context/ModalContext";
 
 export default function Login() {
+  const { openModal } = useModal();
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, setLoggedIn } = useGlobalContext();
@@ -24,13 +38,15 @@ export default function Login() {
   async function handleLogIn() {
     try {
       console.log("Attempt to log in...");
-      // const loggedInUser = await login(email, password);
-      setUser(1);
-      setLoggedIn(true);
+      if (!email || !password) throw new Error("Please fill in missing field");
+      await login(email, password);
       router.replace("../(tabs)/home");
-    } catch (error) {
-      console.error("Error logging in:", error);
-      throw new Error(error.message || "Unknown error occurred");
+    } catch (exception) {
+      console.log("Error logging in:", exception);
+      openModal("ErrorModal", {
+        errorMessage: exception.message || "Unknown error occurred",
+      });
+      setErrorMessage(exception.message || "Unknown error occurred");
     }
   }
 
@@ -40,7 +56,7 @@ export default function Login() {
         <View className="flex h-1/4 items-end justify-end"></View>
         <View className="flex h-[43%] items-center justify-center">
           <Text className="font-black text-2xl mb-14">LOG IN</Text>
-          <View className="flex flex-col gap-3">
+          <View className="flex flex-col gap-12">
             <FormField2
               name="Email"
               value={email}

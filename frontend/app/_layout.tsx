@@ -14,6 +14,9 @@ import { useFonts } from "expo-font";
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
 import { GlobalProvider } from "@/context/GlobalProvider";
+import { ModalProvider } from "@/context/ModalContext";
+import ModalManager from "@/components/modal/ModalManager";
+import { NavigationContainer } from "@react-navigation/native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,26 +48,35 @@ const RootLayout = () => {
   if (!fontLoaded) return null;
 
   return (
-    <GlobalProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ title: "Homepage", headerShown: false }}
-        />
-        <Stack.Screen
-          name="(auth)"
-          options={{ title: "Authentication", headerShown: false }}
-        />
-        <Stack.Screen
+    <NavigationContainer>
+      <GlobalProvider>
+        <ModalProvider>
+          <ModalManager />
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{ title: "Homepage", headerShown: false }}
+            />
+            <Stack.Screen
+              name="(auth)"
+              options={{ title: "Authentication", headerShown: false }}
+            />
+            {/* <Stack.Screen
           name="(onboarding)"
           options={{ title: "Onboarding", headerShown: false }}
-        />
-        <Stack.Screen
-          name="(tabs)"
-          options={{ title: "Tabs", headerShown: false }}
-        />
-      </Stack>
-    </GlobalProvider>
+        /> */}
+            <Stack.Screen
+              name="(tabs)"
+              options={{ title: "Tabs", headerShown: false }}
+            />
+            <Stack.Screen
+              name="(profile)"
+              options={{ title: "Profile", headerShown: false }}
+            />
+          </Stack>
+        </ModalProvider>
+      </GlobalProvider>
+    </NavigationContainer>
   );
 };
 
