@@ -9,7 +9,7 @@ import {
   Animated,
   StyleSheet,
 } from "react-native";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import { eye, eyeHide, search } from "../constants/icons";
 
@@ -81,9 +81,25 @@ const CustomInput2 = ({
     new Animated.Value(value ? 1 : 0)
   ).current;
 
+  useEffect(() => {
+    if (value || isFocused) {
+      Animated.timing(floatingLabelAnimation, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(floatingLabelAnimation, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }).start();
+    }
+  }, [value, isFocused]);
+
   const floatingLabelStyle = {
     top: floatingLabelAnimation.interpolate({
-      inputRange: [0, 0],
+      inputRange: [0, 1],
       outputRange: [12, -24],
     }),
     fontSize: floatingLabelAnimation.interpolate({
@@ -112,7 +128,7 @@ const CustomInput2 = ({
         {name}
       </Animated.Text>
       <TextInput
-        style={rest.style}
+        style={[rest.style, { borderRadius: 9999999 }]}
         placeholder={isFocused ? placeholder : ""}
         // type={type}
         className={`text-black w-full py-4 pr-4 pl-6  ${inputStyle}`}
@@ -137,6 +153,8 @@ const CustomInput2 = ({
         }}
         secureTextEntry={name === "Password" && !showPassword}
         value={value}
+        importantForAutofill="noExcludeDescendants"
+        autoCompleteType="email"
       >
         {/* ${labelColor} */}
       </TextInput>

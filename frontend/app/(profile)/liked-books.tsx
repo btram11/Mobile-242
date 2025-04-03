@@ -6,7 +6,7 @@ import { mockedBooks } from "@/mocks/data";
 function LikedBooks() {
   return (
     // <View className="bg-secondarydark flex-1">
-    <ScrollView className="bg-white">
+    <ScrollView>
       <View className="flex flex-wrap flex-row justify-between p-4">
         {mockedBooks.map((book, idx) => (
           <BookCard2

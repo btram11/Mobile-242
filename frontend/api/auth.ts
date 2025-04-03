@@ -1,7 +1,7 @@
 import { HttpError } from "@/lib/Errors";
 
 // const BaseUrl = import.meta.env.VITE_API_URL;
-const BaseUrl = "http://localhost:8000/api/v1/access";
+const BaseUrl = "http://192.168.1.3:8000/api/v1/access";
 
 export const login = async (email: string, password: string) => {
   console.log("here");
@@ -24,7 +24,7 @@ export const login = async (email: string, password: string) => {
   console.log(result);
   if (result.status !== 200) throw new HttpError(result.message, result.status);
 
-  localStorage.setItem("access-token", result.accessToken);
-  localStorage.setItem("userID", result.userID);
-  localStorage.setItem("name", result.name);
+  // localStorage.setItem("access-token", result.accessToken);
+  // localStorage.setItem("userID", result.userID);
+  // localStorage.setItem("name", result.name);
 };
