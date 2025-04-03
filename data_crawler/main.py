@@ -16,8 +16,9 @@ def get_field(field_label, soup):
             return data_td.get_text(strip=True)
 
 
-def get_detail(book):
-    url = f"https://opac.vnulib.edu.vn{book}"
+def get_detail(book_info):
+    search_subject, book_link = book_info
+    url = f"https://opac.vnulib.edu.vn{book_link}"
     response = requests.get(url)
     response.encoding = 'utf-8'
     soup = BeautifulSoup(response.text, "html.parser")
@@ -36,7 +37,8 @@ def get_detail(book):
         'publisher': publisher,
         'publishing_year': year,
         'summary': summary,
-        'subject': subject
+        'subject': subject,
+        'category':  search_subject.replace('+', ' ')
     }
 
 
@@ -48,9 +50,8 @@ def get_list_books(subjects):
         response.encoding = 'utf-8'
         soup = BeautifulSoup(response.text, "html.parser")
         book_anchor_tags = soup.select('h2.briefcitTitle a')
-        book_links = [tag.get('href') for tag in book_anchor_tags]
+        book_links = [(x, tag.get('href')) for tag in book_anchor_tags]
         all_book_links.extend(book_links)
-
     return all_book_links
 
 
@@ -62,8 +63,7 @@ def main():
         for future in concurrent.futures.as_completed(futures):
             try:
                 detail_book = future.result()
-                if (detail_book["title"] and detail_book["author"] and detail_book["publisher"] and detail_book["publishing_year"]):
-                    results.append(detail_book)
+                results.append(detail_book)
             except Exception as e:
                 print("Error processing a book:", e)
 
