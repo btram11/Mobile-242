@@ -46,6 +46,7 @@ const bookController = require("../../controller/book.controller");
  *         description: A list of books
  */
 router.get("/", asyncHandler(bookController.getBooks));
-router.get("/search", asyncHandler(bookController.searchBook));
+router.get("/:bookid/listing/:listingid", asyncHandler(bookController.getBookDetail));
+
 
 module.exports = router;
