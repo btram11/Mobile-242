@@ -52,7 +52,17 @@ const RootLayout = () => {
       <GlobalProvider>
         <ModalProvider>
           <ModalManager />
-          <Stack>
+          <Stack
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#00664f",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          >
             <Stack.Screen
               name="index"
               options={{ title: "Homepage", headerShown: false }}
@@ -72,6 +82,19 @@ const RootLayout = () => {
             <Stack.Screen
               name="(profile)"
               options={{ title: "Profile", headerShown: false }}
+            />
+            <Stack.Screen
+              name="discover/[category]"
+              options={{
+                headerShown: true,
+              }}
+            />
+            <Stack.Screen
+              name="book-info/[book_id]"
+              options={{
+                headerShown: true,
+                title: "Book Info",
+              }}
             />
           </Stack>
         </ModalProvider>
