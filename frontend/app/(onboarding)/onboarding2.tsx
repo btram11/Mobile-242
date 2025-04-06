@@ -94,6 +94,20 @@ export default function Onboarding2() {
         className="bg-[#F6F6F7] flex flex-col justify-between items-center"
         style={{ width: width, height: height - headerHeight + insets.top }}
       >
+        <CustomButtonOnboarding
+          style={{
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            paddingVertical: 8,
+            paddingHorizontal: 14,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            zIndex: 99999,
+          }}
+          text="Skip"
+          buttonStyle="items-center max-w-[100px] absolute right-0 top-16"
+          textStyle="text-xs"
+          handlePress={handleSkip}
+        />
         <ImageBackground
           source={item.image}
           resizeMode="stretch"
@@ -104,21 +118,7 @@ export default function Onboarding2() {
             position: "absolute",
             top: 0,
           }}
-        >
-          <CustomButtonOnboarding
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              paddingVertical: 8,
-              paddingHorizontal: 14,
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-            }}
-            text="Skip"
-            buttonStyle="items-center max-w-[100px] absolute right-0 top-16"
-            textStyle="text-xs"
-            handlePress={handleSkip}
-          />
-        </ImageBackground>
+        ></ImageBackground>
         <View
           className="w-full flex-1 flex flex-col-reverse"
           style={{ width: width }}
@@ -177,8 +177,6 @@ export default function Onboarding2() {
         animated: true,
       });
       setCurrentIndex(nextIndex);
-      // flatListRef.current.scrollToIndex({ index: currentIndex + 1 });
-      // console.log("press next ", currentIndex, flatListRef.current);
     } else {
       router.replace("/(auth)/login");
     }
@@ -186,8 +184,8 @@ export default function Onboarding2() {
 
   const handleSkip = () => {
     new Promise((resolve) => {
-      flatListRef.current?.scrollToIndex({
-        index: OnboardingScreens.length - 1,
+      flatListRef.current?.scrollToOffset({
+        offset: width * (OnboardingScreens.length - 1),
         animated: true,
       });
       setTimeout(resolve, 300);
