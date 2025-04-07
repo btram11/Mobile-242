@@ -244,7 +244,11 @@ export default function BookInfo() {
   };
 
   return (
-    <ScrollView className="p-4">
+    <ScrollView
+      className="p-4"
+      contentContainerStyle={styles.contentContainer}
+      showsVerticalScrollIndicator={false}
+    >
       <View className="items-center">
         <Image
           style={styles.bookImg}
@@ -256,7 +260,7 @@ export default function BookInfo() {
           <Text>Preview</Text>
         </TouchableOpacity>
 
-        <View style={styles.line} className="shadow-md"></View>
+        <View style={styles.line}></View>
 
         <View className="w-full justify-center items-center relative">
           <Text
@@ -423,22 +427,24 @@ export default function BookInfo() {
           <Text className="text-2xl font-latobold self-start">
             Related Books
           </Text>
-          <ScrollView horizontal>
-            {selected_book.related_books.map((book, idx) => (
-              <BookCard
-                key={idx}
-                id={book.id}
-                img_src={book.img_src}
-                title={book.title}
-                is_leased={book.is_leased}
-                is_sold={book.is_sold}
-                leased_price={book.leased_price}
-                sold_price={book.sold_price}
-                is_from={book.is_from}
-                color="gray"
-              />
-            ))}
-          </ScrollView>
+          <View className="w-full">
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {selected_book.related_books.map((book, idx) => (
+                <BookCard
+                  key={idx}
+                  id={book.id}
+                  img_src={book.img_src}
+                  title={book.title}
+                  is_leased={book.is_leased}
+                  is_sold={book.is_sold}
+                  leased_price={book.leased_price}
+                  sold_price={book.sold_price}
+                  is_from={book.is_from}
+                  color="gray"
+                />
+              ))}
+            </ScrollView>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -451,10 +457,13 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "lightgray",
     marginVertical: 10,
-    shadowOffset: { width: 0, height: 1 },
+    boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)",
   },
   container: {
     padding: 20,
+  },
+  contentContainer: {
+    paddingVertical: 20,
   },
   label: {
     fontSize: 16,
