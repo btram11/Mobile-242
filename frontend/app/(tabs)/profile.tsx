@@ -124,10 +124,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#E0E0E0",
     marginVertical: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 1,
+    boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)",
   },
   profileHeader: {
     flexDirection: "row",
@@ -156,10 +153,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 10,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+    boxShadow: "0 2px 3px rgba(0, 0, 0, 0.1)",
     elevation: 2,
   },
   logoutText: {

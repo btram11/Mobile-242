@@ -22,56 +22,48 @@ export default function ProfileLayout() {
   }
 
   return (
-    <GlobalProvider>
-      <Stack>
-        <Stack.Screen
-          name="your-orders"
-          options={{
-            title: "Orders",
-            headerShown: true,
-            headerStyle: { backgroundColor: "#00664f" },
-            headerTintColor: "#fff",
-          }}
-        />
-        <Stack.Screen
-          name="liked-books"
-          options={{
-            title: "Liked books",
-            headerShown: true,
-            headerStyle: { backgroundColor: "#00664f" },
-            headerTintColor: "#fff",
-            // headerTitleStyle: { color: "#ffffff" },
-          }}
-        />
-        <Stack.Screen
-          name="following"
-          options={{
-            title: "Following",
-            headerShown: true,
-            headerStyle: { backgroundColor: "#00664f" },
-            headerTintColor: "#fff",
-          }}
-        />
-        <Stack.Screen
-          name="edit-profile"
-          options={{
-            title: "Edit Profile",
-            headerShown: true,
-            headerStyle: { backgroundColor: "#00664f" },
-            headerTintColor: "#fff",
-            headerTitleAlign: "left",
-            // headerLeftContainerStyle: { marginLeft: -20 },
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => alert("Saved!")}
-                style={{ marginRight: 15 }}
-              >
-                <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
-              </TouchableOpacity>
-            ),
-          }}
-        />
-      </Stack>
-    </GlobalProvider>
+    <Stack
+      screenOptions={{
+        headerShown: true,
+        headerStyle: { backgroundColor: "#00664f" },
+        headerTintColor: "#fff",
+      }}
+    >
+      <Stack.Screen
+        name="your-orders"
+        options={{
+          title: "Orders",
+        }}
+      />
+      <Stack.Screen
+        name="liked-books"
+        options={{
+          title: "Liked books",
+          // headerTitleStyle: { color: "#ffffff" },
+        }}
+      />
+      <Stack.Screen
+        name="following"
+        options={{
+          title: "Following",
+        }}
+      />
+      <Stack.Screen
+        name="edit-profile"
+        options={{
+          title: "Edit Profile",
+          headerTitleAlign: "left",
+          // headerLeftContainerStyle: { marginLeft: -20 },
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => alert("Saved!")}
+              style={{ marginRight: 15 }}
+            >
+              <Text style={{ color: "#fff", fontSize: 16 }}>Save</Text>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </Stack>
   );
 }
