@@ -16,6 +16,7 @@ import { CustomButtonOnboarding } from "@/components/CustomRoundButton";
 import { router } from "expo-router";
 import Onboarding1 from "./onboarding";
 import Permissions from "@/lib/permissions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const scrollX = new Animated.Value(0);
 
@@ -178,6 +179,7 @@ export default function Onboarding2() {
       });
       setCurrentIndex(nextIndex);
     } else {
+      AsyncStorage.setItem("ONBOARDED", "true");
       router.replace("/(auth)/login");
     }
   };
@@ -190,6 +192,7 @@ export default function Onboarding2() {
       });
       setTimeout(resolve, 300);
     }).then(() => {
+      AsyncStorage.setItem("ONBOARDED", "true");
       router.replace("/(auth)/login");
     });
   };
