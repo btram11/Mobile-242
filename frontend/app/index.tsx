@@ -1,12 +1,18 @@
 //@ts-nocheck
 
-import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import {
+  TextInput,
+  View,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { CustomInput } from "@/components/CustomInput";
 import { CustomButtonLight } from "@/components/CustomRoundButton";
 import { CustomButtonSecondary } from "@/components/CustomRoundButton";
 import { FormField } from "@/components/FormField";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { router, Redirect, Link } from "expo-router";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,20 +21,22 @@ import RootLayout from "@/layouts/RootLayout";
 
 import { login } from "@/lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import LoadingScreen from "./(loading)/loading";
 import Onboarding2 from "./(onboarding)/onboarding2";
+import Login from "./(auth)/login";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { setUser, setLoggedIn, loggedIn, isLoading } = useGlobalContext();
+export default function Index() {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const { setUser, setLoggedIn, loggedIn, isLoading } = useGlobalContext();
 
-  if (!isLoading && loggedIn) {
-    router.replace("/(tabs)/home");
-  } else if (!isLoading && loggedIn) {
-    router.replace("/(auth)/login");
-  }
+  // if (!isLoading && loggedIn) {
+  //   router.replace("/(tabs)/home");
+  // } else if (!isLoading && loggedIn) {
+  //   router.replace("/(auth)/login");
+  // }
 
   // async function handleLogIn() {
   //     try {
@@ -66,8 +74,37 @@ export default function Login() {
   //     </RootLayout>
 
   // )
+  const [isLoading, setIsLoading] = useState(true);
+  const [isOnboarded, setIsOnboarded] = useState(false);
+
+  useEffect(() => {
+    const checkOnboardingStatus = async () => {
+      try {
+        const value = await AsyncStorage.getItem("ONBOARDED");
+        setIsOnboarded(value === "true");
+      } catch (error) {
+        console.error("Error checking onboarding:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkOnboardingStatus();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center bg-black">
+        <ActivityIndicator size="large" color="#FFFFFF" />
+      </View>
+    );
+  }
+
+  if (!isOnboarded) {
+    return <Onboarding2 />;
+  }
   return (
     // <LoadingScreen />
-    <Onboarding2 />
+    <Login />
   );
 }

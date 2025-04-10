@@ -39,7 +39,7 @@ export default function Login() {
     try {
       console.log("Attempt to log in...");
       if (!email || !password) throw new Error("Please fill in missing field");
-      await login(email, password);
+      // await login(email, password);
       router.replace("../(tabs)/home");
     } catch (exception) {
       console.log("Error logging in:", exception);
