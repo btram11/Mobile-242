@@ -1,7 +1,7 @@
 "use strict";
 
 const { BadRequestError, AuthFailureError } = require("../core/error.response");
-const { getBooks, searchBook } = require("../dbs/repositories/book.repo");
+const { getBooks, getBookDetail } = require("../dbs/repositories/book.repo");
 
 class BookService {
   // static async getBooks({ page, pageSize }) {
@@ -39,52 +39,23 @@ class BookService {
     return result;
   }
 
-  static async searchBook({ title, author, keywords, category }) {
-    const filters = {};
-    if (title) {
-      filters.title = {
-        contains: title,
-        mode: "intensive",
-      };
-    }
+  static async sortBy({ category, price }) {}
 
-    if (author) {
-      filters.author = {
-        contains: author,
-        mode: "intensive",
-      };
-    }
-
-    if (keywords) {
-      filters.keywords = {
-        contains: keywords,
-        mode: "intensive",
-      };
-    }
-
-    if (category) {
-      filters.category = {
-        contains: category,
-        mode: "intensive",
-      };
-    }
-
-    const books = await searchBook(filters);
-    if (!books) {
+  static async getBookDetail(bookid, listingid) {
+    const result = await getBookDetail(bookid, listingid);
+    if (!result) {
       throw new BadRequestError("Book not found");
     }
-
     return {
       status: 200,
-      message: "Search Book Successfully",
-      books: books,
+      message: "Get book detail successfully",
+      book: result,
     };
   }
 
-  static sortBy({ category, price }) {}
-  static getDetailBook(id) {}
-  static getBookBySeller(id) {}
-  static getBookByRenter(id) {}
+  static getBookByProvider(id) {
+
+  }
 }
 
 module.exports = BookService;

@@ -101,7 +101,7 @@ const authentication = asyncHandler(async (req, res, next) => {
     const redisClient = await getRedisClient();
 
     const token = await redisClient.get(`access_token:${userId}`);
-    if (!accessToken || accessToken !== token) {
+    if (!token || accessToken !== token) {
       throw new AuthFailureError("Invalid or Expired session");
     }
   } catch (error) {
