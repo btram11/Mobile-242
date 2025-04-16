@@ -17,6 +17,7 @@ import { GlobalProvider } from "@/context/GlobalProvider";
 import { ModalProvider } from "@/context/ModalContext";
 import ModalManager from "@/components/modal/ModalManager";
 import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -55,7 +56,7 @@ const RootLayout = () => {
           <Stack
             screenOptions={{
               headerStyle: {
-                backgroundColor: "#00664f",
+                backgroundColor: "#008C6E",
               },
               headerTintColor: "#fff",
               headerTitleStyle: {
@@ -90,7 +91,7 @@ const RootLayout = () => {
               }}
             />
             <Stack.Screen
-              name="book-info/[book_id]"
+              name="book-info/[book_id]/index"
               options={{
                 headerShown: true,
                 title: "Book Info",
