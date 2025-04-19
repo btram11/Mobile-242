@@ -1,16 +1,18 @@
 //@ts-nocheck
-import { router, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   StyleSheet,
   ScrollView,
+  TouchableOpacity,
+  Touchable,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { Picker } from "@react-native-picker/picker";
-import { useState } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 // import { Menu, Provider } from 'react-native-paper';
 // import mockedBooks from '../../../backend/prisma/data/database_books.json';
 import { Ionicons } from "@expo/vector-icons";
@@ -21,6 +23,7 @@ import {
   CustomButtonSecondary,
 } from "@/components/CustomSquareButton";
 import BookCard from "@/components/BookCard";
+import { useHeaderHeart } from "@/hooks/useFavoriteHeader";
 
 const mockedBooks = [
   {
@@ -216,6 +219,9 @@ const mockedBooks = [
 
 export default function BookInfo() {
   // add a function to fetch for book information
+  const navigation = useNavigation();
+  // const route = useRoute();
+  // const { book_id } = route.params;
   const { book_id, provider_id } = useLocalSearchParams();
   const selected_book = mockedBooks.filter(
     (book) => book.id == Number(book_id)
@@ -224,7 +230,7 @@ export default function BookInfo() {
   const provider = selected_book.provider;
 
   const handleProviderPress = () => {
-    router.push(`/providers/${selected_book.id}`);
+    router.push(`/book-info/${selected_book.id}/providers`);
   };
 
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
@@ -237,83 +243,99 @@ export default function BookInfo() {
     : selected_book.summary.slice(0, maxLength) + "...";
   const handleSummaryExpand = () => setIsSummaryExpanded(!isSummaryExpanded);
 
-  const [is_liked, setIsLiked] = useState(selected_book.in_wishlist);
+  // useHeaderHeart(selected_book.in_wishlist);
+
+  const [isFavorited, setIsFavorited] = useState(selected_book.in_wishlist);
   const handleLike = () => {
-    setIsLiked(!is_liked);
+    setIsFavorited((prev) => !prev);
     // add a function to change "in_wishlist" status in the backend
   };
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          key={String(isFavorited)}
+          onPressIn={handleLike}
+          // use onPressIn as onPress is not firing in the header (issue related to https://github.com/software-mansion/react-native-screens/issues/2219)
+          style={{ marginRight: 16 }}
+        >
+          <Ionicons
+            name={isFavorited ? "heart" : "heart-outline"}
+            size={32}
+            color={"red"}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation, isFavorited]);
 
   return (
     <ScrollView
-      className="p-4"
+      className="p-4 bg-[#F7F7F7]"
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
     >
-      <View className="items-center">
-        <Image
-          style={styles.bookImg}
-          source={selected_book.img_src}
-          className="w-44 h-60"
-          resizeMode="contain"
-        />
-        <TouchableOpacity className="bg-gray-200 rounded-lg shadow-md p-4 m-2 w-44 items-center">
-          <Text>Preview</Text>
-        </TouchableOpacity>
-
-        <View style={styles.line}></View>
-
-        <View className="w-full justify-center items-center relative">
-          <Text
-            className="text-2xl font-latobold text-center"
-            style={{ width: "80%" }}
-          >
-            {selected_book?.title}
-          </Text>
-          <Text className="text-lg text-gray-600 font-latolight">
-            Condition: {selected_book?.condition}
-          </Text>
-
-          <TouchableOpacity onPress={handleLike} style={styles.heart}>
-            {is_liked && <Ionicons name="heart" size={28} color="red" />}
-            {!is_liked && (
-              <Ionicons name="heart-outline" size={28} color="black" />
-            )}
-          </TouchableOpacity>
+      <View className="items-center gap-2">
+        <View className="flex flex-row w-full gap-5">
+          <Image
+            style={styles.bookImg}
+            source={selected_book.img_src}
+            // className="w-44 h-60"
+            resizeMode="stretch"
+          />
+          <View className="flex-1 flex">
+            <View className="flex-1">
+              <Text className="text-2xl font-latobold">
+                {selected_book?.title}
+              </Text>
+              <Text className="text-lg text-gray-600 font-latolight">
+                Condition: {selected_book?.condition}
+              </Text>
+              {/* display sold_price and/or leased_price */}
+              {selected_book.is_leased && !selected_book.is_sold && (
+                <Text className="text-lg">
+                  Leased Price: ${selected_book?.leased_price}
+                </Text>
+              )}
+              {selected_book.is_sold && !selected_book.is_leased && (
+                <Text className="text-lg">
+                  Sold Price: ${selected_book?.sold_price}
+                </Text>
+              )}
+              {selected_book.is_sold && selected_book.is_leased && (
+                <View>
+                  <View className="flex-row items-center">
+                    <Text className="text-lg font-lato">Leased Price: </Text>
+                    <Text className="text-lg font-latobold text-lightred">
+                      ${selected_book.leased_price}
+                    </Text>
+                  </View>
+                  <View className="flex-row items-center">
+                    <Text className="text-lg font-lato">Sold Price: </Text>
+                    <Text className="text-lg font-latobold text-lightred">
+                      ${selected_book.sold_price}
+                    </Text>
+                  </View>
+                </View>
+              )}
+            </View>
+            <TouchableOpacity className="flex border-2 border-black rounded-md w-28 h-10 items-center justify-center">
+              <Text className="text-xs font-medium text-viridian-500">
+                Preview
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        {/* display sold_price and/or leased_price */}
-        {selected_book.is_leased && !selected_book.is_sold && (
-          <Text className="text-lg">
-            Leased Price: ${selected_book?.leased_price}
-          </Text>
-        )}
-        {selected_book.is_sold && !selected_book.is_leased && (
-          <Text className="text-lg">
-            Sold Price: ${selected_book?.sold_price}
-          </Text>
-        )}
-        {selected_book.is_sold && selected_book.is_leased && (
-          <View>
-            <View className="flex-row items-center">
-              <Text className="text-lg font-lato">Leased Price: </Text>
-              <Text className="text-lg font-latobold text-lightred">
-                ${selected_book.leased_price}
-              </Text>
-            </View>
-            <View className="flex-row items-center">
-              <Text className="text-lg font-lato">Sold Price: </Text>
-              <Text className="text-lg font-latobold text-lightred">
-                ${selected_book.sold_price}
-              </Text>
-            </View>
-          </View>
-        )}
+        <View style={styles.line}></View>
 
         {/* display buy/rent button */}
         <View className="flex flex-row">
           {selected_book.is_sold && (
             <CustomButtonPrimary
-              handlePress={() => {}}
+              handlePress={() => {
+                console.log("Buy button pressed");
+              }}
               text="Buy"
               buttonStyle={"px-8"}
             />
@@ -367,60 +389,74 @@ export default function BookInfo() {
         </View>
 
         {/* display information */}
-        <View className="w-full items-center">
+        <View className="w-full items-center gap-2">
           <Text className="text-2xl font-latobold self-start">Information</Text>
 
-          {[
-            { label: "Author", value: selected_book.author },
-            { label: "Original price", value: selected_book.org_price },
-            { label: "Major", value: selected_book.major, expandable: true },
-            {
-              label: "Publisher",
-              value: selected_book.publisher,
-              expandable: true,
-            },
-            {
-              label: "Cover Type",
-              value: selected_book.cover_type,
-              expandable: true,
-            },
-            { label: "Pages", value: selected_book.pages, expandable: true },
-          ]
-            .filter((item) => isInfoExpanded || !item.expandable) // Ẩn nếu chưa mở rộng
-            .map(({ label, value }, index) => (
-              <View key={label} className="w-full flex-row">
-                <View
-                  className="w-40"
-                  style={
-                    index === 0 ? styles.topStartTableCell : styles.tableCell
-                  }
-                >
-                  <Text className="text-md font-latolight">{label}</Text>
+          <View className="w-full items-center">
+            {[
+              { label: "Author", value: selected_book.author },
+              { label: "Original price", value: selected_book.org_price },
+              { label: "Major", value: selected_book.major, expandable: true },
+              {
+                label: "Publisher",
+                value: selected_book.publisher,
+                expandable: true,
+              },
+              {
+                label: "Cover Type",
+                value: selected_book.cover_type,
+                expandable: true,
+              },
+              { label: "Pages", value: selected_book.pages, expandable: true },
+            ]
+              .filter((item) => isInfoExpanded || !item.expandable) // Ẩn nếu chưa mở rộng
+              .map(({ label, value }, index) => (
+                <View key={label} className="w-full flex-row">
+                  <View
+                    className="w-40"
+                    style={
+                      index === 0 ? styles.topStartTableCell : styles.tableCell
+                    }
+                  >
+                    <Text className="text-md font-latolight">{label}</Text>
+                  </View>
+                  <View
+                    className="flex-1"
+                    style={
+                      index === 0 ? styles.topEndTableCell : styles.tableCell
+                    }
+                  >
+                    <Text className="text-md font-lato flex-1">{value}</Text>
+                  </View>
                 </View>
-                <View
-                  className="flex-1"
-                  style={
-                    index === 0 ? styles.topEndTableCell : styles.tableCell
-                  }
-                >
-                  <Text className="text-md font-lato flex-1">{value}</Text>
-                </View>
-              </View>
-            ))}
+              ))}
+          </View>
 
-          <CustomButtonPrimary
+          {/* <CustomButtonPrimary
             handlePress={handleInfoExpand}
             text={isInfoExpanded ? "Show Less" : "Show More"}
-          />
+          /> */}
+          <Text
+            onPress={handleInfoExpand}
+            style={{ textDecorationLine: "underline" }}
+          >
+            {isInfoExpanded ? "Show Less" : "Show More"}
+          </Text>
         </View>
 
-        <View className="w-full items-center">
+        <View className="w-full items-center gap-2">
           <Text className="text-2xl font-latobold self-start">Summary</Text>
           <Text className="text-md font-lato text-justify">{summary}</Text>
-          <CustomButtonPrimary
+          {/* <CustomButtonPrimary
             handlePress={handleSummaryExpand}
             text={isSummaryExpanded ? "Show Less" : "Show More"}
-          />
+          /> */}
+          <Text
+            onPress={handleSummaryExpand}
+            style={{ textDecorationLine: "underline" }}
+          >
+            {isSummaryExpanded ? "Show Less" : "Show More"}
+          </Text>
         </View>
 
         <View className="w-full items-center">
@@ -453,10 +489,10 @@ export default function BookInfo() {
 
 const styles = StyleSheet.create({
   line: {
-    width: "90%",
-    height: 1,
-    backgroundColor: "lightgray",
-    marginVertical: 10,
+    width: "100%",
+    height: 1.2,
+    backgroundColor: "#88889D",
+    marginTop: 16,
     boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)",
   },
   container: {
@@ -498,10 +534,5 @@ const styles = StyleSheet.create({
     borderColor: "lightgray",
     padding: 10,
   },
-  heart: {
-    position: "absolute",
-    top: 8,
-    right: 8,
-  },
-  bookImg: { width: 176, height: 240 },
+  bookImg: { width: 151, height: 235 },
 });

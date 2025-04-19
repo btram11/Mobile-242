@@ -1,6 +1,8 @@
+// @ts-nocheck
+
 import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { BookCard2 } from "@/components/BookCard";
+import BookCard from "@/components/BookCard";
 import { mockedBooks } from "@/mocks/data";
 
 function LikedBooks() {
@@ -19,7 +21,8 @@ function LikedBooks() {
         marginBottom: 16,
       }}
       renderItem={({ item, index }) => (
-        <BookCard2
+        <BookCard
+          key={item.id}
           id={item.id}
           img_src={item.img_src}
           title={item.title}
@@ -28,7 +31,12 @@ function LikedBooks() {
           is_leased={item.leased_price}
           leased_price={item.leased_price}
           is_from={item.is_from}
-          color={index % 2 == 0 ? "gray" : "green"}
+          color={
+            index % 2 == 0
+              ? "bg-viridian-400 text-black"
+              : "bg-viridian-600/90 text-white"
+          }
+          text_color={`${index % 2 == 0 ? "dark" : "light"}`}
         />
       )}
       onEndReached={loadMoreBooks}

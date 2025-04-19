@@ -19,7 +19,7 @@ import { getAllPosts } from "@/lib/appwrite";
 import VideoCard from "@/components/VideoCard";
 import { Ionicons } from "@expo/vector-icons";
 
-import SubjectCard from "@/components/SubjectCard";
+import { SubjectCard } from "@/components/SubjectCard";
 import BookCard from "@/components/BookCard";
 import NewsCard from "@/components/NewsCard";
 import ProviderCard from "@/components/ProviderCard";
@@ -58,7 +58,7 @@ export default function HomePage() {
   };
 
   return (
-    <SafeAreaView style={styles.container} className="bg-secondarydark">
+    <SafeAreaView style={styles.container} className="bg-viridian-500">
       <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
         <Ionicons name="search-outline" size={20} color="gray" />
         <TextInput
@@ -100,7 +100,12 @@ export default function HomePage() {
                     is_leased={book.leased_price}
                     leased_price={book.leased_price}
                     is_from={book.is_from}
-                    color={idx % 2 == 0 ? "gray" : "green"}
+                    color={
+                      idx % 2 == 0
+                        ? "bg-viridian-400 text-black"
+                        : "bg-viridian-600/90 text-white"
+                    }
+                    text_color={`${idx % 2 == 0 ? "dark" : "light"}`}
                   />
                 ))}
               </ScrollView>
@@ -161,7 +166,11 @@ export default function HomePage() {
             </Text>
 
             <View className="flex-row mt-2 space-x-3">
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ flexDirection: "row", gap: 8 }}
+              >
                 <SubjectCard subject="Computer Science" color="purple" />
                 <SubjectCard subject="Chemistry" color="blue" />
                 <SubjectCard subject="Electrical Engineering" color="orange" />

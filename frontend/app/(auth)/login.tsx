@@ -22,7 +22,7 @@ import {
 
 import AuthLayout from "@/layouts/AuthLayout";
 
-import { login } from "@/api/auth";
+import { login } from "@/services/auth";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
 import { useModal } from "@/context/ModalContext";
@@ -38,8 +38,8 @@ export default function Login() {
   async function handleLogIn() {
     try {
       console.log("Attempt to log in...");
-      if (!email || !password) throw new Error("Please fill in missing field");
-      await login(email, password);
+      // if (!email || !password) throw new Error("Please fill in missing field");
+      // await login(email, password);
       router.replace("../(tabs)/home");
     } catch (exception) {
       console.log("Error logging in:", exception);
