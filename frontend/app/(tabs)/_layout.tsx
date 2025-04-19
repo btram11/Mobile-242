@@ -15,17 +15,14 @@ import {
 } from "lucide-react-native";
 import "@/global.css";
 
-const TabIcon = ({ focused, name, color, icon }) => {
+const TabIcon = ({ focused, icon, name, color }) => {
   return (
     <View className="flex-1 items-center justify-center">
-      {/* {iconImage && (
-        <Image
-          source={iconImage}
-          className={`w-6 h-6 ${focused ? "scale-110" : "scale-100"}`}
-          tintColor={color}
-        />
-      )} */}
-      {icon && icon}
+      <Image
+        source={icon}
+        className={`w-6 h-6 ${focused ? "scale-110" : "scale-100"}`}
+        tintColor={color}
+      />
       <Text
         className={`text-xs ${
           focused ? "font-latobold scale-110" : "font-lato"
