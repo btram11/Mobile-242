@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Mobile242-meomeo",
-    "slug": "Mobile242-meomeo",
+    "slug": "mobile242-meomeo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "Mobile242-meomeo",
+    "scheme": "mobile242-meomeo",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff",
         "package": "com.meomeo.mobile242"
-      }
+      },
+      "package": "com.meomeo.mobile242"
     },
     "web": {
       "bundler": "metro",
@@ -40,13 +41,13 @@
     "experiments": {
       "typedRoutes": true
     },
-    "owner": "kng1259",
+    "owner": "tram11",
     "extra": {
       "router": {
         "origin": false
       },
       "eas": {
-        "projectId": "291ead0a-c544-403e-808f-8536b56310a7"
+        "projectId": "ae6a5ebe-127e-472e-88d8-20851e26d0a9"
       }
     }
   }
