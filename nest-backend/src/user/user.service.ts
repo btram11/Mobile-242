@@ -1,12 +1,23 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UserService {
-  constructor() {}
+  constructor(private prisma: PrismaService) {}
+
+  async findUserByEmail(email: string): Promise<any> {
+    try {
+      const user = await this.prisma.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+      return user;
+    } catch (error) {
+      throw new BadRequestException('Error finding user');
+    }
+  }
 
   findAll() {
     return `This action returns all user`;

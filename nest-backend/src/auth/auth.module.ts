@@ -5,14 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { PrismaService } from 'src/prisma.service';
 import { UserModule } from 'src/user/user.module';
-import { UserService } from 'src/user/user.service';
 
 @Module({
   imports: [
     ConfigModule,
     UserModule,
-    TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (cfg: ConfigService) => ({
@@ -21,7 +20,7 @@ import { UserService } from 'src/user/user.service';
       }),
     }),
   ],
-  providers: [AuthService, UserService],
+  providers: [AuthService, PrismaService],
   controllers: [AuthController],
   exports: [AuthService],
 })

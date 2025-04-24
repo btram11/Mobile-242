@@ -1,0 +1,41 @@
+[
+  {
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "username": "kng",
+    "user_img_url": "",
+    "email": "nguyen@hcmut.edu.vn",
+    "faculty": "Khoa học máy tính",
+    "password_hashed": "$2b$12$JxPX/F4KR8gqZwk21pdwI.WortbtjTzUKPrEKUjG4XnZPrWvSSW4q",
+    "phone_number": "0123456789"
+  },
+
+  {
+    "user_id": "00000000-0000-0000-0000-000000000001",
+    "username": "quan",
+    "user_img_url": "",
+    "email": "quan@hcmut.edu.vn",
+    "faculty": "Khoa học máy tính",
+    "password_hashed": "$2b$12$OTaTPGYRTXxrOOA8iwscwe8kwORv9/Yk0IyE2WKIa4IAIO/3eH6Xa",
+    "phone_number": "0123456789"
+  },
+
+  {
+    "user_id": "00000000-0000-0000-0000-000000000002",
+    "username": "piptram",
+    "user_img_url": "",
+    "email": "piptram@hcmut.edu.vn",
+    "faculty": "Khoa học máy tính",
+    "password_hashed": "$2b$12$lFSb8mp/qU7B1pOi6eJabukBV9.R.53H3Lw4laarW/lNdHWYLMwRi",
+    "phone_number": "0123456789"
+  },
+
+  {
+    "user_id": "00000000-0000-0000-0000-000000000003",
+    "username": "misa",
+    "user_img_url": "",
+    "email": "misa@hcmut.edu.vn",
+    "faculty": "Khoa học máy tính",
+    "password_hashed": "$2b$12$kzz4uty8H5jvxic66uNxJulp15Q6RHzLfbxNR8IkkchkQSkW6xQri",
+    "phone_number": "0123456789"
+  }
+]

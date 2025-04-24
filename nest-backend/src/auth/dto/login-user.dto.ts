@@ -2,8 +2,8 @@ import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export class LoginUserDTO {
   @Column({ unique: true })
-  email: String;
+  email: string;
 
   @Column()
-  password: String;
+  password: string;
 }

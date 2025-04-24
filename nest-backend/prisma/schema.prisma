@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["relationJoins", "fullTextSearchPostgres"]
+}
+
+// generator dbml {
+//     provider = "prisma-dbml-generator"
+// }
+
+// generator docs {
+//     provider = "node node_modules/prisma-docs-generator"
+// }
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model database_book {
+    book_id         String        @id @default(uuid())
+    title           String
+    img_url         String?
+    author          String
+    publisher       String
+    publishing_year Int
+    subject         String?
+    summary         String?
+    price           Float?
+    listed_books    listed_book[]
+}
+
+model listed_book {
+    listing_id            String        @default(uuid())
+    book_id               String
+    provider_img_book_url String?
+    condition             String
+    listed_at             DateTime      @default(now())
+    book                  database_book @relation(fields: [book_id], references: [book_id])
+    is_sold               Boolean
+    sold_price            Float
+    is_leased             Boolean
+    leased_price          Float
+    leased_period         Int // # of days
+    is_bought_rel         is_bought?
+    is_rented_rel         is_rented?
+    provider_id           String
+    provider              provider      @relation(fields: [provider_id], references: [provider_id])
+
+    @@id([book_id, listing_id])
+}
+
+model user {
+    user_id         String      @id @default(uuid())
+    username        String
+    user_img_url    String
+    password_hashed String
+    email           String      @unique
+    faculty         String
+    phone_number    String?
+    salt            String      @default("")
+    created_at      DateTime    @default(now())
+    updated_at      DateTime    @updatedAt
+    provider        provider?
+    is_bought_rel   is_bought[]
+    is_rented_rel   is_rented[]
+}
+
+model provider {
+    provider_id        String        @id @default(uuid())
+    provider_name      String // different from username, avatar = user's avatar
+    average_rating     Float?
+    preferred_location String?
+    description        String?
+    policy             String?
+    user               user          @relation(fields: [provider_id], references: [user_id])
+    listed_book        listed_book[]
+}
+
+model is_bought {
+    book_id     String
+    listing_id  String
+    user_id     String
+    location    String?
+    pickup_date DateTime?
+    modifiable  Boolean
+    user        user        @relation(fields: [user_id], references: [user_id])
+    listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
+    @@id([book_id, listing_id])
+}
+
+model is_rented {
+    book_id     String
+    listing_id  String
+    user_id     String
+    location    String?
+    pickup_date DateTime?
+    modifiable  Boolean
+    end_date    DateTime?
+    policy      String?
+    user        user        @relation(fields: [user_id], references: [user_id])
+    listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
+
+    @@id([book_id, listing_id])
+}

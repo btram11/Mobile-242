@@ -1,0 +1,46 @@
+[
+    {
+        "listing_id": "00000000-0000-0000-0000-000000000000",
+        "book_id": "00000000-0000-0000-0000-000000000000",
+        "provider_id": "00000000-0000-0000-0000-000000000000",
+        "condition": "bad",
+        "is_sold": true,
+        "sold_price": 90,
+        "is_leased": true,
+        "leased_price": 10,
+        "leased_period": 14
+    },
+    {
+        "listing_id": "00000000-0000-0000-0000-000000000001",
+        "book_id": "00000000-0000-0000-0000-000000000001",
+        "provider_id": "00000000-0000-0000-0000-000000000001",
+        "condition": "bad",
+        "is_sold": true,
+        "sold_price": 90,
+        "is_leased": false,
+        "leased_price": 10,
+        "leased_period": 14
+    },
+    {
+        "listing_id": "00000000-0000-0000-0000-000000000002",
+        "book_id": "00000000-0000-0000-0000-000000000002",
+        "provider_id": "00000000-0000-0000-0000-000000000002",
+        "condition": "bad",
+        "is_sold": false,
+        "sold_price": 90,
+        "is_leased": true,
+        "leased_price": 10,
+        "leased_period": 14
+    },
+    {
+        "listing_id": "00000000-0000-0000-0000-000000000003",
+        "book_id": "00000000-0000-0000-0000-000000000003",
+        "provider_id": "00000000-0000-0000-0000-000000000003",
+        "condition": "bad",
+        "is_sold": false,
+        "sold_price": 90,
+        "is_leased": true,
+        "leased_price": 10,
+        "leased_period": 14
+    }
+]
