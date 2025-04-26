@@ -4,20 +4,37 @@ packages:
   - postgresql-client-16
   - nodejs
   - npm
+  - nginx
 runcmd:
   - mkdir app
   - cd app
   - git init
   - git config core.sparseCheckout true
   - git remote add -f origin https://github.com/btram11/Mobile-242.git
-  - echo "backend/*" > .git/info/sparse-checkout
-  - git checkout main
-  - cd backend
+  - echo "nest-backend/*" > .git/info/sparse-checkout
+  - git checkout nest
+  - cd nest-backend
   - touch .env
   - |
     TOKEN=$(curl -s -H "Metadata: true" "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://vault.azure.net" | jq -r .access_token) 
     echo "DATABASE_URL=$(curl -H "Authorization: Bearer $TOKEN" "https://kv-meomeo.vault.azure.net/secrets/postgres-connection-string?api-version=7.4" | jq -r .value)" >> .env 
     echo "REDIS_URL=$(curl -H "Authorization: Bearer $TOKEN" "https://kv-meomeo.vault.azure.net/secrets/redis-connection-string?api-version=7.4" | jq -r .value)" >> .env
   - npm install
-  - npm run migrate_dev
-  - PORT=80 npm run start
+  - npx prisma migrate dev --name init --skip-seed
+  - npx prisma db seed
+  - |
+    echo "\
+    [Unit]
+    Description=Start NestJS App
+    After=network.target
+    Before=nginx.service
+
+    [Service]
+    Type=exec
+    WorkingDirectory=/app/nest-backend
+    ExecStart=/bin/sh -c "git pull && /usr/bin/npx nest start"\
+    " > /etc/systemd/system/nest-backend.service
+  - systemctl enable --now nest-backend
+  - cp nginx.conf /etc/nginx/
+  - systemctl enable --now nginx
+  - systemctl restart nginx

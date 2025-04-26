@@ -1,20 +1,24 @@
 pipeline{
     agent any
-
+    
     environment {
-        remote = [
-            name: 'backend-vm',
-            host: 'meomeo-backend.southeastasia.cloudapp.azure.com',
-            user: 'backend-vm',
-            identity: credentials('backend-vm-ssh-key'),
-            allowAnyHosts: true
-        ]
+        identityFile = credentials('backend-vm-ssh-file')
     }
+
     stages{
         stage('SSH'){
             steps{
-                sshCommand remote: remote, command: 'cd /app/backend && git pull && npm install'
-                sshCommand remote: remote, command: 'systemctl restart nest-backend.service'
+                script {
+                    def remote = [
+                        name: 'backend-vm',
+                        host: 'meomeo-backend.southeastasia.cloudapp.azure.com',
+                        user: 'backendadmin',
+                        identityFile: identityFile,
+                        allowAnyHosts: true
+                    ]
+                    
+                    sshCommand remote: remote, command: 'sudo systemctl restart nest-backend.service'
+                }
             }
         }
     }
