@@ -1,5 +1,5 @@
 pipeline{
-    agents any
+    agent any
 
     stages{
 
@@ -12,8 +12,8 @@ pipeline{
 
         stage('SSH'){
             steps{
-                sshcommand remote: remote, command: 'cd /app/backend && git pull && npm install'
-                sshcommand remote: remote, command: 'systemctl restart nest-backend.service'
+                sshCommand remote: remote, command: 'cd /app/backend && git pull && npm install'
+                sshCommand remote: remote, command: 'systemctl restart nest-backend.service'
             }
         }
     }
