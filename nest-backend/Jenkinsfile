@@ -3,10 +3,10 @@ pipeline{
 
     environment {
         remote = [
-            name: 'backend-vm'
-            host: 'meomeo-backend.southeastasia.cloudapp.azure.com'
-            user: 'backend-vm'
-            identity: credentials('backend-vm-ssh-key')
+            name: 'backend-vm',
+            host: 'meomeo-backend.southeastasia.cloudapp.azure.com',
+            user: 'backend-vm',
+            identity: credentials('backend-vm-ssh-key'),
             allowAnyHosts: true
         ]
     }
