@@ -1,16 +1,16 @@
 pipeline{
     agent any
 
+    environment {
+        remote = [
+            name: 'backend-vm'
+            host: 'meomeo-backend.southeastasia.cloudapp.azure.com'
+            user: 'backend-vm'
+            identity: credentials('backend-vm-ssh-key')
+            allowAnyHosts: true
+        ]
+    }
     stages{
-        script {
-            def remote = [:]
-            remote.name = 'backend-vm'
-            remote.host = 'meomeo-backend.southeastasia.cloudapp.azure.com'
-            remote.user = 'backend-vm'
-            remote.identity = credentials('backend-vm-ssh-key')
-            remote.allowAnyHosts = true
-        }
-
         stage('SSH'){
             steps{
                 sshCommand remote: remote, command: 'cd /app/backend && git pull && npm install'
