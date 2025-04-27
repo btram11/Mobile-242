@@ -22,8 +22,7 @@ runcmd:
   - npm install
   - npx prisma migrate dev --name init --skip-seed
   - npx prisma db seed
-  - |
-    echo "\
+  - cat > /etc/systemd/system/nest-backend.service << 'EOF'
     [Unit]
     Description=Start NestJS App
     After=network.target
@@ -32,8 +31,9 @@ runcmd:
     [Service]
     Type=exec
     WorkingDirectory=/app/nest-backend
-    ExecStart=/bin/sh -c "git pull && /usr/bin/npx nest start"\
-    " > /etc/systemd/system/nest-backend.service
+    ExecStart=/bin/sh -c "git pull && /usr/bin/npx nest start"
+    Restart=always
+    EOF
   - systemctl enable --now nest-backend
   - cp nginx.conf /etc/nginx/
   - systemctl enable --now nginx
