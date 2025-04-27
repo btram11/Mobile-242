@@ -1,0 +1,30 @@
+name: Nest versioning
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - nest
+  push:
+    paths:
+      - nest-backend/**
+    branches:
+      - nest
+
+jobs:
+  bruh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+
+      - name: Git Version
+        uses: codacy/git-version@2.5.4
+        with:
+          release-branch: nest
+          dev-branch: nest
+          prefix: nest-
+          log-path: nest-backend/
