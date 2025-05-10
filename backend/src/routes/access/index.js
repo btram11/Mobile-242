@@ -119,7 +119,7 @@ router.post(
 );
 
 // authentication
-router.use(authentication);
+// router.use(authentication);
 
 // logout
 /**
