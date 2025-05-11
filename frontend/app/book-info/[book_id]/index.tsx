@@ -24,6 +24,8 @@ import {
 } from "@/components/CustomSquareButton";
 import BookCard from "@/components/BookCard";
 import { useHeaderHeart } from "@/hooks/useFavoriteHeader";
+import { useDispatch } from "react-redux";
+import { setPaymentData } from "@/features/payment/paymentSlice";
 
 const mockedBooks = [
   {
@@ -220,6 +222,7 @@ const mockedBooks = [
 export default function BookInfo() {
   // add a function to fetch for book information
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   // const route = useRoute();
   // const { book_id } = route.params;
   const { book_id, provider_id } = useLocalSearchParams();
@@ -335,6 +338,14 @@ export default function BookInfo() {
             <CustomButtonPrimary
               handlePress={() => {
                 console.log("Buy button pressed");
+                dispatch(
+                  setPaymentData({
+                    book_id,
+                    provider_id,
+                    paymentType: "purchase",
+                  })
+                );
+                router.push("/payment/confirm");
               }}
               text="Buy"
               buttonStyle={"px-8"}
@@ -342,7 +353,13 @@ export default function BookInfo() {
           )}
           {selected_book.is_leased && (
             <CustomButtonLight
-              handlePress={() => {}}
+              handlePress={() => {
+                router.push(
+                  `/book-info/${selected_book.id}/rent?provider_id=${
+                    provider_id || 1
+                  }`
+                );
+              }}
               text="Rent"
               buttonStyle={"px-8 m-4"}
             />

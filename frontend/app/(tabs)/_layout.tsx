@@ -12,17 +12,19 @@ import {
   Search,
   House,
   MessageCircle,
+  Bell,
 } from "lucide-react-native";
 import "@/global.css";
 
 const TabIcon = ({ focused, icon, name, color }) => {
   return (
     <View className="flex-1 items-center justify-center">
-      <Image
+      {/* <Image
         source={icon}
         className={`w-6 h-6 ${focused ? "scale-110" : "scale-100"}`}
         tintColor={color}
-      />
+      /> */}
+      {icon && icon}
       <Text
         className={`text-xs ${
           focused ? "font-latobold scale-110" : "font-lato"
@@ -117,6 +119,21 @@ export default function TabLayout() {
               icon={<Search color={color} size={24} />}
               color={color}
               name="Discover"
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notification"
+        options={{
+          title: "Notification",
+          headerShown: true,
+          tabBarIcon: ({ focused, color }) => (
+            <TabIcon
+              focused={focused}
+              icon={<Bell color={color} size={24} />}
+              color={color}
+              name="Notification"
             />
           ),
         }}

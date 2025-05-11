@@ -1,7 +1,7 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 
 import Rating from "@/components/Rating";
-import { useLocalSearchParams, useGlobalSearchParams, Link } from "expo-router";
+import { Link } from "expo-router";
 const mocked_data = {
   book_id: 1,
   title: "The Great Gasby",
@@ -46,6 +46,7 @@ export default function Providers() {
         >
           {mocked_data.providers.map((provider, idx) => (
             <Link
+              key={idx}
               href={{
                 pathname: "/book-info/[book_id]",
                 params: {
