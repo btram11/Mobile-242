@@ -6,11 +6,6 @@ import { GlobalProvider } from "@/context/GlobalProvider";
 import { useGlobalContext } from "@/context/GlobalProvider";
 
 export default function AuthLayout() {
-  const { loggedIn, isLoading } = useGlobalContext();
-  if (loggedIn && !isLoading) {
-    router.replace("/(tabs)/home");
-  }
-
   return (
     <GlobalProvider>
       <Stack>
