@@ -3,7 +3,7 @@ import { HttpError } from "@/lib/Errors";
 const BaseUrl = process.env.EXPO_PUBLIC_API_URL + "/access";
 
 export const login = async (email: string, password: string) => {
-  console.log("here");
+  console.log("here I a");
   // const response = await fetch(`${BaseUrl}/user/login`, {
   //   method: "POST",
   //   headers: {
