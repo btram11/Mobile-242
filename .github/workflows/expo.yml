@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+      - first-onboard
     paths:
       - frontend/** # Only run on changes to the frontend directory
   pull_request:
@@ -11,7 +12,7 @@ on:
 
 jobs:
   build:
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -41,7 +42,7 @@ jobs:
         run: eas build --platform android --profile preview
 
   preview:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     defaults:
       run:
