@@ -53,10 +53,10 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    if (loggedIn) {
+    if (loggedIn && !isLoading) {
       router.replace("../(tabs)/home");
     }
-  }, [loggedIn]);
+  }, [loggedIn, isLoading]);
 
   const validToken = async () => {
     try {
