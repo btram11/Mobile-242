@@ -348,7 +348,8 @@ export default function BookInfo() {
                 router.push("/payment/confirm");
               }}
               text="Buy"
-              buttonStyle={"px-8"}
+              buttonStyle={"px-8 flex-1 flex items-center"}
+              style={{ maxWidth: "50%" }}
             />
           )}
           {selected_book.is_leased && (
@@ -361,7 +362,8 @@ export default function BookInfo() {
                 );
               }}
               text="Rent"
-              buttonStyle={"px-8 m-4"}
+              buttonStyle={"px-8 flex-1 flex items-center max-w-1/2"}
+              style={{ maxWidth: "50%" }}
             />
           )}
         </View>
@@ -374,7 +376,7 @@ export default function BookInfo() {
           </Text>
           <TouchableOpacity
             onPress={handleProviderPress}
-            className=" w-full bg-gray-200 p-4 m-4 shadow-md"
+            className=" w-full bg-gray-200 p-4 m-4 shadow-lg shadow-black rounded-xl"
           >
             <View className="flex-row items-center justify-between">
               <View>
