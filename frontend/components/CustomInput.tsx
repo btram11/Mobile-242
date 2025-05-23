@@ -109,86 +109,90 @@ const CustomInput2 = ({
   };
 
   return (
-    <View
-      style={[
-        {
-          borderRadius: 999999,
-          position: "relative",
-        },
-        rest.style,
-      ]}
-      className={`rounded-full relative ${
-        isFocused ? "border-2 border-primarydark" : "border-primary"
-      } w-full flex-row justify-stretch items-center`}
-    >
+    <View>
       <Animated.Text
         style={[styles.labelStyle2, floatingLabelStyle]}
         className={`absolute left-6 color-[rgba(3,0,71,0.33)] font-bold w-full border-primary`}
       >
         {name}
       </Animated.Text>
-      <TextInput
-        style={[rest.style, { borderRadius: 9999999 }]}
-        placeholder={isFocused ? placeholder : ""}
-        // type={type}
-        className={`text-black w-full py-4 pr-4 pl-6  ${inputStyle}`}
-        onChangeText={handleTextChange}
-        onFocus={() => {
-          setIsFocused(true);
-          Animated.timing(floatingLabelAnimation, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: false,
-          }).start();
-        }}
-        onBlur={() => {
-          setIsFocused(false);
-          if (!value) {
+      <View
+        style={[
+          {
+            borderRadius: 999999,
+            overflow: "hidden",
+          },
+          rest.style,
+        ]}
+        className={`relative ${
+          isFocused
+            ? "border-2  border-[rgb(176,221,201)]"
+            : "border-primarydark"
+        } w-full flex-row justify-stretch items-center`}
+      >
+        <TextInput
+          style={[rest.style, { borderRadius: 9999999 }]}
+          placeholder={isFocused ? placeholder : ""}
+          // type={type}
+          className={`text-black w-full py-4 pr-4 pl-6 ${inputStyle}`}
+          onChangeText={handleTextChange}
+          onFocus={() => {
+            setIsFocused(true);
             Animated.timing(floatingLabelAnimation, {
-              toValue: 0,
+              toValue: 1,
               duration: 200,
               useNativeDriver: false,
             }).start();
-          }
-        }}
-        secureTextEntry={name === "Password" && !showPassword}
-        value={value}
-        importantForAutofill="noExcludeDescendants"
-        autoCompleteType="email"
-      >
-        {/* ${labelColor} */}
-      </TextInput>
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+            if (!value) {
+              Animated.timing(floatingLabelAnimation, {
+                toValue: 0,
+                duration: 200,
+                useNativeDriver: false,
+              }).start();
+            }
+          }}
+          secureTextEntry={name === "Password" && !showPassword}
+          value={value}
+          importantForAutofill="noExcludeDescendants"
+          autoCompleteType="email"
+        >
+          {/* ${labelColor} */}
+        </TextInput>
 
-      {!isFocused && !value && icon && (
-        <View className="absolute right-0 p-4">
-          <Image
-            source={icon}
-            style={styles.icon}
-            className="w-6 h-6 text-primarydark"
-          />
-        </View>
-      )}
-
-      {name === "Password" && (isFocused || value) && (
-        <View className="absolute right-0 p-4">
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            {/* <Text className="text-primarydark">{showPassword ? 'Hide' : 'Show'}</Text> */}
+        {!isFocused && !value && icon && (
+          <View className="absolute right-0 p-4">
             <Image
-              source={showPassword ? eye : eyeHide}
+              source={icon}
+              style={styles.icon}
               className="w-6 h-6 text-primarydark"
             />
-          </TouchableOpacity>
-        </View>
-      )}
+          </View>
+        )}
 
-      {name === "Search" && (
-        <View className="absolute right-0 p-4">
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            {/* <Text className="text-primarydark">{showPassword ? 'Hide' : 'Show'}</Text> */}
-            <Image source={search} className="w-6 h-6 text-primarydark" />
-          </TouchableOpacity>
-        </View>
-      )}
+        {name === "Password" && (isFocused || value) && (
+          <View className="absolute right-0 p-4">
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              {/* <Text className="text-primarydark">{showPassword ? 'Hide' : 'Show'}</Text> */}
+              <Image
+                source={showPassword ? eye : eyeHide}
+                className="w-6 h-6 text-primarydark"
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {name === "Search" && (
+          <View className="absolute right-0 p-4">
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              {/* <Text className="text-primarydark">{showPassword ? 'Hide' : 'Show'}</Text> */}
+              <Image source={search} className="w-6 h-6 text-primarydark" />
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
     </View>
   );
 };

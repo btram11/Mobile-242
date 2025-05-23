@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     marginBottom: 16,
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     elevation: 3,
     borderLeftWidth: 4,
     borderLeftColor: "#008C6E",
