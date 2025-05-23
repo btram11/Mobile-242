@@ -1,12 +1,18 @@
 //@ts-nocheck
 
-import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import {
+  TextInput,
+  View,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { CustomInput } from "@/components/CustomInput";
 import { CustomButtonLight } from "@/components/CustomRoundButton";
 import { CustomButtonSecondary } from "@/components/CustomRoundButton";
 import { FormField } from "@/components/FormField";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { router, Redirect, Link } from "expo-router";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,59 +21,85 @@ import RootLayout from "@/layouts/RootLayout";
 
 import { login } from "@/lib/appwrite";
 import { useGlobalContext } from "@/context/GlobalProvider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import LoadingScreen from "./(loading)/loading";
 import Onboarding2 from "./(onboarding)/onboarding2";
+import Login from "./(auth)/login";
+import { useSelector, useDispatch } from "react-redux";
+import { setAuthData } from "@/features/auth/authSlice";
+import { jwtDecode } from "jwt-decode";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { setUser, setLoggedIn, loggedIn, isLoading } = useGlobalContext();
+export default function Index() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isOnboarded, setIsOnboarded] = useState(true);
+  const dispatch = useDispatch();
+  const { loggedIn } = useSelector((state) => state.auth);
 
-  if (!isLoading && loggedIn) {
-    router.replace("/(tabs)/home");
-  } else if (!isLoading && loggedIn) {
-    router.replace("/(auth)/login");
+  useEffect(() => {
+    const checkOnboardingStatus = async () => {
+      try {
+        await validToken();
+        const value = await AsyncStorage.getItem("ONBOARDED");
+        setIsOnboarded(value === "true");
+      } catch (error) {
+        console.error("Error checking onboarding:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    // clearStorage();
+    checkOnboardingStatus();
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn && !isLoading) {
+      router.replace("../(tabs)/home");
+    }
+  }, [loggedIn, isLoading]);
+
+  const validToken = async () => {
+    try {
+      const token = await AsyncStorage.getItem("access_token");
+      const userId = await AsyncStorage.getItem("userId");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+
+        if (decoded.exp > currentTime) {
+          dispatch(setAuthData({ userId, token }));
+        }
+      } else {
+        console.log("No token found");
+      }
+    } catch (error) {
+      console.error("Error checking token:", error);
+    }
+  };
+
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log("Storage cleared!");
+    } catch (e) {
+      console.error("Failed to clear storage:", e);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center bg-black">
+        <ActivityIndicator size="large" color="#FFFFFF" />
+      </View>
+    );
   }
 
-  // async function handleLogIn() {
-  //     try {
-  //         console.log("Attempt to log in...")
-  //         const loggedInUser = await login(email, password)
-  //         setUser(loggedInUser)
-  //         setLoggedIn(true)
-  //         router.replace('../(tabs)/home')
-  //     }
-  //     catch (error) {
-  //         console.error('Error logging in:', error);
-  //         throw new Error(error.message || 'Unknown error occurred');
-  //     }
-  // }
+  if (!isOnboarded) {
+    return <Onboarding2 />;
+  }
 
-  // return (
-  //     <RootLayout>
-  //         <View className="items-center justify-center h-full w-full flex-1">
-
-  //             <FormField name="Email" value={email} placeholder="John Doe" handleTextChange={(e) => { setEmail(e) }} labelColor="" inputStyle="" />
-
-  //             <FormField name="Password" value={password} placeholder="At least 8 characters." handleTextChange={(e) => { setPassword(e) }} labelColor="" inputStyle="" />
-
-  //             <CustomButtonSecondary text="Login" buttonStyle="px-8" textStyle="" handlePress={() => handleLogIn()} />
-
-  //             <View className="flex-row justify-center items-center">
-  //                 <Text className="text-white">Don't have an account? </Text>
-  //                 {/* <TouchableOpacity onPress={() => router.push('./signup')}>
-  //                     <Text className="text-secondarydark font-bold underline">Sign up</Text>
-  //                 </TouchableOpacity> */}
-  //                 <Link href="./signup" className="text-secondarydark font-bold underline">Sign up</Link>
-  //             </View>
-
-  //         </View>
-  //     </RootLayout>
-
-  // )
-  return (
-    // <LoadingScreen />
-    <Onboarding2 />
-  );
+  if (!loggedIn) {
+    return <Login />;
+  }
+  return <></>;
 }

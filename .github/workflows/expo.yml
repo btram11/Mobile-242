@@ -3,7 +3,7 @@ on:
     branches:
       - main
     paths:
-      - frontend/** # Only run on changes to the frontend directory
+      - frontend/README.md
   pull_request:
     types: [opened, synchronize]
     paths:
@@ -38,7 +38,7 @@ jobs:
         run: npm ci
 
       - name: 🚀 Build app
-        run: eas build --platform android --profile preview
+        run: eas build --platform android --profile preview --non-interactive
 
   preview:
     if: github.event_name == 'pull_request'

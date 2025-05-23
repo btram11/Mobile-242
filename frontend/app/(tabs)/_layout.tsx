@@ -18,11 +18,7 @@ import "@/global.css";
 const TabIcon = ({ focused, icon, name, color }) => {
   return (
     <View className="flex-1 items-center justify-center">
-      <Image
-        source={icon}
-        className={`w-6 h-6 ${focused ? "scale-110" : "scale-100"}`}
-        tintColor={color}
-      />
+      {icon && icon}
       <Text
         className={`text-xs ${
           focused ? "font-latobold scale-110" : "font-lato"

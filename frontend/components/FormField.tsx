@@ -9,6 +9,8 @@ interface FormFieldProps {
   handleTextChange: (name: string, text: string) => void;
   labelColor?: string;
   inputStyle?: string;
+  errors?: any;
+  [key: string]: any;
 }
 //@
 function FormField({
@@ -46,10 +48,13 @@ function FormField2({
   labelColor,
   inputStyle,
   icon = "",
+  errors,
+  ...rest
 }: FormFieldProps & { icon?: string }) {
   return (
     <View
       style={styles.formStyle2}
+      className="relative"
       // className="w-5/6 flex justify-center items-center mb-8"
     >
       <CustomInput2
@@ -60,7 +65,13 @@ function FormField2({
         handleTextChange={handleTextChange}
         inputStyle={`w-full bg-[rgb(176,221,201,0.4)] rounded-full ${inputStyle}`}
         icon={icon}
+        {...rest}
       ></CustomInput2>
+      {errors && (
+        <Text className="text-red-500 ml-6 absolute -bottom-5 text-sm">
+          {errors.message}
+        </Text>
+      )}
     </View>
   );
 }
