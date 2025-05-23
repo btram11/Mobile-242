@@ -41,7 +41,7 @@ class AccessService {
 
     const token = jwt.sign(
       { userId: foundUser.user_id, email: foundUser.email },
-      process.env.SECREC_KEY || "HCMUT",
+      process.env.SECRET_KEY || "HCMUT",
       { expiresIn: 900 }
     );
 
