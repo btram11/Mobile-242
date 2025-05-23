@@ -6,19 +6,18 @@ import { View, Text, Image } from "react-native";
 // import house from '../../assets/icons/house.png'
 import { house, bookmark, create, profile } from "../../constants/icons";
 import { useGlobalContext } from "@/context/GlobalProvider";
-import { Bookmark, UserRound, Search, House } from "lucide-react-native";
+import {
+  Bookmark,
+  UserRound,
+  Search,
+  House,
+  MessageCircle,
+} from "lucide-react-native";
 import "@/global.css";
 
-const TabIcon = ({ focused, name, color, icon }) => {
+const TabIcon = ({ focused, icon, name, color }) => {
   return (
     <View className="flex-1 items-center justify-center">
-      {/* {iconImage && (
-        <Image
-          source={iconImage}
-          className={`w-6 h-6 ${focused ? "scale-110" : "scale-100"}`}
-          tintColor={color}
-        />
-      )} */}
       {icon && icon}
       <Text
         className={`text-xs ${
@@ -43,6 +42,13 @@ export default function TabLayout() {
       screenOptions={{
         // tabBarStyle: { display: "none" },
         headerShown: false,
+        headerStyle: {
+          backgroundColor: "#008C6E",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
         tabBarShowLabel: false,
         tabBarActiveTintColor: "#078c7f",
         tabBarStyle: {
@@ -107,6 +113,21 @@ export default function TabLayout() {
               icon={<Search color={color} size={24} />}
               color={color}
               name="Discover"
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="message"
+        options={{
+          title: "Message",
+          headerShown: true,
+          tabBarIcon: ({ focused, color }) => (
+            <TabIcon
+              focused={focused}
+              icon={<MessageCircle color={color} size={24} />}
+              color={color}
+              name="Message"
             />
           ),
         }}

@@ -1,0 +1,32 @@
+name: Nest versioning
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - nest
+  push:
+    paths:
+      - nest-backend/**
+    branches:
+      - nest
+
+jobs:
+  bruh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+          
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        with:
+          minor-wording:  'add,Adds,new'
+          major-wording:  'MAJOR,cut-major'
+          patch-wording:  'patch,fixes'     # Providing patch-wording will override commits
+                                            # defaulting to a patch bump.
+          rc-wording:     'RELEASE,alpha'
+          default:        prerelease

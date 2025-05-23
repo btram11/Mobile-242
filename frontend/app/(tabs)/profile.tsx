@@ -57,7 +57,7 @@ function Profile() {
     >
       <View
         style={[styles.profileHeader, {}]}
-        className="flex flex-row items-center justify-center gap-5 px-4 bg-secondarydark"
+        className="flex flex-row items-center justify-center gap-5 px-4 bg-viridian-500"
       >
         <Pressable
           style={styles.profileImage}

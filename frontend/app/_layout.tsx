@@ -23,6 +23,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 
 const queryClient = new QueryClient();
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,7 +64,7 @@ const RootLayout = () => {
               <Stack
                 screenOptions={{
                   headerStyle: {
-                    backgroundColor: "#00664f",
+                    backgroundColor: "#008C6E",
                   },
                   headerTintColor: "#fff",
                   headerTitleStyle: {
@@ -98,7 +99,7 @@ const RootLayout = () => {
                   }}
                 />
                 <Stack.Screen
-                  name="book-info/[book_id]"
+                  name="book-info/[book_id]/index"
                   options={{
                     headerShown: true,
                     title: "Book Info",

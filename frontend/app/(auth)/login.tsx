@@ -23,7 +23,7 @@ import {
 
 import AuthLayout from "@/layouts/AuthLayout";
 
-import { login } from "@/api/auth";
+import { login } from "@/services/auth";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
 import { useModal } from "@/context/ModalContext";
