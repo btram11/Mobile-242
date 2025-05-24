@@ -1,8 +1,10 @@
 import { useModal } from "@/context/ModalContext";
 import { ErrorModal } from "./ErrorModal";
+import { DateRangePicker } from "./DateRangePickerModal";
 
 const ModalLookup: Record<string, React.FC<any>> = {
   ErrorModal: ErrorModal,
+  DateRangePicker: DateRangePicker,
   //   UpdatePrinterModal: UpdatePrinterModal,
   //   ConfirmPrintModal: ConfirmPrintModal,
   //   InsufficientPagesModal: InsufficientPagesModal,

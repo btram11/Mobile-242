@@ -75,7 +75,7 @@ const getBooks = async (
   return result;
 };
 
-const getBookDetail = async (bookid, listingid) => {
+const getBookListingDetail = async (bookid, listingid) => {
   const result = await prisma.listed_book.findFirst({
     relationLoadStrategy: 'join',
     where: {
@@ -90,6 +90,20 @@ const getBookDetail = async (bookid, listingid) => {
   return result;
 };
 
+const getBookDetail = async (bookid) => {
+  const result = await prisma.database_book.findFirst({
+    relationLoadStrategy: 'join',
+    where: {
+      book_id: bookid,
+    },
+    include: {
+      listed_books: true,
+    },
+  });
+
+  return result;
+};
+
 const sortBy = async (filters) => {};
 
-module.exports = { getBooks, getBookDetail };
+module.exports = { getBooks, getBookDetail, getBookListingDetail };

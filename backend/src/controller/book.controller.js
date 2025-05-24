@@ -22,8 +22,14 @@ class BookController {
   };
 
   getBookDetail = async (req, res) => {
+    const { bookid } = req.params;
+    const response = await BookService.getBookDetail(bookid);
+    return res.status(200).json(response);
+  }
+
+  getBookListingDetail = async (req, res) => {
     const { bookid, listingid } = req.params;
-    const response = await BookService.getBookDetail(
+    const response = await BookService.getBookListingDetail(
       bookid,
       listingid
     );
@@ -39,6 +45,40 @@ class BookController {
     const response = await BookService.getBookByRenter(req.body);
     return res.status(200).json(response);
   };
+
+  buyBook = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    console.log(req.body);
+    const response = await BookService.buyBook(
+      bookid,
+      listingid,
+      req.body
+    );
+    return res.status(200).json(response);
+  };
+
+  getBuyer = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.getBuyer(bookid, listingid);
+    return res.status(200).json(response);
+  };
+
+  rentBook = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.rentBook(
+      bookid,
+      listingid,
+      req.body
+    );
+    return res.status(200).json(response);
+  };
+
+  getRenter = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.getRenter(bookid, listingid);
+    return res.status(200).json(response);
+  };
+
 }
 
 module.exports = new BookController();

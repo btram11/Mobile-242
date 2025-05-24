@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   statusText: {
-    fontSize: 15,
+    fontSize: 13,
     color: "#555",
   },
 });

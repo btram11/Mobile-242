@@ -17,13 +17,15 @@ import { GlobalProvider } from "@/context/GlobalProvider";
 import { ModalProvider } from "@/context/ModalContext";
 import ModalManager from "@/components/modal/ModalManager";
 import { NavigationContainer } from "@react-navigation/native";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import RouteWatcher from "@/components/BookRouteWatcher";
+import { StatusBar } from "expo-status-bar";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -61,6 +63,7 @@ const RootLayout = () => {
           <GlobalProvider>
             <ModalProvider>
               <ModalManager />
+              <RouteWatcher />
               <Stack
                 screenOptions={{
                   headerStyle: {
@@ -83,7 +86,7 @@ const RootLayout = () => {
                 {/* <Stack.Screen
           name="(onboarding)"
           options={{ title: "Onboarding", headerShown: false }}
-        /> */}
+          /> */}
                 <Stack.Screen
                   name="(tabs)"
                   options={{ title: "Tabs", headerShown: false }}
@@ -105,11 +108,55 @@ const RootLayout = () => {
                     title: "Book Info",
                   }}
                 />
+                <Stack.Screen
+                  name="book-info/[book_id]/rent"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
+                <Stack.Screen
+                  name="book-info/[book_id]/providers"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
+
+                <Stack.Screen
+                  name="payment/confirm"
+                  options={{
+                    headerShown: true,
+                    title: "Confirm Your Payment",
+                    headerTitleAlign: "center",
+                  }}
+                />
+                <Stack.Screen
+                  name="payment/success"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="order-details/[id]"
+                  options={{
+                    headerShown: true,
+                    title: "Order Details",
+                  }}
+                />
+                <Stack.Screen
+                  name="upload"
+                  options={{
+                    headerShown: true,
+                    title: "Upload Book",
+                  }}
+                />
               </Stack>
             </ModalProvider>
           </GlobalProvider>
         </QueryClientProvider>
       </Provider>
+      {/* </> */}
     </NavigationContainer>
   );
 };

@@ -158,6 +158,7 @@ const CustomInput2 = ({
           value={value}
           importantForAutofill="noExcludeDescendants"
           autoCompleteType="email"
+          {...rest}
         >
           {/* ${labelColor} */}
         </TextInput>
