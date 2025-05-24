@@ -99,8 +99,10 @@ router.get("/:bookid", asyncHandler(bookController.getBookDetail));
  *       500:
  *         description: Server error
  */
-router.get("/:bookid/listing/:listingid", asyncHandler(bookController.getBookListingDetail));
-
+router.get(
+  "/:bookid/listing/:listingid",
+  asyncHandler(bookController.getBookListingDetail)
+);
 
 /**
  * @swagger
@@ -145,7 +147,10 @@ router.get("/:bookid/listing/:listingid", asyncHandler(bookController.getBookLis
  *       500:
  *         description: Server error
  */
-router.post("/:bookid/listing/:listingid/buy", asyncHandler(bookController.buyBook));
+router.post(
+  "/:bookid/listing/:listingid/buy",
+  asyncHandler(bookController.buyBook)
+);
 
 /**
  * @swagger
@@ -175,7 +180,10 @@ router.post("/:bookid/listing/:listingid/buy", asyncHandler(bookController.buyBo
  *       500:
  *         description: Server error
  */
-router.get("/:bookid/listing/:listingid/buyer", asyncHandler(bookController.getBuyer));
+router.get(
+  "/:bookid/listing/:listingid/buyer",
+  asyncHandler(bookController.getBuyer)
+);
 
 /**
  * @swagger
@@ -211,6 +219,14 @@ router.get("/:bookid/listing/:listingid/buyer", asyncHandler(bookController.getB
  *                type: boolean
  *                required: true
  *                description: Modifiable flag for the rental
+ *              pickup_date:
+ *                type: string
+ *                format: date-time
+ *                required: true
+ *              end_date:
+ *                type: string
+ *                format: date-time
+ *                required: true
  *     responses:
  *       200:
  *         description: Rental successful
@@ -221,7 +237,10 @@ router.get("/:bookid/listing/:listingid/buyer", asyncHandler(bookController.getB
  *       500:
  *         description: Server error
  */
-router.post("/:bookid/listing/:listingid/rent", asyncHandler(bookController.rentBook));
+router.post(
+  "/:bookid/listing/:listingid/rent",
+  asyncHandler(bookController.rentBook)
+);
 
 /**
  * @swagger
@@ -251,6 +270,9 @@ router.post("/:bookid/listing/:listingid/rent", asyncHandler(bookController.rent
  *       500:
  *         description: Server error
  */
-router.get("/:bookid/listing/:listingid/renter", asyncHandler(bookController.getRenter));
+router.get(
+  "/:bookid/listing/:listingid/renter",
+  asyncHandler(bookController.getRenter)
+);
 
 module.exports = router;
