@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function PaymentConfirmation() {
-  const { book_id, provider_id, paymentType } = useSelector(
+  const { book_id, provider_id, paymentType, startDate, endDate } = useSelector(
     (state: any) => state.payment
   );
   // const { book_id, provider_id } = useLocalSearchParams();
@@ -26,17 +26,23 @@ export default function PaymentConfirmation() {
       provider: { name: "Book Provider Inc." },
       price: { type: paymentType, amount: "12.99" },
       rentalDetails: {
-        start: "2023-01-01",
-        end: "2023-01-10",
-        cycle: "Weekly",
+        start: startDate,
+        end: endDate,
+        cycle:
+          startDate && endDate
+            ? `${Math.ceil(
+                (new Date(endDate).getTime() - new Date(startDate).getTime()) /
+                  (1000 * 60 * 60 * 24) +
+                  1
+              )} days`
+            : "",
       },
     };
     setTimeout(() => setBookDetails(mockDetails), 500); // giả delay
   }, [book_id, provider_id]);
 
   const handleConfirmPayment = () => {
-    Alert.alert("✅ Payment Successful", "You have confirmed the payment.");
-    router.push(`/book-info/${book_id}`);
+    router.replace(`/payment/success`);
   };
 
   if (!bookDetails) {
@@ -52,7 +58,7 @@ export default function PaymentConfirmation() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Confirm Your Payment</Text>
+      {/* <Text style={styles.title}>Confirm Your Payment</Text> */}
 
       <Image
         source={image || require("@/assets/images/book1.jpg")}

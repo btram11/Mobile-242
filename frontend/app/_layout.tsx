@@ -109,10 +109,39 @@ const RootLayout = () => {
                   }}
                 />
                 <Stack.Screen
+                  name="book-info/[book_id]/rent"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
+
+                <Stack.Screen
+                  name="payment/confirm"
+                  options={{
+                    headerShown: true,
+                    title: "Confirm Your Payment",
+                    headerTitleAlign: "center",
+                  }}
+                />
+                <Stack.Screen
+                  name="payment/success"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
                   name="order-details/[id]"
                   options={{
                     headerShown: true,
                     title: "Order Details",
+                  }}
+                />
+                <Stack.Screen
+                  name="upload"
+                  options={{
+                    headerShown: true,
+                    title: "Upload Book",
                   }}
                 />
               </Stack>

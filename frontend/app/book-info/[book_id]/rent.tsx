@@ -35,7 +35,15 @@ export default function RentBook() {
       Alert.alert("Error", "Please select both start and end dates.");
       return;
     }
-    dispatch(setPaymentData({ book_id, provider_id, paymentType: "rental" }));
+    dispatch(
+      setPaymentData({
+        book_id,
+        provider_id,
+        paymentType: "rental",
+        startDate,
+        endDate,
+      })
+    );
     router.push(`/payment/confirm`);
   };
   const handleSelectDate = () => {
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
   confirmButton: {
     marginTop: 20,
     padding: 15,
-    backgroundColor: "#007BFF",
+    backgroundColor: "#007353",
     borderRadius: 10,
     alignItems: "center",
   },
