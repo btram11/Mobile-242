@@ -34,17 +34,17 @@ const getBooks = async (
 
   // Sold or leased
   if (isSold || isLeased) {
-    joinCondition.listed_books = { some: {} };
-    if (isSold) {
-      joinCondition.listed_books.some.is_sold = isSold;
-    }
-    if (isLeased) {
-      joinCondition.listed_books.some.is_leased = isLeased;
-    }
+    joinCondition.listed_books = {
+      some: {
+        ...(isSold && { is_sold: isSold }),
+        ...(isLeased && { is_leased: isLeased }),
+      },
+    };
   }
 
   // Search keyword
   if (keyword) {
+    // only take books with keywords in these fields
     joinCondition.OR = [
       {
         title: { search: keyword },
@@ -56,7 +56,7 @@ const getBooks = async (
         summary: { search: keyword },
       },
     ];
-    if (!sortby) sortby = "relevance";
+    if (!sortby) sortby = "relevance";  // sort by relevance
     orderBy._relevance = {
       fields: ["title", "subject", "summary"],
       search: keyword,
@@ -71,19 +71,25 @@ const getBooks = async (
     where: joinCondition,
     orderBy: orderBy,
   });
+  
   return result;
 };
 
-const searchBook = async (filters) => {
-  const result = await prisma.database_book
-    .findMany({
-      where: filters,
-    })
-    .catch((error) => console.error(error));
+const getBookDetail = async (bookid, listingid) => {
+  const result = await prisma.listed_book.findFirst({
+    relationLoadStrategy: 'join',
+    where: {
+      book_id: bookid,
+      listing_id: listingid,
+    },
+    include: {
+      book: true,
+    },
+  });
 
   return result;
 };
 
 const sortBy = async (filters) => {};
 
-module.exports = { getBooks, searchBook };
+module.exports = { getBooks, getBookDetail };
