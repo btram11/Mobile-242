@@ -115,6 +115,13 @@ const RootLayout = () => {
                     title: "",
                   }}
                 />
+                <Stack.Screen
+                  name="book-info/[book_id]/providers"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
 
                 <Stack.Screen
                   name="payment/confirm"

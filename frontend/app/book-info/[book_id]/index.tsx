@@ -26,6 +26,10 @@ import BookCard from "@/components/BookCard";
 import { useHeaderHeart } from "@/hooks/useFavoriteHeader";
 import { useDispatch } from "react-redux";
 import { setPaymentData } from "@/features/payment/paymentSlice";
+import { useQuery } from "@tanstack/react-query";
+import { getBookById } from "@/services/book";
+
+import { Skeleton } from "moti/skeleton";
 
 const mockedBooks = [
   {
@@ -226,51 +230,65 @@ export default function BookInfo() {
   // const route = useRoute();
   // const { book_id } = route.params;
   const { book_id, provider_id } = useLocalSearchParams();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["book", book_id],
+    queryFn: () => getBookById(book_id),
+  });
+
   const selected_book = mockedBooks.filter(
     (book) => book.id == Number(book_id)
   )[0];
-
-  const provider = selected_book.provider;
+  // const provider = selected_book.provider;
 
   const handleProviderPress = () => {
-    router.push(`/book-info/${selected_book.id}/providers`);
+    router.push(`/book-info/${book_id}/providers`);
   };
 
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
   const handleInfoExpand = () => setIsInfoExpanded(!isInfoExpanded);
 
-  const maxLength = 200;
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
-  const summary = isSummaryExpanded
-    ? selected_book.summary
-    : selected_book.summary.slice(0, maxLength) + "...";
   const handleSummaryExpand = () => setIsSummaryExpanded(!isSummaryExpanded);
+
+  const maxLength = 200;
+  const fullSummary = data?.summary ?? "";
+  const shouldShowExpand = fullSummary.length > maxLength;
+
+  const displayedSummary = shouldShowExpand
+    ? isSummaryExpanded
+      ? fullSummary
+      : fullSummary.slice(0, maxLength) + "…"
+    : fullSummary;
 
   // useHeaderHeart(selected_book.in_wishlist);
 
-  const [isFavorited, setIsFavorited] = useState(selected_book.in_wishlist);
-  const handleLike = () => {
-    setIsFavorited((prev) => !prev);
-    // add a function to change "in_wishlist" status in the backend
-  };
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          key={String(isFavorited)}
-          onPressIn={handleLike}
-          // use onPressIn as onPress is not firing in the header (issue related to https://github.com/software-mansion/react-native-screens/issues/2219)
-          style={{ marginRight: 16 }}
-        >
-          <Ionicons
-            name={isFavorited ? "heart" : "heart-outline"}
-            size={32}
-            color={"red"}
-          />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation, isFavorited]);
+  // const [isFavorited, setIsFavorited] = useState(selected_book.in_wishlist);
+  // const handleLike = () => {
+  //   setIsFavorited((prev) => !prev);
+  //   // add a function to change "in_wishlist" status in the backend
+  // };
+  // useEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity
+  //         key={String(isFavorited)}
+  //         onPressIn={handleLike}
+  //         // use onPressIn as onPress is not firing in the header (issue related to https://github.com/software-mansion/react-native-screens/issues/2219)
+  //         style={{ marginRight: 16 }}
+  //       >
+  //         <Ionicons
+  //           name={isFavorited ? "heart" : "heart-outline"}
+  //           size={32}
+  //           color={"red"}
+  //         />
+  //       </TouchableOpacity>
+  //     ),
+  //   });
+  // }, [navigation, isFavorited]);
+  if (isLoading) {
+    return <BookInfoSkeleton />;
+  }
 
   return (
     <ScrollView
@@ -282,41 +300,41 @@ export default function BookInfo() {
         <View className="flex flex-row w-full gap-5">
           <Image
             style={styles.bookImg}
-            source={selected_book.img_src}
+            source={data?.img_url || require("@/assets/images/book1.jpg")}
             // className="w-44 h-60"
             resizeMode="stretch"
           />
           <View className="flex-1 flex">
             <View className="flex-1">
               <Text className="text-2xl font-latobold">
-                {selected_book?.title}
+                {(data?.title || "").split("/")[0].trim()}
               </Text>
               <Text className="text-lg text-gray-600 font-latolight">
-                Condition: {selected_book?.condition}
+                Condition: {data?.condition}
               </Text>
               {/* display sold_price and/or leased_price */}
-              {selected_book.is_leased && !selected_book.is_sold && (
+              {selected_book?.is_leased && !selected_book?.is_sold && (
                 <Text className="text-lg">
                   Leased Price: ${selected_book?.leased_price}
                 </Text>
               )}
-              {selected_book.is_sold && !selected_book.is_leased && (
+              {selected_book?.is_sold && !selected_book?.is_leased && (
                 <Text className="text-lg">
                   Sold Price: ${selected_book?.sold_price}
                 </Text>
               )}
-              {selected_book.is_sold && selected_book.is_leased && (
+              {selected_book?.is_sold && selected_book?.is_leased && (
                 <View>
                   <View className="flex-row items-center">
                     <Text className="text-lg font-lato">Leased Price: </Text>
                     <Text className="text-lg font-latobold text-lightred">
-                      ${selected_book.leased_price}
+                      ${selected_book?.leased_price}
                     </Text>
                   </View>
                   <View className="flex-row items-center">
                     <Text className="text-lg font-lato">Sold Price: </Text>
                     <Text className="text-lg font-latobold text-lightred">
-                      ${selected_book.sold_price}
+                      ${selected_book?.sold_price}
                     </Text>
                   </View>
                 </View>
@@ -334,10 +352,9 @@ export default function BookInfo() {
 
         {/* display buy/rent button */}
         <View className="flex flex-row">
-          {selected_book.is_sold && (
+          {data?.is_sold && (
             <CustomButtonPrimary
               handlePress={() => {
-                console.log("Buy button pressed");
                 dispatch(
                   setPaymentData({
                     book_id,
@@ -352,13 +369,11 @@ export default function BookInfo() {
               style={{ maxWidth: "50%" }}
             />
           )}
-          {selected_book.is_leased && (
+          {data?.is_leased && (
             <CustomButtonLight
               handlePress={() => {
                 router.push(
-                  `/book-info/${selected_book.id}/rent?provider_id=${
-                    provider_id || 1
-                  }`
+                  `/book-info/${book_id}/rent?provider_id=${provider_id || 1}`
                 );
               }}
               text="Rent"
@@ -369,7 +384,7 @@ export default function BookInfo() {
         </View>
 
         {/* display provider information */}
-        <View className="w-full items-center">
+        {/* <View className="w-full items-center">
           <Text className="text-2xl font-latobold self-start">Providers</Text>
           <Text className="text-md font-latolight self-start">
             Select a Provider
@@ -388,13 +403,13 @@ export default function BookInfo() {
                     Preferred Location:{" "}
                   </Text>
                   <Text className="text-md font-lato">
-                    {provider.preferred_location}
+                    {provider?.preferred_location}
                   </Text>
                 </View>
                 <View>
                   <View className="flex-row items-center">
                     <Text className="text-md font-latolight">Rating: </Text>
-                    <Rating rating={provider.average_rating} />
+                    <Rating rating={provider?.average_rating} />
                   </View>
                 </View>
               </View>
@@ -405,7 +420,7 @@ export default function BookInfo() {
               />
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         {/* display information */}
         <View className="w-full items-center gap-2">
@@ -413,20 +428,29 @@ export default function BookInfo() {
 
           <View className="w-full items-center">
             {[
-              { label: "Author", value: selected_book.author },
-              { label: "Original price", value: selected_book.org_price },
-              { label: "Major", value: selected_book.major, expandable: true },
+              { label: "Author", value: data?.author },
+              { label: "Original price", value: data?.org_price },
+              {
+                label: "Major",
+                value: data?.major || data?.subject,
+                expandable: true,
+              },
               {
                 label: "Publisher",
-                value: selected_book.publisher,
+                value: data?.publisher,
+                expandable: true,
+              },
+              {
+                label: "Publishing Year",
+                value: data?.publishing_year,
                 expandable: true,
               },
               {
                 label: "Cover Type",
-                value: selected_book.cover_type,
+                value: data?.cover_type,
                 expandable: true,
               },
-              { label: "Pages", value: selected_book.pages, expandable: true },
+              { label: "Pages", value: data?.pages, expandable: true },
             ]
               .filter((item) => isInfoExpanded || !item.expandable) // Ẩn nếu chưa mở rộng
               .map(({ label, value }, index) => (
@@ -463,19 +487,23 @@ export default function BookInfo() {
           </Text>
         </View>
 
-        <View className="w-full items-center gap-2">
+        <View className="w-full items-center gap-2 mb-2">
           <Text className="text-2xl font-latobold self-start">Summary</Text>
-          <Text className="text-md font-lato text-justify">{summary}</Text>
+          <Text className="text-md font-lato text-justify w-full">
+            {displayedSummary || "No summary available"}
+          </Text>
           {/* <CustomButtonPrimary
             handlePress={handleSummaryExpand}
             text={isSummaryExpanded ? "Show Less" : "Show More"}
           /> */}
-          <Text
-            onPress={handleSummaryExpand}
-            style={{ textDecorationLine: "underline" }}
-          >
-            {isSummaryExpanded ? "Show Less" : "Show More"}
-          </Text>
+          {shouldShowExpand && (
+            <Text
+              onPress={handleSummaryExpand}
+              style={{ textDecorationLine: "underline" }}
+            >
+              {isSummaryExpanded ? "Show Less" : "Show More"}
+            </Text>
+          )}
         </View>
 
         <View className="w-full items-center">
@@ -484,7 +512,7 @@ export default function BookInfo() {
           </Text>
           <View className="w-full">
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {selected_book.related_books.map((book, idx) => (
+              {selected_book?.related_books.map((book, idx) => (
                 <BookCard
                   key={idx}
                   id={book.id}
@@ -555,3 +583,70 @@ const styles = StyleSheet.create({
   },
   bookImg: { width: 151, height: 235 },
 });
+
+function BookInfoSkeleton() {
+  return (
+    <ScrollView
+      className="p-4 bg-[#F7F7F7]"
+      contentContainerStyle={styles.contentContainer}
+    >
+      {/* Header: ảnh + title */}
+      <View className="items-center gap-5">
+        <View className="flex flex-row w-full gap-5">
+          <Skeleton colorMode="light" radius={12} height={235} width={151} />
+          <View className="flex-1 flex gap-2">
+            <Skeleton colorMode="light" radius={4} height={60} width="100%" />
+            <Skeleton colorMode="light" radius={4} height={20} width="70%" />
+            <Skeleton colorMode="light" radius={4} height={20} width="80%" />
+          </View>
+        </View>
+        <Skeleton colorMode="light" radius={4} height={2} width="100%" />
+        <View className="flex items-center">
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={40}
+            width="80%"
+            // style={{ marginRight: 10 }}
+          />
+        </View>
+
+        {/* Provider information */}
+        <View className="w-full flex flex-col gap-2">
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={40}
+            width="40%"
+            className="self-start"
+          />
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={28}
+            width="20%"
+            className="self-start"
+          />
+          <Skeleton colorMode="light" radius={4} height={130} width="100%" />
+        </View>
+
+        {/* Information section */}
+        <View className="w-full gap-2">
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={40}
+            width="50%"
+            className="self-start"
+          />
+
+          <View className="w-full items-center">
+            <Skeleton colorMode="light" radius={4} height={130} width="100%" />
+          </View>
+        </View>
+      </View>
+
+      {/* Information rows */}
+    </ScrollView>
+  );
+}
