@@ -26,9 +26,12 @@ import ProviderCard from "@/components/ProviderCard";
 
 import "../../global.css";
 import { SafeAreaView } from "react-native-safe-area-context";
+import FloatingButton from "@/components/FloatingButton";
+import { Plus } from "lucide-react-native";
 
 // import mockedBooks from '../../../backend/prisma/data/database_books.json'
 import { mockedBooks, mockedNews, mockedProviders } from "@/mocks/data";
+import { router } from "expo-router";
 
 export default function HomePage() {
   const [data, setData] = useState([]);
@@ -59,6 +62,10 @@ export default function HomePage() {
 
   return (
     <SafeAreaView style={styles.container} className="bg-viridian-500">
+      <FloatingButton
+        icon={<Plus size={25} color={"#fff"} />}
+        onPress={() => router.push("/upload")}
+      />
       <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
         <Ionicons name="search-outline" size={20} color="gray" />
         <TextInput
