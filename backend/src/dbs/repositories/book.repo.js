@@ -140,6 +140,66 @@ const getBookDetail = async (bookid) => {
   return result;
 };
 
-const sortBy = async (filters) => {};
+const getListings = async (bookId, buyerId, sellerId, leaserId, renterId) => {
+  const whereCondition = {};
+  const includeCondition = {
+    provider: true,
+  };
 
-module.exports = { getBooks, getBookDetail, getBookListingDetail };
+  if (bookId) {
+    whereCondition.book_id = bookId;
+  }
+  if (buyerId) {
+    whereCondition.is_bought_rel = {
+      user_id: buyerId,
+    };
+    includeCondition.is_bought_rel = true;
+  }
+  if (sellerId) {
+    whereCondition.provider_id = sellerId;
+    where
+  }
+  if (leaserId) {
+    whereCondition.provider_id = leaserId;
+  }
+  if (renterId) {
+    whereCondition.is_rented_rel = {
+      user_id: renterId,
+    };
+    includeCondition.is_rented_rel = true;
+  }
+
+
+  const result = await prisma.listed_book.findMany({
+    relationLoadStrategy: "join",
+    where: whereCondition,
+    include: includeCondition,
+  });
+
+  return result;
+}
+
+const saveListing = async (bookId, listing) => {
+  const {provider_id, ...data} = listing;
+  const result = await prisma.listed_book.create({
+    data: {
+      ...data,
+      book: { connect: { book_id: bookId } },
+      provider: { connect: { provider_id: listing.provider_id } },
+    },
+  });
+
+  return result;
+}
+
+const deleteListing = async (listingId) => {
+  const result = await prisma.listed_book.delete({
+    where: {
+      listing_id: listingId,
+    },
+  });
+
+  return result;
+};
+
+module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings };

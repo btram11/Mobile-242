@@ -5,6 +5,9 @@ const {
   getBooks,
   getBookDetail,
   getBookListingDetail,
+  getListings: findListings,
+  saveListing,
+  deleteListing
 } = require("../dbs/repositories/book.repo");
 const isBoughtRepo = require("../dbs/repositories/isBought.repo");
 const isRentedRepo = require("../dbs/repositories/isRented.repo");
@@ -141,6 +144,48 @@ class BookService {
       status: 200,
       message: "Get book detail successfully",
       book: result,
+    };
+  }
+
+  static async getListings(bookId, buyerId, sellerId, leaserId, renterId) {
+    const result = await findListings(
+      bookId,
+      buyerId,
+      sellerId,
+      leaserId,
+      renterId
+    );
+    if (!result) {
+      throw new BadRequestError("Book not found");
+    }
+    return {
+      status: 200,
+      message: "Get book detail successfully",
+      book: result,
+    };
+  }
+
+  static async addListing(bookId, listing) {
+    const result = await saveListing(bookId, listing);
+    if (!result) {
+      throw new BadRequestError("Book not found");
+    }
+    return {
+      status: 200,
+      message: "Get book detail successfully",
+      book: result,
+    };
+  }
+
+  static async deleteListing(listingId) {
+    const result = await deleteListing(listingId);
+    if (!result) {
+      throw new BadRequestError("Listing not found");
+    }
+    return {
+      status: 200,
+      message: "Delete listing successfully",
+      listing: result,
     };
   }
 }

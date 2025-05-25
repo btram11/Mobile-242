@@ -67,6 +67,24 @@ class BookController {
     const response = await BookService.getRenter(bookid, listingid);
     return res.status(200).json(response);
   };
+
+  getListings = async (req, res) => {
+    const { bookid, buyerid, sellerid, leaserid, renterid } = req.query;
+    const response = await BookService.getListings(bookid, buyerid, sellerid, leaserid, renterid);
+    return res.status(200).json(response);
+  };
+
+  addListing = async (req, res) => {
+    const { bookid } = req.params;
+    const response = await BookService.addListing(bookid, req.body);
+    return res.status(200).json(response);
+  };
+
+  deleteListing = async (req, res) => {
+    const { listingid } = req.params;
+    const response = await BookService.deleteListing(listingid);
+    return res.status(200).json(response);
+  };
 }
 
 module.exports = new BookController();
