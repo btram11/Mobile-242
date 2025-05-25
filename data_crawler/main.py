@@ -38,7 +38,7 @@ def get_detail(book_info):
         'publishing_year': year,
         'summary': summary,
         'subject': subject,
-        'category':  search_subject.replace('+', ' ')
+        # 'category':  search_subject.replace('+', ' ')
     }
 
 
