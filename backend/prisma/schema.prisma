@@ -43,10 +43,10 @@ model listed_book {
   listed_at             DateTime      @default(now())
   book                  database_book @relation(fields: [book_id], references: [book_id])
   is_sold               Boolean
-  sold_price            Float
+  sold_price            Float?
   is_leased             Boolean
-  leased_price          Float
-  leased_period         Int // # of days
+  leased_price          Float?
+  leased_period         Int? // # of days
   is_bought_rel         is_bought?
   is_rented_rel         is_rented?
   provider_id           String

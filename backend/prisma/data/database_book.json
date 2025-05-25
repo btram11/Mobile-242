@@ -1,1291 +1,1427 @@
 [
     {
         "book_id": "00000000-0000-0000-0000-000000000000",
-        "title": "Lậptrìnhcơ bản - Tự học Python bằng hình ảnh / Nguyễn Quốc Huy, Nguyễn Tất Bảo Thiện, Nguyễn Khắc Chiến.",
-        "author": "Nguyễn, Quốc Huy.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2022,
-        "summary": "Giới thiệu những tính năng nổi bật của ngôn ngữlậptrìnhPython: Tải về và cài đặt Python, tương tác với Python, kiểu dữ liệu và các toán tử, các lệnh cơ bản, câu lệnh điều khiển, làm việc với chuổi, dữ liệu dạng tập hợp, lưu trữ dữ liệu trong file, gửi mail... vàlậptrìnhgame với Python.",
-        "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
-    },
-    {
-        "book_id": "00000000-0000-0000-0000-000000000001",
-        "title": "Kỹ thuậtlậptrìnhPython nâng cao / Nguyễn Quốc Huy, Nguyễn Tất Bảo Thiện.",
-        "author": "Lê, Cảnh Trung.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2022,
-        "summary": "Giới thiệu về kỹ thuậtlậptrìnhPython, bài tập thực hành Python, 50 thủ thuật với Python, khoa học dữ liệu với Python, tạo các ứng dụng web với Python, Python cho các chuyên gia, tạo phần mở rộng với XMBC, tính toán khoa học với Numpy...",
-        "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
-    },
-    {
-        "book_id": "00000000-0000-0000-0000-000000000002",
-        "title": "Tài liệu hướng dẫn thực hànhLậptrìnhmạng căn bản / Đỗ Thị Hương Lan, Trần Hồng Nghi.",
-        "author": "Đỗ, Thị Hương Lan",
-        "publisher": "TP.HCM : Đại học Quốc gia TP.HCM",
-        "publishing_year": 2024,
-        "summary": null,
-        "subject": "Ngôn ngữlậptrình"
-    },
-    {
-        "book_id": "00000000-0000-0000-0000-000000000003",
-        "title": "GiáotrìnhlậptrìnhPython / Huỳnh Phước Hải chủ biên, Nguyễn Văn Hòa.",
-        "author": "Huỳnh, Phước Hải, TS.",
+        "title": "GiáotrìnhlậptrìnhPython",
+        "author": "Huỳnh Phước Hải chủ biên, Nguyễn Văn Hòa.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2023,
         "summary": "Đề cập các vấn đề về ngôn ngữlậptrìnhPython;lậptrìnhcơ bản; kiểu dữ liệu chuỗi; các kiểu dữ liệu phức;lậptrìnhhướng đối tượng; xử lý tập tin và thư mục;lậptrìnhđồ họa cơ bản.",
         "subject": "Object-oriented programming languages -- Study and teaching."
     },
     {
-        "title": "GiáotrìnhC++ &lậptrìnhhướng đối tượng / Phạm Văn Ất chủ biên, Lê Trường Thông",
-        "author": "Phạm, Văn Ất",
-        "publisher": "H. : Bách Khoa Hà Nội",
-        "publishing_year": 2023,
-        "summary": null,
-        "subject": "C++ (Computer program language)."
-    },
-    {
-        "title": "GiáotrìnhlậptrìnhJava cơ bản / Đoàn Thanh Nghị, Phạm Hữu Dũng, Nguyễn Thị Mỹ Truyền.",
-        "author": "Đoàn, Thanh Nghị, TS.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2023,
-        "summary": null,
-        "subject": "Java (Computer program language) -- Study and teaching."
-    },
-    {
-        "title": "Phương pháp số vàlậptrình: Tài liệu giảng dạy / Nguyễn Văn Mện.",
-        "author": "Nguyễn, Văn Mện.",
+        "book_id": "00000000-0000-0000-0000-000000000001",
+        "title": "Phương pháp số vàlậptrình: Tài liệu giảng dạy",
+        "author": "Nguyễn Văn Mện.",
         "publisher": "An Giang : Đại học An Giang",
         "publishing_year": 2024,
         "summary": "Tài liệu giảng dạy cung cấp cho sinh viên những kiến thức về phương pháp số vàlậptrìnhC++ để tính toàn bằng số, rèn luyện kỹ năng giải quyết một số bài toán bằng phương pháp số.",
         "subject": "Vật lý học."
     },
     {
-        "title": "Ước vọng về quốc gialậptrình: từ tiếng Anh đến tiếng code / Nguyễn Thanh Tùng.",
-        "author": "Nguyễn, Thanh Tùng.",
+        "book_id": "00000000-0000-0000-0000-000000000002",
+        "title": "Giáotrìnhlậptrìnhweb",
+        "author": "Đoàn Thanh Nghị chủ biên ... [và những người khác].",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2023,
+        "summary": null,
+        "subject": "Web sites -- Design."
+    },
+    {
+        "book_id": "00000000-0000-0000-0000-000000000003",
+        "title": "Ước vọng về quốc gialậptrình: từ tiếng Anh đến tiếng code",
+        "author": "Nguyễn Thanh Tùng.",
         "publisher": "TP. Hồ Chí Minh : Trẻ",
         "publishing_year": 2023,
         "summary": null,
         "subject": "Information technology -- Social aspects."
     },
     {
-        "title": "Lậptrìnhvà vận hành máy điều khiển số - CNC / Dương Xuân Biên chủ biên, Mai Ngọc Anh.",
-        "author": "Dương, Xuân Biên.",
-        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
-        "publishing_year": 2022,
-        "summary": null,
-        "subject": "Machine-tools -- Numerical control."
-    },
-    {
-        "title": "Những nguyên tắc sống còn tronglậptrình: Để viết nã gọn gàng và dễ nâng cấp bảo trì / Tạ Văn Dũng",
-        "author": "Tạ, Văn Dũng",
+        "title": "Những nguyên tắc sống còn tronglậptrình: Để viết nã gọn gàng và dễ nâng cấp bảo trì",
+        "author": "Tạ Văn Dũng",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2023,
         "summary": "Tiếp nối cuốn sách Làm chủ các mẫu thiết kế kinh điển tronglậptrìnhđã xuất bản, tác giả Tạ Văn Dũng cho ra mắt bạn đọc cuốn sách Những nguyên tắc sống còn tronglậptrình.  Nguyên tắc ra những quy định, chuẩn mực hoặc các công thức hay kết luận là những điều cơ bản phải tuân theo. Nó định nghĩa tổng quát. Tronglậptrình, nguyên tắc là những chỉ dẫn hay quy chuẩn cơ bản để khuyến khích cáclậptrìnhviên trong một nhóm tuân theo.  Cuốn sách này là tổng hợp các nguyên tắclậptrìnhmà tác giả đã được đúc kết qua rất nhiều các dự án cả thành công lẫn thất bại. Sách giới thiệu đến bạn đọc 21 nguyên tắc cơ bản tronglậptrìnhvà một vài cách đơn giản để đội nhóm có thể cùng nhau tuân thủ. Thông qua những nguyên tắc cùng với các ví dụ cụ thể từ đơn giản cho đến phức tạp, từ giả định cho đến thực tế, hy vọng rằng cuốn sách sẽ giải quyết được những vấn đề liên quan đến kỹ thuậtlậptrình. Từ đó bạn có thể tạo ra được những mã nguồn sạch sẽ, gọn gàng vớiít dòng lệnh nhất có thể nhưng vẫn đảm bảo được sự linh hoạt và khả năng mở rộng dễ dàng nhất về sau này.  Tác giả hy vọng Những nguyên tắc sống còn tronglậptrìnhsẽ giúp bạn đọc có thêm tài liệu tham khảo để tạo ra được các phần mềm hay thư việnlậptrìnhtốt nhất.",
         "subject": "Lậptrìnhmáy tính và kỹ thuật phần mềm"
     },
     {
-        "title": "Trở thành ngườilậptrìnhVBA chuyên nghiệp trong Excel / Phạm Quang Huy, Phạm Quang Huấn.",
-        "author": "Phạm, Quang Huy.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2022,
+        "title": "GiáotrìnhC++ &lậptrìnhhướng đối tượng",
+        "author": "Phạm Văn Ất chủ biên, Lê Trường Thông",
+        "publisher": "H. : Bách Khoa Hà Nội",
+        "publishing_year": 2023,
         "summary": null,
-        "subject": "Microsoft Excel (Tập tin máy tính)."
+        "subject": "C++ (Computer program language)."
     },
     {
-        "title": "Lậptrìnhvi điều khiển với AVR ATmega8 / Lê Văn Tùng, Nguyễn Năng Hải, Võ Minh Phụng.",
-        "author": "Lê, Văn Tùng.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2022,
+        "title": "Tài liệu hướng dẫn thực hànhLậptrìnhmạng căn bản",
+        "author": "Đỗ Thị Hương Lan, Trần Hồng Nghi.",
+        "publisher": "TP.HCM : Đại học Quốc gia TP.HCM",
+        "publishing_year": 2024,
         "summary": null,
-        "subject": "Programmable controllers."
+        "subject": "Ngôn ngữlậptrình"
     },
     {
-        "title": "LậptrìnhPython / Đoàn Minh Phụng.",
-        "author": "Đoàn, Minh Phụng.",
-        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
-        "publishing_year": 2022,
-        "summary": "Trìnhbày những vấn đề cơ bản vềlậptrìnhPython: kiểu dữ liệu cơ bản, khai báo biến, phép toán, biểu thức, nhập, xuất dữ liệu, hàm, câu lệnh, kiểu chuỗi...",
-        "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
-    },
-    {
-        "title": "Tự họclậptrìnhScratch = Start Scratch programming yourself / Bùi Việt Hà.",
-        "author": "Bùi, Việt Hà.",
-        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
-        "publishing_year": 2022,
-        "summary": null,
-        "subject": "Scratch (Ngôn ngữlậptrình)."
-    },
-    {
-        "title": "LậptrìnhVBA cho Microsoft Office / Phạm Quang Hiển, Trần Tường Thụy.",
-        "author": "Phạm, Quang Hiển.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2022,
-        "summary": "Hướng dẫn  thực hành VBA cơ bản và thực hànhlậptrìnhVBA với Powerpoint.",
-        "subject": "Microsoft Office."
-    },
-    {
-        "title": "GiáotrìnhlậptrìnhPython / Trần Đăng Hưng chủ biên, Đặng Thành Trung, Nguyễn Thị Thanh Huyền.",
-        "author": "Trần, Đăng Hưng.",
+        "title": "GiáotrìnhlậptrìnhPython",
+        "author": "Trần Đăng Hưng chủ biên, Đặng Thành Trung, Nguyễn Thị Thanh Huyền.",
         "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2024,
         "summary": "Giới thiệu tổng quan ngôn ngữlậptrìnhPython; các cấu trúc điều khiển; hàm và truyền tham số cho hàm; kiểu dữ liệu string; kiểu dữ liệu list và dictionary; kiểu dữ liệu tuple và set; thao tác tệp;lậptrìnhhướng đối tượng; kế thừa và đa hình; đồng thời kèm bài tập thực hành sau mỗi phần và phụ lục hướng dẫn cài đặt Python ide, đáp án câu hỏi trắc nghiệm.",
         "subject": "Object-oriented programming languages -- Study and teaching."
     },
     {
-        "title": "Phương pháplậptrìnhhướng đối tượng / Trần Đan Thư, Đinh Bá Tiến, Nguyễn Tấn Trần Minh Khang.",
-        "author": "Trần, Đan Thư.",
-        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
-        "publishing_year": 2021,
-        "summary": null,
-        "subject": "Lậptrìnhhướng đối tượng -- Học hỏi và giảng dạy."
-    },
-    {
-        "title": "Tài liệu hướng dẫn thực hànhLậptrìnhJava / Lê Thanh Trọng, Mai Trọng Khang, Vũ Tuấn Hải.",
-        "author": "Lê, Thanh Trọng",
+        "title": "Tài liệu hướng dẫn thực hànhLậptrìnhJava",
+        "author": "Lê Thanh Trọng, Mai Trọng Khang, Vũ Tuấn Hải.",
         "publisher": "TP.HCM : Đại học Quốc Gia TP.HCM",
         "publishing_year": 2023,
         "summary": null,
         "subject": "Java (Computer program language)"
     },
     {
-        "title": "Lậptrìnhứng dụng - excel nâng cao -lậptrìnhVBA trong excel : dùng cho các phiên bản 2021, 2019, 2016 / Phạm Quang Huấn, Phạm Quang Huy.",
-        "author": "Phạm, Quang Huấn.",
+        "title": "LậptrìnhVBA cho Microsoft Office",
+        "author": "Phạm Quang Hiển, Trần Tường Thụy.",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2022,
-        "summary": "Giới thiệu lý thuyết và hướng dẫn thực hànhlậptrìnhVBA trong Excel: tổng quan, sự khác biệt giữa VBA và Basic, tham chiếu đến các Range, vòng lặp và điều khiển dòng, các công thức kiểu R1C1, tạo và vận dụng các tên trong VBA,lậptrìnhsự kiện, mảng, tạo các lớp và các bộ sưu tập, các biểu mẫu người dùng.",
-        "subject": "Microsoft Excel (Computer file)."
+        "summary": "Hướng dẫn  thực hành VBA cơ bản và thực hànhlậptrìnhVBA với Powerpoint.",
+        "subject": "Microsoft Office."
     },
     {
-        "title": "Lậptrìnhvới vi điều khiển PIC : Lý thuyết - Thực hành / Nguyễn Đình Phú, Trương Ngọc Anh, Phan Vân Hoàn.",
-        "author": "Nguyễn, Đình Phú, ThS.",
+        "title": "GiáotrìnhlậptrìnhJava cơ bản",
+        "author": "Đoàn Thanh Nghị, Phạm Hữu Dũng, Nguyễn Thị Mỹ Truyền.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2023,
+        "summary": null,
+        "subject": "Java (Computer program language) -- Study and teaching."
+    },
+    {
+        "title": "Tự họclậptrìnhScratch = Start Scratch programming yourself",
+        "author": "Bùi Việt Hà.",
+        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
+        "publishing_year": 2022,
+        "summary": null,
+        "subject": "Scratch (Ngôn ngữlậptrình)."
+    },
+    {
+        "title": "Kỹ thuậtlậptrìnhPython nâng cao",
+        "author": "Nguyễn Quốc Huy, Nguyễn Tất Bảo Thiện.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2022,
+        "summary": "Giới thiệu về kỹ thuậtlậptrìnhPython, bài tập thực hành Python, 50 thủ thuật với Python, khoa học dữ liệu với Python, tạo các ứng dụng web với Python, Python cho các chuyên gia, tạo phần mở rộng với XMBC, tính toán khoa học với Numpy...",
+        "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
+    },
+    {
+        "title": "Lậptrìnhvà vận hành máy điều khiển số - CNC",
+        "author": "Dương Xuân Biên chủ biên, Mai Ngọc Anh.",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2022,
+        "summary": null,
+        "subject": "Machine-tools -- Numerical control."
+    },
+    {
+        "title": "Lậptrìnhvi điều khiển với AVR ATmega8",
+        "author": "Lê Văn Tùng, Nguyễn Năng Hải, Võ Minh Phụng.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2022,
+        "summary": null,
+        "subject": "Programmable controllers."
+    },
+    {
+        "title": "Lậptrìnhtrong kỹ thuật với ngôn ngữ C++",
+        "author": "Phùng Thị Thu Hiền ... [và những người khác].",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2022,
+        "summary": "Cung cấp các kiến thức về cách xây dựng thuật toán, các kiểu dữ liệu, các phép toán số học... trong ngôn ngữlậptrìnhC++; cách thức xuất/nhập dữ liệu, cách lưu, xử lý dữ liệu bằng cách sử dụng các biến và câu lệnh gán trong C++; cấu trúc điều khiển, cấu trúc lặp, hàm, dữ liệu kiểu mảng, xâu ký tự và sử dụng tệp dữ liệu trong C++.",
+        "subject": "C++ (Ngôn ngữlậptrìnhmáy tính)."
+    },
+    {
+        "title": "Lậptrìnhcơ bản - Tự học Python bằng hình ảnh",
+        "author": "Nguyễn Quốc Huy, Nguyễn Tất Bảo Thiện, Nguyễn Khắc Chiến.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2022,
+        "summary": "Giới thiệu những tính năng nổi bật của ngôn ngữlậptrìnhPython: Tải về và cài đặt Python, tương tác với Python, kiểu dữ liệu và các toán tử, các lệnh cơ bản, câu lệnh điều khiển, làm việc với chuổi, dữ liệu dạng tập hợp, lưu trữ dữ liệu trong file, gửi mail... vàlậptrìnhgame với Python.",
+        "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
+    },
+    {
+        "title": "Trở thành ngườilậptrìnhVBA chuyên nghiệp trong Excel",
+        "author": "Phạm Quang Huy, Phạm Quang Huấn.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2022,
+        "summary": null,
+        "subject": "Microsoft Excel (Tập tin máy tính)."
+    },
+    {
+        "title": "LậptrìnhPython",
+        "author": "Đoàn Minh Phụng.",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2022,
+        "summary": "Trìnhbày những vấn đề cơ bản vềlậptrìnhPython: kiểu dữ liệu cơ bản, khai báo biến, phép toán, biểu thức, nhập, xuất dữ liệu, hàm, câu lệnh, kiểu chuỗi...",
+        "subject": "Python (Ngôn ngữlậptrìnhmáy tính)."
+    },
+    {
+        "title": "Lậptrìnhvới vi điều khiển PIC : Lý thuyết - Thực hành",
+        "author": "Nguyễn Đình Phú, Trương Ngọc Anh, Phan Vân Hoàn.",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2022,
         "summary": "Cung cấp các kiến thức cơ bản của vi điều khiển: đặc tính, cấu trúc, chức năng các Port; tổ chức bộ nhớ, thanh ghi; lệnh hợp ngữ; ngôn ngữ lệnhtrìnhC; giao tiếp LED, LCD, phím đơn, ma trận phím; Timer - Counter; chuyển đổi tương tự sang số; ngắt; điều chế độ xung PWM; truyền dữ liệu.",
         "subject": "Bộ vi điều khiển."
     },
     {
-        "title": "GiáotrìnhlậptrìnhC ứng dụng / Vũ Hồng Sơn.",
-        "author": "Vũ, Hồng Sơn, TS.",
+        "title": "GiáotrìnhlậptrìnhC ứng dụng",
+        "author": "Vũ Hồng Sơn.",
         "publisher": "Hà Nội : Giáo dục",
         "publishing_year": 2021,
         "summary": null,
         "subject": "C (Computer program language) -- Study and teaching."
     },
     {
-        "title": "Bài tậplậptrìnhvới ngôn ngữ C++ : từ cơ bản đến nâng cao. T.1 / Trần Thông Quế.",
-        "author": "Trần, Thông Quế.",
+        "title": "Bài tậplậptrìnhvới ngôn ngữ C++ : từ cơ bản đến nâng cao. T.1",
+        "author": "Trần Thông Quế.",
         "publisher": "Hà Nội : Thông tin và Truyền thông",
         "publishing_year": 2022,
         "summary": null,
         "subject": "C++ (Computer program language) -- Problems, exercises, etc."
     },
     {
-        "title": "Tin học ứng dụng -LậptrìnhVBA trong Excel (phần nâng cao) : dùng cho các phiên bản 2021-2019-2016 / Phạm Phương Hoa, Phạm Quang Huấn.",
-        "author": "Phạm, Phương Hoa.",
+        "title": "Tin học ứng dụng -LậptrìnhVBA trong Excel (phần nâng cao) : dùng cho các phiên bản 2021-2019-2016",
+        "author": "Phạm Phương Hoa, Phạm Quang Huấn.",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2021,
         "summary": null,
         "subject": "Microsoft Excel (Computer file)."
     },
     {
-        "title": "Lậptrìnhđiều khiển Arduino từ cơ bản đến nâng cao / Nguyễn Văn Đông Hải, Phạm Quang Huy.",
-        "author": "Nguyễn, Văn Đông Hải, TS.",
+        "title": "Lậptrìnhứng dụng - excel nâng cao -lậptrìnhVBA trong excel : dùng cho các phiên bản 2021, 2019, 2016",
+        "author": "Phạm Quang Huấn, Phạm Quang Huy.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2022,
+        "summary": "Giới thiệu lý thuyết và hướng dẫn thực hànhlậptrìnhVBA trong Excel: tổng quan, sự khác biệt giữa VBA và Basic, tham chiếu đến các Range, vòng lặp và điều khiển dòng, các công thức kiểu R1C1, tạo và vận dụng các tên trong VBA,lậptrìnhsự kiện, mảng, tạo các lớp và các bộ sưu tập, các biểu mẫu người dùng.",
+        "subject": "Microsoft Excel (Computer file)."
+    },
+    {
+        "title": "Phương pháplậptrìnhhướng đối tượng",
+        "author": "Trần Đan Thư, Đinh Bá Tiến, Nguyễn Tấn Trần Minh Khang.",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2021,
+        "summary": null,
+        "subject": "Lậptrìnhhướng đối tượng -- Học hỏi và giảng dạy."
+    },
+    {
+        "title": "Lậptrìnhđiều khiển Arduino từ cơ bản đến nâng cao",
+        "author": "Nguyễn Văn Đông Hải, Phạm Quang Huy.",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2021,
         "summary": null,
         "subject": "Arduino (Bộ điều khiểnlậptrìnhđược) --Lậptrình."
     },
     {
-        "title": "Lậptrìnhwindows form và web form với C# / Nguyễn Tất Bảo Thiện, Phạm Quang Hiển.",
-        "author": "Nguyễn, Tất Bảo Thiện.",
+        "title": "Lậptrìnhvi điều khiển PIC và thiết bị ngoại vi",
+        "author": "Đặng Phước Vinh chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2021,
+        "summary": "Trìnhbày sơ lược cấu trúc phần cứng của PIC16F877A, các cổng xuất nhập I/O và các đặc tính ngoại vi,trìnhbiên dịch CCS và chươngtrìnhnạp PICkit, phần mềm proteus design suite, phần mềm altium designer và kit thực hành easypic; LED điểm, LED ma trận, LED 7 đoạn và hiển thị LCD; phím nhấn và ma trận phím; điều khiển động cơ; kết nối cảm biến; giao tiếp nối tiếp; giao tiếp không dây.",
+        "subject": "Bộ vi điều khiển."
+    },
+    {
+        "title": "Lậptrìnhwindows form và web form với C#",
+        "author": "Nguyễn Tất Bảo Thiện, Phạm Quang Hiển.",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2020,
         "summary": "Giới thiệu về ngôn ngữlậptrìnhvới C# và ứng dụng Windows form.Trìnhbày những kiến thức về C# - quản lý bán hàng.Lậptrìnhvới C# - quản lý tuyển sinh cùng một số bài tập thực hành cơ bản về ngôn ngữlậptrìnhC#.",
         "subject": "C# (Ngôn ngữlậptrìnhmáy tính)"
     },
     {
-        "title": "LậptrìnhMatlab và ứng dụng : Dùng cho sinh viên khối khoa học và kỹ thuật / Nguyễn Hoàng Hải, Nguyễn Việt Anh.",
-        "author": "Nguyễn, Hoàng Hải.",
-        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
-        "publishing_year": 2020,
-        "summary": "Giới thiệu chung vềlậptrìnhMatlab, các bài toán kỹ thuật, những đặc điểm của cửa sổ lệnh trong Matlab, script M-File, quản lý tệp, các phép toán đối với mảng, các thao tác với mảng, các phép tính logic và quan hệ...",
-        "subject": "MATLAB."
-    },
-    {
-        "title": "LậptrìnhArduino với IoT - Hệ vạn vật kết nối / Trần Minh Sơn, Lê Hoàng Minh, Phạm Quang Huy.",
-        "author": "Trần, Minh Sơn, TS.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2020,
-        "summary": "Tổng quan về hệ vạn vật kết nối IoT; làm quen với Arduino; Arduino và bộ chuyển đổi; Arduino và bàn phím Hex; giới thiệu về truyền thông không dây; Arduino và truyền thông RF; Arduino và Bluetooth; Arduino và hồng ngoại; Arduino và Wifi...",
-        "subject": "Arduino (Bộ điều khiểnlậptrìnhđược) --Lậptrình."
-    },
-    {
-        "title": "Bài tậplậptrìnhcơ bản với ngôn ngữ Python : sách hữu ích cho mọi học sinh, sinh viên và những người say mê Python / Trần Thông Quế.",
-        "author": "Trần, Thông Quế.",
+        "title": "Bài tậplậptrìnhcơ bản với ngôn ngữ Python : sách hữu ích cho mọi học sinh, sinh viên và những người say mê Python",
+        "author": "Trần Thông Quế.",
         "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
         "publishing_year": 2020,
         "summary": null,
         "subject": "Python (Computer program language)"
     },
     {
-        "title": "Giáotrìnhkỹ thuậtlậptrìnhnâng cao / Hồ Trung Thành chủ biên, Trần Duy Thanh, Trương Hoài Phan.",
-        "author": "Hồ, Trung Thành.",
+        "title": "Giáotrìnhkỹ thuậtlậptrìnhnâng cao",
+        "author": "Hồ Trung Thành chủ biên, Trần Duy Thanh, Trương Hoài Phan.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2020,
         "summary": null,
         "subject": "Kỹ thuậtlậptrình."
     },
     {
-        "title": "Lậptrìnhđiều khiển trên Arduino cho hệ vạn vật kết nối (IoT) = Arduino programming for IoT - Enabled control applications / Hà Quang Phúc, Phạm Quang Huy.",
-        "author": "Hà, Quang Phúc.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Arduino (Programmable controllers) -- Programming."
-    },
-    {
-        "title": "Giáo trìnhgiảitíchhàm / Nguyễn Văn Khuê, Lê Mậu Hải.",
-        "author": "Nguyễn, Văn Khuê.",
-        "publisher": "Hà Nội : Đại học Sư phạm",
-        "publishing_year": 2024,
-        "summary": "Trình bày những kiến thức cơ bản về không gian Banach, ba nguyên lý cơ bản củagiảitíchhàm, tôpô yếu và tính phản xạ, toán tử trong không gian Banach, không gian Hilbert và toán tử trong không gian Hilbert, không gian đối ngẫu của một số không gian quan trọng.",
-        "subject": "Giảitíchhàm."
-    },
-    {
-        "title": "Bài tập nhập mônlậptrình/ Lê Thị Thùy Dương.",
-        "author": "Lê, Thị Thùy Dương.",
-        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Computer programming -- Problems, exercise, etc."
-    },
-    {
-        "title": "Giáotrìnhlậptrìnhnhúng trên thiết bị di động / Lâm Đức Khải, Nguyễn Thanh Thiện.",
-        "author": "Lâm, Đức Khải, TS.",
-        "publisher": "Tp. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "Embedded computer systems -- Programming -- Study and teaching."
-    },
-    {
-        "title": "Bài tậpgiảitíchhàm / Lê Mậu Hải, Tăng Văn Long.",
-        "author": "Lê, Mậu Hải.",
-        "publisher": "Hà Nội : Đại học Sư phạm",
-        "publishing_year": 2024,
-        "summary": "Trình bày tóm tắt lí thuyết và trên 500 đề bài kèm theo hướng dẫngiảichi tiết theo các chủ đề: không gian Banach, ba nguyên lí cơ bản củagiảitíchhàm, tôpô yếu và tính phản xạ, toán tử trong không gian Banach, không gian Hilbert.",
-        "subject": "Giảitíchhàm -- Vấn đề, bài tập, vv..."
-    },
-    {
-        "title": "Arduino vàlậptrìnhIoT = Internet of thing IoT / Nguyễn Tất Bảo Thiện, Phạm Quang Huy.",
-        "author": "Nguyễn, Tất Bảo Thiện, TS.",
-        "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Arduino (Programmable controller) -- Programming."
-    },
-    {
-        "title": "Giảitích2 : Tài liệu giảng dạy / Lê Kiên Thành.",
-        "author": "Lê, Kiên Thành.",
-        "publisher": "An Giang : Đại học An Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy bao gồm các nội dung chính như sau: chương 1 trình bàytíchphân suy rộng; chương 2 trình bày chuỗi số và chuỗi hàm; chương 3 trình bày hàm nhiều biến số; chương 4 trình bàytíchphân phụ thuộc tham số; chương 5 trình bàytíchphân bội trên Rn; chương 6 trình bàytíchphân đường vàtíchphân mặt và phần cuối của tài liệu giảng dạy có hướng dẫngiảibài tập để giúp sinh viên tự học.",
-        "subject": "Giảitíchtoán học."
-    },
-    {
-        "title": "Giáotrìnhlậptrìnhứng dụng Web / Hồ Văn Lâm chủ biên; Nguyễn Ngọc Dũng, Nguyễn Thị Kim Phượng.",
-        "author": "Hồ, Văn Lâm, chủ biên",
-        "publisher": "Hà Nội : Xây dựng",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "LậptrìnhWeb"
-    },
-    {
-        "title": "Lậptrìnhhệ thống nhúng / Hoàng Trang, Bùi Quốc Bảo.",
-        "author": "Hoàng, Trang.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "Embedded computer systems -- Programming."
-    },
-    {
-        "title": "Hành tranglậptrình: những kỹ nănglậptrìnhviên chuyên nghiệp cần có / Vũ Công Tấn Tài.",
-        "author": "Vũ, Công Tấn Tài.",
+        "title": "Hành tranglậptrình: những kỹ nănglậptrìnhviên chuyên nghiệp cần có",
+        "author": "Vũ Công Tấn Tài.",
         "publisher": "Hà Nội : Thanh niên",
         "publishing_year": 2020,
         "summary": null,
         "subject": "Software engineering."
     },
     {
-        "title": "Giáotrìnhlậptrìnhnhúng trên thiết bị di động / Lâm Đức Khải, Nguyễn Thanh Thiện",
-        "author": "Lâm, Đức Khải",
-        "publisher": "Tp. Hồ Chí Minh : Đại Học Quốc Gia Tp. Hồ Chí Minh",
-        "publishing_year": 2019,
-        "summary": "Giới thiệu tổng quan về thiết bị di động; tổng quan vềlậptrìnhnhúng trên thiết bị di động; cấu trúc vi xử lý ARM;lậptrìnhngoại vi; hệ điều hành thời gian thực; mã hóa và bảo vệ thông tin trên ARM; tối ưu chươngtrìnhnhúng; Arduino; Raspberry Pi",
-        "subject": "Hệ thống máy tính nhúng --Lậptrình"
-    },
-    {
-        "title": "GiáotrìnhlậptrìnhC ứng dụng / Vũ Hồng Sơn.",
-        "author": "Vũ, Hồng Sơn, TS.",
-        "publisher": "Hà Nội : Giáo dục",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "C (Computer program language) -- Study and teaching."
-    },
-    {
-        "title": "Ngôn ngữlậptrìnhJAVA / Lê Chí Luận chủ biên; Nguyễn Thái Sơn, Lê Thị Hường, Trần Nguyên Hương.",
-        "author": "Lê, Chí Luận, chủ biên",
-        "publisher": "Hà Nội : Khoa học Tự nhiên và Công nghệ",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "Ngôn ngữlậptrìnhJAVA"
-    },
-    {
-        "title": "Toán cao cấp (Giảitíchhàm nhiều biến) : Giáo trình / Lê Ngọc Quỳnh, Lê Kiên Thành",
-        "author": "Lê, Ngọc Quỳnh",
-        "publisher": "An Giang : Đại học An Giang",
-        "publishing_year": 2021,
-        "summary": "Trình bày phép tính vi phân hàm nhiều biến số;tíchphân bội;tíchphân đường vàtíchphân mặt; phương trình vi phân và phần cuối có hướng dẫngiảibài tập để giúp sinh viên tự học",
-        "subject": "Toán học"
-    },
-    {
-        "title": "Ứng xử thông minhlậptrìnhsự nghiệp : những bài học không thể không biết nơi công sở / Trương Vĩ Vân ; Mai Mei dịch.",
-        "author": "Trương, Vĩ Vân.",
+        "title": "Arduino vàlậptrìnhIoT = Internet of thing IoT",
+        "author": "Nguyễn Tất Bảo Thiện, Phạm Quang Huy.",
         "publisher": "Hà Nội : Thanh niên",
-        "publishing_year": 2019,
+        "publishing_year": 2020,
         "summary": null,
-        "subject": "Conduct of life."
+        "subject": "Arduino (Programmable controller) -- Programming."
     },
     {
-        "title": "Lậptrìnhnhúng trên thiết bị di động / Lâm Đức Khải, Nguyễn Thanh Thiện",
-        "author": "Lâm, Đức Khải",
+        "title": "LậptrìnhArduino với IoT - Hệ vạn vật kết nối",
+        "author": "Trần Minh Sơn, Lê Hoàng Minh, Phạm Quang Huy.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2020,
+        "summary": "Tổng quan về hệ vạn vật kết nối IoT; làm quen với Arduino; Arduino và bộ chuyển đổi; Arduino và bàn phím Hex; giới thiệu về truyền thông không dây; Arduino và truyền thông RF; Arduino và Bluetooth; Arduino và hồng ngoại; Arduino và Wifi...",
+        "subject": "Arduino (Bộ điều khiểnlậptrìnhđược) --Lậptrình."
+    },
+    {
+        "title": "Nhập môn vềlậptrình: Lưu hành nội bộ",
+        "author": "Khoa Khoa học và Kỹ thuật Máy tính",
+        "publisher": "Tp. Hồ Chí Minh : Đại học Quốc gia",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Lậptrìnhmáy tính"
+    },
+    {
+        "title": "Lậptrìnhđiều khiển trên Arduino cho hệ vạn vật kết nối (IoT) = Arduino programming for IoT - Enabled control applications",
+        "author": "Hà Quang Phúc, Phạm Quang Huy.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2020,
+        "summary": null,
+        "subject": "Arduino (Programmable controllers) -- Programming."
+    },
+    {
+        "title": "Lậptrìnhnhúng trên thiết bị di động",
+        "author": "Lâm Đức Khải, Nguyễn Thanh Thiện",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2019,
         "summary": null,
         "subject": "GiáotrìnhCNTT"
     },
     {
-        "title": "Giảitíchhàm : Tài liệu giảng dạy / Phan Văn Long Em",
-        "author": "Phan, Văn Long Em",
+        "title": "Giảitích2 : Tài liệu giảng dạy",
+        "author": "Lê Kiên Thành.",
         "publisher": "An Giang : Đại học An Giang",
-        "publishing_year": 2021,
-        "summary": "Tài liệu được chia thành 5 chương: Chương 1 kiến thức chuẩn bị, Chương 2 không gian vecto định chuẩn, Chương 3 các định lí cơ bản củagiảitíchhàm, Chương 4 không gian đối ngẫu, Chương 5 không gian Hilbert",
-        "subject": "Giảitíchhàm"
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy bao gồm các nội dung chính như sau: chương 1 trình bàytíchphân suy rộng; chương 2 trình bày chuỗi số và chuỗi hàm; chương 3 trình bày hàm nhiều biến số; chương 4 trình bàytíchphân phụ thuộc tham số; chương 5 trình bàytíchphân bội trên Rn; chương 6 trình bàytíchphân đường vàtíchphân mặt và phần cuối của tài liệu giảng dạy có hướng dẫngiảibài tập để giúp sinh viên tự học.",
+        "subject": "Giảitíchtoán học."
     },
     {
-        "title": "Phương pháp dạy học đại số vàgiảitíchTài liệu giảng dạy / Vương Vĩnh Phát.",
-        "author": "Vương, Vĩnh Phát.",
+        "title": "Ứng xử thông minhlậptrìnhsự nghiệp : những bài học không thể không biết nơi công sở",
+        "author": "Trương Vĩ Vân ; Mai Mei dịch.",
+        "publisher": "Hà Nội : Thanh niên",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Conduct of life."
+    },
+    {
+        "title": "LậptrìnhMatlab và ứng dụng : Dùng cho sinh viên khối khoa học và kỹ thuật",
+        "author": "Nguyễn Hoàng Hải, Nguyễn Việt Anh.",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2020,
+        "summary": "Giới thiệu chung vềlậptrìnhMatlab, các bài toán kỹ thuật, những đặc điểm của cửa sổ lệnh trong Matlab, script M-File, quản lý tệp, các phép toán đối với mảng, các thao tác với mảng, các phép tính logic và quan hệ...",
+        "subject": "MATLAB."
+    },
+    {
+        "title": "Giáotrìnhlậptrìnhứng dụng Web",
+        "author": "Hồ Văn Lâm chủ biên; Nguyễn Ngọc Dũng, Nguyễn Thị Kim Phượng.",
+        "publisher": "Hà Nội : Xây dựng",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "LậptrìnhWeb"
+    },
+    {
+        "title": "Ngôn ngữlậptrìnhJAVA",
+        "author": "Lê Chí Luận chủ biên; Nguyễn Thái Sơn, Lê Thị Hường, Trần Nguyên Hương.",
+        "publisher": "Hà Nội : Khoa học Tự nhiên và Công nghệ",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Ngôn ngữlậptrìnhJAVA"
+    },
+    {
+        "title": "Giáotrìnhlậptrìnhnhúng trên thiết bị di động",
+        "author": "Lâm Đức Khải, Nguyễn Thanh Thiện.",
+        "publisher": "Tp. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Embedded computer systems -- Programming -- Study and teaching."
+    },
+    {
+        "title": "Giáotrìnhlậptrìnhnhúng trên thiết bị di động",
+        "author": "Lâm Đức Khải, Nguyễn Thanh Thiện",
+        "publisher": "Tp. Hồ Chí Minh : Đại Học Quốc Gia Tp. Hồ Chí Minh",
+        "publishing_year": 2019,
+        "summary": "Giới thiệu tổng quan về thiết bị di động; tổng quan vềlậptrìnhnhúng trên thiết bị di động; cấu trúc vi xử lý ARM;lậptrìnhngoại vi; hệ điều hành thời gian thực; mã hóa và bảo vệ thông tin trên ARM; tối ưu chươngtrìnhnhúng; Arduino; Raspberry Pi",
+        "subject": "Hệ thống máy tính nhúng --Lậptrình"
+    },
+    {
+        "title": "LậptrìnhASP.NET MVC",
+        "author": "Nguyễn Ngọc Khương, Lê Đăng Nguyên đồng chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : Khoa học Tự nhiên và Công nghệ",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Microsoft.NET."
+    },
+    {
+        "title": "Bài tậpgiảitíchhàm",
+        "author": "Lê Mậu Hải, Tăng Văn Long.",
+        "publisher": "Hà Nội : Đại học Sư phạm",
+        "publishing_year": 2024,
+        "summary": "Trình bày tóm tắt lí thuyết và trên 500 đề bài kèm theo hướng dẫngiảichi tiết theo các chủ đề: không gian Banach, ba nguyên lí cơ bản củagiảitíchhàm, tôpô yếu và tính phản xạ, toán tử trong không gian Banach, không gian Hilbert.",
+        "subject": "Giảitíchhàm -- Vấn đề, bài tập, vv..."
+    },
+    {
+        "title": "GiáotrìnhlậptrìnhC ứng dụng",
+        "author": "Vũ Hồng Sơn.",
+        "publisher": "Hà Nội : Giáo dục",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "C (Computer program language) -- Study and teaching."
+    },
+    {
+        "title": "Giáo trìnhgiảitíchhàm",
+        "author": "Nguyễn Văn Khuê, Lê Mậu Hải.",
+        "publisher": "Hà Nội : Đại học Sư phạm",
+        "publishing_year": 2024,
+        "summary": "Trình bày những kiến thức cơ bản về không gian Banach, ba nguyên lý cơ bản củagiảitíchhàm, tôpô yếu và tính phản xạ, toán tử trong không gian Banach, không gian Hilbert và toán tử trong không gian Hilbert, không gian đối ngẫu của một số không gian quan trọng.",
+        "subject": "Giảitíchhàm."
+    },
+    {
+        "title": "Giáo trìnhgiảitích2",
+        "author": "Nguyễn Đình Huy chủ biên ... [và những người khác]",
+        "publisher": "Tp. Hồ Chí Minh : NXB. Đại học Quốc gia",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Mathematical analysis -- Study and teaching"
+    },
+    {
+        "title": "Toán cao cấp (Giảitíchhàm nhiều biến) : Giáo trình",
+        "author": "Lê Ngọc Quỳnh, Lê Kiên Thành",
+        "publisher": "An Giang : Đại học An Giang",
+        "publishing_year": 2021,
+        "summary": "Trình bày phép tính vi phân hàm nhiều biến số;tíchphân bội;tíchphân đường vàtíchphân mặt; phương trình vi phân và phần cuối có hướng dẫngiảibài tập để giúp sinh viên tự học",
+        "subject": "Toán học"
+    },
+    {
+        "title": "Phương pháp dạy học đại số vàgiảitíchTài liệu giảng dạy",
+        "author": "Vương Vĩnh Phát.",
         "publisher": "An Giang : Đại học An Giang",
         "publishing_year": 2023,
         "summary": "Tài liệu được viết bao gồm 07 chương: tổng quan; logic toán học; dạy học chủ đề tập hợp số ở trường phổ thông; dạy học chủ đề hàm số và đồ thị; dạy học chủ đề phương trình và hệ phương trình; dạy học chủ đề giới hạn liên tục và đạo hàm; dạy học chủ đề nguyên hàm,tíchphân và ứng dụng.",
         "subject": "Đại số -- Học tập và giảng dạy."
     },
     {
-        "title": "Giảitíchđa trị / Huỳnh Thị Hồng Diễm.",
-        "author": "Huỳnh, Thị Hồng Diễm.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc Gia TP. Hồ Chí Minh",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Mathematical analysis."
-    },
-    {
-        "title": "Giảitích2 / Đặng Đức Trọng, Đinh Ngọc Thanh, Nguyễn Huy Tuấn.",
-        "author": "Đặng, Đức Trọng.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "Mathematical analysis."
-    },
-    {
-        "title": "Giáo trìnhgiảitíchhàm / Nguyễn Văn Khuê, Lê Mậu Hải",
-        "author": "Nguyễn, Văn Khuê",
-        "publisher": "Hà Nội : Đại học Sư phạm",
-        "publishing_year": 2018,
-        "summary": null,
+        "title": "Giảitíchhàm : Tài liệu giảng dạy",
+        "author": "Phan Văn Long Em",
+        "publisher": "An Giang : Đại học An Giang",
+        "publishing_year": 2021,
+        "summary": "Tài liệu được chia thành 5 chương: Chương 1 kiến thức chuẩn bị, Chương 2 không gian vecto định chuẩn, Chương 3 các định lí cơ bản củagiảitíchhàm, Chương 4 không gian đối ngẫu, Chương 5 không gian Hilbert",
         "subject": "Giảitíchhàm"
     },
     {
-        "title": "Giảitíchtoán giản yếu bằng tiếng Anh / Hoàng Văn Hùng chủ biên, Nguyễn Đình Dương, Nguyễn Lê Hương.",
-        "author": "Hoàng, Văn Hùng",
+        "title": "Giảitíchtoán giản yếu bằng tiếng Anh",
+        "author": "Hoàng Văn Hùng chủ biên, Nguyễn Đình Dương, Nguyễn Lê Hương.",
         "publisher": "Hải Phòng: Hàng hải",
         "publishing_year": 2019,
         "summary": "Gồm những kiến thức cơ bản về toángiảitích: Hàm biến đơn, đa biến, phép tính vi phân, phép tínhtíchphân, hàm đa biến,tíchphân kép vàtíchphân dòng, phương trình vi phân.",
         "subject": "Toángiảitích."
     },
     {
-        "title": "Giáo trìnhgiảitích1 / Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
-        "author": "Nguyễn, Đình Huy, chủ biên",
+        "title": "Giáo trìnhgiảitích1",
+        "author": "Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2018,
         "summary": null,
         "subject": "Giảitíchhọc"
     },
     {
-        "title": "Bài tậpgiảitíchhàm / Lê Mậu Hải, Tăng Văn Long",
-        "author": "Lê, Mậu Hải",
-        "publisher": "Hà Nội : Đại học Sư phạm",
+        "title": "Giảitíchđa trị",
+        "author": "Huỳnh Thị Hồng Diễm.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc Gia TP. Hồ Chí Minh",
+        "publishing_year": 2020,
+        "summary": null,
+        "subject": "Mathematical analysis."
+    },
+    {
+        "title": "Giảitích2",
+        "author": "Đặng Đức Trọng, Đinh Ngọc Thanh, Nguyễn Huy Tuấn.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Mathematical analysis."
+    },
+    {
+        "title": "Bài tậpgiảitíchII",
+        "author": "Nguyễn Bằng Giang chủ biên... [và những người khác].",
+        "publisher": "Hà Nội : Xây dựng",
         "publishing_year": 2018,
         "summary": null,
-        "subject": "Giảitíchhàm -- Bài tập"
+        "subject": "Mathematical analysis -- Problems, exercises, etc."
     },
     {
-        "title": "Giảitíchcổ điển : Tài liệu giảng dạy /cVõ Thành Tài. Tập 1",
-        "author": "Võ, Thành Tài",
-        "publisher": "An Giang : Đại học An Giang",
-        "publishing_year": 2018,
-        "summary": "Trình bày: Số thực và giới hạn dãy số; Hàm số và giới hạn hàm số; Hàm số liên tục; Phép tính vi phân hàm một biến;Tíchphân hàm một biến",
-        "subject": "Giảitíchtoán học"
-    },
-    {
-        "title": "Hàm thực vàgiảitíchhàm / Hoàng Tụy",
-        "author": "Hoàng, Tụy",
+        "title": "Hàm thực vàgiảitíchhàm",
+        "author": "Hoàng Tụy",
         "publisher": "Hà Nội : Giáo dục Việt Nam",
         "publishing_year": 2018,
         "summary": null,
         "subject": "Giảitíchhàm"
     },
     {
-        "title": "Giáo trìnhgiảitíchhàm / Nguyễn Văn Khuê, Lê Mậu Hải",
-        "author": "Nguyễn, Văn Khuê",
-        "publisher": "Hà Nội : Đại học Sư phạm",
-        "publishing_year": 2016,
-        "summary": null,
-        "subject": "Giảitíchhàm"
-    },
-    {
-        "title": "Hướng dẫngiảibài tập toángiảitích/ Dương Tôn Đảm.",
-        "author": "Dương, Tôn Đảm.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2016,
-        "summary": "Trình bày: Bài tập về hàm số; Bài tập về chuỗi số và chuỗi hàm;Tíchphân;Tíchphân đường vàtíchphân mặt; Phương trình vi phân.",
-        "subject": "Giảitíchtoán học -- Vấn đề, bài tập, vv..."
-    },
-    {
-        "title": "Giáo trìnhgiảitích1 / Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
-        "author": "Nguyễn, Đình Huy, chủ biên",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2016,
-        "summary": null,
-        "subject": "Giảitíchhọc"
-    },
-    {
-        "title": "Hướng dẫn giải bài tập toán giảitích/ Dương Tôn Đảm",
-        "author": "Dương, Tôn Đảm",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2016,
-        "summary": null,
-        "subject": "Toán cao cấp"
-    },
-    {
-        "title": "Động lực họcgiảitích: Động lực học của các hệ cơ và hệ cơ - Điện / Đỗ Sanh chủ biên; Đỗ Đăng Khoa",
-        "author": "Đỗ, Sanh, chủ biên",
-        "publisher": "Hà Nội : Bách khoa Hà Nội",
-        "publishing_year": 2017,
-        "summary": null,
-        "subject": "Động lực học"
-    },
-    {
-        "title": "Giáo trìnhgiảitích2 / Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
-        "author": "Nguyễn, Đình Huy, chủ biên",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2016,
-        "summary": null,
-        "subject": "Giảitíchhọc"
-    },
-    {
-        "title": "Giảitíchtrên đa tạp / Hoàng Nam (chủ biên), Trần Trung",
-        "author": "Hoàng Nam chủ biên",
+        "title": "Giảitíchtrên đa tạp",
+        "author": "Hoàng Nam (chủ biên), Trần Trung",
         "publisher": "Hà Nội : Giáo dục",
         "publishing_year": 2018,
         "summary": "Trình bày: Một số vấn đề về không gian vectơ hữu hạn chiều; Phép tính vi phân của hàm vectơ; Tch phân trên một miền trong không gian Rn; Dạng vi phân,tíchphân trên hộp kỳ dị; Đa tạp, dạng vi phân trên đa tạp vàtíchphân trên đa tạp",
         "subject": "Giảitíchtoán học"
     },
     {
-        "title": "Giáo trìnhgiảitích3 / Huỳnh Quang Vũ.",
-        "author": "Huỳnh, Quang Vũ.",
+        "title": "Động lực họcgiảitích: Động lực học của các hệ cơ và hệ cơ - Điện",
+        "author": "Đỗ Sanh chủ biên; Đỗ Đăng Khoa",
+        "publisher": "Hà Nội : Bách khoa Hà Nội",
+        "publishing_year": 2017,
+        "summary": null,
+        "subject": "Động lực học"
+    },
+    {
+        "title": "Bài tậpgiảitíchhàm",
+        "author": "Lê Mậu Hải, Tăng Văn Long",
+        "publisher": "Hà Nội : Đại học Sư phạm",
+        "publishing_year": 2018,
+        "summary": null,
+        "subject": "Giảitíchhàm -- Bài tập"
+    },
+    {
+        "title": "Giáo trìnhgiảitíchhàm",
+        "author": "Nguyễn Văn Khuê, Lê Mậu Hải",
+        "publisher": "Hà Nội : Đại học Sư phạm",
+        "publishing_year": 2018,
+        "summary": null,
+        "subject": "Giảitíchhàm"
+    },
+    {
+        "title": "Giáo trìnhgiảitích1",
+        "author": "Nguyễn Đình Huy chủ biên ... [và những người khác].",
+        "publisher": "Tp. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2018,
+        "summary": null,
+        "subject": "Mathematical analysis -- Study and teaching."
+    },
+    {
+        "title": "Giáo trìnhgiảitích3",
+        "author": "Huỳnh Quang Vũ.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2017,
         "summary": null,
         "subject": "Mathematical analysis -- Study and teaching."
     },
     {
-        "title": "Giảitích. Tập 2 / James Stewart; Nguyễn Hồng Phúc, Trần Thị Nguyệt Linh dịch giả",
-        "author": "Stewart, James, 1941-",
+        "title": "Giáo trìnhgiảitích1",
+        "author": "Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2016,
+        "summary": null,
+        "subject": "Giảitíchhọc"
+    },
+    {
+        "title": "Giáo trìnhgiảitích2",
+        "author": "Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2016,
+        "summary": null,
+        "subject": "Giảitíchhọc"
+    },
+    {
+        "title": "Giáo trìnhgiảitích2",
+        "author": "Nguyễn Đình Huy chủ biên ... [và những người khác].",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2016,
+        "summary": null,
+        "subject": "Mathematical analysis -- Study and teaching."
+    },
+    {
+        "title": "Giảitích. Tập 1",
+        "author": "James Stewart; Đặng Văn Cường dịch giả; Võ Thanh Tùng cộng tác",
         "publisher": "Hà Nội : Hồng Đức",
         "publishing_year": 2016,
         "summary": null,
         "subject": "Giảitíchhọc -- Học hỏi và giảng dạy"
     },
     {
-        "title": "Hướng dẫngiảibài tập toángiảitích/ Dương Tôn Đảm.",
-        "author": "Dương, Tôn Đảm.",
-        "publisher": "Tp. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "title": "Giáo trìnhgiảitíchhàm",
+        "author": "Nguyễn Văn Khuê, Lê Mậu Hải",
+        "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2016,
         "summary": null,
-        "subject": "Mathematical analysis -- Problems, exercises, etc."
+        "subject": "Giảitíchhàm"
     },
     {
-        "title": "Giảitích. Tập 1 / James Stewart; Đặng Văn Cường dịch giả; Võ Thanh Tùng cộng tác",
-        "author": "Stewart, James, 1941-",
-        "publisher": "Hà Nội : Hồng Đức",
-        "publishing_year": 2016,
-        "summary": null,
-        "subject": "Giảitíchhọc -- Học hỏi và giảng dạy"
-    },
-    {
-        "title": "Giảitích= Calculus / James Stewart.",
-        "author": "Stewart, James, 1941-",
+        "title": "Giảitích= Calculus",
+        "author": "James Stewart.",
         "publisher": "Hà Nội : Hồng Đức",
         "publishing_year": 2016,
         "summary": null,
         "subject": "Calculus -- Textbooks."
     },
     {
-        "title": "Giảitíchhàm một biến / Ninh Quang Hải chủ biên; Trần Lệ Thanh, Nguyễn Xuân Quý",
-        "author": "Ninh, Quang Hải, chủ biên",
-        "publisher": "Hà Nội : Xây dựng",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Giảitíchhàm"
-    },
-    {
-        "title": "Giáo trìnhgiảitíchtoán học : Dùng cho sinh viên Khoa Toán - Tin Đại học, Cao đẳng Sư phạm; Đại học Khoa học Tự nhiên; Đại học, cao đẳng khối Khoa học - Kĩ thuật, Kinh tế. T. 2 / Vũ Tuấn.",
-        "author": "Vũ, Tuấn",
-        "publisher": "Hà Nội : Giáo dục Việt Nam",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Giảitíchhọc"
-    },
-    {
-        "title": "Giáo trìnhgiảitíchII / Tô Văn Ban.",
-        "author": "Tô, Văn Ban",
-        "publisher": "Hà Nội : Giáo dục Việt Nam",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Giảitíchhọc"
-    },
-    {
-        "title": "Giảitích1 : Phép tính vi phân vàtíchphân của hàm một biến : Dùng cho sinh viên kỹ thuật các hệ cao đẳng, đại học, sau đại học / Trần Bình",
-        "author": "Trần, Bình",
-        "publisher": "Hà Nội : Bách khoa Hà Nội",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Giảitích"
-    },
-    {
-        "title": "Giáo trìnhgiảitích1 / Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
-        "author": "Nguyễn, Đình Huy, chủ biên",
+        "title": "Giáo trìnhgiảitích1",
+        "author": "Nguyễn Đình Huy chủ biên ... [và những người khác].",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2015,
+        "publishing_year": 2016,
         "summary": null,
-        "subject": "Giảitíchhọc"
+        "subject": "Mathematical analysis -- Study and teaching."
     },
     {
-        "title": "Bài tậpgiảitích1 : Tóm tắt lý thuyết và chọn lọc phụ chương: Các đề thi học kỳ I các năm 2013 - 2015 (K57 - K59) / Trần Bình",
-        "author": "Trần, Bình",
-        "publisher": "Hà Nội : Bách khoa Hà Nội",
-        "publishing_year": 2015,
+        "title": "Giảitích. Tập 2",
+        "author": "James Stewart; Nguyễn Hồng Phúc, Trần Thị Nguyệt Linh dịch giả",
+        "publisher": "Hà Nội : Hồng Đức",
+        "publishing_year": 2016,
         "summary": null,
-        "subject": "Giảitích-- Bài tập"
+        "subject": "Giảitíchhọc -- Học hỏi và giảng dạy"
     },
     {
-        "title": "Giảitíchhàm nhiều biến / Ninh Quang Hải chủ biên; Trần Lệ Thanh, Nguyễn Xuân Quý",
-        "author": "Ninh, Quang Hải, chủ biên",
-        "publisher": "Hà Nội : Xây dựng",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Giảitíchhàm"
-    },
-    {
-        "title": "Bài tậpgiảitíchhàm / Nguyễn Xuân Liêm.",
-        "author": "Nguyễn, Xuân Liêm",
-        "publisher": "Hà Nội : Giáo dục Việt Nam",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Giảitíchhàm -- Bài tập"
-    },
-    {
-        "title": "Biểu diễn tri thức và xây dựng hệgiảibài toán thông minh về hình họcgiảitíchhai chiều / Nguyễn Thị Thu Trang",
-        "author": "Nguyễn, Thị Thu Trang",
-        "publisher": "Tp.HCM :  Đại học Công nghệ Thông tin",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Khoa học máy tính"
-    },
-    {
-        "title": "GiảitíchI : phép tính vi phân vàtíchphân của hàm một biến / Trần Bình.",
-        "author": "Trần, Bình.",
-        "publisher": "Hà Nội : Bách khoa Hà Nội",
-        "publishing_year": 2015,
-        "summary": null,
-        "subject": "Mathematical analysis."
-    },
-    {
-        "title": "GiảitíchI : Phép tính vi phân vàtíchphân của hàm một biến / Trần Bình",
-        "author": "Trần, Bình",
+        "title": "GiảitíchI : Phép tính vi phân vàtíchphân của hàm một biến",
+        "author": "Trần Bình",
         "publisher": "Hà Nội : Bách khoa Hà Nội",
         "publishing_year": 2015,
         "summary": null,
         "subject": "Hàm một biến"
     },
     {
-        "title": "Giáo trìnhgiảitíchI / Tô Văn Ban",
-        "author": "Tô, Văn Ban",
+        "title": "Giảitíchhàm nhiều biến",
+        "author": "Ninh Quang Hải chủ biên; Trần Lệ Thanh, Nguyễn Xuân Quý",
+        "publisher": "Hà Nội : Xây dựng",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitíchhàm"
+    },
+    {
+        "title": "Giảitíchhàm một biến",
+        "author": "Ninh Quang Hải chủ biên; Trần Lệ Thanh, Nguyễn Xuân Quý",
+        "publisher": "Hà Nội : Xây dựng",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitíchhàm"
+    },
+    {
+        "title": "Giảitích1 : Phép tính vi phân vàtíchphân của hàm một biến : Dùng cho sinh viên kỹ thuật các hệ cao đẳng, đại học, sau đại học",
+        "author": "Trần Bình",
+        "publisher": "Hà Nội : Bách khoa Hà Nội",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitích"
+    },
+    {
+        "title": "Bài tậpgiảitíchhàm",
+        "author": "Nguyễn Xuân Liêm.",
         "publisher": "Hà Nội : Giáo dục Việt Nam",
-        "publishing_year": 2014,
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitíchhàm -- Bài tập"
+    },
+    {
+        "title": "Giáo trìnhgiảitíchII",
+        "author": "Tô Văn Ban.",
+        "publisher": "Hà Nội : Giáo dục Việt Nam",
+        "publishing_year": 2015,
         "summary": null,
         "subject": "Giảitíchhọc"
     },
     {
-        "title": "Giáo trìnhgiảitíchI / Tô Văn Ban.",
-        "author": "Tô, Văn Ban, PGS.TS.",
+        "title": "Giáo trìnhgiảitíchtoán học : Dùng cho sinh viên Khoa Toán - Tin Đại học, Cao đẳng Sư phạm; Đại học Khoa học Tự nhiên; Đại học, cao đẳng khối Khoa học - Kĩ thuật, Kinh tế. T. 2",
+        "author": "Vũ Tuấn.",
         "publisher": "Hà Nội : Giáo dục Việt Nam",
-        "publishing_year": 2014,
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitíchhọc"
+    },
+    {
+        "title": "Giáo trìnhgiảitích1",
+        "author": "Nguyễn Đình Huy chủ biên; Lê Xuân Đại,... [và những người khác].",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitíchhọc"
+    },
+    {
+        "title": "Bài tậpgiảitích1 : Tóm tắt lý thuyết và chọn lọc phụ chương: Các đề thi học kỳ I các năm 2013 - 2015 (K57 - K59)",
+        "author": "Trần Bình",
+        "publisher": "Hà Nội : Bách khoa Hà Nội",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Giảitích-- Bài tập"
+    },
+    {
+        "title": "Biểu diễn tri thức và xây dựng hệgiảibài toán thông minh về hình họcgiảitíchhai chiều",
+        "author": "Nguyễn Thị Thu Trang",
+        "publisher": "Tp.HCM :  Đại học Công nghệ Thông tin",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Khoa học máy tính"
+    },
+    {
+        "title": "Bài tậpgiảitíchI",
+        "author": "Phạm Đức Thoan ... [và những người khác].",
+        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Mathematical analysis -- Problems, exercises, etc."
+    },
+    {
+        "title": "Giáo trìnhgiảitích1",
+        "author": "Nguyễn Đình Huy chủ biên ... [và những người khác].",
+        "publisher": "Tp. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2015,
         "summary": null,
         "subject": "Mathematical analysis -- Study and teaching."
     },
     {
-        "title": "Mở đầu về không gian vectơ tôpô và một số vấn đề chọn lọc củagiảitíchhàm / Nguyễn Văn Khuê, Lê Mậu Hải",
-        "author": "Nguyễn, Văn Khuê",
+        "title": "GiảitíchI : phép tính vi phân vàtíchphân của hàm một biến",
+        "author": "Trần Bình.",
+        "publisher": "Hà Nội : Bách khoa Hà Nội",
+        "publishing_year": 2015,
+        "summary": null,
+        "subject": "Mathematical analysis."
+    },
+    {
+        "title": "Mở đầu về không gian vectơ tôpô và một số vấn đề chọn lọc củagiảitíchhàm",
+        "author": "Nguyễn Văn Khuê, Lê Mậu Hải",
         "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2014,
         "summary": null,
         "subject": "Đại số Tô pô"
     },
     {
-        "title": "Đại số vàgiảitích: lý thú sáng tạo. T.2 / Lê Hải Châu.",
-        "author": "Lê, Hải Châu.",
-        "publisher": "TP. Hồ Chí Minh : Trẻ",
-        "publishing_year": 2013,
-        "summary": null,
-        "subject": "Algebra -- Problems, exercises, etc."
-    },
-    {
-        "title": "Mở đầu về không gian vectơ tôpô và một số vấn đề chọn lọc củagiảitíchhàm / Nguyễn Văn Khuê, Lê Mậu Hải.",
-        "author": "Nguyễn, Văn Khuê.",
-        "publisher": "Hà Nội : Đại học Sư phạm",
+        "title": "Giáo trìnhgiảitíchI",
+        "author": "Tô Văn Ban",
+        "publisher": "Hà Nội : Giáo dục Việt Nam",
         "publishing_year": 2014,
         "summary": null,
-        "subject": "Function spaces."
+        "subject": "Giảitíchhọc"
     },
     {
-        "title": "Phương pháp nghiên cứu khoahọc-vănhọc: Tài liệu giảng dạy / Mai Thị Vân.",
-        "author": "Mai, Thị Vân.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu được trình bày với các chương như sau: chương 1 tài liệu trình bày sơ lược những vấn đề chung về khoahọcnhư khái niệm, phân loại, các giai đoạn phát triển, lý thuyết khoahọc; chương 2, tài liệu làm rõ khái niệm về nghiên cứu khoahọc, đặc điểm và phân loại nghiên cứu khoahọc, các quan điểm và phương pháp luận chung về nghiên cứu khoahọc; chương 3 tài liệu trình bày cách lựa chọn vấn đề nghiên cứu và cách xây dựng đề cương nghiên cứu; chương 4 tài liệu trình bày cách thức và phương pháp thu thập, xử lý thông tin; chương 5 tài liệu hướng dẫn cách thức trình bày luận điểm khoahọccho bài báo, công trình khoahọc, khóa luận tốt nghiệp; chương 6 tài liệu trình bày cách thức tổ chức thực hiện đề tài từ khâu xây dựng đề cương đến khâu thi thập thông tin, viết báo cáo và nghiệm thu công trình nghiên cứu khoahọc; chương 7 tài liệu trình bày những vấn đề chung về đạo đức nghiên cứu như chuẩn mực của cộng đồng nghiên cứu, tính trung thực với kết quả nghiên cứu; cuối cùng tại chương 8, tài liệu làm rõ về việc đánh giá trong nghiên cứu khoahọc.",
-        "subject": "Vănhọc-- Nghiên cứu."
+        "title": "Giáo trìnhgiảitíchI",
+        "author": "Tô Văn Ban.",
+        "publisher": "Hà Nội : Giáo dục Việt Nam",
+        "publishing_year": 2014,
+        "summary": null,
+        "subject": "Mathematical analysis -- Study and teaching."
     },
     {
-        "title": "Vănhọcđịa phương An Giang Tài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu được viết bao gồm 02 phần: phần 1 giới thiệu chung về tài liệu giảng dạy; phần 2 nội dung tài liệu giảng dạy với 4 chương.",
-        "subject": "Vănhọc--Họctập và giảng dạy."
-    },
-    {
-        "title": "Bài tậpgiảitíchI / Trần Bình.",
-        "author": "Trần, Bình.",
+        "title": "Bài tậpgiảitíchI",
+        "author": "Trần Bình.",
         "publisher": "Hà Nội : Bách khoa - Hà Nội",
         "publishing_year": 2014,
         "summary": null,
         "subject": "Mathematical analysis -- Study and teaching."
     },
     {
-        "title": "Giảitích1 : phép tính vi phân vàtíchphân của hàm một biến / Trần Bình.",
-        "author": "Trần, Bình.",
-        "publisher": "Hà Nội : Bách khoa - Hà Nội",
+        "title": "Mở đầu về không gian vectơ tôpô và một số vấn đề chọn lọc củagiảitíchhàm",
+        "author": "Nguyễn Văn Khuê, Lê Mậu Hải.",
+        "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2014,
         "summary": null,
-        "subject": "Mathematical analysis."
+        "subject": "Function spaces."
     },
     {
-        "title": "VănhọcChâu Á 2 : Tài liệu giảng dạy / Huỳnh Thị Diễm.",
-        "author": "Huỳnh, Thị Diễm.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy gồm có 4 chương trình bày vềVănhọcẤn Độ;VănhọcNhật Bản;VănhọcẢ Rập vàVănhọcLào, Campuchia.",
-        "subject": "VănhọcẤn Độ."
-    },
-    {
-        "title": "VănhọcÂu - Mỹ thế kỷ XIX - XX : Tài liệu giảng dạy / Nguyễn Thị Thu Giang.",
-        "author": "Nguyễn, Thị Thu Giang.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu giảng dạy trình bày phần 1 khái quát vềvănhọcÂu - Mỹ thế kỷ xix,vănhọclãng mạn Tây Âu,vănhọchiện thực,vănhọchiện thực Mỹ; phần II trình bày khái quát vềVănhọcÂu Mỹ thế kỷ xx, kịch hiện đại, tiểu thuyết hiện đại, thơ hiện đại.",
-        "subject": "VănhọcChâu Âu -- Lịch sử và phê bình -- Thế kỉ 19."
-    },
-    {
-        "title": "Phương pháp cho trẻ mầm non làm quen với tác phẩmvănhọc: Tài liệu giảng dạy / Nguyễn Huỳnh Ngọc Thủy.",
-        "author": "Nguyễn, Huỳnh Ngọc Thủy.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu giảng dạy được biên soạn bao gồm các chương như sau: chương 1: Những vấn đề chung; chương 2: Các nguyên tắc, hình thức và phương pháp cơ bản tổ chức hoạt động làm quen với tác phẩmvănhọcở trường mầm non; chương 3: Phương pháp tổ chức hoạt động cho trẻ làm quen với tác phẩmvănhọcở trường mầm non; chương 4: Lập kế hoạch và đánh giá kế hoạch tổ chức cho trẻ làm quen với tác phẩmvănhọc.",
-        "subject": "Giáo dục mầm non."
-    },
-    {
-        "title": "Kỹ thuật sáng tácvănhọc: Tài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy giúp cho sinh viên có thêm một số kỹ thuật sáng tác để phát triển ý tưởng thành một tác phẩm, phục vụ cho các công việc nghề nghiệp liên quan như sáng tácvănhọcchuyên nghiệp, sáng tạo nội dung kịch bản hoặc các công việc truyền thông, điện ảnh, sân khấu, sản xuất các chương trình truyền hình,… được trình bày qua các nội dung tác phẩmvănhọcvà sáng tácvănhọc; kỹ thuật sáng tác thơ; kỹ thuật sáng tác truyện ngắn; khái quát kỹ thuật sáng tác tiểu thuyết, bút kývănhọc, tảnvăn.",
-        "subject": "Ngữvănhọc."
-    },
-    {
-        "title": "Tác gia Việt Namvănhọctrung đại : Tài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy đào sâu nghiên cứu một số chân dung tác giả tiêu biểu và nổi bật củavănhọcViệt Nam trung đại từ thế kỷ X đến hết thế kỷ XIX. Tài liệu giảng dạy trình bày gồm  4 chương: Tác giả và tác gia; tác gia Nguyễn Trãi; tác gia Nguyễn Du; tác gia Hồ Xuân Hương.",
-        "subject": "Vănhọctrung đại."
-    },
-    {
-        "title": "Nhập mônvănhọcTài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu được viết bao gồm 03 chương: Nhập mônVănhọcvà ngànhVănhọc; chương trình đào tạo ngànhVănhọc, trình độ đạihọc; kỹ nănghọctập ở bậc đạihọcvà kinh nghiệmhọctốt ngànhVănhọc. Tài liệu cung cấp những kiến thức tổng quan và cơ bản về chương trình đào tạo, một số kỹ nănghọctập ở bậc đạihọcnói chung và phương pháphọctốt ngànhVănhọc",
-        "subject": "Ngữvănhọc."
-    },
-    {
-        "title": "VănhọcChâu Âu từ cổ đại đến hết thế kỷ XVIII : Tài liệu giảng dạy / Huỳnh Thị Diễm.",
-        "author": "Huỳnh, Thị Diễm.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy gồm có 4 chương trình bày về các nội dungvănhọcCổ đại Hi Lạp;vănhọcPhục hưng;vănhọcCổ điển Pháp vàVănhọcÁnh sáng.",
-        "subject": "VănhọcChâu Âu -- Thế kỷ 18."
-    },
-    {
-        "title": "Vănhọc2 - Thi pháphọc: Tài liệu giảng dạy / Hoàng Thị Hồng Phương.",
-        "author": "Hoàng, Thị Hồng Phương.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy được cấu trúc thành bảy chương với nội dung chính như sau: Khái quát chung về thi pháphọcvàvănhọcthiếu nhi; Quan niệm nghệ thuật về con người; Thời gian nghệ thuật; Không gian nghệ thuật; Thi pháp cốt truyện; Thi pháp kết cấu; Ngôn từ nghệ thuật.",
-        "subject": "Giáo dục tiểuhọc."
-    },
-    {
-        "title": "VănhọcTrung Quốc hiện đại : Tài liệu giảng dạy / Nguyễn Thị Thu Giang.",
-        "author": "Nguyễn, Thị Thu Giang.",
+        "title": "VănhọcTrung Quốc hiện đại : Tài liệu giảng dạy",
+        "author": "Nguyễn Thị Thu Giang.",
         "publisher": "An Giang : ĐạihọcAn Giang",
         "publishing_year": 2024,
         "summary": "Tài liệu giảng dạyVănhọcTrung Quốc hiện đại được biên soạn với nội dung gồm hai phần, phần một Giới thiệu về một số vấn đề lý thuyết có tính chất nền tảng củavănhọcTrung Quốc hiện đại như cơ sở xã hội, chính trị,vănhóa; khái quát về vềvănhọcTrung Quốc hiện đại (tình hìnhvănhọc, đặc điểmvănhọc, những đề tài chính, các trường phái trào lưu... phần hai Giới thiệu về năm tác giảvănhọctiêu biểu củavănhọcTrung Quốc hiện đại: Vương Mông, Mạc Ngôn, Thiết Ngưng, Giả Bình Ao, Diêm Liên Khoa.",
         "subject": "VănhọcTrung Quốc."
     },
     {
-        "title": "Dẫn luận thi pháphọcvănhọc/ Trần Đình Sử.",
-        "author": "Trần, Đình Sử.",
-        "publisher": "Hà Nội : ĐạihọcSư phạm",
-        "publishing_year": 2024,
-        "summary": "Giới thiệu về thi pháp, thi pháphọctừ truyền thống đến hiện đại. Trình bày đối tượng, phạm trù và phương pháp nghiên cứu thi pháp; các quan niệm nghệ thuật về con người; không gian, thời gian nghệ thuật....",
-        "subject": "Thi pháphọc."
+        "title": "Phương pháp cho trẻ mầm non làm quen với tác phẩmvănhọc: Tài liệu giảng dạy",
+        "author": "Nguyễn Huỳnh Ngọc Thủy.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2023,
+        "summary": "Tài liệu giảng dạy được biên soạn bao gồm các chương như sau: chương 1: Những vấn đề chung; chương 2: Các nguyên tắc, hình thức và phương pháp cơ bản tổ chức hoạt động làm quen với tác phẩmvănhọcở trường mầm non; chương 3: Phương pháp tổ chức hoạt động cho trẻ làm quen với tác phẩmvănhọcở trường mầm non; chương 4: Lập kế hoạch và đánh giá kế hoạch tổ chức cho trẻ làm quen với tác phẩmvănhọc.",
+        "subject": "Giáo dục mầm non."
     },
     {
-        "title": "VănhọcViệt Nam hiện đại : Tiến trình - Thể loại - Tác giả - Tác phẩm / NguyễnVănLong.",
-        "author": "Nguyễn,VănLong.",
+        "title": "VănhọcÂu - Mỹ thế kỷ XIX - XX : Tài liệu giảng dạy",
+        "author": "Nguyễn Thị Thu Giang.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2023,
+        "summary": "Tài liệu giảng dạy trình bày phần 1 khái quát vềvănhọcÂu - Mỹ thế kỷ xix,vănhọclãng mạn Tây Âu,vănhọchiện thực,vănhọchiện thực Mỹ; phần II trình bày khái quát vềVănhọcÂu Mỹ thế kỷ xx, kịch hiện đại, tiểu thuyết hiện đại, thơ hiện đại.",
+        "subject": "VănhọcChâu Âu -- Lịch sử và phê bình -- Thế kỉ 19."
+    },
+    {
+        "title": "Giảitích1 : phép tính vi phân vàtíchphân của hàm một biến",
+        "author": "Trần Bình.",
+        "publisher": "Hà Nội : Bách khoa - Hà Nội",
+        "publishing_year": 2014,
+        "summary": null,
+        "subject": "Mathematical analysis."
+    },
+    {
+        "title": "Nhập mônvănhọcTài liệu giảng dạy",
+        "author": "Trần Tùng Chinh.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu được viết bao gồm 03 chương: Nhập mônVănhọcvà ngànhVănhọc; chương trình đào tạo ngànhVănhọc, trình độ đạihọc; kỹ nănghọctập ở bậc đạihọcvà kinh nghiệmhọctốt ngànhVănhọc. Tài liệu cung cấp những kiến thức tổng quan và cơ bản về chương trình đào tạo, một số kỹ nănghọctập ở bậc đạihọcnói chung và phương pháphọctốt ngànhVănhọc",
+        "subject": "Ngữvănhọc."
+    },
+    {
+        "title": "VănhọcChâu Âu từ cổ đại đến hết thế kỷ XVIII : Tài liệu giảng dạy",
+        "author": "Huỳnh Thị Diễm.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy gồm có 4 chương trình bày về các nội dungvănhọcCổ đại Hi Lạp;vănhọcPhục hưng;vănhọcCổ điển Pháp vàVănhọcÁnh sáng.",
+        "subject": "VănhọcChâu Âu -- Thế kỷ 18."
+    },
+    {
+        "title": "VănhọcChâu Á 2 : Tài liệu giảng dạy",
+        "author": "Huỳnh Thị Diễm.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy gồm có 4 chương trình bày vềVănhọcẤn Độ;VănhọcNhật Bản;VănhọcẢ Rập vàVănhọcLào, Campuchia.",
+        "subject": "VănhọcẤn Độ."
+    },
+    {
+        "title": "Kỹ thuật sáng tácvănhọc: Tài liệu giảng dạy",
+        "author": "Trần Tùng Chinh.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy giúp cho sinh viên có thêm một số kỹ thuật sáng tác để phát triển ý tưởng thành một tác phẩm, phục vụ cho các công việc nghề nghiệp liên quan như sáng tácvănhọcchuyên nghiệp, sáng tạo nội dung kịch bản hoặc các công việc truyền thông, điện ảnh, sân khấu, sản xuất các chương trình truyền hình,… được trình bày qua các nội dung tác phẩmvănhọcvà sáng tácvănhọc; kỹ thuật sáng tác thơ; kỹ thuật sáng tác truyện ngắn; khái quát kỹ thuật sáng tác tiểu thuyết, bút kývănhọc, tảnvăn.",
+        "subject": "Ngữvănhọc."
+    },
+    {
+        "title": "Tác gia Việt Namvănhọctrung đại : Tài liệu giảng dạy",
+        "author": "Trần Tùng Chinh.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy đào sâu nghiên cứu một số chân dung tác giả tiêu biểu và nổi bật củavănhọcViệt Nam trung đại từ thế kỷ X đến hết thế kỷ XIX. Tài liệu giảng dạy trình bày gồm  4 chương: Tác giả và tác gia; tác gia Nguyễn Trãi; tác gia Nguyễn Du; tác gia Hồ Xuân Hương.",
+        "subject": "Vănhọctrung đại."
+    },
+    {
+        "title": "Vănhọc2 - Thi pháphọc: Tài liệu giảng dạy",
+        "author": "Hoàng Thị Hồng Phương.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy được cấu trúc thành bảy chương với nội dung chính như sau: Khái quát chung về thi pháphọcvàvănhọcthiếu nhi; Quan niệm nghệ thuật về con người; Thời gian nghệ thuật; Không gian nghệ thuật; Thi pháp cốt truyện; Thi pháp kết cấu; Ngôn từ nghệ thuật.",
+        "subject": "Giáo dục tiểuhọc."
+    },
+    {
+        "title": "Vănhọcthiếu nhi Tài liệu giảng dạy",
+        "author": "Trần Tùng Chinh.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2025,
+        "summary": "Tài liệu giảng dạy trình bày những kiến thức vừa khái quát toàn diện về tiến trình phát triển củavănhọcthiếu nhi Việt Nam – ngay từ trongvănhọcdân gian đếnvănhọchiện đại; vừa cụ thể với những tác giả tác phẩm tiêu biểu xuất sắc có giá trị cao. Ngoài ra, còn giới thiệu một số tác giả tác phẩmvănhọcthiếu nhi nước ngoài chọn lọc phù hợp với sinh viên ngành Mầm non.",
+        "subject": "Vănhọcthiếu nhi -- Việt Nam."
+    },
+    {
+        "title": "Vănhọcđịa phương An Giang Tài liệu giảng dạy",
+        "author": "Trần Tùng Chinh.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu được viết bao gồm 02 phần: phần 1 giới thiệu chung về tài liệu giảng dạy; phần 2 nội dung tài liệu giảng dạy với 4 chương.",
+        "subject": "Vănhọc--Họctập và giảng dạy."
+    },
+    {
+        "title": "VănhọcViệt Nam từ đầu thế kỉ XX đến 1945",
+        "author": "Trần Đăng Suyền chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : ĐạihọcSư phạm",
+        "publishing_year": 2024,
+        "summary": "Khái quát những vấn đề của lịch sửvănhọcViệt Nam từ đầu thế kỉ XX đến 1945, trào lưuvănhọclãng mạn 1932-1945, trào lưuvănhọchiện thực phê phán 1930-1945, khunh hướngvănhọcyêu nước và cách mạng đầu thế kỉ XX đến 1945 và các tác giả tiêu biểu; phê bìnhvănhọctừ đầu thế kỉ XX đến 1945.",
+        "subject": "VănhọcViệt Nam -- Lịch sử và phê bình."
+    },
+    {
+        "title": "VănhọcViệt Nam hiện đại : Tiến trình - Thể loại - Tác giả - Tác phẩm",
+        "author": "NguyễnVănLong.",
         "publisher": "Hà Nội : ĐạihọcSư phạm",
         "publishing_year": 2024,
         "summary": "Khái quát về tiến trình, đặc điểm, tình hìnhvănhọcViệt Nam trong những giai đoạn cụ thể; sự ảnh hưởng của bối cảnh lịch sử tới sự phát triển củavănhọc; đặc điểm của một số thể loạivănhọcnhư thơ, tiểu thuyết, phê bìnhvănhọc...; giới thiệu một số tác giả tiêu biểu và đi sâu phân tích một số tác phẩm tiêu biểu củavănhọcViệt Nam hiện đại.",
         "subject": "VănhọcViệt Nam -- Lịch sử và phê bình."
     },
     {
-        "title": "Chủ nghĩa hiện thực trongvănhọcViệt Nam nửa đầu thế kỉ XX / Trần Đăng Suyền.",
-        "author": "Trần, Đăng Suyền.",
+        "title": "Lí luậnvănhọc: Những vấn đề hiện đại",
+        "author": "Lã Nguyên tuyển dịch.",
+        "publisher": "Hà Nội : ĐạihọcSư phạm",
+        "publishing_year": 2024,
+        "summary": "Giới thiệu tác phẩm nổi tiếng \"Vấn đề thể loại lời nói\" của M. Bakhtin và các tiểu luận của Tz. Todorov, J. Kristeva, M.L. Gasparov về di sản của nhà báchọcvĩ đại này; một số công trình nghiên cứu của Iu.M. Lotman về các khái niệm then chốt như ''kí hiệu quyển', \"vănbản\", \"ngôn ngữ nghệ thuật\", \"kết cấu tác phẩm nghệ thuật ngôn từ\", \"nguồn gốc truyện kể\"...; những tiểu luận của R. Barthes, Tz. Todorov, Al.V. Mikhailov bàn về \"phê bình\", \"nhàvăn\", \"người viết\", \"tiến trìnhvănhọc\", \"chủ nghĩa cấu trúc\"..; công trình thực hành phân tích cấu trúc và giải cấu trúc của M.L. Gasparov và Iu.V. Satin.",
+        "subject": "Vănhọc-- Lịch sử và phê bình."
+    },
+    {
+        "title": "VănhọcViệt Nam từ thế kỷ XVIII đến hết thế kỷ XIX Tài liệu giảng dạy",
+        "author": "Trần Tùng Chinh.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2025,
+        "summary": "Tài liệu giảng dạy trình bày khái quát 2 giai đoạn:vănhọcViệt Nam từ thế kỷ XVIII đến nửa đầu thế kỷ XIX vàvănhọcViệt Nam nửa cuối thế kỷ XIX; 7 chương tác giả: Nguyễn Du, Hồ Xuân Hương, Nguyễn Công Trứ, Cao Bá Quát, Nguyễn Đình Chiểu, Nguyễn Khuyến, Trần Tế Xương; 2 chương về 2 tác phẩm: Chinh phụ ngâm và Hoàng Lê nhất thống chí.",
+        "subject": "VănhọcViệt Nam."
+    },
+    {
+        "title": "Chủ nghĩa hiện thực trongvănhọcViệt Nam nửa đầu thế kỉ XX",
+        "author": "Trần Đăng Suyền.",
         "publisher": "Hà Nội : ĐạihọcSư phạm",
         "publishing_year": 2024,
         "summary": "Nghiên cứu sự hình thành, quá trình phát triển của chủ nghĩa hiện thực trongvănhọcViệt Nam, nguyên tắc tái hiện đời sống của chủ nghĩa hiện thực và quan điểm nghệ thuật của các nhàvănhiện thực Việt Nam, cảm hứng chủ đạo và những xung đột nghệ thuật chủ yếu của chủ nghĩa hiện thực, những thể loại chính của chủ nghĩa hiện thực, quan điểm nghệ thuật về con người, thế giới nhân vật và nghệ thuật điển hình hóa của chủ nghĩa hiện thực, ngôn ngữ nghệ thuật của chủ nghĩa hiện thực trongvănhọcViệt Nam nửa đầu thế kỷ XX.",
         "subject": "VănhọcViệt Nam -- Lịch sử và phê bình."
     },
     {
-        "title": "Phương pháp bồi dưỡng năng lực cảm thụvănhọcchohọcsinh tiểuhọc: Tài liệu giảng dạy  / Nguyễn Nguyệt Nga.",
-        "author": "Nguyễn, Nguyệt Nga.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy trình bày các nội dung như khái quát về cảm thụvănhọcvà việc bồi dưỡng năng lực cảm thụvănhọcchohọcsinh tiểuhọc; phương pháp, biện pháp bồi dưỡng năng lực cảm thụvănhọcchohọcsinh tiểuhọc; bồi dưỡng năng lực cảm thụvănhọcqua một số phân môn tiếng việt ở tiểuhọc.",
-        "subject": "Giáo dục tiểuhọc."
-    },
-    {
-        "title": "Thời sựvănhọcViệt Nam : Tài liệu giảng dạy / Lâm Trần Sơn Ngọc Thiên Chương.",
-        "author": "Lâm, Trần Sơn Ngọc Thiên Chương.",
+        "title": "Thời sựvănhọcViệt Nam : Tài liệu giảng dạy",
+        "author": "Lâm Trần Sơn Ngọc Thiên Chương.",
         "publisher": "An Giang : ĐạihọcAn Giang",
         "publishing_year": 2024,
         "summary": "Tài liệu giảng dạy cung cấp cho sinh viên một số kiến thức có tính thời sự về tình hình lý luận, nghiên cứu, phê bình và sáng tác trong đời sốngvănhọcViệt Nam đương đại như: Vấn đề nữ quyền, chủ nghĩa hậu hiện đại, cấu trúc luận và giải cấu trúc luận, tự sựhọc– lý thuyết và lịch sử, vấn đề tâm linh. Qua đó,họcphần giúp sinh viên tiếp cận với lý thuyếtvănhọchiện đại hậu hiện đại, phát triển kĩ năng lý giải, phân tích các hiện tượngvănhọctheo cách nhìn mới; rèn luyện kỹ năng nghiên cứu, vận dụng kiến thức trong thực hành nghề nghiệp, nêu cao ý thức tự khám phá cái mới, tựhọctập trau dồi chuyên môn, nghiệp vụ.",
         "subject": "VănhọcViệt Nam."
     },
     {
-        "title": "Vănhọctrung đại Việt Nam : chuyên khảo / Nguyễn Phúc An.",
-        "author": "Nguyễn, Phúc An.",
+        "title": "Một số loại hìnhvănhọc- nghệ thuật cổ truyền Việt Nam. Q.3,Vănchầu",
+        "author": "Vũ Quang Dũng biên soạn, giới thiệu.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Vănchầu -- Việt Nam."
+    },
+    {
+        "title": "Một số loại hìnhvănhọc- nghệ thuật cổ truyền Việt Nam. Q.4,Vănchầu",
+        "author": "Vũ Quang Dũng biên soạn, giới thiệu.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Vănchầu -- Việt Nam."
+    },
+    {
+        "title": "Phương pháp bồi dưỡng năng lực cảm thụvănhọcchohọcsinh tiểuhọc: Tài liệu giảng dạy ",
+        "author": "Nguyễn Nguyệt Nga.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy trình bày các nội dung như khái quát về cảm thụvănhọcvà việc bồi dưỡng năng lực cảm thụvănhọcchohọcsinh tiểuhọc; phương pháp, biện pháp bồi dưỡng năng lực cảm thụvănhọcchohọcsinh tiểuhọc; bồi dưỡng năng lực cảm thụvănhọcqua một số phân môn tiếng việt ở tiểuhọc.",
+        "subject": "Giáo dục tiểuhọc."
+    },
+    {
+        "title": "Vănhọctrung đại Việt Nam : chuyên khảo",
+        "author": "Nguyễn Phúc An.",
         "publisher": "Hà Nội : Hội Nhàvăn",
         "publishing_year": 2024,
         "summary": null,
         "subject": "Vănhọctrung đại -- Việt Nam -- Sách chuyên khảo."
     },
     {
-        "title": "Phương pháp nghiên cứu tác phẩmvănhọc/ Trần Đăng Suyền.",
-        "author": "Trần, Đăng Suyền.",
-        "publisher": "Hà Nội : ĐạihọcSư phạm",
+        "title": "Một số loại hìnhvănhọc- nghệ thuật cổ truyền Việt Nam. Q.2, Hát giao duyên",
+        "author": "Vũ Quang Dũng biên soạn, giới thiệu.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
         "publishing_year": 2024,
         "summary": null,
-        "subject": "Literature -- Research."
+        "subject": "Hát giao duyên -- Việt Nam."
     },
     {
-        "title": "Dạyhọclý luậnvănhọcở Trường THPT : Tài liệu giảng dạy / Lâm Trần Sơn Ngọc Thiên Chương.",
-        "author": "Lâm, Trần Sơn Ngọc Thiên Chương.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy trình bày các kiến thức cơ bản về các vấn đề lí luậnvănhọctheo yêu cầu của chương trình phổ thông môn Ngữvăn2018 một cách hệ thống. Từ đó, vận dụng vào việchọctập, công tác tại trường phổ thông một cách hiệu quả. Căn cứ vào thực tiễn giảng dạy của giáo viên phổ thông, tài liệu giảng dạy tập trung vào các vấn đề lí luận cơ bản là những nội dung chính liên quan đến tác phẩmvănhọc, thể loạivănhọc, trào lưuvănhọc, thì pháphọc.... theo yêu cầu cần đạt của chương trình, yêu cầu về kiểm tra đánh giá của chương trình giáo dục phổ thông 2018.",
-        "subject": "Ngữvăn--Họctập và giảng dạy."
-    },
-    {
-        "title": "VănhọcNga : Tài liệu giảng dạy / Nguyễn Thị Thu Giang.",
-        "author": "Nguyễn, Thị Thu Giang.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu giảng dạyVănhọcNga tập trung giới thiệu những đỉnh cao củavănhọcNga ở hai giai đoạn thế kỷ XIX và thế kỷ XX tính đến cả quá trình diễn tiến, thể loại và phong cách về hai nhà thơ tiêu biểu của hai thời đại, năm nhàvănxuôi và kịch gia.",
-        "subject": "VănhọcNga."
-    },
-    {
-        "title": "Suy luận vềvănhọc/ Phùng Quí Nhâm, Bùi Trần Quỳnh Ngọc.",
-        "author": "Phùng, Quí Nhâm.",
-        "publisher": "TP. Hồ Chí Minh : ĐạihọcSư phạm TP. Hồ Chí Minh",
-        "publishing_year": 2024,
-        "summary": null,
-        "subject": "VănhọcViệt Nam -- Lịch sử và phê bình."
-    },
-    {
-        "title": "VănhọcNga : Cử nhânvănhọcTài liệu giảng dạy / Nguyễn Thị Thu Giang.",
-        "author": "Nguyễn, Thị Thu Giang.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu giảng dạyVănhọcNga tập trung giới thiệu những đỉnh cao củavănhọcNga ở hai giai đoạn thế kỷ XIX và thế kỷ XX tính đến cả quá trình diễn tiến, thể loại và phong cách.",
-        "subject": "VănhọcNga."
-    },
-    {
-        "title": "VănhọcNga hiện đại: Tài liệu giảng dạy / Nguyễn Thị Thu Giang.",
-        "author": "Nguyễn, Thị Thu Giang.",
+        "title": "VănhọcNga hiện đại: Tài liệu giảng dạy",
+        "author": "Nguyễn Thị Thu Giang.",
         "publisher": "An Giang : ĐạihọcAn Giang",
         "publishing_year": 2024,
         "summary": "Tài liệu giảng dạyVănhọcNga tập trung giới thiệu sáu hiện tượngvănhọctiêu biểu củavănhọcNga (trong nước và hải ngoại) ở giai đoạn nửa sau thế kỷ XX gắn với đặc trưngvănhóa chính trị thi pháp thể loại tiểu thuyết và truyện ngắn, truyện vừa.",
         "subject": "VănhọcNga."
     },
     {
-        "title": "VănhọcMỹ Latin : Tài liệu giảng dạy / Nguyễn Thị Thu Giang.",
-        "author": "Nguyễn, Thị Thu Giang.",
+        "title": "VănhọcNga : Cử nhânvănhọcTài liệu giảng dạy",
+        "author": "Nguyễn Thị Thu Giang.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2023,
+        "summary": "Tài liệu giảng dạyVănhọcNga tập trung giới thiệu những đỉnh cao củavănhọcNga ở hai giai đoạn thế kỷ XIX và thế kỷ XX tính đến cả quá trình diễn tiến, thể loại và phong cách.",
+        "subject": "VănhọcNga."
+    },
+    {
+        "title": "Một số loại hìnhvănhọc- nghệ thuật cổ truyền Việt Nam. Q.1, Ca trù",
+        "author": "Vũ Quang Dũng biên soạn, giới thiệu.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Ca trù -- Việt Nam."
+    },
+    {
+        "title": "VănhọcNga : Tài liệu giảng dạy",
+        "author": "Nguyễn Thị Thu Giang.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2023,
+        "summary": "Tài liệu giảng dạyVănhọcNga tập trung giới thiệu những đỉnh cao củavănhọcNga ở hai giai đoạn thế kỷ XIX và thế kỷ XX tính đến cả quá trình diễn tiến, thể loại và phong cách về hai nhà thơ tiêu biểu của hai thời đại, năm nhàvănxuôi và kịch gia.",
+        "subject": "VănhọcNga."
+    },
+    {
+        "title": "Dạyhọclý luậnvănhọcở Trường THPT : Tài liệu giảng dạy",
+        "author": "Lâm Trần Sơn Ngọc Thiên Chương.",
+        "publisher": "An Giang : ĐạihọcAn Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy trình bày các kiến thức cơ bản về các vấn đề lí luậnvănhọctheo yêu cầu của chương trình phổ thông môn Ngữvăn2018 một cách hệ thống. Từ đó, vận dụng vào việchọctập, công tác tại trường phổ thông một cách hiệu quả. Căn cứ vào thực tiễn giảng dạy của giáo viên phổ thông, tài liệu giảng dạy tập trung vào các vấn đề lí luận cơ bản là những nội dung chính liên quan đến tác phẩmvănhọc, thể loạivănhọc, trào lưuvănhọc, thì pháphọc.... theo yêu cầu cần đạt của chương trình, yêu cầu về kiểm tra đánh giá của chương trình giáo dục phổ thông 2018.",
+        "subject": "Ngữvăn--Họctập và giảng dạy."
+    },
+    {
+        "title": "VănhọcMỹ Latin : Tài liệu giảng dạy",
+        "author": "Nguyễn Thị Thu Giang.",
         "publisher": "An Giang : ĐạihọcAn Giang",
         "publishing_year": 2024,
         "summary": "Tài liệu giảng dạy trình bày hai phần lớn:  Phần một: Giới thiệu một số vấn đề lý thuyết có tính chất nền tàng củavănhọcMỹ Latin: cơ sở xã hội, chính trị,vănhóa; khái quátvănhọcMỹ Latin; phân kì lịch sửvănhọc, một số thành tựu tiêu biểu trên phương diện trào lưu và thể loại.  Phần hai Giới thiệu 06 tác giảvănhọctiêu biểu củavănhọcMỹ Latin như Hai nhà thơ: Pablo Neruda, Nicolas Guillen; Hai tác giả truyện ngắn: Miguel Angel Asturias, Jorge Luis Borges; Hai nhà tiểu thuyết: Gabriel Garcia Márquez, Mario Vargas Llosa.",
         "subject": "VănhọcMỹ Latinh."
     },
     {
-        "title": "VănhọcViệt Nam từ thế kỷ X đến hết thế kỷ XVII Tài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu được viết bao gồm 02 phần với 07 chương: giới thiệu chung về tài liệu giảng dạy; nội dung tài liệu khái quátvănhọcViệt Nam từ thế kỷ x đến hết thế kỷ xix,vănhọcViệt Nam từ thế kỷ x đến thế kỷ xiv,vănhọcViệt Nam từ thế kỷ xv đến hết thế kỷ xvii, Lê Thánh Tông và Hồng Đức quốc âm thi tập, Nguyễn Bỉnh Khiêm, Nguyễn Dữ và truyền kỳ mạn lục.",
-        "subject": "VănhọcViệt Nam."
+        "title": "Vănhọc, nghệ thuật sau 15 năm thực hiện Nghị quyết số 23-NQ/TW của Bộ Chính trị (khoá X)",
+        "author": "Thái Phan Vàng Anh ... [và những người khác].",
+        "publisher": "Hà Nội : Chính trị quốc gia Sự thật",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Đánh giá những nỗ lực, kết quả đạt được trong công tác tuyên truyền, lãnh đạo, tổ chức thực hiện Nghị quyết số 23-NQ/TW. Nêu bật thành tựu, tiến bộ và tồn tại của nềnvănhọc, nghệ thuật nước ta trong 15 năm qua. Đưa ra đề xuất, giải pháp thực hiện nhiệm vụ của từng lĩnh vực, từng địa phương."
     },
     {
-        "title": "Vănhọccổ điển Việt Nam 1 : từ đầu thế kỷ X đến thế kỷ XVII / Nguyễn Công Lý.",
-        "author": "Nguyễn, Công Lý.",
+        "title": "Thiên tình sử trongvănhọcViệt Nam : truyện thơ. Q.2",
+        "author": "Nhiều tác giả ; Vũ Quang Dũng biên soạn, giới thiệu.",
+        "publisher": "Hà Nội : Hội nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Narrative poetry, Vietnamese."
+    },
+    {
+        "title": "Vănhọcnghệ thuật góp phần xây dựng bản lĩnh và nhân cách \"Bộ đội Cụ Hồ\"",
+        "author": "Đoàn Xuân Bộ chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : Quân đội nhân dân",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Nghệ thuật -- Việt Nam."
+    },
+    {
+        "title": "Giáo trình thể loại và tác gia tiêu biểuvănhọcphương Đông",
+        "author": "Nguyễn Thị Mai Chanh chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : ĐạihọcSư phạm",
+        "publishing_year": 2024,
+        "summary": "Khái quát vềvănhọcphương Đông và hệ thống các kiến thức cơ bản củavănhọcTrung Quốc, Ấn Độ, Nhật Bản theo tiêu chí thể loạivănhọctrữ tình, tự sự, kịch theo dòng phát triển của lịch sửvănhọc, đồng thời giới thiệu một số tác gia, tác phẩm tiêu biểu đại diện cho mỗi thể loạivănhọctrên ở mỗi quốc gia.",
+        "subject": "Vănhọcphương Đông -- Lịch sử và phê bình."
+    },
+    {
+        "title": "Giáo trình Tham vấnhọcđường",
+        "author": "NguyễnVănTường.",
         "publisher": "TP. Hồ Chí Minh : ĐạihọcQuốc gia TP. Hồ Chí Minh",
         "publishing_year": 2024,
         "summary": null,
-        "subject": "VănhọcViệt Nam -- Thế kỷ 10 đến thế kỷ 17 -- Lịch sử và phê bình."
+        "subject": "Tham vấnhọcđường -- Tâm lý."
     },
     {
-        "title": "Thiênvănhọc- Khái lược những tư tưởng lớn / DK ; Nguyễn Thị Bình dịch.",
-        "author": "DK",
+        "title": "Thiênvănhọc- Khái lược những tư tưởng lớn",
+        "author": "DK ; Nguyễn Thị Bình dịch.",
         "publisher": "Hà Nội : Dân trí",
         "publishing_year": 2024,
         "summary": null,
         "subject": "Thiênvănhọc"
     },
     {
-        "title": "Vănhọcdân gian Việt Nam Tài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu được viết bao gồm 03 phần với 13 chương: giới thiệu chung về tài liệu giảng dạy; nội dung tài liệu khái quátvănhọcdân gian, thần thoại, sử thi, truyền thuyết, truyện cổ tích, truyện cười, truyện ngụ ngôn, tục ngữ, câu đố, ca dao, dân ca, vè, truyện thơ, sân khấu dân gian.",
-        "subject": "Vănhọcdân gian Việt Nam."
-    },
-    {
-        "title": "Vănhọcdân gian. Q.1 / Nguyễn Xuân Kính chủ biên, Nguyễn Thị Huế.",
-        "author": "Nguyễn, Xuân Kính GS.TS. chủ biên.",
-        "publisher": "Hà Nội :Vănhọc",
-        "publishing_year": 2023,
-        "summary": null,
-        "subject": "Vănhọcdân gian Việt Nam -- Nghiên cứu."
-    },
-    {
-        "title": "VănhọcViệt Nam (1930-1945). Q.1 / Hà Minh Đức chủ biên ; Vũ Tuấn Anh... [và những người khác] biên soạn.",
-        "author": "Hà, Minh Đức, GS.NGND., chủ biên.",
-        "publisher": "Hà Nội :Vănhọc",
-        "publishing_year": 2023,
-        "summary": null,
-        "subject": "VănhọcViệt Nam -- Nghiên cứu -- 1930-1945."
-    },
-    {
-        "title": "VănhọcViệt Nam (1900-1930) / Phong Lê chủ biên... [và những người khác].",
-        "author": "Phong Lê, GS., chủ biên.",
-        "publisher": "Hà Nội :Vănhọc",
-        "publishing_year": 2023,
-        "summary": null,
-        "subject": "VănhọcViệt Nam -- Nghiên cứu -- 1900-1930."
-    },
-    {
-        "title": "Tác phẩmvănhọcdân gian với trẻ mầm non Tài liệu giảng dạy / Trần Tùng Chinh.",
-        "author": "Trần, Tùng Chinh.",
-        "publisher": "An Giang : ĐạihọcAn Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu được viết bao gồm 09 chương: khái quátvănhọcdân gian Việt Nam; thần thoại với trẻ mầm non; truyền thuyết với trẻ mầm non; truyện cổ tích với trẻ mầm non; truyện ngụ ngôn với trẻ mầm non; tục ngữ với trẻ mầm non; câu đố với trẻ mầm non; ca dao dân ca với trẻ mầm non; vè với trẻ mầm non.",
-        "subject": "Giáo dục mầm non."
-    },
-    {
-        "title": "Người Mỹ da đen trong bản đồvănhọcMỹ / Nguyễn Thị Tuyết.",
-        "author": "Nguyễn, Thị Tuyết.",
-        "publisher": "TP. Hồ Chí Minh : Tổng hợp TP. Hồ Chí Minh",
-        "publishing_year": 2023,
-        "summary": "Phác thảo hình ảnh người da đen trongvănhọcMỹ từ ngày đầu lập quốc đến hết thế kỷ XX, từ điểm nhìn tự bên trong của chính người da đen và điểm nhìn bên ngoài của người da trắng; xác định tọa độ của người Mỹ da đen trong tiểu thuyết của một số nhàvănnữ tiêu biểu.",
-        "subject": "American literature -- History and criticism."
-    },
-    {
-        "title": "Vănhọcnghệ thuật, địa hạt của sự sáng tạo - Người viết cần có tâm và tầm : tiểu luận, phê bình / Phạm Xuân Trường.",
-        "author": "Phạm, Xuân Trường.",
-        "publisher": "Hà Nội : Quân đội nhân dân",
-        "publishing_year": 2023,
-        "summary": "Gồm những bài viết về hành trình khát vọng, sáng tạo nghệ thuật của các thế hệvănnghệ sĩ, nhàvăn, nhà thơ, nhà đạo điễn... về chuyện nghề, chuyện đời, cách khai thác những tình huống, đề tài... được thể hiện trong tác phẩm sự chân thành, sự đồng cảm, đồng điệu, thể hiện cái tâm, cái tầm của của tác giả đối với những nhân vật, tác phẩm của mình.",
-        "subject": "Nghiên cứuvănhọc."
-    },
-    {
-        "title": "VănhọcSài Gòn 1954 - 1975 : những chuyện bên lề / LêVănNghĩa biên soạn.",
-        "author": "Lê,VănNghĩa.",
-        "publisher": "TP. Hồ Chí Minh : Tổng hợp TP. Hồ Chí Minh",
-        "publishing_year": 2023,
-        "summary": null,
-        "subject": "Vietnamese literature -- Ho Chi Minh City -- History and criticism."
-    },
-    {
-        "title": "Phương pháp phát triểnngônngữcho trẻ mầm non : Tài liệu giảng dạy / Nguyễn Huỳnh Ngọc Thủy.",
-        "author": "Nguyễn, Huỳnh Ngọc Thủy.",
-        "publisher": "An Giang : Đại học An Giang",
-        "publishing_year": 2023,
-        "summary": "Tài liệu trình bày các nội dung về cơ sở lý luận của phương pháp phát triểnngônngữcho trẻ em, các nhiệm vụ phương pháp điều kiện và hình thức phát triểnngônngữcho trẻ, giáo dục chuẩn mựcngữâm tiếng Việt cho trẻ, hình thành và phát triển vốn từ cho trẻ, dạy trẻ nói đúngngữpháp, phát triển lời nói mạch lạc, phát triểnngônngữnghệ thuật, chuẩn bị khả năng tền đọc viết cho trẻ, và lâp kế hoạch kiểm tra hoạt động phát triểnngônngữcho trẻ trong trường mầm non.",
-        "subject": "Giáo dục mầm non."
-    },
-    {
-        "title": "Ngônngữhọc văn bản và Phong cách học Tiếng Việt : Tài liệu giảng dạy / Nguyễn Thị Xuân Mai.",
-        "author": "Nguyễn, Thị Xuân Mai.",
-        "publisher": "An Giang : Đại học An Giang",
+        "title": "Vănhọctuồng. T.3",
+        "author": "Hoàng Châu Ký chủ biên ; Nguyễn Xuân Yến, Bùi Duy Tân sưu tầm.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
         "publishing_year": 2024,
-        "summary": "Tài liệu giảng dạy trình bày các tri thức về Việtngữhọc cho người học; nâng cao các kỹ năng sử dụng tiếng Việt, trong đó chú trọng đến kỹ năng tạo lập văn bản một cách mạch lạc và liên kết, phù hợp với phong cách chức năng khi sử dụng; kỹ năng tạo ra lời nói hay, đạt hiệu quả giao tiếp cao. Về kỹ năng tiếp nhận văn bản, học phần này cũng chú trọng nâng cao năng lực cảm thụ, khám phá văn bản bằng những tri thức về phong cách học mà các em có được. Bên cạnh đó, học phần cũng hướng đến rèn luyện kỹ năng đặc thù của ngành: kỹ năng tạo lập các văn bản báo chí, hành chính để phục vụ các vị trí nghề nghiệp tương lai đối với sinh viên ngành Văn học; kỹ năng thực hành giảng dạy tiếng Việt liên quan đến tri thức về văn bản và phong cách ở nhà trường phổ thông đối với sinh viên ngành Sư phạmNgữvăn.",
-        "subject": "Ngônngữhọc."
+        "summary": null,
+        "subject": "Tuồng -- Nghệ thuật dân gian -- Việt Nam."
     },
     {
-        "title": "Trò chơi phát triểnngônngữcho trẻ mầm non : Tài liệu giảng dạy / Nguyễn Huỳnh Ngọc Thủy.",
-        "author": "Nguyễn, Huỳnh Ngọc Thủy.",
+        "title": "Vănhọctuồng. T.2",
+        "author": "Hoàng Châu Ký chủ biên ; Nguyễn Xuân Yên, Bùi Duy Tân sưu tầm.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Tuồng -- Nghệ thuật dân gian -- Việt Nam."
+    },
+    {
+        "title": "Vănhọctuồng. T.6",
+        "author": "Xuân Yến sưu tầm, biên soạn.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Tuồng -- Nghệ thuật dân gian -- Việt Nam."
+    },
+    {
+        "title": "Vănhọctuồng. T.4",
+        "author": "Xuân Yến sưu tầm, biên soạn.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Tuồng -- Nghệ thuật dân gian -- Việt Nam."
+    },
+    {
+        "title": "Vănhọctuồng. T.5",
+        "author": "Xuân Yến sưu tầm, biên soạn.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Tuồng -- Nghệ thuật dân gian -- Việt Nam."
+    },
+    {
+        "title": "Lịch sửvănhọcViệt Nam. T.1, Q.3,Vănhọcdân gian",
+        "author": "Nguyễn Xuân Kính, Nguyễn Thị Huế chủ biên.",
+        "publisher": "Hà Nội :Vănhọc",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Vănhọcdân gian -- Việt Nam."
+    },
+    {
+        "title": "Vănhọctuồng. T.7",
+        "author": "Xuân Yến sưu tầm, biên soạn.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Tuồng -- Nghệ thuật dân gian -- Việt Nam."
+    },
+    {
+        "title": "Giai thoạivănhọcViệt Nam. Q.1",
+        "author": "Kiều Thu Hoạch chủ biên.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Vănhọcdân gian -- Việt Nam."
+    },
+    {
+        "title": "Lịch sửvănhọcViệt Nam. T.9, Q.1,VănhọcViệt Nam (1945-1975): 1945-1954",
+        "author": "Phan Trọng Thưởng chủ biên.",
+        "publisher": "Hà Nội :Vănhọc",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "VănhọcViệt Nam -- Lịch sử -- 1945-1954."
+    },
+    {
+        "title": "Vềvănhóa,vănhọc, lịch sử Việt Nam và Đông phương : tuyển tập nghiên cứu - sáng tác",
+        "author": "Bửu Cầm.",
+        "publisher": "TP. Hồ Chí Minh : ĐạihọcQuốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "VănhọcViệt Nam -- Nghiên cứu."
+    },
+    {
+        "title": "Thiên tình sử trongvănhọcViệt Nam : truyện thơ. Q.1",
+        "author": "Nhiều tác giả ; Vũ Quang Dũng biên soạn, giới thiệu.",
+        "publisher": "Hà Nội : Hội Nhàvăn",
+        "publishing_year": 2024,
+        "summary": null,
+        "subject": "Truyện thơ Việt Nam."
+    },
+    {
+        "title": "Lí luậnvănhọc. T.1,Vănhọc, nhàvăn, bạn đọc",
+        "author": "Phương Lựu chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : ĐạihọcSư phạm",
+        "publishing_year": 2024,
+        "summary": "Trình bày một số nội dung cơ bản của bộ môn lí luậnvănhọc; vềvănnghệ, hình thái ý thức xã hội thẩm mỹ,vănhọcvới hiện thực đời sống, ý thức xã hội trongvănhọc,vănhọcdưới góc độ gương mặt củavănhóa dân tộc và nghệ thuật ngôn từ, chức năng củavănhọc, nhàvănvới tư cách là chủ thể sáng tácvănhọc, tư duy nghệ thuật của nhàvăn...",
+        "subject": "Literature -- Philosophy."
+    },
+    {
+        "title": "Trò chơi phát triểnngônngữcho trẻ mầm non : Tài liệu giảng dạy",
+        "author": "Nguyễn Huỳnh Ngọc Thủy.",
         "publisher": "An Giang : Đại học An Giang",
         "publishing_year": 2024,
         "summary": "Tài liệu giảng dạy trình bày các vấn đề những vấn đề chung về trò chơi phát triểnngônngữ; nội dung và hình thức tổ chức trò chơi phát triểnngônngữcho trẻ mầm non; trò chơi phát triểnngônngữcho trẻ mầm non và sau mỗi nội dung sẽ có câu hỏi và bài tập nhằm củng cố kiến thức và mở rộng kiến thức của bài học.",
         "subject": "Giáo dục mầm non -- Học tập và giảng dạy."
     },
     {
-        "title": "Các bình diện củangônngữhọc ứng dụng : sách tham khảo / Phan Tuấn Ly.",
-        "author": "Phan, Tuấn Ly.",
+        "title": "Phương pháp phát triểnngônngữcho trẻ mầm non : Tài liệu giảng dạy",
+        "author": "Nguyễn Huỳnh Ngọc Thủy.",
+        "publisher": "An Giang : Đại học An Giang",
+        "publishing_year": 2023,
+        "summary": "Tài liệu trình bày các nội dung về cơ sở lý luận của phương pháp phát triểnngônngữcho trẻ em, các nhiệm vụ phương pháp điều kiện và hình thức phát triểnngônngữcho trẻ, giáo dục chuẩn mựcngữâm tiếng Việt cho trẻ, hình thành và phát triển vốn từ cho trẻ, dạy trẻ nói đúngngữpháp, phát triển lời nói mạch lạc, phát triểnngônngữnghệ thuật, chuẩn bị khả năng tền đọc viết cho trẻ, và lâp kế hoạch kiểm tra hoạt động phát triểnngônngữcho trẻ trong trường mầm non.",
+        "subject": "Giáo dục mầm non."
+    },
+    {
+        "title": "Ngônngữhọc văn bản và Phong cách học Tiếng Việt : Tài liệu giảng dạy",
+        "author": "Nguyễn Thị Xuân Mai.",
+        "publisher": "An Giang : Đại học An Giang",
+        "publishing_year": 2024,
+        "summary": "Tài liệu giảng dạy trình bày các tri thức về Việtngữhọc cho người học; nâng cao các kỹ năng sử dụng tiếng Việt, trong đó chú trọng đến kỹ năng tạo lập văn bản một cách mạch lạc và liên kết, phù hợp với phong cách chức năng khi sử dụng; kỹ năng tạo ra lời nói hay, đạt hiệu quả giao tiếp cao. Về kỹ năng tiếp nhận văn bản, học phần này cũng chú trọng nâng cao năng lực cảm thụ, khám phá văn bản bằng những tri thức về phong cách học mà các em có được. Bên cạnh đó, học phần cũng hướng đến rèn luyện kỹ năng đặc thù của ngành: kỹ năng tạo lập các văn bản báo chí, hành chính để phục vụ các vị trí nghề nghiệp tương lai đối với sinh viên ngành Văn học; kỹ năng thực hành giảng dạy tiếng Việt liên quan đến tri thức về văn bản và phong cách ở nhà trường phổ thông đối với sinh viên ngành Sư phạmNgữvăn.",
+        "subject": "Ngônngữhọc."
+    },
+    {
+        "title": "Các bình diện củangônngữhọc ứng dụng : sách tham khảo",
+        "author": "Phan Tuấn Ly.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2024,
         "summary": null,
         "subject": "Tiếng Việt."
     },
     {
-        "title": "Cảnh huốngngônngữdân tộc Tày ở vùng Đông Bắc Việt Nam / Hà Thị Tuyết Nga.",
-        "author": "Hà, Thị Tuyết Nga.",
+        "title": "Cảnh huốngngônngữdân tộc Tày ở vùng Đông Bắc Việt Nam",
+        "author": "Hà Thị Tuyết Nga.",
         "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
         "publishing_year": 2023,
         "summary": "Trình bày tổng quan lý luận cảnh huốngngônngữvà dân tộc Tày vùng Đông Bắc; vị thế tiếng Tày vùng Đông Bắc trong bối cảnh hội nhập và phát triển ở Việt Nam; cảnh huốngngônngữdân tộc Tày với sự phát triển bền vững vùng Đông Bắc Việt Nam; giải pháp duy trì và nâng cao vị thế tiếng Tày vùng Đông Bắc.",
         "subject": "NgônngữTày -- Việt Nam."
     },
     {
-        "title": "Dẫn luậnngônngữhọc vàngữâm Tiếng việt / Tôn Thị Tuyết Oanh.",
-        "author": "Tôn, Thị Tuyết Oanh.",
-        "publisher": "An Giang : Đại học An Giang",
-        "publishing_year": 2022,
-        "summary": "Tài liệu giảng dạy được biên soạn thành 12 chương, kết hợp giữa lý thuyết và thực hành, đảm bảo cung cấp cho sinh viên hệ thống lý thuyết về các đơn vịngônngữtrong Tiếng việt từ cơ bản đến chuyên sâu như hệ thống kiến thức về bản chất và chức năng củangônngữ, vị trí, vai trò của Tiếng việt, đặc điểm cấu tạo phân loại âm tiết...qua đó người học có thể phân tích được các đơn vịngữâm của lời nói và hệ thốngngônngữcũng như vận dụng chúng vào việc ghi ký hiệungữâm của Tiếng việt.",
-        "subject": "Ngữvăn -- Học tập và giảng dạy."
-    },
-    {
-        "title": "Giáo trình dẫn luậnngônngữhọc / Lưu Hớn Vũ.",
-        "author": "Lưu, Hớn Vũ.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2022,
-        "summary": "Tổng quan vềngônngữvàngônngữhọc; bản chất và chức năng củangônngữ; nguồn gốc và sự phát triển củangônngữ; hệ thống, cấu trúc và tín hiệungônngữ; trình bày kiến thức vềngữâm, từ vựng,ngữpháp,ngữnghĩa vàngữdụng học.",
-        "subject": "Ngônngữhọc."
-    },
-    {
-        "title": "Giáo trình dẫn luậnngônngữhọc / Bùi Minh Toán.",
-        "author": "Bùi, Minh Toán.",
+        "title": "Giáo trình tiếng Việt và phương pháp phát triểnngônngữcho trẻ mầm non",
+        "author": "Lã Thị Bắc Lý chủ biên ... [và những người khác].",
         "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2023,
-        "summary": null,
-        "subject": "Linguistic -- Study and teaching."
+        "summary": "Trình bày những vấn đề chung về giáo dục phát triểnngônngữcho trẻ mầm non,ngữâm Tiếng Việt và giáo dục phát triểnngữâm cho trẻ mầm non, từngữTiếng Việt và giáo dục phát triển từngữcho trẻ mầm non,ngữpháp Tiếng Việt và giáo dục phát triểnngữpháp cho trẻ mầm non...",
+        "subject": "Tiếng Việt -- Học tập và giảng dạy (Mầm non)."
     },
     {
-        "title": "Sức mạnhngônngữngoại giao của Tập Cận Bình : sách tham khảo / Tô Cách chủ biên ; Tạ Thị Thanh Huyền, Cù Thị Thúy Lan dịch.",
-        "author": "Tô, Cách.",
+        "title": "Sức mạnhngônngữngoại giao của Tập Cận Bình : sách tham khảo",
+        "author": "Tô Cách chủ biên ; Tạ Thị Thanh Huyền, Cù Thị Thúy Lan dịch.",
         "publisher": "Hà Nội : Chính trị quốc gia Sự thật",
         "publishing_year": 2023,
         "summary": null,
         "subject": "Tập, Cận Bình, 1953-"
     },
     {
-        "title": "Lịch sử hình thành và phát triểnngônngữ/ Fr. Folsom ; John Hull, Chan Mawicke minh họa ; Phạm Thị Bích Lệ dịch ; Nguyễn Thị Thu Hà hiệu đính.",
-        "author": "Folsom, Fr.",
-        "publisher": "Hà Nội : Văn học",
+        "title": "Giáo trình dẫn luậnngônngữhọc",
+        "author": "Bùi Minh Toán.",
+        "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2023,
         "summary": null,
-        "subject": "Historical linguistics."
+        "subject": "Linguistic -- Study and teaching."
     },
     {
-        "title": "Lược sửngônngữ: chuyện kể về phát minh vĩ đại nhất của loài người / Daniel L. Everett ; Phạm Văn Lam, Huyền Minh dịch.",
-        "author": "Everett, Daniel L., 1951-",
+        "title": "Giáo trình dẫn luậnngônngữhọc",
+        "author": "Lưu Hớn Vũ.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2022,
+        "summary": "Tổng quan vềngônngữvàngônngữhọc; bản chất và chức năng củangônngữ; nguồn gốc và sự phát triển củangônngữ; hệ thống, cấu trúc và tín hiệungônngữ; trình bày kiến thức vềngữâm, từ vựng,ngữpháp,ngữnghĩa vàngữdụng học.",
+        "subject": "Ngônngữhọc."
+    },
+    {
+        "title": "Marugoto -ngônngữvà văn hóa Nhật Bản : trung cấp 2 - B1",
+        "author": "Quỹ giao lưu quốc tế Nhật Bản.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2022,
+        "summary": null,
+        "subject": "Japanese language -- Textbooks for foreign speakers."
+    },
+    {
+        "title": "Lược sửngônngữ: chuyện kể về phát minh vĩ đại nhất của loài người",
+        "author": "Daniel L. Everett ; Phạm Văn Lam, Huyền Minh dịch.",
         "publisher": "Hà Nội : Thế giới",
         "publishing_year": 2022,
         "summary": null,
         "subject": "Language and languages -- Origin."
     },
     {
-        "title": "Học tập di sảnngônngữcủa Hồ Chí Minh / Bùi Khánh Thế.",
-        "author": "Bùi, Khánh Thế, GS.TS.",
+        "title": "Dẫn luậnngônngữhọc vàngữâm Tiếng việt",
+        "author": "Tôn Thị Tuyết Oanh.",
+        "publisher": "An Giang : Đại học An Giang",
+        "publishing_year": 2022,
+        "summary": "Tài liệu giảng dạy được biên soạn thành 12 chương, kết hợp giữa lý thuyết và thực hành, đảm bảo cung cấp cho sinh viên hệ thống lý thuyết về các đơn vịngônngữtrong Tiếng việt từ cơ bản đến chuyên sâu như hệ thống kiến thức về bản chất và chức năng củangônngữ, vị trí, vai trò của Tiếng việt, đặc điểm cấu tạo phân loại âm tiết...qua đó người học có thể phân tích được các đơn vịngữâm của lời nói và hệ thốngngônngữcũng như vận dụng chúng vào việc ghi ký hiệungữâm của Tiếng việt.",
+        "subject": "Ngữvăn -- Học tập và giảng dạy."
+    },
+    {
+        "title": "Học tập di sảnngônngữcủa Hồ Chí Minh",
+        "author": "Bùi Khánh Thế.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2021,
         "summary": null,
         "subject": "Hồ Chí Minh, 1890-1969 -- Language."
     },
     {
-        "title": "Cuộc phiêu lưu củangônngữAnh : tiểu sử Anhngữtừ năm 500 đến năm 2000 / Melvyn Bragg ; Hoàng Anh dịch ; Lâm Quang Đông hiệu đính.",
-        "author": "Bragg, Melvyn.",
-        "publisher": "Hà Nội : Thế giới",
-        "publishing_year": 2022,
-        "summary": null,
-        "subject": "English language -- History."
-    },
-    {
-        "title": "Ngônngữvới văn chương / Bùi Minh Toán.",
-        "author": "Bùi, Minh Toán.",
-        "publisher": "Hà Nội : Đại học Sư phạm",
-        "publishing_year": 2021,
-        "summary": null,
-        "subject": "Vietnamese literature -- Research --Ngônngữ."
-    },
-    {
-        "title": "Lí luận và phương pháp tổ chức hoạt động phát triểnngônngữtuổi mầm non / Đinh Thanh Tuyến",
-        "author": "Đinh, Thanh Tuyến",
-        "publisher": "Hà Nội : Đại học Sư phạm",
-        "publishing_year": 2021,
-        "summary": "Trình bày lí luận về phát triểnngônngữ. Phương pháp tổ chức hoạt động phát triểnngônngữtuổi mầm non: hoạt động phát triểnngônngữgiai đoạn 0-3 tuổi, phát triển năng lực từ vựngngữnghĩa,ngữpháp, năng lựcngônngữmạch lạc... Phân tích hiện tượng songngữvà phát triểnngônngữthứ hai",
-        "subject": "Giáo dục mầm non"
-    },
-    {
-        "title": "Nguồn gốc và sự phát triển của kiến trúc - biểu tượng vàngônngữĐông Sơn / Tạ Đức.",
-        "author": "Tạ, Đức.",
-        "publisher": "Hà Nội : Khoa học Xã hội",
-        "publishing_year": 2021,
-        "summary": null,
-        "subject": "Culture."
-    },
-    {
-        "title": "Bài tập lập trình vớingônngữC++ : từ cơ bản đến nâng cao. T.1 / Trần Thông Quế.",
-        "author": "Trần, Thông Quế.",
+        "title": "Bài tập lập trình vớingônngữC++ : từ cơ bản đến nâng cao. T.1",
+        "author": "Trần Thông Quế.",
         "publisher": "Hà Nội : Thông tin và Truyền thông",
         "publishing_year": 2022,
         "summary": null,
         "subject": "C++ (Computer program language) -- Problems, exercises, etc."
     },
     {
-        "title": "Câu chuyệnngônngữ= A little book of language / David Crystal ; Phạm Minh Điệp dịch.",
-        "author": "Crystal, David.",
+        "title": "Cuộc phiêu lưu củangônngữAnh : tiểu sử Anhngữtừ năm 500 đến năm 2000",
+        "author": "Melvyn Bragg ; Hoàng Anh dịch ; Lâm Quang Đông hiệu đính.",
+        "publisher": "Hà Nội : Thế giới",
+        "publishing_year": 2022,
+        "summary": null,
+        "subject": "English language -- History."
+    },
+    {
+        "title": "Lập trình trong kỹ thuật vớingônngữC++",
+        "author": "Phùng Thị Thu Hiền ... [và những người khác].",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
+        "publishing_year": 2022,
+        "summary": "Cung cấp các kiến thức về cách xây dựng thuật toán, các kiểu dữ liệu, các phép toán số học... trongngônngữlập trình C++; cách thức xuất/nhập dữ liệu, cách lưu, xử lý dữ liệu bằng cách sử dụng các biến và câu lệnh gán trong C++; cấu trúc điều khiển, cấu trúc lặp, hàm, dữ liệu kiểu mảng, xâu ký tự và sử dụng tệp dữ liệu trong C++.",
+        "subject": "C++ (Ngônngữlập trình máy tính)."
+    },
+    {
+        "title": "Lí luận và phương pháp tổ chức hoạt động phát triểnngônngữtuổi mầm non",
+        "author": "Đinh Thanh Tuyến",
+        "publisher": "Hà Nội : Đại học Sư phạm",
+        "publishing_year": 2021,
+        "summary": "Trình bày lí luận về phát triểnngônngữ. Phương pháp tổ chức hoạt động phát triểnngônngữtuổi mầm non: hoạt động phát triểnngônngữgiai đoạn 0-3 tuổi, phát triển năng lực từ vựngngữnghĩa,ngữpháp, năng lựcngônngữmạch lạc... Phân tích hiện tượng songngữvà phát triểnngônngữthứ hai",
+        "subject": "Giáo dục mầm non"
+    },
+    {
+        "title": "Đặc điểm củangônngữcử chỉ trong giao tiếp của người Việt hiện nay",
+        "author": "Nguyễn Thị Phương chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : Khoa học Xã hội",
+        "publishing_year": 2021,
+        "summary": null,
+        "subject": "Sociology."
+    },
+    {
+        "title": "Ngônngữvới văn chương",
+        "author": "Bùi Minh Toán.",
+        "publisher": "Hà Nội : Đại học Sư phạm",
+        "publishing_year": 2021,
+        "summary": null,
+        "subject": "Vietnamese literature -- Research --Ngônngữ."
+    },
+    {
+        "title": "Câu chuyệnngônngữ= A little book of language",
+        "author": "David Crystal ; Phạm Minh Điệp dịch.",
         "publisher": "Hà Nội : Thế giới",
         "publishing_year": 2021,
         "summary": null,
         "subject": "Formal languages."
     },
     {
-        "title": "Nhân họcngônngữ/ Alessandro Duranti ; Phạm Văn Lam dịch.",
-        "author": "Duranti, Alessandro.",
-        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
-        "publishing_year": 2022,
+        "title": "Hiểu nhau qua ánh mắt và cử chỉngônngữcủa thân thể : làm sao đọc được ý nghĩ của người khác qua cử chỉ",
+        "author": "Lưu Văn Hy biên dịch.",
+        "publisher": "TP. Hồ Chí Minh : Nxb.TP. Hồ Chí Minh",
+        "publishing_year": 2021,
         "summary": null,
-        "subject": "Anthropological linguistics."
+        "subject": "Body language."
     },
     {
-        "title": "Sử dụng đúngngônngữbáo chí / Dương Út biên soạn.",
-        "author": "Dương Út.",
+        "title": "Sử dụng đúngngônngữbáo chí",
+        "author": "Dương Út biên soạn.",
         "publisher": "TP. Hồ Chí Minh : Tổng hợp TP. Hồ Chí Minh",
         "publishing_year": 2021,
         "summary": null,
         "subject": "Press -- Languages."
     },
     {
-        "title": "Đọc vị tâm tư quangônngữcơ thể / Uông Tư Nguyên ; Ngọc Thúy dịch.",
-        "author": "Uông, Tư Nguyên.",
-        "publisher": "Hà Nội : Thế giới",
-        "publishing_year": 2020,
+        "title": "Nguồn gốc và sự phát triển của kiến trúc - biểu tượng vàngônngữĐông Sơn",
+        "author": "Tạ Đức.",
+        "publisher": "Hà Nội : Khoa học Xã hội",
+        "publishing_year": 2021,
         "summary": null,
-        "subject": "Body language."
+        "subject": "Culture."
     },
     {
-        "title": "Bài tập lập trình cơ bản vớingônngữPython : sách hữu ích cho mọi học sinh, sinh viên và những người say mê Python / Trần Thông Quế.",
-        "author": "Trần, Thông Quế.",
-        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Python (Computer program language)"
-    },
-    {
-        "title": "Hệ ghi ý - về nghĩa và rép : mộtngônngữhình thức (được mô hình theongônngữsố học) biểu diễn tư tưởng ròng = Begriffsschrift : uber sinn und bedeutung on sense and reference/ Gottlob Frege ; Trần Đình Thắng dịch.",
-        "author": "Frege, Gottlob.",
-        "publisher": "Đà Nẵng : Đà Nẵng",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Logic."
-    },
-    {
-        "title": "Đông Nam Á học - Một số vấn đề vềngônngữvà văn hóa / Hồ Xuân Mai",
-        "author": "Hồ, Xuân Mai",
-        "publisher": "Hà Nội : Chính trị Quốc gia - Sự thật",
-        "publishing_year": 2020,
-        "summary": "Trình bày những vấn đề chung vềngônngữĐông Nam Á, tình hình phân bốngônngữở khu vực Đông Nam Á, nhận định về sự phát triển của cácngônngữvà chính sáchngônngữở khu vực Đông Nam Á, quan hệ giữangônngữvà văn hóa và một số vấn đề về sử dụng tiếng Việt",
-        "subject": "Ngônngữvà văn hóa -- Đông Nam Á"
-    },
-    {
-        "title": "Chìa khóa để trở thành người đangônngữ/ Hồ Thu Hương.",
-        "author": "Hồ, Thu Hương.",
-        "publisher": "Hà Nội : Thế giới",
-        "publishing_year": 2020,
-        "summary": null,
-        "subject": "Language and languages -- Study and teaching."
-    },
-    {
-        "title": "Ngônngữcủa Chúa : những bằng chứng khoa học về đức tin = The language of God : sách tham khảo / Francis S. Collins ; Lê Thị Thanh Thủy dịch ; Nguyễn Cảnh Bình hiệu đính.",
-        "author": "Collins, Francis S.",
+        "title": "Ngônngữcủa Chúa : những bằng chứng khoa học về đức tin = The language of God : sách tham khảo",
+        "author": "Francis S. Collins ; Lê Thị Thanh Thủy dịch ; Nguyễn Cảnh Bình hiệu đính.",
         "publisher": "Hà Nội : Thế giới : Công ty Sách Omega Việt Nam",
         "publishing_year": 2020,
         "summary": "Lí giải sự khác biệt lớn giữa khoa học và tôn giáo cùng một số câu hỏi lớn liên quan tới sự tồn tại của con người và sự song hành giữa niềm tin vào khoa học với đức tin vào chúa Giê su.",
         "subject": "Thiên chúa giáo -- Nghiên cứu."
     },
     {
-        "title": "Babel : vòng quanh thế giới qua 20ngônngữ= Babel : around the world in 20 languages / Gaston Dorren ; Hoàng Đức Long dịch.",
-        "author": "Dorren, Gaston.",
+        "title": "Bài tập lập trình cơ bản vớingônngữPython : sách hữu ích cho mọi học sinh, sinh viên và những người say mê Python",
+        "author": "Trần Thông Quế.",
+        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
+        "publishing_year": 2020,
+        "summary": null,
+        "subject": "Python (Computer program language)"
+    },
+    {
+        "title": "Babel : vòng quanh thế giới qua 20ngônngữ= Babel : around the world in 20 languages",
+        "author": "Gaston Dorren ; Hoàng Đức Long dịch.",
         "publisher": "Hà Nội : Thế giới",
         "publishing_year": 2020,
         "summary": null,
         "subject": "Language and languages -- Variation."
     },
     {
-        "title": "Ngônngữlập trình JAVA / Lê Chí Luận chủ biên; Nguyễn Thái Sơn, Lê Thị Hường, Trần Nguyên Hương.",
-        "author": "Lê, Chí Luận, chủ biên",
+        "title": "Đông Nam Á học - Một số vấn đề vềngônngữvà văn hóa",
+        "author": "Hồ Xuân Mai",
+        "publisher": "Hà Nội : Chính trị Quốc gia - Sự thật",
+        "publishing_year": 2020,
+        "summary": "Trình bày những vấn đề chung vềngônngữĐông Nam Á, tình hình phân bốngônngữở khu vực Đông Nam Á, nhận định về sự phát triển của cácngônngữvà chính sáchngônngữở khu vực Đông Nam Á, quan hệ giữangônngữvà văn hóa và một số vấn đề về sử dụng tiếng Việt",
+        "subject": "Ngônngữvà văn hóa -- Đông Nam Á"
+    },
+    {
+        "title": "Ngônngữlập trình JAVA",
+        "author": "Lê Chí Luận chủ biên; Nguyễn Thái Sơn, Lê Thị Hường, Trần Nguyên Hương.",
         "publisher": "Hà Nội : Khoa học Tự nhiên và Công nghệ",
         "publishing_year": 2019,
         "summary": null,
         "subject": "Ngônngữlập trình JAVA"
     },
     {
-        "title": "Văn hóa Việt Nam trongngônngữ: sách chuyên khảo / Lý Tùng Hiếu",
-        "author": "Lý, Tùng Hiếu, TS.",
+        "title": "Đọc vị tâm tư quangônngữcơ thể",
+        "author": "Uông Tư Nguyên ; Ngọc Thúy dịch.",
+        "publisher": "Hà Nội : Thế giới",
+        "publishing_year": 2020,
+        "summary": null,
+        "subject": "Body language."
+    },
+    {
+        "title": "Văn hóa Việt Nam trongngônngữ: sách chuyên khảo",
+        "author": "Lý Tùng Hiếu",
         "publisher": "Hà Nội : Tri Thức",
         "publishing_year": 2019,
         "summary": null,
         "subject": "Ngônngữhọc ứng dụng."
     },
     {
-        "title": "Các khuynh hướng và trường pháingônngữhọc hiện đại / Nguyễn Thiện Giáp.",
-        "author": "Nguyễn, Thiện Giáp.",
-        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "Linguistics -- Philosophy."
-    },
-    {
-        "title": "Nghiên cứu đối chiếu cácngônngữ/ Lê Quang Thiêm",
-        "author": "Lê, Quang Thiêm",
-        "publisher": "Tp. Hồ Chí Minh : Đại Học Quốc Gia Tp. Hồ Chí Minh",
-        "publishing_year": 2019,
-        "summary": "Cung cấp những hiểu biết chung vềngônngữhọc đối chiếu. Nghiên cứu đối chiếungữâm âm vị, hành vị, đối chiếu câu, đối chiếu từ, nghĩa và phương pháp nghiên cứu đối chiếu",
-        "subject": "Ngônngữhọc so sánh"
-    },
-    {
-        "title": "Lý thuyếtngônngữhình thức / Nguyễn Thanh Phương.",
-        "author": "Nguyễn, Thanh Phương.",
-        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
-        "publishing_year": 2018,
-        "summary": null,
-        "subject": "Lý thuyếtngônngữhình thức"
-    },
-    {
-        "title": "Nghiên cứu đối chiếu cácngônngữ/ Lê Quang Thiêm.",
-        "author": "Lê, Quang Thiêm.",
-        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
-        "publishing_year": 2019,
-        "summary": null,
-        "subject": "Comparative linguistics."
-    },
-    {
-        "title": "Cuộc sống ở trongngônngữ/ Hoàng Tuệ.",
-        "author": "Hoàng, Tuệ.",
-        "publisher": "TP. Hồ Chí Minh : Trẻ",
-        "publishing_year": 2018,
-        "summary": null,
-        "subject": "Vietnamese language -- Research."
-    },
-    {
-        "title": "Ngônngữmạng : biến thểngônngữtrên mạng Tiếng Việt / Nguyễn Văn Khang.",
-        "author": "Nguyễn, Văn Khang.",
+        "title": "Ngônngữmạng : biến thểngônngữtrên mạng Tiếng Việt",
+        "author": "Nguyễn Văn Khang.",
         "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
         "publishing_year": 2019,
         "summary": null,
         "subject": "Vietnamese language -- Variation."
     },
     {
-        "title": "Giáo trìnhngônngữlập trình C / Phan Thanh Toàn, Nguyễn Thế Lộc",
-        "author": "Phan, Thanh Toàn",
+        "title": "Các khuynh hướng và trường pháingônngữhọc hiện đại",
+        "author": "Nguyễn Thiện Giáp.",
+        "publisher": "Hà Nội : Đại học Quốc gia Hà Nội",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Linguistics -- Philosophy."
+    },
+    {
+        "title": "Ngônngữlập trình Java",
+        "author": "Lê Chí Luận chủ biên ... [và những người khác].",
+        "publisher": "Hà Nội : Khoa học Tự nhiên và Công nghệ",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Java (Computer program language)"
+    },
+    {
+        "title": "Marugoto -ngônngữvà văn hóa Nhật Bản : nhập môn A1 - hoạt động giao tiếp",
+        "author": "Quỹ giao lưu quốc tế Nhật Bản ; Hà Thị Thu Hiền, Lê Kim Thanh dịch.",
+        "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Japanese language -- Textbooks for foreign speakers."
+    },
+    {
+        "title": "Ngônngữvà ý thức của A. R. Luria",
+        "author": "Trần Hữu Luyến sưu tầm và biên soạn.",
+        "publisher": "Hà Nội : Khoa học Xã hội",
+        "publishing_year": 2019,
+        "summary": null,
+        "subject": "Luria, Alexander Romanovich, 1902-1977."
+    },
+    {
+        "title": "Giáo trìnhngônngữlập trình C",
+        "author": "Phan Thanh Toàn, Nguyễn Thế Lộc",
         "publisher": "Hà Nội : Đại học Sư phạm",
         "publishing_year": 2018,
         "summary": "Trình bày tổng quan vềngônngữlập trình C; các kiểu dữ liệu cơ bản; nhập xuất dữ liệu, khối lệnh, chuyển đổi kiểu dữ liệu; các cấu trúc điều khiển; con trỏ, mảng và xâu kí tự; hàm; các kiểu dữ liệu nâng cao và lập trình C với vi điều khiển 8051",
         "subject": "C (Ngônngữlập trình máy tính)"
     },
     {
-        "title": "Ngônngữcơ thể for dummies / Elizabeth Kuhnke ; Tố Khanh dịch.",
-        "author": "Kuhnke, Elizabeth.",
-        "publisher": "Hà Nội : Lao động",
+        "title": "Lý thuyếtngônngữhình thức",
+        "author": "Nguyễn Thanh Phương.",
+        "publisher": "Hà Nội : Khoa học và Kỹ thuật",
         "publishing_year": 2018,
         "summary": null,
-        "subject": "Body language."
+        "subject": "Lý thuyếtngônngữhình thức"
     },
     {
-        "title": "Ngônngữhọcngữliệu / Đinh Điền.",
-        "author": "Đinh, Điền, PGS.TS.",
+        "title": "Ngônngữhọcngữliệu",
+        "author": "Đinh Điền.",
         "publisher": "TP. Hồ Chí Minh : Đại học Quốc gia TP. Hồ Chí Minh",
         "publishing_year": 2018,
         "summary": null,
         "subject": "Applied linguistics."
     },
     {
-        "title": "Ngônngữvới văn chương / Bùi Minh Toán.",
-        "author": "Bùi, Minh Toán",
-        "publisher": "Hà Nội : Đại học sư phạm",
-        "publishing_year": 2017,
+        "title": "Ngônngữcơ thể for dummies",
+        "author": "Elizabeth Kuhnke ; Tố Khanh dịch.",
+        "publisher": "Hà Nội : Lao động",
+        "publishing_year": 2018,
         "summary": null,
-        "subject": "Ngônngữhọc."
+        "subject": "Body language."
     },
     {
-        "title": "Nghệ thuật nói lái quangônngữdân gian Nam bộ / Bùi Thanh Kiên.",
-        "author": "Bùi, Thanh Kiên, 1941-2017.",
+        "title": "Nghệ thuật nói lái quangônngữdân gian Nam bộ",
+        "author": "Bùi Thanh Kiên.",
         "publisher": "Tp. Hồ Chí Minh : Tổng hợp TP. Hồ Chí Minh",
         "publishing_year": 2017,
         "summary": null,
         "subject": "Puns and punning."
     },
     {
-        "title": "Giáo trìnhngônngữlập trình C++ / Vũ Việt Vũ chủ biên, Phùng Thị Thu Hiền.",
-        "author": "Vũ, Việt Vũ, TS.",
+        "title": "Ngônngữvới văn chương",
+        "author": "Bùi Minh Toán.",
+        "publisher": "Hà Nội : Đại học sư phạm",
+        "publishing_year": 2017,
+        "summary": null,
+        "subject": "Ngônngữhọc."
+    },
+    {
+        "title": "Giáo trìnhngônngữlập trình C++",
+        "author": "Vũ Việt Vũ chủ biên, Phùng Thị Thu Hiền.",
         "publisher": "Hà Nội : Khoa học và Kỹ thuật",
         "publishing_year": 2017,
         "summary": null,

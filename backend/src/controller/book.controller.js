@@ -25,14 +25,11 @@ class BookController {
     const { bookid } = req.params;
     const response = await BookService.getBookDetail(bookid);
     return res.status(200).json(response);
-  }
+  };
 
   getBookListingDetail = async (req, res) => {
     const { bookid, listingid } = req.params;
-    const response = await BookService.getBookListingDetail(
-      bookid,
-      listingid
-    );
+    const response = await BookService.getBookListingDetail(bookid, listingid);
     return res.status(200).json(response);
   };
 
@@ -49,11 +46,7 @@ class BookController {
   buyBook = async (req, res) => {
     const { bookid, listingid } = req.params;
     console.log(req.body);
-    const response = await BookService.buyBook(
-      bookid,
-      listingid,
-      req.body
-    );
+    const response = await BookService.buyBook(bookid, listingid, req.body);
     return res.status(200).json(response);
   };
 
@@ -65,11 +58,7 @@ class BookController {
 
   rentBook = async (req, res) => {
     const { bookid, listingid } = req.params;
-    const response = await BookService.rentBook(
-      bookid,
-      listingid,
-      req.body
-    );
+    const response = await BookService.rentBook(bookid, listingid, req.body);
     return res.status(200).json(response);
   };
 
@@ -79,6 +68,23 @@ class BookController {
     return res.status(200).json(response);
   };
 
+  getListings = async (req, res) => {
+    const { bookid, buyerid, sellerid, leaserid, renterid } = req.query;
+    const response = await BookService.getListings(bookid, buyerid, sellerid, leaserid, renterid);
+    return res.status(200).json(response);
+  };
+
+  addListing = async (req, res) => {
+    const { bookid } = req.params;
+    const response = await BookService.addListing(bookid, req.body);
+    return res.status(200).json(response);
+  };
+
+  deleteListing = async (req, res) => {
+    const { listingid } = req.params;
+    const response = await BookService.deleteListing(listingid);
+    return res.status(200).json(response);
+  };
 }
 
 module.exports = new BookController();

@@ -44,8 +44,118 @@ const bookController = require("../../controller/book.controller");
  *     responses:
  *       200:
  *         description: A list of books
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Get books successfully
+ *                 books:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       book_id:
+ *                         type: string
+ *                         format: uuid
+ *                         example: 00000000-0000-0000-0000-000000000000
+ *                       title:
+ *                         type: string
+ *                         example: Lậptrìnhcơ bản - Tự học Python bằng hình ảnh
+ *                       img_url:
+ *                         type: string
+ *                         nullable: true
+ *                         example: null
+ *                       author:
+ *                         type: string
+ *                         example: Nguyễn, Quốc Huy.
+ *                       publisher:
+ *                         type: string
+ *                         example: "Hà Nội : Thanh niên"
+ *                       publishing_year:
+ *                         type: integer
+ *                         example: 2022
+ *                       subject:
+ *                         type: string
+ *                         example: Python (Ngôn ngữlậptrìnhmáy tính).
+ *                       summary:
+ *                         type: string
+ *                         nullable: true
+ *                         example: Giới thiệu những tính năng nổi bật của ngôn ngữ lập trình Python...
+ *                       price:
+ *                         type: number
+ *                         format: float
+ *                         nullable: true
+ *                         example: null
  */
+
 router.get("/", asyncHandler(bookController.getBooks));
+
+/**
+ * @swagger
+ * /api/v1/books/listings:
+ *   get:
+ *     tags: [Book]
+ *     summary: Get book listings with filtering options
+ *     description: Retrieves book listings based on different filter criteria
+ *     parameters:
+ *       - in: query
+ *         name: bookid
+ *         schema:
+ *           type: string
+ *         description: Filter listings by book ID
+ *       - in: query
+ *         name: buyerid
+ *         schema:
+ *           type: string
+ *         description: Filter listings by buyer ID
+ *       - in: query
+ *         name: sellerid
+ *         schema:
+ *           type: string
+ *         description: Filter listings by seller ID
+ *       - in: query
+ *         name: leaserid
+ *         schema:
+ *           type: string
+ *         description: Filter listings by leaser ID
+ *       - in: query
+ *         name: renterid
+ *         schema:
+ *           type: string
+ *         description: Filter listings by renter ID
+ *     responses:
+ *       200:
+ *         description: A list of book listings
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Get listings successfully
+ *                 listings:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       404:
+ *         description: No listings found
+ *       500:
+ *         description: Server error
+ */
+router.get(
+  "/listings",
+  asyncHandler(bookController.getListings)
+)
 
 /**
  * @swagger
@@ -99,8 +209,10 @@ router.get("/:bookid", asyncHandler(bookController.getBookDetail));
  *       500:
  *         description: Server error
  */
-router.get("/:bookid/listing/:listingid", asyncHandler(bookController.getBookListingDetail));
-
+router.get(
+  "/:bookid/listing/:listingid",
+  asyncHandler(bookController.getBookListingDetail)
+);
 
 /**
  * @swagger
@@ -145,7 +257,10 @@ router.get("/:bookid/listing/:listingid", asyncHandler(bookController.getBookLis
  *       500:
  *         description: Server error
  */
-router.post("/:bookid/listing/:listingid/buy", asyncHandler(bookController.buyBook));
+router.post(
+  "/:bookid/listing/:listingid/buy",
+  asyncHandler(bookController.buyBook)
+);
 
 /**
  * @swagger
@@ -175,7 +290,10 @@ router.post("/:bookid/listing/:listingid/buy", asyncHandler(bookController.buyBo
  *       500:
  *         description: Server error
  */
-router.get("/:bookid/listing/:listingid/buyer", asyncHandler(bookController.getBuyer));
+router.get(
+  "/:bookid/listing/:listingid/buyer",
+  asyncHandler(bookController.getBuyer)
+);
 
 /**
  * @swagger
@@ -211,6 +329,14 @@ router.get("/:bookid/listing/:listingid/buyer", asyncHandler(bookController.getB
  *                type: boolean
  *                required: true
  *                description: Modifiable flag for the rental
+ *              pickup_date:
+ *                type: string
+ *                format: date-time
+ *                required: true
+ *              end_date:
+ *                type: string
+ *                format: date-time
+ *                required: true
  *     responses:
  *       200:
  *         description: Rental successful
@@ -221,7 +347,10 @@ router.get("/:bookid/listing/:listingid/buyer", asyncHandler(bookController.getB
  *       500:
  *         description: Server error
  */
-router.post("/:bookid/listing/:listingid/rent", asyncHandler(bookController.rentBook));
+router.post(
+  "/:bookid/listing/:listingid/rent",
+  asyncHandler(bookController.rentBook)
+);
 
 /**
  * @swagger
@@ -251,6 +380,99 @@ router.post("/:bookid/listing/:listingid/rent", asyncHandler(bookController.rent
  *       500:
  *         description: Server error
  */
-router.get("/:bookid/listing/:listingid/renter", asyncHandler(bookController.getRenter));
+router.get(
+  "/:bookid/listing/:listingid/renter",
+  asyncHandler(bookController.getRenter)
+);
+
+/**
+ * @swagger
+ * /api/v1/books/{bookid}/listing:
+ *   post:
+ *     tags: [Book]
+ *     summary: Add a new listing for a book
+ *     description: Creates a new listing for a specific book with sale or rental options
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book to create listing for
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               provider_id:
+ *                 type: string
+ *                 required: true
+ *                 description: ID of the user creating the listing
+ *               is_sold:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Indicates if the book is for sale
+ *               is_leased:
+ *                 type: boolean
+ *                 required: true
+ *                 description: Indicates if the book is for sale
+ *               sold_price:
+ *                 type: number
+ *                 format: float
+ *                 description: Price for sale (required if listing_type includes sale)
+ *               leased_price:
+ *                 type: number
+ *                 format: float
+ *                 description: Price for rent (required if listing_type includes rent)
+ *               leased_period:
+ *                 type: string
+ *                 description: Duration for which the book can be rented
+ *               condition:
+ *                 type: string
+ *                 description: Condition of the book
+ *     responses:
+ *       201:
+ *         description: Listing created successfully
+ *       400:
+ *         description: Invalid request data
+ *       404:
+ *         description: Book not found
+ *       500:
+ *         description: Server error
+ */
+router.post(
+  "/:bookid/listing",
+  asyncHandler(bookController.addListing)
+);
+
+/**
+ * @swagger
+ * /api/v1/books/{bookid}/listing/{listingid}:
+ *   delete:
+ *     tags: [Book]
+ *     summary: Delete a book listing
+ *     description: Deletes a specific book listing by its ID
+ *     parameters:
+ *       - in: path
+ *         name: listingid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the listing to delete
+ *     responses:
+ *       200:
+ *         description: Listing deleted successfully
+ *       404:
+ *         description: Listing not found
+ *       500:
+ *         description: Server error
+ */
+router.delete(
+  "/:bookid/listing/:listingid",
+  asyncHandler(bookController.deleteListing)
+);
+
 
 module.exports = router;

@@ -1,9 +1,17 @@
 "use strict";
 
 const { BadRequestError, AuthFailureError } = require("../core/error.response");
-const { getBooks, getBookDetail, getBookListingDetail } = require("../dbs/repositories/book.repo");
+const {
+  getBooks,
+  getBookDetail,
+  getBookListingDetail,
+  getListings: findListings,
+  saveListing,
+  deleteListing
+} = require("../dbs/repositories/book.repo");
 const isBoughtRepo = require("../dbs/repositories/isBought.repo");
 const isRentedRepo = require("../dbs/repositories/isRented.repo");
+const { DateTime } = require("luxon");
 
 class BookService {
   // static async getBooks({ page, pageSize }) {
@@ -71,9 +79,7 @@ class BookService {
     };
   }
 
-  static getBookByProvider(id) {
-
-  }
+  static getBookByProvider(id) {}
 
   static async buyBook(bookId, listingId, data) {
     const result = await isBoughtRepo.saveBought(bookId, listingId, data);
@@ -100,6 +106,24 @@ class BookService {
   }
 
   static async rentBook(bookId, listingId, data) {
+    const pickupDate = DateTime.fromISO(data.pickup_date, { setZone: true });
+    const endDate = DateTime.fromISO(data.end_date, { setZone: true });
+
+    if (!pickupDate.isValid) {
+      throw new BadRequestError("Invalid pickup date format");
+    }
+
+    if (!endDate.isValid) {
+      throw new BadRequestError("Invalid end date format");
+    }
+
+    if (endDate <= pickupDate) {
+      throw new BadRequestError("End date must be after pickup date");
+    }
+
+    data.pickup_date = pickupDate.toISO();
+    data.end_date = endDate.toISO();
+
     const result = await isRentedRepo.saveRented(bookId, listingId, data);
     if (!result) {
       throw new BadRequestError("Book not found");
@@ -123,6 +147,47 @@ class BookService {
     };
   }
 
+  static async getListings(bookId, buyerId, sellerId, leaserId, renterId) {
+    const result = await findListings(
+      bookId,
+      buyerId,
+      sellerId,
+      leaserId,
+      renterId
+    );
+    if (!result) {
+      throw new BadRequestError("Book not found");
+    }
+    return {
+      status: 200,
+      message: "Get book detail successfully",
+      book: result,
+    };
+  }
+
+  static async addListing(bookId, listing) {
+    const result = await saveListing(bookId, listing);
+    if (!result) {
+      throw new BadRequestError("Book not found");
+    }
+    return {
+      status: 200,
+      message: "Get book detail successfully",
+      book: result,
+    };
+  }
+
+  static async deleteListing(listingId) {
+    const result = await deleteListing(listingId);
+    if (!result) {
+      throw new BadRequestError("Listing not found");
+    }
+    return {
+      status: 200,
+      message: "Delete listing successfully",
+      listing: result,
+    };
+  }
 }
 
 module.exports = BookService;
