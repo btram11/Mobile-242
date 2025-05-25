@@ -44,7 +44,56 @@ const bookController = require("../../controller/book.controller");
  *     responses:
  *       200:
  *         description: A list of books
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Get books successfully
+ *                 books:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       book_id:
+ *                         type: string
+ *                         format: uuid
+ *                         example: 00000000-0000-0000-0000-000000000000
+ *                       title:
+ *                         type: string
+ *                         example: Lậptrìnhcơ bản - Tự học Python bằng hình ảnh
+ *                       img_url:
+ *                         type: string
+ *                         nullable: true
+ *                         example: null
+ *                       author:
+ *                         type: string
+ *                         example: Nguyễn, Quốc Huy.
+ *                       publisher:
+ *                         type: string
+ *                         example: "Hà Nội : Thanh niên"
+ *                       publishing_year:
+ *                         type: integer
+ *                         example: 2022
+ *                       subject:
+ *                         type: string
+ *                         example: Python (Ngôn ngữlậptrìnhmáy tính).
+ *                       summary:
+ *                         type: string
+ *                         nullable: true
+ *                         example: Giới thiệu những tính năng nổi bật của ngôn ngữ lập trình Python...
+ *                       price:
+ *                         type: number
+ *                         format: float
+ *                         nullable: true
+ *                         example: null
  */
+
 router.get("/", asyncHandler(bookController.getBooks));
 
 /**

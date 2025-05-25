@@ -56,7 +56,7 @@ const getBooks = async (
         summary: { search: keyword },
       },
     ];
-    if (!sortby) sortby = "relevance";  // sort by relevance
+    if (!sortby) sortby = "relevance"; // sort by relevance
     orderBy._relevance = {
       fields: ["title", "subject", "summary"],
       search: keyword,
@@ -64,20 +64,56 @@ const getBooks = async (
     };
   }
 
-  const result = await prisma.database_book.findMany({
+  // const result = await prisma.database_book.findMany({
+  //   relationLoadStrategy: "join",
+  //   skip: skip,
+  //   take: take,
+  //   where: joinCondition,
+  //   orderBy: orderBy,
+  // });
+  const books = await prisma.database_book.findMany({
     relationLoadStrategy: "join",
-    skip: skip,
-    take: take,
+    skip,
+    take,
     where: joinCondition,
-    orderBy: orderBy,
+    orderBy,
+    include: {
+      listed_books: {
+        where: {
+          ...(isSold && { is_sold: true }),
+          ...(isLeased && { is_leased: true }),
+        },
+        orderBy: {
+          listed_at: "desc",
+        },
+        take: 1, // Only get the most recent listing
+      },
+    },
   });
-  
+
+  const result = books.map((book) => {
+    const listing = book.listed_books[0];
+
+    return {
+      book_id: book.book_id,
+      title: book.title,
+      img_url: book.img_url,
+      author: book.author,
+      publisher: book.publisher,
+      publishing_year: book.publishing_year,
+      subject: book.subject,
+      summary: book.summary,
+      sold_price: listing?.is_sold ? listing?.sold_price : null,
+      leased_price: listing?.is_leased ? listing?.leased_price : null,
+    };
+  });
+
   return result;
 };
 
 const getBookListingDetail = async (bookid, listingid) => {
   const result = await prisma.listed_book.findFirst({
-    relationLoadStrategy: 'join',
+    relationLoadStrategy: "join",
     where: {
       book_id: bookid,
       listing_id: listingid,
@@ -92,7 +128,7 @@ const getBookListingDetail = async (bookid, listingid) => {
 
 const getBookDetail = async (bookid) => {
   const result = await prisma.database_book.findFirst({
-    relationLoadStrategy: 'join',
+    relationLoadStrategy: "join",
     where: {
       book_id: bookid,
     },
