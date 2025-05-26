@@ -120,6 +120,7 @@ const getBookListingDetail = async (bookid, listingid) => {
     },
     include: {
       book: true,
+
     },
   });
 
@@ -133,12 +134,53 @@ const getBookDetail = async (bookid) => {
       book_id: bookid,
     },
     include: {
-      listed_books: true,
+      listed_books: {
+        include: {
+          provider: {
+            select: {
+              user: {
+                select: {
+                  user_id: true,
+                  username: true,
+                  email: true,
+                  phone_number: true,
+                },
+              },
+            },
+          },
+        },
+      },
     },
   });
 
   return result;
 };
+
+const getSimilarBooks = async (bookId, page, pageSize) => {
+  const skip = (page - 1) * pageSize;
+  const take = pageSize;
+
+  const book = await prisma.database_book.findUnique({
+    where: { book_id: bookId },
+    select: { category: true },
+  });
+
+  if (!book) {
+    throw new Error("Book not found");
+  }
+
+  const result = await prisma.database_book.findMany({
+    relationLoadStrategy: "join",
+    where: {
+      category: book.category,
+      book_id: { not: bookId }, // Exclude the current book
+    },
+    skip,
+    take,
+  });
+
+  return result;
+}
 
 const getListings = async (bookId, buyerId, sellerId, leaserId, renterId) => {
   const whereCondition = {};
@@ -192,14 +234,17 @@ const saveListing = async (bookId, listing) => {
   return result;
 }
 
-const deleteListing = async (listingId) => {
+const deleteListing = async (bookId, listingId) => {
   const result = await prisma.listed_book.delete({
     where: {
-      listing_id: listingId,
+      book_id_listing_id: {
+        book_id: bookId,
+        listing_id: listingId,
+      },
     },
   });
 
   return result;
 };
 
-module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings };
+module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings, getSimilarBooks };

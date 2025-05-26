@@ -6,6 +6,7 @@ const {
   getBookDetail,
   getBookListingDetail,
   getListings: findListings,
+  getSimilarBooks: findSimilarBooks,
   saveListing,
   deleteListing
 } = require("../dbs/repositories/book.repo");
@@ -177,8 +178,8 @@ class BookService {
     };
   }
 
-  static async deleteListing(listingId) {
-    const result = await deleteListing(listingId);
+  static async deleteListing(bookId, listingId) {
+    const result = await deleteListing(bookId, listingId);
     if (!result) {
       throw new BadRequestError("Listing not found");
     }
@@ -188,6 +189,19 @@ class BookService {
       listing: result,
     };
   }
+
+  static async getSimilarBooks(bookId, page = 1, pageSize = 10) {
+    const result = await findSimilarBooks(bookId, page, pageSize);
+    if (!result) {
+      throw new BadRequestError("No similar books found");
+    }
+    return {
+      status: 200,
+      message: "Get similar books successfully",
+      books: result,
+    };
+  }
+
 }
 
 module.exports = BookService;
