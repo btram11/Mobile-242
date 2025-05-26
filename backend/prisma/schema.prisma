@@ -32,6 +32,7 @@ model database_book {
   subject         String?
   summary         String?
   price           Float?
+  category        String?
   listed_books    listed_book[]
 }
 

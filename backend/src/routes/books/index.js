@@ -183,6 +183,82 @@ router.get("/:bookid", asyncHandler(bookController.getBookDetail));
 
 /**
  * @swagger
+ * /api/v1/books/{bookid}/similarBooks:
+ *   get:
+ *     tags: [Book]
+ *     summary: Get similar books by book ID
+ *     description: Retrieves a list of books that are similar to the specified book based on various criteria like subject, author, or category
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book to find similar books for
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: pageSize
+ *         schema:
+ *           type: integer
+ *         description: Number of items per page
+ *     responses:
+ *       200:
+ *         description: List of similar books retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Get similar books successfully
+ *                 books:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       book_id:
+ *                         type: string
+ *                         format: uuid
+ *                         example: 00000000-0000-0000-0000-000000000000
+ *                       title:
+ *                         type: string
+ *                         example: Advanced Python Programming
+ *                       img_url:
+ *                         type: string
+ *                         nullable: true
+ *                         example: null
+ *                       author:
+ *                         type: string
+ *                         example: John Doe
+ *                       publisher:
+ *                         type: string
+ *                         example: Tech Publications
+ *                       publishing_year:
+ *                         type: integer
+ *                         example: 2023
+ *                       subject:
+ *                         type: string
+ *                         example: Python (Computer programming language)
+ *       404:
+ *         description: Book not found or no similar books available
+ *       500:
+ *         description: Server error
+ */
+router.get(
+  "/:bookid/similarBooks",
+  asyncHandler(bookController.getSimilarBooks)
+);
+
+/**
+ * @swagger
  * /api/v1/books/{bookid}/listing/{listingid}:
  *   get:
  *     tags: [Book]
@@ -455,6 +531,12 @@ router.post(
  *     summary: Delete a book listing
  *     description: Deletes a specific book listing by its ID
  *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book to delete
  *       - in: path
  *         name: listingid
  *         required: true

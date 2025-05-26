@@ -81,10 +81,17 @@ class BookController {
   };
 
   deleteListing = async (req, res) => {
-    const { listingid } = req.params;
-    const response = await BookService.deleteListing(listingid);
+    const { bookid, listingid } = req.params;
+    const response = await BookService.deleteListing(bookid, listingid);
     return res.status(200).json(response);
   };
+
+  getSimilarBooks = async (req, res) => {
+    const bookid = req.params.bookid;
+    const { page, pageSize } = req.query;
+    const response = await BookService.getSimilarBooks(bookid, parseInt(page), parseInt(pageSize));
+    return res.status(200).json(response);
+  }
 }
 
 module.exports = new BookController();
