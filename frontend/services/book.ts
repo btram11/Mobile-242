@@ -45,6 +45,62 @@ export const getBookById = async (bookId: string) => {
   return result.book;
 };
 
+export const getBookDetailByBookIdandListingId = async (
+  bookId: string,
+  listingId: string
+) => {
+  const response = await fetch(`${BaseUrl}/${bookId}/listing/${listingId}`, {
+    method: "GET",
+    headers: await buildHeaders(),
+  });
+
+  if (!response.ok)
+    throw new Error(`Error fetching books: ${response.statusText}`);
+
+  const result = await response.json();
+  return result.book;
+};
+
+export const getSimilarBooks = async (
+  bookId: string,
+  page: number = 1,
+  pageSize: number = 10
+) => {
+  const params = new URLSearchParams({
+    page: String(page),
+    pageSize: String(pageSize),
+  });
+
+  const response = await fetch(
+    `${BaseUrl}/${bookId}/similarBooks?${params.toString()}`,
+    {
+      method: "GET",
+      headers: await buildHeaders(),
+    }
+  );
+
+  if (!response.ok)
+    throw new Error(`Error fetching similar books: ${response.statusText}`);
+  const result = await response.json();
+  return result.books;
+};
+
+export const getBookListings = async (bookId: string) => {
+  const params = new URLSearchParams({
+    bookid: bookId,
+  });
+  const response = await fetch(`${BaseUrl}/listings?${params.toString()}`, {
+    method: "GET",
+    headers: await buildHeaders(),
+  });
+
+  if (!response.ok)
+    throw new Error(`Error fetching book listings: ${response.statusText}`);
+
+  const result = await response.json();
+  return result.book;
+};
+
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

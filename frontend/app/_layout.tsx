@@ -116,7 +116,7 @@ const RootLayout = () => {
                   }}
                 />
                 <Stack.Screen
-                  name="book-info/[book_id]/providers"
+                  name="book-info/[book_id]/listings"
                   options={{
                     headerShown: true,
                     title: "",

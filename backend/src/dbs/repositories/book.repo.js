@@ -105,6 +105,7 @@ const getBooks = async (
       summary: book.summary,
       sold_price: listing?.is_sold ? listing?.sold_price : null,
       leased_price: listing?.is_leased ? listing?.leased_price : null,
+      listing_id: listing?.listing_id ? listing?.listing_id : null,
     };
   });
 
@@ -222,7 +223,7 @@ const getListings = async (bookId, buyerId, sellerId, leaserId, renterId) => {
 }
 
 const saveListing = async (bookId, listing) => {
-  const {provider_id, ...data} = listing;
+  const { provider_id, ...data } = listing;
   const result = await prisma.listed_book.create({
     data: {
       ...data,

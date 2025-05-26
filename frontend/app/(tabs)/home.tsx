@@ -27,8 +27,7 @@ import ProviderCard from "@/components/ProviderCard";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
-// import mockedBooks from '../../../backend/prisma/data/database_books.json'
-import { mockedBooks, mockedNews, mockedProviders } from "@/mocks/data";
+import { mockedNews, mockedProviders } from "@/mocks/data";
 import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/services/book";
 
@@ -94,9 +93,8 @@ export default function HomePage() {
                     <BookCard
                       key={idx}
                       id={book.book_id}
-                      img_src={
-                        book.img_url ?? require("@/assets/images/book1.jpg")
-                      }
+                      listing_id={book.listing_id}
+                      img_src={book.img_url}
                       title={(book.title || "").split("/")[0].trim()}
                       sold_price={book.sold_price}
                       is_sold={book.sold_price}
