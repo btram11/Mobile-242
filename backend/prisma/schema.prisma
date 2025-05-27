@@ -90,6 +90,7 @@ model is_bought {
   location    String?
   pickup_date DateTime?
   modifiable  Boolean
+  is_complete Boolean     @default(false)
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 
@@ -105,6 +106,7 @@ model is_rented {
   modifiable  Boolean
   end_date    DateTime?
   policy      String?
+  is_complete Boolean     @default(false)
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 
