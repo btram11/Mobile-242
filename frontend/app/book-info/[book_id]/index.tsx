@@ -7,19 +7,15 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Touchable,
-  TouchableWithoutFeedback,
   RefreshControl,
 } from "react-native";
 
-import { Picker } from "@react-native-picker/picker";
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Rating from "@/components/Rating";
 import {
   CustomButtonLight,
   CustomButtonPrimary,
-  CustomButtonSecondary,
 } from "@/components/CustomSquareButton";
 import BookCard from "@/components/BookCard";
 import { useHeaderHeart } from "@/hooks/useFavoriteHeader";
@@ -27,7 +23,6 @@ import { useDispatch } from "react-redux";
 import { setPaymentData } from "@/features/payment/paymentSlice";
 import { useQuery } from "@tanstack/react-query";
 import {
-  getBookById,
   getSimilarBooks,
   getBookDetailByBookIdandListingId,
 } from "@/services/book";
@@ -75,7 +70,6 @@ export default function BookInfo() {
   };
 
   const handleProviderPress = () => {
-    console.log("Provider pressed", `/book-info/${book_id}/listings`);
     router.push(`/book-info/${book_id}/listings`);
   };
 
@@ -196,7 +190,7 @@ export default function BookInfo() {
                 dispatch(
                   setPaymentData({
                     book_id,
-                    provider_id,
+                    listing_id,
                     paymentType: "purchase",
                   })
                 );
@@ -211,7 +205,7 @@ export default function BookInfo() {
             <CustomButtonLight
               handlePress={() => {
                 router.push(
-                  `/book-info/${book_id}/rent?provider_id=${provider_id || 1}`
+                  `/book-info/${book_id}/rent?listing_id=${listing_id || 1}`
                 );
               }}
               text="Rent"

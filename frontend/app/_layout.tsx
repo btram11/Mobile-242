@@ -135,7 +135,7 @@ const RootLayout = () => {
                   name="payment/confirm"
                   options={{
                     headerShown: true,
-                    title: "Confirm Your Payment",
+                    title: "Confirm Your Order",
                     headerTitleAlign: "center",
                   }}
                 />

@@ -1,4 +1,5 @@
 import { buildHeaders } from ".";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BaseUrl = process.env.EXPO_PUBLIC_API_URL + "/books";
 
@@ -99,6 +100,51 @@ export const getBookListings = async (bookId: string) => {
 
   const result = await response.json();
   return result.book;
+};
+
+export const buyBook = async (bookId: string, listingId: string) => {
+  const response = await fetch(
+    `${BaseUrl}/${bookId}/listing/${listingId}/buy`,
+    {
+      method: "POST",
+      headers: await buildHeaders(),
+      body: JSON.stringify({
+        user_id: await AsyncStorage.getItem("userId"),
+        modifiable: true,
+      }),
+    }
+  );
+
+  const result = await response.json();
+  if (!response.ok) throw new Error(`Error renting book: ${result.code}`);
+  return result;
+};
+
+export const rentBook = async (
+  bookId: string,
+  listingId: string,
+  startDate: string,
+  endDate: string
+) => {
+  const response = await fetch(
+    `${BaseUrl}/${bookId}/listing/${listingId}/rent`,
+    {
+      method: "POST",
+      headers: await buildHeaders(),
+      body: JSON.stringify({
+        user_id: await AsyncStorage.getItem("userId"),
+        modifiable: true,
+        pickup_date: new Date(startDate).toISOString(),
+        end_date: new Date(endDate).toISOString(),
+      }),
+    }
+  );
+
+  if (!response.ok)
+    throw new Error(`Error renting book: ${response.statusText}`);
+
+  const result = await response.json();
+  return result;
 };
 
 function delay(ms: number) {
