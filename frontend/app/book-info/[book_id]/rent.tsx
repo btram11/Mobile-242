@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useModal } from "@/context/ModalContext";
 import { setPaymentData } from "@/features/payment/paymentSlice";
+import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams, router } from "expo-router";
 import { useState, useEffect } from "react";
 import {
@@ -15,7 +16,12 @@ import { Calendar } from "react-native-calendars";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function RentBook() {
-  const { book_id, provider_id } = useLocalSearchParams();
+  const { book_id, listing_id } = useLocalSearchParams();
+
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["listing", book_id, listing_id],
+    queryFn: () => getBookDetailByBookIdandListingId(book_id, listing_id),
+  });
   const dispatch = useDispatch();
   const { openModal } = useModal();
   const { startDate, endDate } = useSelector(
@@ -38,7 +44,7 @@ export default function RentBook() {
     dispatch(
       setPaymentData({
         book_id,
-        provider_id,
+        listing_id,
         paymentType: "rental",
         startDate,
         endDate,
@@ -47,12 +53,19 @@ export default function RentBook() {
     router.push(`/payment/confirm`);
   };
   const handleSelectDate = () => {
-    openModal("DateRangePicker", {});
+    openModal("DateRangePicker", { leased_period: data?.leased_period });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Select Rental Dates</Text>
+
+      {data?.leased_period && (
+        <Text style={{ fontSize: 14, color: "#6b7280", marginBottom: 10 }}>
+          Maximum rental period: {data.leased_period} day
+          {data.leased_period > 1 ? "s" : ""}
+        </Text>
+      )}
 
       <TouchableOpacity onPress={handleSelectDate} style={styles.dateButton}>
         <Text style={styles.dateText}>
