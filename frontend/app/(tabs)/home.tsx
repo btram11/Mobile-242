@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  RefreshControl,
+  Button,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Trending from "@/components/Trending";
@@ -24,41 +26,38 @@ import BookCard from "@/components/BookCard";
 import NewsCard from "@/components/NewsCard";
 import ProviderCard from "@/components/ProviderCard";
 
-import "../../global.css";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-// import mockedBooks from '../../../backend/prisma/data/database_books.json'
-import { mockedBooks, mockedNews, mockedProviders } from "@/mocks/data";
+import { mockedNews, mockedProviders } from "@/mocks/data";
+import { useQuery } from "@tanstack/react-query";
+import { getBooks } from "@/services/book";
+
+import * as Sentry from "@sentry/react-native";
 
 export default function HomePage() {
-  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    // getAllPosts()
-    //   .then((data) => {
-    //     console.log(data);
-    //     setData(data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     throw Error("Error catched in HomePage(): ", error);
-    //   })
-    //   .finally(setIsLoading(false));
-  }, []);
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const onRefresh = async () => {
     setIsRefreshing(true);
-    const newData = await fetchData();
-    setData(newData);
+    await bookRefetch();
     setIsRefreshing(false);
   };
 
+  const { data: booksData, refetch: bookRefetch } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => getBooks(),
+  });
   return (
     <SafeAreaView style={styles.container} className="bg-viridian-500">
+      {/* <Button
+        title="Try!"
+        onPress={() => {
+          Sentry.captureException(new Error("First error"));
+        }}
+      />
+      ; */}
       <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
         <Ionicons name="search-outline" size={20} color="gray" />
         <TextInput
@@ -67,7 +66,16 @@ export default function HomePage() {
           className="text-white flex-1 ml-2"
         />
       </View>
-      <ScrollView className="flex-1 py-4">
+      <ScrollView
+        className="flex-1 py-4"
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={onRefresh}
+            colors={["#008C6E"]}
+          />
+        }
+      >
         <View className="block relative h-72 w-full z-10">
           <Image
             style={styles.globe}
@@ -89,25 +97,29 @@ export default function HomePage() {
 
             <View className="flex-row mt-2 space-x-3">
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {mockedBooks.map((book, idx) => (
-                  <BookCard
-                    key={book.id}
-                    id={book.id}
-                    img_src={book.img_src}
-                    title={book.title}
-                    sold_price={book.sold_price}
-                    is_sold={book.is_sold}
-                    is_leased={book.leased_price}
-                    leased_price={book.leased_price}
-                    is_from={book.is_from}
-                    color={
-                      idx % 2 == 0
-                        ? "bg-viridian-400 text-black"
-                        : "bg-viridian-600/90 text-white"
-                    }
-                    text_color={`${idx % 2 == 0 ? "dark" : "light"}`}
-                  />
-                ))}
+                {booksData?.map((book, idx) => {
+                  if (!book.sold_price && !book.leased_price) return null;
+                  return (
+                    <BookCard
+                      key={idx}
+                      id={book.book_id}
+                      listing_id={book.listing_id}
+                      img_src={book.img_url}
+                      title={(book.title || "").split("/")[0].trim()}
+                      sold_price={book.sold_price}
+                      is_sold={book.sold_price}
+                      is_leased={book.leased_price}
+                      leased_price={book.leased_price}
+                      is_from={book.is_from}
+                      color={
+                        idx % 2 == 0
+                          ? "bg-viridian-400 text-black"
+                          : "bg-viridian-600/90 text-white"
+                      }
+                      text_color={`${idx % 2 == 0 ? "dark" : "light"}`}
+                    />
+                  );
+                })}
               </ScrollView>
             </View>
           </View>

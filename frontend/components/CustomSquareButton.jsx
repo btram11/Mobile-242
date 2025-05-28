@@ -11,11 +11,12 @@ const CustomButtonPrimary = ({ buttonStyle, textStyle, text, handlePress,  ...pr
     </TouchableOpacity>
 )
 
-const CustomButtonSecondary = ({ buttonStyle, textStyle, text, handlePress }) =>
+const CustomButtonSecondary = ({ buttonStyle, textStyle, text, handlePress, ...res }) =>
 (
     <TouchableOpacity
         className={`bg-darkred rounded-md m-4 p-4 ${buttonStyle}`}
-        onPress={handlePress}>
+        onPress={handlePress}
+        {...res}>
         <Text className={`text-white font-latobold ${textStyle}`}>{text}</Text>
     </TouchableOpacity>
 )

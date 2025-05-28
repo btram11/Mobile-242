@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
@@ -6,25 +7,24 @@ type OrderItemProps = {
   quantity: number;
   price: string;
   imageUrl?: string;
+  id: string;
 };
 
-const OrderItem = ({ name, quantity, price, imageUrl }: OrderItemProps) => {
+const OrderItem = ({ id, name, quantity, price, imageUrl }: OrderItemProps) => {
   return (
-    <View style={styles.itemContainer}>
-      <Image
-        source={{
-          uri:
-            imageUrl ||
-            "https://m.media-amazon.com/images/I/81UxfL1hChL._AC_UF1000,1000_QL80_.jpg",
-        }}
-        style={styles.itemImage}
-      />
-      <View style={styles.itemDetails}>
-        <Text style={styles.itemName}>{name}</Text>
-        <Text style={styles.itemMeta}>Quantity: {quantity}</Text>
-        <Text style={styles.itemPrice}>{price}</Text>
+    <Link href={`/book-info/${id}`}>
+      <View style={styles.itemContainer}>
+        <Image
+          source={imageUrl || require("@/assets/images/book1.jpg")}
+          style={styles.itemImage}
+        />
+        <View style={styles.itemDetails}>
+          <Text style={styles.itemName}>{name}</Text>
+          <Text style={styles.itemMeta}>Quantity: {quantity}</Text>
+          <Text style={styles.itemPrice}>{price}</Text>
+        </View>
       </View>
-    </View>
+    </Link>
   );
 };
 
@@ -39,9 +39,10 @@ const styles = StyleSheet.create({
     borderColor: "#e0e0e0",
   },
   itemImage: {
-    width: 80,
-    height: 110,
-    borderRadius: 6,
+    width: 75,
+    height: "auto",
+    aspectRatio: 94 / 144,
+    borderRadius: 4,
     resizeMode: "cover",
   },
   itemDetails: {

@@ -17,6 +17,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "2",
@@ -25,6 +27,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "3",
@@ -33,6 +37,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "4",
@@ -41,6 +47,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "5",
@@ -49,6 +57,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "6",
@@ -57,6 +67,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "7",
@@ -65,6 +77,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "8",
@@ -73,14 +87,18 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "9",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
     {
       orderId: "10",
@@ -89,6 +107,8 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      price: "$15.99", // Added price
     },
   ];
 
@@ -96,14 +116,16 @@ export default function YourOrders() {
     <FlatList
       data={orders}
       keyExtractor={(item) => item.orderId}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <OrderItem
+          key={index}
           orderId={item.orderId}
           title={item.title}
           status={item.status}
           editableUntil={item.editableUntil}
           sellerName={item.sellerName}
-          sellerAvatar={item.sellerAvatar}
+          bookImage={item.bookImage}
+          price={item.price}
           onPress={navigateToOrderDetails}
         />
       )}

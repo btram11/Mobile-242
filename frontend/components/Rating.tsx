@@ -61,7 +61,7 @@ export default function Rating({
   return (
     <View className="flex-row items-center">
       {renderStars()}
-      <Text className={`text-md ${className}`}>({rating})</Text>
+      <Text className={`ml-2 text-md ${className}`}>({rating ?? "N/A"})</Text>
     </View>
   );
 }

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   totalPriceValue: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#00664f",
+    color: "#008C6E",
   },
 });
 
