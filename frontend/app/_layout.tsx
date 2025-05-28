@@ -8,6 +8,7 @@ import { Slot } from "expo-router";
 // alternative way to routing
 import { Stack } from "expo-router";
 import "@/global.css";
+import * as Sentry from "@sentry/react-native";
 
 // import fonts
 import { useFonts } from "expo-font";
@@ -28,6 +29,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 SplashScreen.preventAutoHideAsync();
+
+Sentry.init({
+  dsn: "https://523b854f2b046b91a4100dfb56dc4a98@o4509399187783680.ingest.us.sentry.io/4509399193092096",
+  sendDefaultPii: true,
+  tracesSampleRate: 1.0,
+  profilesSampleRate: 1.0,
+});
 
 const RootLayout = () => {
   const [fontLoaded, error] = useFonts({
@@ -161,4 +169,4 @@ const RootLayout = () => {
   );
 };
 
-export default RootLayout;
+export default Sentry.wrap(RootLayout);

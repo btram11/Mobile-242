@@ -10,6 +10,7 @@ import {
   TextInput,
   Image,
   RefreshControl,
+  Button,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Trending from "@/components/Trending";
@@ -31,6 +32,8 @@ import { mockedNews, mockedProviders } from "@/mocks/data";
 import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/services/book";
 
+import * as Sentry from "@sentry/react-native";
+
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -48,6 +51,13 @@ export default function HomePage() {
   });
   return (
     <SafeAreaView style={styles.container} className="bg-viridian-500">
+      {/* <Button
+        title="Try!"
+        onPress={() => {
+          Sentry.captureException(new Error("First error"));
+        }}
+      />
+      ; */}
       <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
         <Ionicons name="search-outline" size={20} color="gray" />
         <TextInput
