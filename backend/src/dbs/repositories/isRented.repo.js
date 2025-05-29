@@ -37,6 +37,17 @@ const getRenter = async (bookId, listingId) => {
 }
 
 const confirmRented = async (bookId, listingId) => {
+    await prisma.listed_book.update({
+        where: {
+            book_id_listing_id: {
+                book_id: bookId,
+                listing_id: listingId,
+            },
+        },
+        data: {
+            is_purchased: true,
+        },
+    });
     const result = await prisma.is_rented.update({
         where: {
             book_id_listing_id: {

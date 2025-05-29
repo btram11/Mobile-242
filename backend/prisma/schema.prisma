@@ -48,6 +48,7 @@ model listed_book {
   is_leased             Boolean
   leased_price          Float?
   leased_period         Int? // # of days
+  is_purchased          Boolean       @default(false)
   is_bought_rel         is_bought?
   is_rented_rel         is_rented?
   provider_id           String

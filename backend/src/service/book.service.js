@@ -83,7 +83,9 @@ class BookService {
   static getBookByProvider(id) {}
 
   static async buyBook(bookId, listingId, data) {
-    const result = await isBoughtRepo.saveBought(bookId, listingId, data);
+    const result = await isBoughtRepo.saveBought(bookId, listingId, data).catch((err) => {
+      throw new BadRequestError("Book already bought");
+    });
     if (!result) {
       throw new BadRequestError("Book not found");
     }
@@ -125,7 +127,9 @@ class BookService {
     data.pickup_date = pickupDate.toISO();
     data.end_date = endDate.toISO();
 
-    const result = await isRentedRepo.saveRented(bookId, listingId, data);
+    const result = await isRentedRepo.saveRented(bookId, listingId, data).catch((err) => {
+      throw new BadRequestError("Book already rented");
+    });
     if (!result) {
       throw new BadRequestError("Book not found");
     }
