@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { get } = require("../../routes/books");
 
 const prisma = new PrismaClient();
 
@@ -82,7 +83,8 @@ const getBooks = async (
         where: {
           ...(isSold && { is_sold: true }),
           ...(isLeased && { is_leased: true }),
-          is_purchased: false, // Only include listings that are not purchased
+          is_in_progress: false, // Only include listings that are not purchased
+          is_complete: false, // Only include listings that are not completed
         },
         orderBy: {
           listed_at: "desc",
@@ -152,7 +154,8 @@ const getBookDetail = async (bookid) => {
           },
         },
         where: {
-          is_purchased: false, // Only include listings that are not purchased
+          is_in_progress: false, // Only include listings that are not purchased
+          is_complete: false, // Only include listings that are not completed
         },
       },
     },
@@ -189,7 +192,8 @@ const getSimilarBooks = async (bookId, page, pageSize) => {
 
 const getListings = async (bookId, buyerId, sellerId, leaserId, renterId) => {
   const whereCondition = {
-    is_purchased: false, // Only include listings that are not purchased
+    is_in_progress: false, // Only include listings that are not purchased
+    is_complete: false, // Only include listings that are not completed
   };
   const includeCondition = {
     provider: true,
@@ -254,4 +258,28 @@ const deleteListing = async (bookId, listingId) => {
   return result;
 };
 
-module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings, getSimilarBooks };
+const getListingsByProvider = async (providerId, page, pageSize, inProgress = false) => {
+  const skip = (page - 1) * pageSize;
+  const take = pageSize;
+
+  let whereCondition = {
+    provider_id: providerId,
+  };
+  if (inProgress != undefined) {
+    whereCondition.is_in_progress = inProgress; // Only include listings that are not purchased
+  }
+
+  const result = await prisma.listed_book.findMany({
+    relationLoadStrategy: "join",
+    skip: skip,
+    take: take,
+    where: whereCondition,
+    include: {
+      book: true,
+    },
+  });
+
+  return result;
+}
+
+module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings, getSimilarBooks, getListingsInProgressByProvider: getListingsByProvider };

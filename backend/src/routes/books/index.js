@@ -525,6 +525,72 @@ router.post(
 
 /**
  * @swagger
+ * /api/v1/books/{bookid}/listings/{listingid}/buying:
+ *   patch:
+ *     tags: [Book]
+ *     summary: Confirm a book purchase
+ *     description: Confirms a pending purchase request for a specific book listing
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book
+ *       - in: path
+ *         name: listingid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the listing
+ *     responses:
+ *       200:
+ *         description: Purchase confirmed successfully
+ *       404:
+ *         description: Book, listing, or purchase request not found
+ *       500:
+ *         description: Server error
+ */
+router.patch(
+  "/:bookid/listings/:listingid/buying",
+  asyncHandler(bookController.confirmBuying)
+)
+
+/**
+ * @swagger
+ * /api/v1/books/{bookid}/listings/{listingid}/renting:
+ *   patch:
+ *     tags: [Book]
+ *     summary: Confirm a book rental
+ *     description: Confirms a pending rental request for a specific book listing
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book
+ *       - in: path
+ *         name: listingid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the listing
+ *     responses:
+ *       200:
+ *         description: Rental confirmed successfully
+ *       404:
+ *         description: Book, listing, or rental request not found
+ *       500:
+ *         description: Server error
+ */
+router.patch(
+  "/:bookid/listings/:listingid/renting",
+  asyncHandler(bookController.confirmRenting)
+);
+
+/**
+ * @swagger
  * /api/v1/books/{bookid}/listings/{listingid}:
  *   delete:
  *     tags: [Book]
@@ -558,11 +624,11 @@ router.delete(
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listings/{listingid}/confirmations:
- *   patch:
+ * /api/v1/books/{bookid}/listings/{listingid}/buying:
+ *   delete:
  *     tags: [Book]
- *     summary: Confirm a book purchase or rental
- *     description: Confirms a pending purchase or rental transaction for a specific book listing
+ *     summary: Deny a book purchase request
+ *     description: Cancels a pending purchase request for a specific book listing
  *     parameters:
  *       - in: path
  *         name: bookid
@@ -575,27 +641,74 @@ router.delete(
  *         required: true
  *         schema:
  *           type: string
- *         description: ID of the listing to confirm
- *       - in: query
- *         name: isbought
- *         required: true
- *         schema:
- *           type: boolean
- *         description: Indicates if the transaction is a purchase (true) or rental (false)
+ *         description: ID of the listing
  *     responses:
  *       200:
- *         description: Transaction confirmed successfully
- *       400:
- *         description: Invalid request or transaction cannot be confirmed
+ *         description: Purchase request denied successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Purchase request denied successfully
  *       404:
- *         description: Book or listing not found
+ *         description: Book, listing, or purchase request not found
  *       500:
  *         description: Server error
  */
-router.patch(
-  "/:bookid/listings/:listingid/confirmations",
-  asyncHandler(bookController.confirmPurchase)
+router.delete(
+  "/:bookid/listings/:listingid/buying",
+  asyncHandler(bookController.denyBuying)
 );
+
+/**
+ * @swagger
+ * /api/v1/books/{bookid}/listings/{listingid}/renting:
+ *   delete:
+ *     tags: [Book]
+ *     summary: Deny a book rental request
+ *     description: Cancels a pending rental request for a specific book listing
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book
+ *       - in: path
+ *         name: listingid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the listing
+ *     responses:
+ *       200:
+ *         description: Rental request denied successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Rental request denied successfully
+ *       404:
+ *         description: Book, listing, or rental request not found
+ *       500:
+ *         description: Server error
+ */
+router.delete(
+  "/:bookid/listings/:listingid/renting",
+  asyncHandler(bookController.denyRenting)
+)
 
 
 module.exports = router;
