@@ -9,7 +9,10 @@ const saveRented = async (bookId, listingId, data) => {
             listing_id: listingId,
             ...data,
         },
-    });
+    }).catch((error) => {
+        console.error("Error saving rented record:", error);
+        throw new Error("Failed to save rented record");
+    })
     return result;
 }
 
@@ -33,7 +36,34 @@ const getRenter = async (bookId, listingId) => {
     return result;
 }
 
+const confirmRented = async (bookId, listingId) => {
+    await prisma.listed_book.update({
+        where: {
+            book_id_listing_id: {
+                book_id: bookId,
+                listing_id: listingId,
+            },
+        },
+        data: {
+            is_purchased: true,
+        },
+    });
+    const result = await prisma.is_rented.update({
+        where: {
+            book_id_listing_id: {
+                book_id: bookId,
+                listing_id: listingId,
+            },
+        },
+        data: {
+            is_complete: true,
+        },
+    });
+    return result;
+}
+
 module.exports = {
     saveRented,
     getRenter,
+    confirmRented
 };

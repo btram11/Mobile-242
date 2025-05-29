@@ -17,17 +17,17 @@ const bookController = require("../../controller/book.controller");
  *           type: integer
  *         description: Page number for pagination
  *       - in: query
- *         name: pageSize
+ *         name: pagesize
  *         schema:
  *           type: integer
  *         description: Number of items per page
  *       - in: query
- *         name: isSold
+ *         name: issold
  *         schema:
  *           type: boolean
  *         description: Filter by sold status
  *       - in: query
- *         name: isLeased
+ *         name: isleased
  *         schema:
  *           type: boolean
  *         description: Filter by leased status
@@ -183,7 +183,7 @@ router.get("/:bookid", asyncHandler(bookController.getBookDetail));
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/similarBooks:
+ * /api/v1/books/{bookid}/similar-books:
  *   get:
  *     tags: [Book]
  *     summary: Get similar books by book ID
@@ -201,7 +201,7 @@ router.get("/:bookid", asyncHandler(bookController.getBookDetail));
  *           type: integer
  *         description: Page number for pagination
  *       - in: query
- *         name: pageSize
+ *         name: pagesize
  *         schema:
  *           type: integer
  *         description: Number of items per page
@@ -253,13 +253,13 @@ router.get("/:bookid", asyncHandler(bookController.getBookDetail));
  *         description: Server error
  */
 router.get(
-  "/:bookid/similarBooks",
+  "/:bookid/similar-books",
   asyncHandler(bookController.getSimilarBooks)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing/{listingid}:
+ * /api/v1/books/{bookid}/listings/{listingid}:
  *   get:
  *     tags: [Book]
  *     summary: Get book details by book ID and listing ID
@@ -286,13 +286,13 @@ router.get(
  *         description: Server error
  */
 router.get(
-  "/:bookid/listing/:listingid",
+  "/:bookid/listings/:listingid",
   asyncHandler(bookController.getBookListingDetail)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing/{listingid}/buy:
+ * /api/v1/books/{bookid}/listings/{listingid}/buying:
  *   post:
  *     tags: [Book]
  *     summary: Purchase a book
@@ -334,13 +334,13 @@ router.get(
  *         description: Server error
  */
 router.post(
-  "/:bookid/listing/:listingid/buy",
+  "/:bookid/listings/:listingid/buying",
   asyncHandler(bookController.buyBook)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing/{listingid}/buyer:
+ * /api/v1/books/{bookid}/listings/{listingid}/buyer:
  *   get:
  *     tags: [Book]
  *     summary: Get buyer information for a book listing
@@ -367,13 +367,13 @@ router.post(
  *         description: Server error
  */
 router.get(
-  "/:bookid/listing/:listingid/buyer",
+  "/:bookid/listings/:listingid/buyer",
   asyncHandler(bookController.getBuyer)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing/{listingid}/rent:
+ * /api/v1/books/{bookid}/listings/{listingid}/renting:
  *   post:
  *     tags: [Book]
  *     summary: Rent a book
@@ -424,13 +424,13 @@ router.get(
  *         description: Server error
  */
 router.post(
-  "/:bookid/listing/:listingid/rent",
+  "/:bookid/listings/:listingid/renting",
   asyncHandler(bookController.rentBook)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing/{listingid}/renter:
+ * /api/v1/books/{bookid}/listings/{listingid}/renter:
  *   get:
  *     tags: [Book]
  *     summary: Get renter information for a book listing
@@ -457,13 +457,13 @@ router.post(
  *         description: Server error
  */
 router.get(
-  "/:bookid/listing/:listingid/renter",
+  "/:bookid/listings/:listingid/renter",
   asyncHandler(bookController.getRenter)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing:
+ * /api/v1/books/{bookid}/listings:
  *   post:
  *     tags: [Book]
  *     summary: Add a new listing for a book
@@ -519,13 +519,13 @@ router.get(
  *         description: Server error
  */
 router.post(
-  "/:bookid/listing",
+  "/:bookid/listings",
   asyncHandler(bookController.addListing)
 );
 
 /**
  * @swagger
- * /api/v1/books/{bookid}/listing/{listingid}:
+ * /api/v1/books/{bookid}/listings/{listingid}:
  *   delete:
  *     tags: [Book]
  *     summary: Delete a book listing
@@ -552,8 +552,49 @@ router.post(
  *         description: Server error
  */
 router.delete(
-  "/:bookid/listing/:listingid",
+  "/:bookid/listings/:listingid",
   asyncHandler(bookController.deleteListing)
+);
+
+/**
+ * @swagger
+ * /api/v1/books/{bookid}/listings/{listingid}/confirmations:
+ *   patch:
+ *     tags: [Book]
+ *     summary: Confirm a book purchase or rental
+ *     description: Confirms a pending purchase or rental transaction for a specific book listing
+ *     parameters:
+ *       - in: path
+ *         name: bookid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the book
+ *       - in: path
+ *         name: listingid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the listing to confirm
+ *       - in: query
+ *         name: isbought
+ *         required: true
+ *         schema:
+ *           type: boolean
+ *         description: Indicates if the transaction is a purchase (true) or rental (false)
+ *     responses:
+ *       200:
+ *         description: Transaction confirmed successfully
+ *       400:
+ *         description: Invalid request or transaction cannot be confirmed
+ *       404:
+ *         description: Book or listing not found
+ *       500:
+ *         description: Server error
+ */
+router.patch(
+  "/:bookid/listings/:listingid/confirmations",
+  asyncHandler(bookController.confirmPurchase)
 );
 
 

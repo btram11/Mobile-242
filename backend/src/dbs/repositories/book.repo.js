@@ -82,6 +82,7 @@ const getBooks = async (
         where: {
           ...(isSold && { is_sold: true }),
           ...(isLeased && { is_leased: true }),
+          is_purchased: false, // Only include listings that are not purchased
         },
         orderBy: {
           listed_at: "desc",
@@ -150,6 +151,9 @@ const getBookDetail = async (bookid) => {
             },
           },
         },
+        where: {
+          is_purchased: false, // Only include listings that are not purchased
+        },
       },
     },
   });
@@ -184,7 +188,9 @@ const getSimilarBooks = async (bookId, page, pageSize) => {
 }
 
 const getListings = async (bookId, buyerId, sellerId, leaserId, renterId) => {
-  const whereCondition = {};
+  const whereCondition = {
+    is_purchased: false, // Only include listings that are not purchased
+  };
   const includeCondition = {
     provider: true,
   };

@@ -83,7 +83,9 @@ class BookService {
   static getBookByProvider(id) {}
 
   static async buyBook(bookId, listingId, data) {
-    const result = await isBoughtRepo.saveBought(bookId, listingId, data);
+    const result = await isBoughtRepo.saveBought(bookId, listingId, data).catch((err) => {
+      throw new BadRequestError("Book already bought");
+    });
     if (!result) {
       throw new BadRequestError("Book not found");
     }
@@ -125,7 +127,9 @@ class BookService {
     data.pickup_date = pickupDate.toISO();
     data.end_date = endDate.toISO();
 
-    const result = await isRentedRepo.saveRented(bookId, listingId, data);
+    const result = await isRentedRepo.saveRented(bookId, listingId, data).catch((err) => {
+      throw new BadRequestError("Book already rented");
+    });
     if (!result) {
       throw new BadRequestError("Book not found");
     }
@@ -199,6 +203,26 @@ class BookService {
       status: 200,
       message: "Get similar books successfully",
       books: result,
+    };
+  }
+
+  static async confirmPurchase(bookId, listingId, is_bought) {
+    let result;
+    if (is_bought) {
+      result = await isBoughtRepo.confirmBought(bookId, listingId);
+    }
+    else {
+      console.log("is rented");
+      result = await isRentedRepo.confirmRented(bookId, listingId);
+    }
+    if (!result) {
+      throw new BadRequestError("Book not found");
+    }
+
+    return {
+      status: 200,
+      message: "Confirm purchase successfully",
+      book: result,
     };
   }
 

@@ -3,13 +3,12 @@ const BookService = require("../service/book.service");
 
 class BookController {
   getBooks = async (req, res) => {
-    const { page, pageSize, isSold, isLeased, keyword, sortby } = req.query;
-    console.log(req.query);
+    const { page, pagesize, issold, isleased, keyword, sortby } = req.query;
     const response = await BookService.getBooks(
       parseInt(page),
-      parseInt(pageSize),
-      isSold === "true" ? true : isSold === "false" ? false : null,
-      isLeased === "true" ? true : isLeased === "false" ? false : null,
+      parseInt(pagesize),
+      issold === "true" ? true : issold === "false" ? false : null,
+      isleased === "true" ? true : isleased === "false" ? false : null,
       keyword,
       sortby
     );
@@ -88,10 +87,17 @@ class BookController {
 
   getSimilarBooks = async (req, res) => {
     const bookid = req.params.bookid;
-    const { page, pageSize } = req.query;
-    const response = await BookService.getSimilarBooks(bookid, parseInt(page), parseInt(pageSize));
+    const { page, pagesize } = req.query;
+    const response = await BookService.getSimilarBooks(bookid, parseInt(page), parseInt(pagesize));
     return res.status(200).json(response);
   }
+
+  confirmPurchase = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const { isbought } = req.query;
+    const response = await BookService.confirmPurchase(bookid, listingid, isbought == "true");
+    return res.status(200).json(response);
+  };
 }
 
 module.exports = new BookController();
