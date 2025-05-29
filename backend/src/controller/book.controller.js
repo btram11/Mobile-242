@@ -92,10 +92,27 @@ class BookController {
     return res.status(200).json(response);
   }
 
-  confirmPurchase = async (req, res) => {
+  confirmBuying = async (req, res) => {
     const { bookid, listingid } = req.params;
-    const { isbought } = req.query;
-    const response = await BookService.confirmPurchase(bookid, listingid, isbought == "true");
+    const response = await BookService.confirmPurchase(bookid, listingid, true);
+    return res.status(200).json(response);
+  };
+
+  confirmRenting = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.confirmPurchase(bookid, listingid, false);
+    return res.status(200).json(response);
+  }
+
+  denyBuying = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.denyPurchase(bookid, listingid, true);
+    return res.status(200).json(response);
+  };
+
+  denyRenting = async (req, res) => {
+    const { bookid, listingid } = req.params;
+    const response = await BookService.denyPurchase(bookid, listingid, false);
     return res.status(200).json(response);
   };
 }

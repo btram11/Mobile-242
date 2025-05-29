@@ -1,5 +1,6 @@
 const { BadRequestError } = require("../core/error.response");
 const { getBookByProvider, getProviderById, getProviders } = require("../dbs/repositories/provider.repo");
+const { getListingsInProgressByProvider: getListingsByProvider } = require("../dbs/repositories/book.repo");
 
 class ProviderService {
     static async getBooks(id, offset, limit) {
@@ -29,6 +30,14 @@ class ProviderService {
             throw new BadRequestError("No providers found")
         }
         return result
+    }
+
+    static async getListings(providerId, page = 1, pageSize = 10, inProgress = false) {
+        const result = await getListingsByProvider(providerId, page, pageSize, inProgress);
+        if (!result) {
+            throw new BadRequestError("No listings in progress found for this provider");
+        }
+        return result;
     }
 }
 

@@ -226,6 +226,26 @@ class BookService {
     };
   }
 
+  static async denyPurchase(bookId, listingId, is_bought) {
+    let result;
+    if (is_bought) {
+      result = await isBoughtRepo.denyBought(bookId, listingId);
+    }
+    else {
+      console.log("is rented");
+      result = await isRentedRepo.denyRented(bookId, listingId);
+    }
+    if (!result) {
+      throw new BadRequestError("Book not found");
+    }
+
+    return {
+      status: 200,
+      message: "Deny purchase successfully",
+      book: result,
+    };
+  }
+
 }
 
 module.exports = BookService;
