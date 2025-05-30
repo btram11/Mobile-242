@@ -28,12 +28,13 @@ class ProviderController {
 
     getListings = async (req, res) => {
         const { id } = req.params;
-        const { page = 1, pagesize = 10, inprogress } = req.query;
+        const { page = 1, pagesize = 10, inprogress, iscomplete } = req.query;
         const response = await ProviderService.getListings(
             id,
             parseInt(page),
             parseInt(pagesize),
-            inprogress === 'true' ? true : inprogress === 'false' ? false : undefined
+            inprogress === 'true' ? true : inprogress === 'false' ? false : undefined,
+            iscomplete === 'true' ? true : iscomplete === 'false' ? false : undefined
         );
         return res.status(200).json(response);
     }

@@ -126,6 +126,12 @@
  *           type: boolean
  *           default: false
  *         description: Filter for in-progress listings
+ *       - in: query
+ *         name: iscomplete
+ *         schema:
+ *           type: boolean
+ *           default: false
+ *         description: Filter for completed listings
  * 
  *     responses:
  *       200:
