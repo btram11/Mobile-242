@@ -257,7 +257,7 @@ const deleteListing = async (bookId, listingId) => {
   return result;
 };
 
-const getListingsByProvider = async (providerId, page, pageSize, inProgress = false) => {
+const getListingsByProvider = async (providerId, page, pageSize, inProgress, isComplete) => {
   const skip = (page - 1) * pageSize;
   const take = pageSize;
 
@@ -265,7 +265,10 @@ const getListingsByProvider = async (providerId, page, pageSize, inProgress = fa
     provider_id: providerId,
   };
   if (inProgress != undefined) {
-    whereCondition.is_in_progress = inProgress; // Only include listings that are not purchased
+    whereCondition.is_in_progress = inProgress; 
+  }
+  if (isComplete != undefined) {
+    whereCondition.is_complete = isComplete; 
   }
 
   const result = await prisma.listed_book.findMany({
@@ -281,4 +284,4 @@ const getListingsByProvider = async (providerId, page, pageSize, inProgress = fa
   return result;
 }
 
-module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings, getSimilarBooks, getListingsInProgressByProvider: getListingsByProvider };
+module.exports = { getBooks, getBookDetail, getBookListingDetail, saveListing, deleteListing, getListings, getSimilarBooks, getListingsByProvider };
