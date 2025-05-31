@@ -84,17 +84,13 @@ const OnboardingScreens = [
 export default function Onboarding2() {
   const { height, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
   const flatListRef = useRef<FlatList<any>>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const renderItem = ({ item }: any) => {
     if (item.id == 0) return item.screen(handleNext);
     return (
-      <SafeAreaView
-        className="bg-[#F6F6F7] flex flex-col justify-between items-center"
-        style={{ width: width, height: height - headerHeight + insets.top }}
-      >
+      <View className="bg-[#F6F6F7] flex flex-col justify-between items-center">
         <CustomButtonOnboarding
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.3)",
@@ -166,7 +162,7 @@ export default function Onboarding2() {
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     );
   };
 
@@ -196,12 +192,11 @@ export default function Onboarding2() {
       router.replace("/(auth)/login");
     });
   };
+  console.log("Onboarding2 insets:", insets, height);
+  console.log("Onboarding2 headerHeight:", height + insets.top + insets.bottom);
   return (
-    <SafeAreaView
-      style={{ width: width, height: height - headerHeight + insets.top }}
-    >
+    <View>
       <FlatList
-        style={{ marginTop: -insets.top }}
         scrollEnabled={true}
         ref={flatListRef}
         data={OnboardingScreens}
@@ -221,6 +216,6 @@ export default function Onboarding2() {
         }}
       />
       {/* {renderItem()} */}
-    </SafeAreaView>
+    </View>
   );
 }

@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Tabs, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 
 // import house from '../../assets/icons/house.png'
 import { house, bookmark, create, profile } from "../../constants/icons";
@@ -12,22 +12,45 @@ import {
   Search,
   House,
   MessageCircle,
+  Bell,
 } from "lucide-react-native";
-import "@/global.css";
+import { Ionicons } from "@expo/vector-icons";
 
+import "@/global.css";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+const SearchHeader = () => {
+  return (
+    <SafeAreaView edges={["top"]} className="bg-viridian-500">
+      <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
+        <Ionicons name="search-outline" size={20} color="gray" />
+        <TextInput
+          placeholder="Search"
+          placeholderTextColor="gray"
+          className="text-white flex-1 ml-2"
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
 const TabIcon = ({ focused, icon, name, color }) => {
   return (
-    <View className="flex-1 items-center justify-center">
-      {icon && icon}
-      <Text
+    <SafeAreaView className="w-full h-full">
+      <View className="flex-1 items-center justify-center w-full h-full">
+        {icon && icon}
+        {/* <Text
         className={`text-xs ${
           focused ? "font-latobold scale-110" : "font-lato"
-        }`}
-        style={{ color: color }}
-      >
-        {name}
-      </Text>
-    </View>
+          }`}
+          style={{ color: color }}
+          >
+          {name}
+          </Text> */}
+        {focused && (
+          <View className="absolute -bottom-6 h-1.5 w-1.5 bg-viridian-400 rounded-full" />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -50,15 +73,14 @@ export default function TabLayout() {
           fontWeight: "bold",
         },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#078c7f",
+        tabBarActiveTintColor: "#31CFB6",
         tabBarStyle: {
           backgroundColor: "#ebf5f4",
           borderTopColor: "transparent",
           elevation: 0, // doesn't work in android
           // shadowOpacity: 0.5,
           boxShadowOpacity: 0.5,
-          borderTopWidth: 2,
-          height: 60,
+          height: 70,
         },
       }}
     >
@@ -66,6 +88,8 @@ export default function TabLayout() {
         name="home"
         options={{
           title: "Home",
+          headerShown: true,
+          header: () => <SearchHeader />,
           tabBarIcon: ({ focused, color }) => (
             <TabIcon
               focused={focused}
@@ -113,6 +137,21 @@ export default function TabLayout() {
               icon={<Search color={color} size={24} />}
               color={color}
               name="Discover"
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notification"
+        options={{
+          title: "Notification",
+          headerShown: true,
+          tabBarIcon: ({ focused, color }) => (
+            <TabIcon
+              focused={focused}
+              icon={<Bell color={color} size={24} />}
+              color={color}
+              name="Notification"
             />
           ),
         }}

@@ -8,6 +8,7 @@ import { Slot } from "expo-router";
 // alternative way to routing
 import { Stack } from "expo-router";
 import "@/global.css";
+import * as Sentry from "@sentry/react-native";
 
 // import fonts
 import { useFonts } from "expo-font";
@@ -17,15 +18,24 @@ import { GlobalProvider } from "@/context/GlobalProvider";
 import { ModalProvider } from "@/context/ModalContext";
 import ModalManager from "@/components/modal/ModalManager";
 import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
+import { store } from "@/store";
+import RouteWatcher from "@/components/BookRouteWatcher";
+import { StatusBar } from "expo-status-bar";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Provider } from "react-redux";
-import { store } from "./store";
 
 const queryClient = new QueryClient();
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
+
+Sentry.init({
+  dsn: "https://523b854f2b046b91a4100dfb56dc4a98@o4509399187783680.ingest.us.sentry.io/4509399193092096",
+  sendDefaultPii: true,
+  tracesSampleRate: 1.0,
+  profilesSampleRate: 1.0,
+});
 
 const RootLayout = () => {
   const [fontLoaded, error] = useFonts({
@@ -55,12 +65,13 @@ const RootLayout = () => {
   if (!fontLoaded) return null;
 
   return (
-    <NavigationContainer>
+    <SafeAreaProvider>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <GlobalProvider>
             <ModalProvider>
               <ModalManager />
+              <RouteWatcher />
               <Stack
                 screenOptions={{
                   headerStyle: {
@@ -77,13 +88,20 @@ const RootLayout = () => {
                   options={{ title: "Homepage", headerShown: false }}
                 />
                 <Stack.Screen
+                  name="providers/[provider_id]"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
+                <Stack.Screen
                   name="(auth)"
                   options={{ title: "Authentication", headerShown: false }}
                 />
                 {/* <Stack.Screen
           name="(onboarding)"
           options={{ title: "Onboarding", headerShown: false }}
-        /> */}
+          /> */}
                 <Stack.Screen
                   name="(tabs)"
                   options={{ title: "Tabs", headerShown: false }}
@@ -105,13 +123,56 @@ const RootLayout = () => {
                     title: "Book Info",
                   }}
                 />
+                <Stack.Screen
+                  name="book-info/[book_id]/rent"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
+                <Stack.Screen
+                  name="book-info/[book_id]/listings"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
+                />
+
+                <Stack.Screen
+                  name="payment/confirm"
+                  options={{
+                    headerShown: true,
+                    title: "Confirm Your Order",
+                    headerTitleAlign: "center",
+                  }}
+                />
+                <Stack.Screen
+                  name="payment/success"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="order-details/[id]"
+                  options={{
+                    headerShown: true,
+                    title: "Order Details",
+                  }}
+                />
+                <Stack.Screen
+                  name="upload"
+                  options={{
+                    headerShown: true,
+                    title: "Upload Book",
+                  }}
+                />
               </Stack>
             </ModalProvider>
           </GlobalProvider>
         </QueryClientProvider>
       </Provider>
-    </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
-export default RootLayout;
+export default Sentry.wrap(RootLayout);

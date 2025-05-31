@@ -1,5 +1,11 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 
 // Import components
 import OrderStatusBadge from "@/components/order/OrderStatusBadge";
@@ -16,6 +22,7 @@ import {
   CustomButtonPrimary,
   CustomButtonOutlined,
 } from "@/components/CustomSquareButton";
+import { ChevronRight } from "lucide-react-native";
 
 export default function OrderDetails() {
   const { id } = useLocalSearchParams();
@@ -27,13 +34,27 @@ export default function OrderDetails() {
     status: "Waiting for confirmation",
     orderDate: "15/02/2023",
     editableUntil: "19/02/2025",
-    items: [{ name: "The name of the Rose", quantity: 1, price: "15.99€" }],
+    items: [
+      {
+        name: "The name of the Rose",
+        quantity: 1,
+        price: "15.99€",
+        id: "1",
+        book_image: require("@/assets/images/book2.jpg"),
+      },
+    ],
     totalPrice: "15.99€",
     shippingAddress: "123 Main St, City, Country",
     paymentMethod: "Credit Card",
     seller: {
       name: "Book Store Official",
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    },
+    type: "rent",
+    rental: {
+      startDate: "20/02/2023",
+      endDate: "20/04/2023",
+      returnStatus: "Ongoing",
     },
   };
 
@@ -48,128 +69,264 @@ export default function OrderDetails() {
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-      showsVerticalScrollIndicator={false}
-    >
-      <Text style={styles.header}>Order Details</Text>
-      <View style={styles.detailCard}>
-        <Text style={styles.title}>{orderDetails.title}</Text>
-        <OrderStatusBadge status={orderDetails.status} />
+    <View style={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Card: Basic Info */}
+        <View style={styles.card}>
+          <View className="flex flex-col items-end">
+            <OrderStatusBadge status={orderDetails.status} />
+          </View>
 
-        {/* Seller information */}
-        <SellerInfo
-          name={orderDetails.seller.name}
-          avatar={orderDetails.seller.avatar}
-        />
-
-        {/* Order metadata */}
-        <OrderMetadata
-          orderId={id as string}
-          orderDate={orderDetails.orderDate}
-          editableUntil={orderDetails.editableUntil}
-        />
-
-        <SectionTitle title="Item" />
-        <OrderItem
-          name={orderDetails.items[0].name}
-          quantity={orderDetails.items[0].quantity}
-          price={orderDetails.items[0].price}
-        />
-
-        <Divider />
-        <TotalPrice price={orderDetails.totalPrice} />
-        <Divider />
-
-        <SectionTitle title="Shipping Address" />
-        <InfoItem content={orderDetails.shippingAddress} type="address" />
-
-        <SectionTitle title="Payment Method" />
-        <InfoItem content={orderDetails.paymentMethod} type="payment" />
-
-        {/* Button section */}
-        <View style={styles.buttonContainer}>
-          <CustomButtonOutlined
-            title="Edit Order"
-            onPress={handleCancel}
-            containerStyle={styles.editButton}
-            textStyle={styles.editButtonText}
+          <OrderMetadata
+            orderId={id as string}
+            orderDate={orderDetails.orderDate}
+            editableUntil={orderDetails.editableUntil}
           />
+        </View>
+
+        {orderDetails.type === "rent" && (
+          <View style={styles.card}>
+            <Text style={styles.sectionTitle}>Rental Details</Text>
+
+            <View style={styles.rentalRow}>
+              <View style={styles.rentalItem}>
+                <Text style={styles.rentalLabel}>Start Date</Text>
+                <Text style={styles.rentalValue}>
+                  {orderDetails.rental.startDate}
+                </Text>
+              </View>
+
+              <View style={styles.rentalItem}>
+                <Text style={styles.rentalLabel}>End Date</Text>
+                <Text style={styles.rentalValue}>
+                  {orderDetails.rental.endDate}
+                </Text>
+              </View>
+
+              <View style={styles.rentalItem}>
+                <Text style={styles.rentalLabel}>Cycle</Text>
+                <Text style={styles.rentalValue}>2 months</Text>
+              </View>
+            </View>
+
+            <View style={{ marginTop: 16 }}>
+              <Text style={styles.rentalLabel}>Return Status</Text>
+              <Text style={styles.returnStatus}>
+                {orderDetails.rental.returnStatus}
+              </Text>
+            </View>
+          </View>
+        )}
+
+        {/* Card: Items */}
+        <View style={styles.card}>
+          <Text style={styles.sectionTitle}>Items</Text>
+
+          <TouchableOpacity
+            style={styles.sellerRow}
+            onPress={
+              () => {}
+              // navigation.navigate("SellerProfile", {
+              //   sellerId: orderDetails.seller.id,
+              // })
+            }
+          >
+            <View style={styles.sellerLink}>
+              <Text style={styles.sellerValue}>{orderDetails.seller.name}</Text>
+              <ChevronRight size={16} color="#888" />
+            </View>
+          </TouchableOpacity>
+
+          {orderDetails.items.map((item, index) => (
+            <OrderItem
+              key={index}
+              id={item.id}
+              imageUrl={item.book_image}
+              name={item.name}
+              quantity={item.quantity}
+              price={item.price}
+            />
+          ))}
+
+          <Divider />
+          <TotalPrice price={orderDetails.totalPrice} />
+        </View>
+
+        {/* Card: Shipping Info */}
+        <View style={styles.card}>
+          <SectionTitle title="Shipping Address" />
+          <InfoItem content={orderDetails.shippingAddress} type="address" />
+
+          <SectionTitle title="Payment Method" />
+          <InfoItem content={orderDetails.paymentMethod} type="payment" />
+        </View>
+
+        {/* Buttons */}
+        <View style={styles.buttonGroup}>
+          {/* <CustomButtonPrimary title="Edit Order" onPress={handleEdit} /> */}
           <CustomButtonOutlined
             title="Cancel Order"
             onPress={handleCancel}
-            containerStyle={styles.cancelButton}
-            textStyle={styles.cancelButtonText}
+            containerStyle={styles.outlinedButton}
+            textStyle={styles.outlinedText}
           />
         </View>
+      </ScrollView>
+      <View style={[styles.bottomBar, { paddingBottom: 12 }]}>
+        <View className="flex flex-row justify-between gap-x-5">
+          {orderDetails.type === "buy" && (
+            <TouchableOpacity className="flex-1 justify-center items-center border border-viridian-400 py-3 rounded">
+              <Text className="text-viridian-400 text-base">Rate</Text>
+            </TouchableOpacity>
+          )}
+
+          {orderDetails.type === "rent" && (
+            <>
+              <TouchableOpacity
+                className="flex-1 justify-center items-center border border-viridian-400 py-3 rounded"
+                onPress={() => router.push(`/order-details/${id}/rent-return`)}
+              >
+                <Text className="text-viridian-400 text-base">Return</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                className="flex-1 justify-center items-center bg-viridian-400 py-3 rounded"
+                onPress={() => router.push(`/order-details/${id}/rent-extend`)}
+              >
+                <Text className="text-white text-base">Extend</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  statusContainer: {
+    marginTop: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  statusLabel: {
+    fontSize: 14,
+    color: "#555",
+    fontWeight: "500",
+  },
+
+  sellerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 8,
+  },
+  sellerLink: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4, // nếu dùng react-native 0.71+
+  },
+  sellerValue: {
+    color: "#007BFF",
+    fontWeight: "500",
+  },
+  sectionTitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+    marginBottom: 12,
+    color: "#008C6E",
+  },
+
+  rentalRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 12,
+  },
+  rentalItem: {
+    flex: 1,
+  },
+  rentalLabel: {
+    fontSize: 13,
+    color: "#666",
+    marginBottom: 4,
+  },
+  rentalValue: {
+    fontSize: 14,
+    color: "#333",
+    fontWeight: "500",
+  },
+
+  returnStatus: {
+    fontSize: 14,
+    color: "#1e90ff",
+    fontWeight: "600",
+    marginTop: 4,
+  },
+
+  bottomBar: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "#fff",
+    paddingHorizontal: 16,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderColor: "#eee",
+  },
+
   container: {
     flex: 1,
-    backgroundColor: "#f5f7f7",
+    backgroundColor: "#f0f4f5",
   },
   contentContainer: {
     padding: 16,
+    paddingBottom: 32,
   },
   header: {
-    fontSize: 26,
-    fontWeight: "bold",
+    fontSize: 24,
+    fontWeight: "700",
     marginBottom: 16,
-    color: "#333",
-  },
-  detailCard: {
-    backgroundColor: "white",
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 16,
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    elevation: 3,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 12,
     color: "#222",
   },
-  buttonContainer: {
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  rowBetween: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 24,
-  },
-  editButton: {
-    backgroundColor: "#00664f",
-    padding: 14,
-    borderRadius: 8,
-    width: "48%",
     alignItems: "center",
+    marginBottom: 12,
   },
-  editButtonText: {
-    fontWeight: "bold",
-    fontSize: 15,
-    color: "#fff",
+  title: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#333",
+    flexShrink: 1,
+    paddingRight: 8,
   },
-  cancelButton: {
-    backgroundColor: "#fff",
-    padding: 14,
-    borderRadius: 8,
-    width: "48%",
-    alignItems: "center",
-    borderWidth: 1,
+  buttonGroup: {
+    marginTop: 12,
+    gap: 12,
+  },
+  outlinedButton: {
     borderColor: "#b33939",
+    borderWidth: 1.5,
+    backgroundColor: "#fff",
   },
-  buttonText: {
-    fontWeight: "bold",
-    fontSize: 15,
-    color: "#fff",
-  },
-  cancelButtonText: {
-    fontWeight: "bold",
-    fontSize: 15,
+  outlinedText: {
     color: "#b33939",
+    fontWeight: "600",
   },
 });

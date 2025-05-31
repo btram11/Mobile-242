@@ -88,6 +88,8 @@ export default function Login() {
                   handleTextChange={onChange}
                   icon={user}
                   errors={errors.email}
+                  numberOfLines={1}
+                  maxLength={50}
                 />
               )}
             />
@@ -104,6 +106,7 @@ export default function Login() {
                   handleTextChange={onChange}
                   icon={lock}
                   errors={errors.password}
+                  maxLength={50}
                 />
               )}
             />

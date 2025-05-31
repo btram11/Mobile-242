@@ -10,6 +10,7 @@ import "@/global.css";
 
 export default function BookCard({
   id,
+  listing_id,
   img_src,
   title,
   is_leased,
@@ -34,33 +35,40 @@ export default function BookCard({
   else if (is_sold) statusLabel = "Sold";
   else if (is_leased) statusLabel = "Leased";
   return (
-    <Link href={`/book-info/${id}`} asChild>
+    <Link href={`/book-info/${id}?listing_id=${listing_id}`} asChild>
       <TouchableOpacity
         className={`${color} rounded-lg shadow-md p-4 m-2 w-44 gap-1`}
       >
-        <Image style={styles.img} source={img_src} resizeMode="contain" />
+        <Image
+          style={styles.img}
+          source={img_src ?? require("@/assets/images/book1.jpg")}
+          resizeMode="contain"
+        />
         <Text
           className={`text-xll font-bold text-center ${
             text_color == "dark" ? "text-black" : "text-white"
           }`}
+          numberOfLines={3}
         >
           {title}
         </Text>
-        {showPrice && (
-          <Text className="text-lg font-latobold text-lightred text-center">
-            {priceLabel}
-          </Text>
-        )}
+        <View className="flex flex-col items-center justify-end flex-1">
+          {showPrice && (
+            <Text className="text-lg font-latobold text-lightred text-center">
+              {priceLabel}
+            </Text>
+          )}
 
-        {statusLabel && (
-          <Text
-            className={`text-sm font-lato text-center ${
-              text_color == "dark" ? "text-[#3A4D45]" : "text-[#E5E7EB]"
-            } `}
-          >
-            {statusLabel}
-          </Text>
-        )}
+          {statusLabel && (
+            <Text
+              className={`text-sm font-lato text-center ${
+                text_color == "dark" ? "text-[#3A4D45]" : "text-[#E5E7EB]"
+              } `}
+            >
+              {statusLabel}
+            </Text>
+          )}
+        </View>
       </TouchableOpacity>
     </Link>
   );
