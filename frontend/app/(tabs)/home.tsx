@@ -11,6 +11,7 @@ import {
   Image,
   RefreshControl,
   Button,
+  // SafeAreaView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Trending from "@/components/Trending";
@@ -31,6 +32,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { mockedNews, mockedProviders } from "@/mocks/data";
 import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/services/book";
+import { getProviders } from "@/services/provider";
 
 import * as Sentry from "@sentry/react-native";
 
@@ -49,8 +51,13 @@ export default function HomePage() {
     queryKey: ["posts"],
     queryFn: () => getBooks(),
   });
+
+  const { data: providersData, refetch: providerRefetch } = useQuery({
+    queryKey: ["providers"],
+    queryFn: () => getProviders({ pageSize: 5 }),
+  });
   return (
-    <SafeAreaView style={styles.container} className="bg-viridian-500">
+    <View style={styles.container} className="bg-viridian-500">
       {/* <Button
         title="Try!"
         onPress={() => {
@@ -58,14 +65,14 @@ export default function HomePage() {
         }}
       />
       ; */}
-      <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
+      {/* <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
         <Ionicons name="search-outline" size={20} color="gray" />
         <TextInput
           placeholder="Search"
           placeholderTextColor="gray"
           className="text-white flex-1 ml-2"
         />
-      </View>
+      </View> */}
       <ScrollView
         className="flex-1 py-4"
         refreshControl={
@@ -157,13 +164,13 @@ export default function HomePage() {
 
             <View className="flex-row mt-2 space-x-3">
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {mockedProviders.map((provider, idx) => (
+                {providersData?.map((provider, idx) => (
                   <ProviderCard
-                    key={provider.name}
-                    name={provider.name}
-                    img_src={provider.img_src}
-                    description={provider.description}
-                    rating={provider.rating}
+                    key={idx}
+                    name={provider?.provider_name}
+                    img_src={provider?.img_src}
+                    description={provider?.description}
+                    rating={provider?.rating || "N/A"}
                     color={idx % 2 == 0 ? "gray" : "blue"}
                   />
                 ))}
@@ -204,7 +211,7 @@ export default function HomePage() {
 
         <View style={{ height: 20 }}></View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
