@@ -116,7 +116,7 @@ const getBooks = async (
 };
 
 const getBookListingDetail = async (bookid, listingid) => {
-  const result = await prisma.listed_book.findFirst({
+  let result = await prisma.listed_book.findFirst({
     relationLoadStrategy: "join",
     where: {
       book_id: bookid,
@@ -124,9 +124,12 @@ const getBookListingDetail = async (bookid, listingid) => {
     },
     include: {
       book: true,
-
+      is_bought_rel: true,
+      is_rented_rel: true,
     },
   });
+  result.is_bought = result.is_bought_rel ? true : false;
+  result.is_rented = result.is_rented_rel ? true : false;
 
   return result;
 };
