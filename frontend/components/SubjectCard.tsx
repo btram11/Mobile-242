@@ -46,13 +46,7 @@ export function SubjectCard({
       colors={finalColor?.bg}
       start={{ x: 0, y: 0 }} // 0%
       end={{ x: 0, y: 1 }}
-      style={[
-        styles.majorItem,
-        {
-          elevation: 4, // Android
-          boxShadow: "3px 5px 4px rgba(0, 0, 0, 0.25)",
-        },
-      ]}
+      style={[styles.majorItem]}
     >
       <View
         style={{

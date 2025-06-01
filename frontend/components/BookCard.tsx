@@ -1,12 +1,21 @@
 //@ts-nocheck
 
-import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Rating from "@/components/Rating";
 import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import "@/global.css";
+import { Sale } from "./SaleItem";
+import { Skeleton } from "moti/skeleton";
 
 export default function BookCard({
   id,
@@ -37,21 +46,23 @@ export default function BookCard({
   return (
     <Link href={`/book-info/${id}?listing_id=${listing_id}`} asChild>
       <TouchableOpacity
-        className={`${color} rounded-lg shadow-md p-4 m-2 w-44 gap-1`}
+        className={`${color} rounded-lg shadow-md p-3 m-2 w-44 gap-1 min-h-[283px]`}
       >
         <Image
           style={styles.img}
           source={img_src ?? require("@/assets/images/book1.jpg")}
           resizeMode="contain"
         />
-        <Text
-          className={`text-xll font-bold text-center ${
-            text_color == "dark" ? "text-black" : "text-white"
-          }`}
-          numberOfLines={3}
-        >
-          {title}
-        </Text>
+        <View className="flex-1 flex items-center justify-center">
+          <Text
+            className={`text-xll font-bold text-center ${
+              text_color == "dark" ? "text-black" : "text-white"
+            }`}
+            numberOfLines={3}
+          >
+            {title}
+          </Text>
+        </View>
         <View className="flex flex-col items-center justify-end flex-1">
           {showPrice && (
             <Text className="text-lg font-latobold text-lightred text-center">
@@ -74,9 +85,178 @@ export default function BookCard({
   );
 }
 
+export function BookCardSkeleton({
+  color,
+  text_color = "light",
+}: {
+  text_color?: "dark" | "light";
+}) {
+  return (
+    <View
+      className={`${color} rounded-lg shadow-md p-3 m-2 w-44 gap-1 min-h-[283px]`}
+    >
+      <Skeleton colorMode="light" width={"100%"} height={144} />
+      <View className="flex-1 flex items-center justify-start pt-2 gap-1">
+        <Skeleton colorMode={text_color} width={"90%"} height={14} />
+        <Skeleton colorMode={text_color} width={"90%"} height={14} />
+        <Skeleton colorMode={text_color} width={"80%"} height={14} />
+      </View>
+      <View className="flex flex-col items-center justify-end flex-1 gap-2">
+        <Skeleton colorMode={text_color} width={"50%"} height={20} />
+
+        <Skeleton colorMode={text_color} width={"70%"} height={14} />
+      </View>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   img: { width: "auto", height: 144, backgroundColor: "#fff" },
 });
+
+export function BookCardListing({
+  book,
+  index,
+}: {
+  book: Sale;
+  index?: number;
+}) {
+  return (
+    <Link
+      href={{
+        pathname: "/book-info/[book_id]",
+        params: {
+          book_id: book?.book_id,
+          listing_id: String(book?.listing_id),
+        },
+      }}
+      asChild
+    >
+      <Pressable className="flex flex-col gap-4 px-2 pb-4 w-full h-full bg-white rounded-lg shadow-md">
+        <View className="flex flex-col items-center justify-between">
+          {book?.img_url && (
+            <Image
+              style={{ width: "auto", height: 130, aspectRatio: 94 / 144 }}
+              source={book?.img_url || require("@/assets/images/book1.jpg")}
+              resizeMode="cover"
+            />
+          )}
+          {!book?.img_url && (
+            <View
+              style={{
+                width: "auto",
+                height: 130,
+                aspectRatio: 94 / 144,
+                backgroundColor: "#eee",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text className="text-xs text-gray-400">No Image</Text>
+            </View>
+          )}
+        </View>
+        <View className="flex-1">
+          <Text
+            className="text-base font-semibold leading-tight"
+            numberOfLines={2}
+          >
+            {book?.book?.title || "Book Title"}
+          </Text>
+          <Text className="text-sm text-gray-500" numberOfLines={1}>
+            {book?.book?.author || "Author Name"}
+          </Text>
+
+          <View className="flex flex-row items-center justify-between">
+            <Text className="text-[10px] text-gray-600 capitalize">
+              Condition:
+            </Text>
+            {book?.condition && (
+              <View className="ml-2 bg-gray-200 px-2 py-[2px] rounded-full">
+                <Text className="text-[10px] text-gray-600 capitalize">
+                  {book.condition}
+                </Text>
+              </View>
+            )}
+          </View>
+
+          <View className="flex-1 flex justify-end">
+            <View className="mt-2 flex-col items-end justify-between">
+              {book?.sold_price && (
+                <Text className="text-base font-bold text-lightred">
+                  Sale: ${book.sold_price}
+                </Text>
+              )}
+              {book?.leased_price && (
+                <Text className="text-base font-bold text-blue-500">
+                  Rent: ${book.leased_price}
+                </Text>
+              )}
+            </View>
+          </View>
+        </View>
+      </Pressable>
+    </Link>
+  );
+}
+
+export function BookCardSkeletonListing() {
+  return (
+    <View className="flex flex-col gap-4 px-2 pb-4 w-full h-full bg-white rounded-lg shadow-md">
+      <View className="flex flex-col items-center justify-between">
+        <Skeleton colorMode="light" width={"100%"} height={130} radius={0} />
+      </View>
+      <View className="flex-1 flex flex-col gap-1">
+        <Skeleton colorMode="light" width={"90%"} height={20} radius={0} />
+        <Skeleton colorMode="light" width={"70%"} height={20} radius={0} />
+        {/* <Text
+          className="text-base font-semibold leading-tight"
+          numberOfLines={2}
+        >
+          {book?.book?.title || "Book Title"}
+        </Text>
+        <Text className="text-sm text-gray-500" numberOfLines={1}>
+          {book?.book?.author || "Author Name"}
+        </Text> */}
+
+        <Skeleton colorMode="light" width={"60%"} height={16} radius={0} />
+        <View className="flex flex-row items-center justify-between">
+          <Skeleton colorMode="light" width={"60%"} height={14} radius={0} />
+          <View className="flex flex-col items-end">
+            <Skeleton colorMode="light" width={"40%"} height={14} radius={0} />
+          </View>
+          {/* <Text className="text-[10px] text-gray-600 capitalize">
+            Condition:
+          </Text>
+          {book?.condition && (
+            <View className="ml-2 bg-gray-200 px-2 py-[2px] rounded-full">
+              <Text className="text-[10px] text-gray-600 capitalize">
+                {book.condition}
+              </Text>
+            </View>
+          )} */}
+        </View>
+
+        <View className="flex-1 flex justify-end">
+          <View className="mt-2 flex-col items-end justify-between flex gap-1">
+            <Skeleton colorMode="light" width={"50%"} height={18} radius={0} />
+            <Skeleton colorMode="light" width={"50%"} height={18} radius={0} />
+            {/* {book?.sold_price && (
+              <Text className="text-base font-bold text-lightred">
+                Sale: ${book.sold_price}
+              </Text>
+            )}
+            {book?.leased_price && (
+              <Text className="text-base font-bold text-blue-500">
+                Rent: ${book.leased_price}
+              </Text>
+            )} */}
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+}
 
 export function BookCardLandmark({ book }) {
   const [image, setImage] = useState({ width: 0, height: 0 });

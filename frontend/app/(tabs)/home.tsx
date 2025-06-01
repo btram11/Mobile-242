@@ -23,9 +23,9 @@ import VideoCard from "@/components/VideoCard";
 import { Ionicons } from "@expo/vector-icons";
 
 import { SubjectCard } from "@/components/SubjectCard";
-import BookCard from "@/components/BookCard";
+import BookCard, { BookCardSkeleton } from "@/components/BookCard";
 import NewsCard from "@/components/NewsCard";
-import ProviderCard from "@/components/ProviderCard";
+import ProviderCard, { ProviderCardSkeleton } from "@/components/ProviderCard";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -47,15 +47,27 @@ export default function HomePage() {
     setIsRefreshing(false);
   };
 
-  const { data: booksData, refetch: bookRefetch } = useQuery({
+  const {
+    data: booksData,
+    refetch: bookRefetch,
+    isLoading: isBookLoading,
+  } = useQuery({
     queryKey: ["posts"],
     queryFn: () => getBooks(),
   });
 
-  const { data: providersData, refetch: providerRefetch } = useQuery({
+  const {
+    data: providersData,
+    refetch: providerRefetch,
+    isLoading: isProvidersLoading,
+  } = useQuery({
     queryKey: ["providers"],
     queryFn: () => getProviders({ pageSize: 5 }),
   });
+
+  const books = booksData?.filter(
+    (book) => book.sold_price != null && book.leased_price != null
+  );
   return (
     <View style={styles.container} className="bg-viridian-500">
       {/* <Button
@@ -65,14 +77,6 @@ export default function HomePage() {
         }}
       />
       ; */}
-      {/* <View className="flex-row items-center bg-secondarylight mx-2 my-1 px-4 py-1 rounded-3xl">
-        <Ionicons name="search-outline" size={20} color="gray" />
-        <TextInput
-          placeholder="Search"
-          placeholderTextColor="gray"
-          className="text-white flex-1 ml-2"
-        />
-      </View> */}
       <ScrollView
         className="flex-1 py-4"
         refreshControl={
@@ -87,8 +91,6 @@ export default function HomePage() {
           <Image
             style={styles.globe}
             source={require("@/assets/images/globe-books.png")}
-            // className="z-10"
-            // className="absolute w-72 h-72 -bottom-8 right-0 z-10"
             resizeMode="contain"
           />
         </View>
@@ -104,8 +106,18 @@ export default function HomePage() {
 
             <View className="flex-row mt-2 space-x-3">
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {booksData?.map((book, idx) => {
-                  if (!book.sold_price && !book.leased_price) return null;
+                {isBookLoading &&
+                  [...Array(3)].map((_, idx) => (
+                    <BookCardSkeleton
+                      key={idx}
+                      color={
+                        idx % 2 == 0
+                          ? "bg-viridian-400 text-black"
+                          : "bg-viridian-600/90 text-white"
+                      }
+                    />
+                  ))}
+                {books?.map((book, idx) => {
                   return (
                     <BookCard
                       key={idx}
@@ -163,13 +175,30 @@ export default function HomePage() {
             </Text>
 
             <View className="flex-row mt-2 space-x-3">
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {providersData?.map((provider, idx) => (
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingVertical: 4,
+                  gap: 2,
+                }}
+              >
+                {isProvidersLoading &&
+                  [...Array(3)].map((_, idx) => (
+                    <ProviderCardSkeleton
+                      key={idx}
+                      color={idx % 2 == 0 ? "gray" : "blue"}
+                    />
+                  ))}
+                {providersData?.data?.map((provider, idx) => (
                   <ProviderCard
                     key={idx}
+                    id={provider?.provider_id}
                     name={provider?.provider_name}
                     img_src={provider?.img_src}
-                    description={provider?.description}
+                    description={
+                      provider?.description || "No description available"
+                    }
                     rating={provider?.rating || "N/A"}
                     color={idx % 2 == 0 ? "gray" : "blue"}
                   />
@@ -188,7 +217,10 @@ export default function HomePage() {
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ flexDirection: "row", gap: 8 }}
+                contentContainerStyle={{
+                  flexDirection: "row",
+                  gap: 8,
+                }}
               >
                 <SubjectCard subject="Computer Science" color="purple" />
                 <SubjectCard subject="Chemistry" color="blue" />
