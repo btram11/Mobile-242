@@ -11,41 +11,46 @@ import {
 } from "react-native";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  buyBook,
+  getBookDetailByBookIdandListingId,
+  rentBook,
+} from "@/services/book";
+import { getProviderById } from "@/services/provider";
 
 export default function PaymentConfirmation() {
-  const { book_id, provider_id, paymentType, startDate, endDate } = useSelector(
+  const { book_id, listing_id, paymentType, startDate, endDate } = useSelector(
     (state: any) => state.payment
   );
   // const { book_id, provider_id } = useLocalSearchParams();
-  const [bookDetails, setBookDetails] = useState<any>(null);
+  const { data, isLoading } = useQuery({
+    queryKey: ["bookDetails", book_id, listing_id],
+    queryFn: () => getBookDetailByBookIdandListingId(book_id, listing_id),
+    enabled: !!book_id && !!listing_id, // chỉ gọi khi có book_id và provider_id
+  });
 
-  useEffect(() => {
-    const mockDetails = {
-      name: "The Subtle Art of Not Giving a F*ck",
-      image: require("@/assets/images/book1.jpg"),
-      provider: { name: "Book Provider Inc." },
-      price: { type: paymentType, amount: "12.99" },
-      rentalDetails: {
-        start: startDate,
-        end: endDate,
-        cycle:
-          startDate && endDate
-            ? `${Math.ceil(
-                (new Date(endDate).getTime() - new Date(startDate).getTime()) /
-                  (1000 * 60 * 60 * 24) +
-                  1
-              )} days`
-            : "",
-      },
-    };
-    setTimeout(() => setBookDetails(mockDetails), 500); // giả delay
-  }, [book_id, provider_id]);
+  const { data: provider, refetch: refetchProvider } = useQuery({
+    queryKey: ["provider", book_id],
+    queryFn: () => getProviderById(data?.provider_id),
+    enabled: !!data?.provider_id,
+  });
 
-  const handleConfirmPayment = () => {
-    router.replace(`/payment/success`);
-  };
+  const confirmPayment = useMutation({
+    mutationFn: async () => {
+      if (paymentType === "rental")
+        return rentBook(book_id, listing_id, startDate, endDate);
+      return buyBook(book_id, listing_id);
+    },
+    onSuccess: () => {
+      router.replace(`/payment/success`);
+    },
+    onError: (error) => {
+      Alert.alert("Error", error.message || "Failed to confirm payment");
+    },
+  });
 
-  if (!bookDetails) {
+  if (isLoading) {
     return (
       <View style={styles.loaderContainer}>
         <ActivityIndicator size="large" color="#008C6E" />
@@ -54,42 +59,80 @@ export default function PaymentConfirmation() {
     );
   }
 
-  const { name, image, provider, price, rentalDetails } = bookDetails;
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* <Text style={styles.title}>Confirm Your Payment</Text> */}
 
       <Image
-        source={image || require("@/assets/images/book1.jpg")}
+        source={data?.book?.img_url || require("@/assets/images/book1.jpg")}
         style={styles.bookImage}
       />
 
       <View style={styles.detailsBox}>
         <Text style={styles.infoTitle}>Book:</Text>
-        <Text style={styles.infoValue}>{name}</Text>
+        <Text style={styles.infoValue}>{data?.book?.title}</Text>
+
+        <View style={styles.rowBetween}>
+          <Text style={styles.infoTitle}>Condition:</Text>
+          <View
+            style={{
+              backgroundColor: getConditionColor(data?.condition),
+              paddingHorizontal: 10,
+              paddingVertical: 4,
+              borderRadius: 999,
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 12, fontWeight: "600" }}>
+              {data?.condition}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.divider} />
 
         <Text style={styles.infoTitle}>Provider:</Text>
-        <Text style={styles.infoValue}>{provider.name}</Text>
+        <Text style={styles.infoValue}>{provider?.provider_name ?? "N/A"}</Text>
 
-        <Text style={styles.infoTitle}>
-          {price.type === "purchase" ? "Price:" : "Rental Price:"}
-        </Text>
-        <Text style={styles.infoValue}>${price.amount}</Text>
-
-        {price.type === "rental" && (
+        {paymentType === "rental" && (
           <>
             <Text style={styles.infoTitle}>Rental Duration:</Text>
             <Text style={styles.infoValue}>
-              {rentalDetails.start} → {rentalDetails.end} ({rentalDetails.cycle}
-              )
+              {startDate} → {endDate}
+            </Text>
+            <Text style={[styles.infoValue, { fontSize: 13, color: "#888" }]}>
+              (
+              {Math.ceil(
+                (new Date(endDate).getTime() - new Date(startDate).getTime()) /
+                  (1000 * 60 * 60 * 24) +
+                  1
+              )}{" "}
+              days)
             </Text>
           </>
         )}
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+            gap: 10,
+            marginTop: 16,
+          }}
+        >
+          <Text style={{ fontWeight: "600", color: "#555", fontSize: 16 }}>
+            {paymentType === "purchase" ? "Price:" : "Rental Price:"}
+          </Text>
+          <Text style={{ fontWeight: "700", fontSize: 23, color: "#008C6E" }}>
+            $
+            {paymentType === "purchase" ? data?.sold_price : data?.leased_price}
+          </Text>
+        </View>
       </View>
 
       <TouchableOpacity
-        onPress={handleConfirmPayment}
+        onPress={confirmPayment.mutate}
         style={styles.confirmButton}
       >
         <Text style={styles.confirmText}>Confirm & Pay</Text>
@@ -97,6 +140,22 @@ export default function PaymentConfirmation() {
     </ScrollView>
   );
 }
+
+const getConditionColor = (condition: string) => {
+  condition = condition.toLocaleLowerCase();
+  switch (condition) {
+    case "new":
+      return "#4CAF50";
+    case "like new":
+      return "#2196F3";
+    case "used":
+      return "#FF9800";
+    case "worn":
+      return "#F44336";
+    default:
+      return "#9E9E9E";
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -160,5 +219,17 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
+  },
+
+  rowBetween: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 12,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: "#eee",
+    marginVertical: 16,
   },
 });

@@ -7,318 +7,168 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Touchable,
-  TouchableWithoutFeedback,
+  RefreshControl,
 } from "react-native";
 
-import { Picker } from "@react-native-picker/picker";
-import { useState, useLayoutEffect, useEffect } from "react";
-// import { Menu, Provider } from 'react-native-paper';
-// import mockedBooks from '../../../backend/prisma/data/database_books.json';
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Rating from "@/components/Rating";
 import {
   CustomButtonLight,
   CustomButtonPrimary,
-  CustomButtonSecondary,
 } from "@/components/CustomSquareButton";
 import BookCard from "@/components/BookCard";
 import { useHeaderHeart } from "@/hooks/useFavoriteHeader";
 import { useDispatch } from "react-redux";
 import { setPaymentData } from "@/features/payment/paymentSlice";
+import { useQuery } from "@tanstack/react-query";
+import {
+  getSimilarBooks,
+  getBookDetailByBookIdandListingId,
+} from "@/services/book";
 
-const mockedBooks = [
-  {
-    // this is the fetched book from be, specified by book_id & listing_id
-    id: 1,
-    title: "The Great Gatsby",
-    img_src: require("@/assets/images/book1.jpg"),
-    condition: "used",
-    leased_price: 30,
-    sold_price: 20,
-    is_leased: true,
-    is_sold: true,
-    in_wishlist: true,
-    // providers: [{ provider_id: 1, provider_name: "Name 1", preferred_location: "campus 2", average_rating: 4.5}, { provider_id: 2, provider_name: "Name 2", average_rating: 4.5, preferred_location: "campus 1" }, { provider_id: 3, provider_name: "Name 3", average_rating: 4.5, preferred_location: "campus 2" }],
-    provider: {
-      provider_id: 1,
-      provider_name: "Name 1",
-      preferred_location: "campus 2",
-      average_rating: 4.5,
-    },
-    author: "Author A",
-    org_price: 80,
-    major: "Computer Science",
-    publisher: "Publisher A",
-    cover_type: "Hardcover",
-    pages: 300,
-    publishing_year: 2020,
-    summary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    related_books: [
-      {
-        id: 2,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-      {
-        id: 3,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-      {
-        id: 4,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-    ],
-  },
-
-  {
-    id: 2,
-    title: "The Catcher in the Rye",
-    img_src: require("@/assets/images/book3.jpg"),
-    condition: "good",
-    leased_price: 30,
-    sold_price: 25,
-    is_leased: true,
-    is_sold: false,
-    provider: {
-      provider_id: 1,
-      provider_name: "Name 1",
-      preferred_location: "campus 2",
-      average_rating: 4.5,
-    },
-    author: "Author A",
-    org_price: 80,
-    major: "Computer Science",
-    publisher: "Publisher A",
-    cover_type: "Hardcover",
-    pages: 300,
-    publishing_year: 2020,
-    summary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    related_books: [
-      {
-        id: 2,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-      {
-        id: 3,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-      {
-        id: 4,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-    ],
-  },
-  {
-    // this is the fetched book from be, specified by book_id & listing_id
-    id: 3,
-    title: "If on a winter night a traveller hehehe",
-    img_src: require("@/assets/images/book1.jpg"),
-    condition: "used",
-    leased_price: 30,
-    sold_price: 20,
-    is_leased: true,
-    is_sold: true,
-    in_wishlist: true,
-    // providers: [{ provider_id: 1, provider_name: "Name 1", preferred_location: "campus 2", average_rating: 4.5}, { provider_id: 2, provider_name: "Name 2", average_rating: 4.5, preferred_location: "campus 1" }, { provider_id: 3, provider_name: "Name 3", average_rating: 4.5, preferred_location: "campus 2" }],
-    provider: {
-      provider_id: 1,
-      provider_name: "Name 1",
-      preferred_location: "campus 2",
-      average_rating: 4.5,
-    },
-    author: "Author A",
-    org_price: 80,
-    major: "Computer Science",
-    publisher: "Publisher A",
-    cover_type: "Hardcover",
-    pages: 300,
-    publishing_year: 2020,
-    summary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    related_books: [
-      {
-        id: 2,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-      {
-        id: 3,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-      {
-        id: 4,
-        title: "The Great Gatsby",
-        img_src: require("@/assets/images/book1.jpg"),
-        condition: "used",
-        leased_price: 30,
-        sold_price: 20,
-        is_leased: true,
-        is_sold: true,
-        is_from: true,
-      },
-    ],
-  },
-];
-
-// get mocked data from backend/prisma/data/database_books.json
+import { Skeleton } from "moti/skeleton";
+import { getProviderById } from "@/services/provider";
 
 export default function BookInfo() {
-  // add a function to fetch for book information
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // const route = useRoute();
-  // const { book_id } = route.params;
-  const { book_id, provider_id } = useLocalSearchParams();
-  const selected_book = mockedBooks.filter(
-    (book) => book.id == Number(book_id)
-  )[0];
 
-  const provider = selected_book.provider;
+  const { book_id, listing_id } = useLocalSearchParams();
+
+  // const { data, isLoading, refetch } = useQuery({
+  //   queryKey: ["book", book_id],
+  //   queryFn: () => getBookById(book_id),
+  // });
+
+  const {
+    data: listingData,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["listing", book_id, listing_id],
+    queryFn: () => getBookDetailByBookIdandListingId(book_id, listing_id),
+  });
+
+  const { data: similarBooks, refetch: refetchSimilarBooks } = useQuery({
+    queryKey: ["similarBooks", book_id],
+    queryFn: () => getSimilarBooks(book_id),
+  });
+
+  const { data: provider, refetch: refetchProvider } = useQuery({
+    queryKey: ["provider", book_id],
+    queryFn: () => getProviderById(listingData?.provider_id),
+    enabled: !!listingData?.provider_id,
+  });
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setIsRefreshing(true);
+    await refetch();
+    await refetchProvider();
+    setIsRefreshing(false);
+  };
 
   const handleProviderPress = () => {
-    router.push(`/book-info/${selected_book.id}/providers`);
+    router.push(`/book-info/${book_id}/listings`);
   };
 
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
   const handleInfoExpand = () => setIsInfoExpanded(!isInfoExpanded);
 
-  const maxLength = 200;
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
-  const summary = isSummaryExpanded
-    ? selected_book.summary
-    : selected_book.summary.slice(0, maxLength) + "...";
   const handleSummaryExpand = () => setIsSummaryExpanded(!isSummaryExpanded);
+
+  const maxLength = 200;
+  const fullSummary = listingData?.book?.summary ?? "";
+  const shouldShowExpand = fullSummary.length > maxLength;
+
+  const displayedSummary = shouldShowExpand
+    ? isSummaryExpanded
+      ? fullSummary
+      : fullSummary.slice(0, maxLength) + "…"
+    : fullSummary;
 
   // useHeaderHeart(selected_book.in_wishlist);
 
-  const [isFavorited, setIsFavorited] = useState(selected_book.in_wishlist);
-  const handleLike = () => {
-    setIsFavorited((prev) => !prev);
-    // add a function to change "in_wishlist" status in the backend
-  };
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          key={String(isFavorited)}
-          onPressIn={handleLike}
-          // use onPressIn as onPress is not firing in the header (issue related to https://github.com/software-mansion/react-native-screens/issues/2219)
-          style={{ marginRight: 16 }}
-        >
-          <Ionicons
-            name={isFavorited ? "heart" : "heart-outline"}
-            size={32}
-            color={"red"}
-          />
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation, isFavorited]);
+  // const [isFavorited, setIsFavorited] = useState(selected_book.in_wishlist);
+  // const handleLike = () => {
+  //   setIsFavorited((prev) => !prev);
+  //   // add a function to change "in_wishlist" status in the backend
+  // };
+  // useEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity
+  //         key={String(isFavorited)}
+  //         onPressIn={handleLike}
+  //         // use onPressIn as onPress is not firing in the header (issue related to https://github.com/software-mansion/react-native-screens/issues/2219)
+  //         style={{ marginRight: 16 }}
+  //       >
+  //         <Ionicons
+  //           name={isFavorited ? "heart" : "heart-outline"}
+  //           size={32}
+  //           color={"red"}
+  //         />
+  //       </TouchableOpacity>
+  //     ),
+  //   });
+  // }, [navigation, isFavorited]);
+  if (isLoading) {
+    return <BookInfoSkeleton />;
+  }
 
   return (
     <ScrollView
       className="p-4 bg-[#F7F7F7]"
       contentContainerStyle={styles.contentContainer}
       showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={onRefresh}
+          colors={["#008C6E"]}
+        />
+      }
     >
       <View className="items-center gap-2">
         <View className="flex flex-row w-full gap-5">
           <Image
             style={styles.bookImg}
-            source={selected_book.img_src}
+            source={
+              listingData?.book?.img_url || require("@/assets/images/book1.jpg")
+            }
             // className="w-44 h-60"
             resizeMode="stretch"
           />
           <View className="flex-1 flex">
             <View className="flex-1">
               <Text className="text-2xl font-latobold">
-                {selected_book?.title}
+                {(listingData?.book?.title || "").split("/")[0].trim()}
               </Text>
               <Text className="text-lg text-gray-600 font-latolight">
-                Condition: {selected_book?.condition}
+                Condition: {listingData?.condition}
               </Text>
+
               {/* display sold_price and/or leased_price */}
-              {selected_book.is_leased && !selected_book.is_sold && (
-                <Text className="text-lg">
-                  Leased Price: ${selected_book?.leased_price}
-                </Text>
-              )}
-              {selected_book.is_sold && !selected_book.is_leased && (
-                <Text className="text-lg">
-                  Sold Price: ${selected_book?.sold_price}
-                </Text>
-              )}
-              {selected_book.is_sold && selected_book.is_leased && (
+              {(listingData?.is_sold || listingData?.is_leased) && (
                 <View>
-                  <View className="flex-row items-center">
-                    <Text className="text-lg font-lato">Leased Price: </Text>
-                    <Text className="text-lg font-latobold text-lightred">
-                      ${selected_book.leased_price}
-                    </Text>
-                  </View>
-                  <View className="flex-row items-center">
-                    <Text className="text-lg font-lato">Sold Price: </Text>
-                    <Text className="text-lg font-latobold text-lightred">
-                      ${selected_book.sold_price}
-                    </Text>
-                  </View>
+                  {listingData?.is_leased && (
+                    <View className="flex-row items-center">
+                      <Text className="text-lg font-lato">Leased Price: </Text>
+                      <Text className="text-lg font-latobold text-lightred">
+                        ${listingData?.leased_price}
+                      </Text>
+                    </View>
+                  )}
+                  {listingData?.is_sold && (
+                    <View className="flex-row items-center">
+                      <Text className="text-lg font-lato">Sold Price: </Text>
+                      <Text className="text-lg font-latobold text-lightred">
+                        ${listingData?.sold_price}
+                      </Text>
+                    </View>
+                  )}
                 </View>
               )}
             </View>
@@ -334,14 +184,13 @@ export default function BookInfo() {
 
         {/* display buy/rent button */}
         <View className="flex flex-row">
-          {selected_book.is_sold && (
+          {listingData?.is_sold && (
             <CustomButtonPrimary
               handlePress={() => {
-                console.log("Buy button pressed");
                 dispatch(
                   setPaymentData({
                     book_id,
-                    provider_id,
+                    listing_id,
                     paymentType: "purchase",
                   })
                 );
@@ -352,13 +201,11 @@ export default function BookInfo() {
               style={{ maxWidth: "50%" }}
             />
           )}
-          {selected_book.is_leased && (
+          {listingData?.is_leased && (
             <CustomButtonLight
               handlePress={() => {
                 router.push(
-                  `/book-info/${selected_book.id}/rent?provider_id=${
-                    provider_id || 1
-                  }`
+                  `/book-info/${book_id}/rent?listing_id=${listing_id || 1}`
                 );
               }}
               text="Rent"
@@ -388,13 +235,13 @@ export default function BookInfo() {
                     Preferred Location:{" "}
                   </Text>
                   <Text className="text-md font-lato">
-                    {provider.preferred_location}
+                    {provider?.preferred_location}
                   </Text>
                 </View>
                 <View>
                   <View className="flex-row items-center">
                     <Text className="text-md font-latolight">Rating: </Text>
-                    <Rating rating={provider.average_rating} />
+                    <Rating rating={provider?.average_rating} />
                   </View>
                 </View>
               </View>
@@ -413,20 +260,37 @@ export default function BookInfo() {
 
           <View className="w-full items-center">
             {[
-              { label: "Author", value: selected_book.author },
-              { label: "Original price", value: selected_book.org_price },
-              { label: "Major", value: selected_book.major, expandable: true },
+              { label: "Author", value: listingData?.book?.author },
+              { label: "Original price", value: listingData?.book?.org_price },
+              {
+                label: "Category",
+                value: listingData?.book?.category,
+              },
+              {
+                label: "Subject",
+                value: listingData?.book?.subject,
+                expandable: true,
+              },
               {
                 label: "Publisher",
-                value: selected_book.publisher,
+                value: listingData?.book?.publisher,
+                expandable: true,
+              },
+              {
+                label: "Publishing Year",
+                value: listingData?.book?.publishing_year,
                 expandable: true,
               },
               {
                 label: "Cover Type",
-                value: selected_book.cover_type,
+                value: listingData?.book?.cover_type,
                 expandable: true,
               },
-              { label: "Pages", value: selected_book.pages, expandable: true },
+              {
+                label: "Pages",
+                value: listingData?.book?.pages,
+                expandable: true,
+              },
             ]
               .filter((item) => isInfoExpanded || !item.expandable) // Ẩn nếu chưa mở rộng
               .map(({ label, value }, index) => (
@@ -451,10 +315,6 @@ export default function BookInfo() {
               ))}
           </View>
 
-          {/* <CustomButtonPrimary
-            handlePress={handleInfoExpand}
-            text={isInfoExpanded ? "Show Less" : "Show More"}
-          /> */}
           <Text
             onPress={handleInfoExpand}
             style={{ textDecorationLine: "underline" }}
@@ -463,19 +323,20 @@ export default function BookInfo() {
           </Text>
         </View>
 
-        <View className="w-full items-center gap-2">
+        <View className="w-full items-center gap-2 mb-2">
           <Text className="text-2xl font-latobold self-start">Summary</Text>
-          <Text className="text-md font-lato text-justify">{summary}</Text>
-          {/* <CustomButtonPrimary
-            handlePress={handleSummaryExpand}
-            text={isSummaryExpanded ? "Show Less" : "Show More"}
-          /> */}
-          <Text
-            onPress={handleSummaryExpand}
-            style={{ textDecorationLine: "underline" }}
-          >
-            {isSummaryExpanded ? "Show Less" : "Show More"}
+          <Text className="text-md font-lato text-justify w-full">
+            {displayedSummary || "No summary available"}
           </Text>
+
+          {shouldShowExpand && (
+            <Text
+              onPress={handleSummaryExpand}
+              style={{ textDecorationLine: "underline" }}
+            >
+              {isSummaryExpanded ? "Show Less" : "Show More"}
+            </Text>
+          )}
         </View>
 
         <View className="w-full items-center">
@@ -484,10 +345,11 @@ export default function BookInfo() {
           </Text>
           <View className="w-full">
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {selected_book.related_books.map((book, idx) => (
+              {similarBooks?.map((book, idx) => (
                 <BookCard
                   key={idx}
-                  id={book.id}
+                  id={book.book_id}
+                  listing_id={book.listing_id ?? book.book_id}
                   img_src={book.img_src}
                   title={book.title}
                   is_leased={book.is_leased}
@@ -495,7 +357,7 @@ export default function BookInfo() {
                   leased_price={book.leased_price}
                   sold_price={book.sold_price}
                   is_from={book.is_from}
-                  color="gray"
+                  color={"bg-gray-300"}
                 />
               ))}
             </ScrollView>
@@ -555,3 +417,70 @@ const styles = StyleSheet.create({
   },
   bookImg: { width: 151, height: 235 },
 });
+
+function BookInfoSkeleton() {
+  return (
+    <ScrollView
+      className="p-4 bg-[#F7F7F7]"
+      contentContainerStyle={styles.contentContainer}
+    >
+      {/* Header: ảnh + title */}
+      <View className="items-center gap-5">
+        <View className="flex flex-row w-full gap-5">
+          <Skeleton colorMode="light" radius={12} height={235} width={151} />
+          <View className="flex-1 flex gap-2">
+            <Skeleton colorMode="light" radius={4} height={60} width="100%" />
+            <Skeleton colorMode="light" radius={4} height={20} width="70%" />
+            <Skeleton colorMode="light" radius={4} height={20} width="80%" />
+          </View>
+        </View>
+        <Skeleton colorMode="light" radius={4} height={2} width="100%" />
+        <View className="flex items-center">
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={40}
+            width="80%"
+            // style={{ marginRight: 10 }}
+          />
+        </View>
+
+        {/* Provider information */}
+        <View className="w-full flex flex-col gap-2">
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={40}
+            width="40%"
+            className="self-start"
+          />
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={28}
+            width="20%"
+            className="self-start"
+          />
+          <Skeleton colorMode="light" radius={4} height={130} width="100%" />
+        </View>
+
+        {/* Information section */}
+        <View className="w-full gap-2">
+          <Skeleton
+            colorMode="light"
+            radius={4}
+            height={40}
+            width="50%"
+            className="self-start"
+          />
+
+          <View className="w-full items-center">
+            <Skeleton colorMode="light" radius={4} height={130} width="100%" />
+          </View>
+        </View>
+      </View>
+
+      {/* Information rows */}
+    </ScrollView>
+  );
+}

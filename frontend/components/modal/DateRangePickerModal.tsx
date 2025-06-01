@@ -25,7 +25,8 @@ const unavailableDates = ["2025-05-15", "2025-05-16", "2025-05-20"];
 const providerAvailableFrom = new Date().toISOString().split("T")[0];
 export const DateRangePicker: React.FC<{
   onClose: any;
-}> = ({ onClose }) => {
+  leased_period?: string | number;
+}> = ({ onClose, leased_period }) => {
   const { startDate: globalStartDate, endDate: globalEndDate } = useSelector(
     (state: RootState) => state.rental
   );
@@ -74,7 +75,25 @@ export const DateRangePicker: React.FC<{
         startDate,
         unavailableDates
       );
-      setMaxDate(nextUnavailableDate);
+      let leasedMaxDate = null;
+      if (leased_period) {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + leased_period - 1);
+        leasedMaxDate = date.toISOString().split("T")[0];
+      }
+
+      // So sánh và lấy ngày sớm hơn
+      let finalMaxDate = null;
+      if (leasedMaxDate && nextUnavailableDate) {
+        finalMaxDate =
+          new Date(leasedMaxDate) < new Date(nextUnavailableDate)
+            ? leasedMaxDate
+            : nextUnavailableDate;
+      } else {
+        finalMaxDate = leasedMaxDate || nextUnavailableDate || null;
+      }
+
+      setMaxDate(finalMaxDate);
     } else if (!startDate) {
       setMaxDate(null);
     }
@@ -204,6 +223,12 @@ export const DateRangePicker: React.FC<{
           markingType="period"
           onDayPress={handleDayPress}
         />
+
+        <Text className="text-center text-sm text-gray-500 mt-2">
+          Maximum rental period: {leased_period} day
+          {leased_period > 1 ? "s" : ""}
+        </Text>
+
         <View className=" flex-1 justify-end">
           <View className="flex flex-row justify-between px-4 py-3 border-t-2 border-gray-200 items-center h-20">
             <Text className="text-lg ">

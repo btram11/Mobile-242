@@ -12,7 +12,6 @@ import { Stack, router } from "expo-router";
 import { GlobalProvider } from "@/context/GlobalProvider";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { useHideTabBar } from "@/hooks/useHideTabBar";
-import { NavigationContainer } from "@react-navigation/native";
 
 export default function ProfileLayout() {
   const { loggedIn, isLoading } = useGlobalContext();
@@ -30,9 +29,24 @@ export default function ProfileLayout() {
       }}
     >
       <Stack.Screen
-        name="your-orders"
+        name="my-orders/(tabs)"
         options={{
           title: "Orders",
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="my-sales/(tabs)"
+        options={{
+          title: "My Sales",
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="my-sales/[listing_id]/index"
+        options={{
+          title: "Sale Detail",
+          headerShadowVisible: false,
         }}
       />
       <Stack.Screen
