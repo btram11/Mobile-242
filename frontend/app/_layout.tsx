@@ -20,7 +20,7 @@ import ModalManager from "@/components/modal/ModalManager";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { store } from "@/store";
 import RouteWatcher from "@/components/BookRouteWatcher";
 import { StatusBar } from "expo-status-bar";
 
@@ -65,7 +65,7 @@ const RootLayout = () => {
   if (!fontLoaded) return null;
 
   return (
-    <NavigationContainer>
+    <SafeAreaProvider>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
           <GlobalProvider>
@@ -86,6 +86,13 @@ const RootLayout = () => {
                 <Stack.Screen
                   name="index"
                   options={{ title: "Homepage", headerShown: false }}
+                />
+                <Stack.Screen
+                  name="providers/[provider_id]"
+                  options={{
+                    headerShown: true,
+                    title: "",
+                  }}
                 />
                 <Stack.Screen
                   name="(auth)"
@@ -164,8 +171,7 @@ const RootLayout = () => {
           </GlobalProvider>
         </QueryClientProvider>
       </Provider>
-      {/* </> */}
-    </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
