@@ -37,6 +37,7 @@ import { getBooks } from "@/services/book";
 import { getProviders } from "@/services/provider";
 
 import * as Sentry from "@sentry/react-native";
+import { router } from "expo-router";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -245,6 +246,11 @@ export default function HomePage() {
 
         <View style={{ height: 20 }}></View>
       </ScrollView>
+      <FloatingButton
+        onPress={() => router.push("/(profile)/my-sales/add/select-book")}
+        icon={<Plus size={24} color="white" />}
+        className="bg-viridian-500 shadow-lg shadow-viridian-600/50"
+      />
     </View>
   );
 }
