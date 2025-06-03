@@ -20,8 +20,6 @@ export default function CompleteTab() {
         throw new Error("Provider ID not found in storage");
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate network delay
-
       return await getListingsOfProvider({
         providerId,
         page: Number(pageParam),

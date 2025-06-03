@@ -31,13 +31,13 @@ const buttons = [
   //   },
   //   icon: <BookHeart size={22} color="#31CFB6" />,
   // },
-  // {
-  //   text: "My Orders",
-  //   handlePress: () => {
-  //     router.push("/(profile)/my-orders");
-  //   },
-  //   icon: <Package size={22} color="#31CFB6" />,
-  // },
+  {
+    text: "My Orders",
+    handlePress: () => {
+      router.push("/(profile)/my-orders");
+    },
+    icon: <Package size={22} color="#31CFB6" />,
+  },
   {
     text: "My Sales",
     handlePress: () => {

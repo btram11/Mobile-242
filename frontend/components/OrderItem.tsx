@@ -46,11 +46,25 @@ const OrderItem = ({
         </Text>
       </View>
       <View style={styles.contentRow}>
-        {bookImage && (
+        {bookImage ? (
           <Image
             source={bookImage || require("@/assets/images/book1.jpg")}
             style={styles.bookImage}
           />
+        ) : (
+          <View
+            style={[
+              styles.bookImage,
+              {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#eee",
+              },
+            ]}
+          >
+            <Text className="text-xs text-gray-400">No Image</Text>
+          </View>
         )}
         <View style={styles.textContainer}>
           <View>

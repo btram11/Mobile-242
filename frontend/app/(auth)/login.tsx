@@ -54,7 +54,6 @@ export default function Login() {
       email: string;
       password: string;
     }) => {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate network delay
       return await login(email, password);
     },
     onSuccess: async (data) => {
