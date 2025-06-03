@@ -24,6 +24,7 @@ const getBooks = async (
   isSold,
   isLeased,
   keyword = null,
+  category = null,
   sortby = ""
 ) => {
   // Limit offset
@@ -41,6 +42,11 @@ const getBooks = async (
         ...(isLeased && { is_leased: isLeased }),
       },
     };
+  }
+
+  console.log(category)
+  if (category) {
+    joinCondition.category = category; // Filter by category
   }
 
   // Search keyword
@@ -269,10 +275,10 @@ const getListingsByProvider = async (providerId, page, pageSize, inProgress, isC
     provider_id: providerId,
   };
   if (inProgress != undefined) {
-    whereCondition.is_in_progress = inProgress; 
+    whereCondition.is_in_progress = inProgress;
   }
   if (isComplete != undefined) {
-    whereCondition.is_complete = isComplete; 
+    whereCondition.is_complete = isComplete;
   }
 
   const result = await prisma.listed_book.findMany({

@@ -9,7 +9,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   View,
   Text,
@@ -19,20 +19,6 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-
-const book = {
-  title: "The Great Gatsby",
-  author: "F. Scott Fitzgerald",
-  cover:
-    "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
-  description:
-    "A classic novel of the Roaring Twenties, telling the story of Jay Gatsby and his unrequited love for Daisy Buchanan.",
-  price: "150,000 VND",
-  rental: {
-    startDate: "2025-06-01",
-    endDate: "2025-06-15",
-  },
-};
 
 const buyer = {
   name: "Nguyen Van A",
@@ -106,7 +92,8 @@ export default function MySalesDetail() {
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
-    if (saleDetail && !saleDetail.inprogress && !saleDetail.iscomplete) {
+    console.log("Sale detail:", saleDetail);
+    if (saleDetail && !saleDetail.is_in_progress && !saleDetail.is_complete) {
       navigation.setOptions({
         headerRight: () => (
           <TouchableOpacity
@@ -135,7 +122,7 @@ export default function MySalesDetail() {
     } else {
       navigation.setOptions({ headerRight: undefined }); // Ẩn nút nếu không đủ điều kiện
     }
-  }, [navigation, saleDetail]);
+  }, [navigation, saleDetail?.is_in_progress, saleDetail?.is_complete]);
 
   return (
     <View style={{ flex: 1 }}>

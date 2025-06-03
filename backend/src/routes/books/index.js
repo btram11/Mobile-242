@@ -37,6 +37,11 @@ const bookController = require("../../controller/book.controller");
  *           type: string
  *         description: Search keyword
  *       - in: query
+ *         name: category
+ *         schema:
+ *           type: string
+ *         description: Filter by book category
+ *       - in: query
  *         name: sortby
  *         schema:
  *           type: string

@@ -259,66 +259,97 @@ export function BookCardSkeletonListing() {
 }
 
 export function BookCardLandmark({ book }) {
-  const [image, setImage] = useState({ width: 0, height: 0 });
-  return (
-    <Link href={`/book-info/${book?.id}`}>
+  const [image, setImage] = useState({ width: 127, height: 191 });
+  const cardContent = (
+    <View
+      className="flex flex-row items-end relative"
+      style={{ height: image.height + 16 }}
+    >
       <View
-        className="flex flex-row items-end relative"
-        style={{ height: image.height + 16 }}
+        className="flex items-center justify-center rounded-md absolute bottom-2 left-2"
+        style={{
+          width: 127,
+          height: "auto",
+          // height: 191,
+          backgroundColor: "#ddd",
+          zIndex: 9999,
+          aspectRatio: 127 / 191,
+        }}
       >
-        <Image
-          style={{
-            width: 127,
-            height: "auto",
-            // height: 191,
-            zIndex: 9999,
-            aspectRatio: 127 / 191,
-          }}
-          className="w-4 rounded-md absolute bottom-2 left-2"
-          resizeMode="cover"
-          onLayout={(event) => {
-            const { width, height } = event.nativeEvent.layout;
-            setImage({ width, height });
-          }}
-          source={book?.img_src || require("@/assets/images/book1.jpg")}
-        />
-        <View
-          className="bg-white shadow-lg flex flex-row w-full rounded-xl"
-          style={{
-            height: (image.height * 8) / 9,
-            minHeight: "auto",
-            paddingLeft: image.width + 16,
-            paddingRight: 8,
-            paddingVertical: 8,
-          }}
-        >
-          <View className="flex flex-col gap-2">
-            <View>
-              <Text
-                style={{
-                  flexShrink: 1,
-                  flexWrap: "wrap",
-                  maxWidth: "90%",
-                  lineHeight: 20,
-                }}
-                className="text-lg font-semibold text-wrap"
-              >
-                {book?.title || `If on a Winter’s Night a Traveler `}
-              </Text>
-              <Text className="text-sm">{book?.title || `Umberto Eco`}</Text>
-            </View>
-            <View>
+        {book?.img_url ? (
+          <Image
+            style={{
+              width: 127,
+              height: "auto",
+              // height: 191,
+              zIndex: 9999,
+              aspectRatio: 127 / 191,
+            }}
+            className="w-4 "
+            resizeMode="cover"
+            onLayout={(event) => {
+              const { width, height } = event.nativeEvent.layout;
+              setImage({ width, height });
+            }}
+            source={book?.img_url || require("@/assets/images/book1.jpg")}
+          />
+        ) : (
+          <Text className="text-xs text-gray-400">No Image</Text>
+        )}
+      </View>
+      <View
+        className="bg-white shadow-lg flex flex-row w-full rounded-xl"
+        style={{
+          height: (image.height * 8) / 9,
+          minHeight: "auto",
+          paddingLeft: image.width + 16,
+          paddingRight: 8,
+          paddingVertical: 8,
+        }}
+      >
+        <View className="flex flex-col gap-2">
+          <View>
+            <Text
+              style={{
+                flexShrink: 1,
+                flexWrap: "wrap",
+                maxWidth: "90%",
+                lineHeight: 20,
+              }}
+              className="text-lg font-semibold text-wrap"
+              numberOfLines={2}
+            >
+              {book?.title || `N/A`}
+            </Text>
+            <Text className="text-sm" numberOfLines={2}>
+              {book?.author || `Umberto Eco`}
+            </Text>
+          </View>
+          <View>
+            {book?.sold_price && (
               <Text className="text-base">
                 <Text>{`Buy from: `}</Text>
                 <Text className="font-semibold text-lightred">
-                  {book?.sold_price || `20$`}
+                  {book?.sold_price || `N/A`}
                 </Text>
               </Text>
-            </View>
+            )}
+            {book?.leased_price && (
+              <Text className="text-base">
+                <Text>{`Buy from: `}</Text>
+                <Text className="font-semibold text-lightred">
+                  {book?.leased_price || `N/A`}
+                </Text>
+              </Text>
+            )}
           </View>
+          {!book?.sold_price && !book?.leased_price && (
+            <Text style={{ color: "gray" }}>Not available yet</Text>
+          )}
+        </View>
 
-          {/* Buttons */}
-          {/* <View style={stylesLandmark.buttonParent}>
+        {/* Buttons */}
+        {/* <View style={stylesLandmark.buttonParent}>
           <LinearGradient
             style={[stylesLandmark.button, stylesLandmark.buttonShadowBox]}
             locations={[0, 0.43, 0.8]}
@@ -342,8 +373,69 @@ export function BookCardLandmark({ book }) {
             </Text>
           </LinearGradient>
         </View> */}
+      </View>
+    </View>
+  );
+
+  return (
+    <Link
+      href={`/book-info/${book?.book_id}?listing_id=${book?.listing_id}`}
+      asChild
+    >
+      <TouchableOpacity disabled={!book?.sold_price && !book?.leased_price}>
+        {cardContent}
+      </TouchableOpacity>
+    </Link>
+  );
+}
+
+export function BookCardLandmarkSkeleton() {
+  const [image, setImage] = useState({ width: 127, height: 191 });
+  return (
+    <View
+      className="flex flex-row items-end relative"
+      style={{ height: image.height + 16 }}
+    >
+      <View
+        className="flex items-center justify-center rounded-md absolute bottom-2 left-2"
+        style={{
+          width: 127,
+          height: "auto",
+          // height: 191,
+          backgroundColor: "#ddd",
+          zIndex: 9999,
+          aspectRatio: 127 / 191,
+        }}
+      >
+        <Skeleton
+          colorMode="light"
+          width={image.width}
+          height={image.height}
+          radius={8}
+          style={{ zIndex: 9999 }}
+        />
+      </View>
+      <View
+        className="bg-white shadow-lg flex flex-row w-full rounded-xl"
+        style={{
+          height: (image.height * 8) / 9,
+          minHeight: "auto",
+          paddingLeft: image.width + 16,
+          paddingRight: 8,
+          paddingVertical: 8,
+        }}
+      >
+        <View className="flex flex-col gap-1">
+          <View className="flex flex-col gap-1">
+            <Skeleton colorMode="light" width={"100%"} height={20} radius={4} />
+            <Skeleton colorMode="light" width={"70%"} height={20} radius={4} />
+          </View>
+          <View className="flex flex-col gap-1">
+            <Skeleton colorMode="light" width={"85%"} height={18} radius={4} />
+          </View>
+          <Skeleton colorMode="light" width={"50%"} height={18} radius={4} />
         </View>
       </View>
-    </Link>
+    </View>
   );
 }

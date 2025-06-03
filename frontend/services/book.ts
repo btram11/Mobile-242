@@ -3,21 +3,31 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BaseUrl = process.env.EXPO_PUBLIC_API_URL + "/books";
 
-export const getBooks = async (
-  page: number = 1,
-  pageSize: number = 10,
-  keyword: string = "",
-  sortby: string = "",
-  isSold?: boolean,
-  isRented?: boolean
-) => {
+export const getBooks = async ({
+  page = 1,
+  pageSize = 10,
+  keyword = "",
+  sortby = "",
+  category = "",
+  issold,
+  isleased,
+}: {
+  page?: number;
+  pageSize?: number;
+  keyword?: string;
+  sortby?: string;
+  category?: string;
+  issold?: boolean;
+  isleased?: boolean;
+}) => {
   const params = new URLSearchParams({
     page: String(page),
     pagesize: String(pageSize),
-    issold: isSold?.toString() ?? "",
-    isleased: isRented?.toString() ?? "",
+    issold: issold?.toString() ?? "",
+    isleased: isleased?.toString() ?? "",
     keyword: keyword ?? "",
     sortby: sortby ?? "",
+    category: category ?? "",
   });
   const response = await fetch(`${BaseUrl}?${params.toString()}`, {
     method: "GET",
@@ -28,7 +38,10 @@ export const getBooks = async (
     throw new Error(`Error fetching books: ${response.statusText}`);
 
   const result = await response.json();
-  return result.books;
+  return {
+    data: result.books,
+    nextPage: result.books.length < pageSize ? undefined : page + 1,
+  };
 };
 
 export const getBookById = async (bookId: string) => {
@@ -232,6 +245,30 @@ export const cancelRentBook = async (bookId: string, listingId: string) => {
   );
   if (!response.ok)
     throw new Error(`Error cancelling rent book: ${response.statusText}`);
+  const result = await response.json();
+  return result;
+};
+
+export const addListingForBook = async (
+  bookId: string,
+  listingData: {
+    is_sold: boolean;
+    is_leased: boolean;
+    sold_price: number;
+    leased_price: number;
+    leased_period: number;
+    condition: string;
+  }
+) => {
+  const response = await fetch(`${BaseUrl}/${bookId}/listings`, {
+    method: "POST",
+    headers: await buildHeaders(),
+    body: JSON.stringify(listingData),
+  });
+
+  if (!response.ok)
+    throw new Error(`Error adding listing for book: ${response.statusText}`);
+
   const result = await response.json();
   return result;
 };

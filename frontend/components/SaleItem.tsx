@@ -98,7 +98,7 @@ export const SaleItem = ({ sale }: { sale: Sale }) => (
                 Sell Price: ${sale.sold_price ? `${sale.sold_price}` : "?"}
               </Text>
             )}
-            {!sale.is_leased && (
+            {sale.is_leased && (
               <Text className="text-blue-600 font-bold text-base">
                 Leased Price:{" "}
                 {sale.leased_price
