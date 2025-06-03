@@ -9,6 +9,9 @@ import {
 import Svg, { Path } from "react-native-svg";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
+import { LinkProps, Link } from "expo-router";
+
+type HrefType = LinkProps["href"];
 
 const presetColors = {
   orange: { bg: ["#FF7A4D", "#DD3A03"], decor: "#8F2501" },
@@ -24,11 +27,13 @@ type PresetColorKey = keyof typeof presetColors;
 export function SubjectCard({
   color,
   subject,
+  href,
   textColor = "#fff",
   decorColor = "#2BBA90",
 }: {
   color?: PresetColorKey | string[];
   subject: string;
+  href: HrefType;
   textColor?: string;
   decorColor?: string;
 }) {
@@ -42,40 +47,44 @@ export function SubjectCard({
   const [isWrapped, setIsWrapped] = useState(false);
 
   return (
-    <LinearGradient
-      colors={finalColor?.bg}
-      start={{ x: 0, y: 0 }} // 0%
-      end={{ x: 0, y: 1 }}
-      style={[styles.majorItem]}
-    >
-      <View
-        style={{
-          zIndex: 1,
-          flex: 1,
-          flexDirection: "col",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Text
-          style={[
-            styles.majorText,
-            { color: textColor },
-            !isWrapped && { marginBottom: 8 },
-          ]}
-          onTextLayout={(e) => {
-            if (e.nativeEvent.lines.length > 1) {
-              setIsWrapped(true);
-            } else {
-              setIsWrapped(false);
-            }
-          }}
+    <Link asChild href={href}>
+      <TouchableOpacity>
+        <LinearGradient
+          colors={finalColor?.bg}
+          start={{ x: 0, y: 0 }} // 0%
+          end={{ x: 0, y: 1 }}
+          style={[styles.majorItem]}
         >
-          {subject}
-        </Text>
-      </View>
+          <View
+            style={{
+              zIndex: 1,
+              flex: 1,
+              flexDirection: "col",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Text
+              style={[
+                styles.majorText,
+                { color: textColor },
+                !isWrapped && { marginBottom: 8 },
+              ]}
+              onTextLayout={(e) => {
+                if (e.nativeEvent.lines.length > 1) {
+                  setIsWrapped(true);
+                } else {
+                  setIsWrapped(false);
+                }
+              }}
+            >
+              {subject}
+            </Text>
+          </View>
 
-      <TopRightDecor color={finalColor?.decor} />
-    </LinearGradient>
+          <TopRightDecor color={finalColor?.decor} />
+        </LinearGradient>
+      </TouchableOpacity>
+    </Link>
   );
 }
 
