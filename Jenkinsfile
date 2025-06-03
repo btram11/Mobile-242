@@ -17,6 +17,7 @@ pipeline{
         stage('Build'){
             steps{
                 dir('frontend'){
+                    sh 'npm ci --legacy-peer-dep'
                     sh 'eas build -p android --profile preview --local --output=build-test.apk'
                 }
             }
