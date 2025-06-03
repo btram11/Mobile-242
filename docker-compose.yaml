@@ -15,8 +15,11 @@ services:
     container_name: redis_container
     ports:
       - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=quangamingvn123
     volumes:
       - ./data:/var/lib/redis/mobiledev/data
+    command: ["redis-server", "--requirepass", "quangamingvn123"]
 
 volumes:
   db:

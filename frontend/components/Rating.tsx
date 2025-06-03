@@ -1,21 +1,67 @@
-//@ts-nocheck
+// import { Ionicons } from "@expo/vector-icons";
+import { Text, View } from "react-native";
+import { Star } from "@/components/ui/SvgIcon";
 
-import { Ionicons } from '@expo/vector-icons';
-import { Text, View } from 'react-native';
+export default function Rating({
+  rating,
+  className,
+}: {
+  className?: string;
+  rating: number;
+}) {
+  const fullStars = Math.floor(rating);
+  const halfStars = rating % 1 >= 0.5 ? 1 : 0;
+  const starColor = "#FFBB29";
+  const strokeColor = "#FFBB29";
+  const strokeWidth = 1.2;
 
-export default function Rating({ rating, className }) {
-    return (
-        <View className="flex-row items-center">
-            {rating >= 1 && <Ionicons name="star" size={20} color='#FFBB29' />}
-            {rating >= 1.5  && rating < 2 && <Ionicons name="star-half-outline" size={20} color='#FFBB29' />}
-            {(rating >= 2) && <Ionicons name="star" size={20} color='#FFBB29' />}
-            {rating >= 2.5  && rating < 3 && <Ionicons name="star-half-outline" size={20} color='#FFBB29' />}
-            {(rating >= 3) && <Ionicons name="star" size={20} color='#FFBB29' />}
-            {rating >= 3.5  && rating < 4 && <Ionicons name="star-half-outline" size={20} color='#FFBB29' />}
-            {(rating >= 4) && <Ionicons name="star" size={20} color='#FFBB29' />}
-            {rating >= 4.5  && rating < 5 && <Ionicons name="star-half-outline" size={20} color='#FFBB29' />}
-            {(rating >= 5) && <Ionicons name="star" size={20} color='#FFBB29' />}
-            <Text className={`text-md ${className}`}>({rating})</Text>
-        </View>
-    )
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(
+        <Star
+          key={`full-${i}`}
+          size={19}
+          color={starColor}
+          strokeColor={starColor}
+          percision={1}
+          strokeWidth={strokeWidth}
+        />
+      );
+    }
+
+    if (halfStars) {
+      stars.push(
+        <Star
+          key="half"
+          size={19}
+          color={starColor}
+          strokeColor={starColor}
+          percision={rating % 1}
+          strokeWidth={strokeWidth}
+        />
+      );
+    }
+
+    // Add empty stars if needed (up to 5 stars)
+    for (let i = fullStars + halfStars; i < 5; i++) {
+      stars.push(
+        <Star
+          key={`empty-${i}`}
+          size={19}
+          color={starColor}
+          strokeColor={strokeColor}
+          percision={0}
+          strokeWidth={strokeWidth}
+        />
+      );
+    }
+    return stars;
+  };
+  return (
+    <View className="flex-row items-center">
+      {renderStars()}
+      <Text className={`ml-2 text-md ${className}`}>({rating ?? "N/A"})</Text>
+    </View>
+  );
 }

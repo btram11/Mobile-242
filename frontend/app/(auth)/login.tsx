@@ -1,64 +1,114 @@
 //@ts-nocheck
 
-import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import {
+  Modal,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+} from "react-native";
 import { CustomInput } from "@/components/CustomInput";
 import { CustomButtonPrimary } from "@/components/CustomRoundButton";
 
 import { FormField2 } from "../../components/FormField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { router, Redirect, Link } from "expo-router";
+import { useForm, Controller, set } from "react-hook-form";
 
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  useSafeAreaInsets,
+  SafeAreaView,
+} from "react-native-safe-area-context";
 
 import AuthLayout from "@/layouts/AuthLayout";
 
-import { login } from "@/lib/appwrite";
+import { login } from "@/services/auth";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { lock, user } from "@/constants/icons";
+import { useModal } from "@/context/ModalContext";
+
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
+import { useSelector, useDispatch } from "react-redux";
+import { setAuthData } from "@/features/auth/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+});
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { setUser, setLoggedIn } = useGlobalContext();
+  const { openModal } = useModal();
+  const { loggedIn } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  async function handleLogIn() {
-    try {
-      console.log("Attempt to log in...");
-      // const loggedInUser = await login(email, password);
-      setUser(1);
-      setLoggedIn(true);
+  const loginMutation = useMutation({
+    mutationFn: ({ email, password }: { email: string; password: string }) =>
+      login(email, password),
+    onSuccess: async (data) => {
+      const { userId, access_token } = data;
+      await AsyncStorage.setItem("access_token", access_token);
+      await AsyncStorage.setItem("userId", userId);
+      dispatch(setAuthData({ userId, access_token }));
       router.replace("../(tabs)/home");
-    } catch (error) {
-      console.error("Error logging in:", error);
-      throw new Error(error.message || "Unknown error occurred");
-    }
-  }
+    },
+    onError: (error: any) => {
+      openModal("ErrorModal", {
+        errorMessage: error.message || "Unknown error occurred",
+      });
+    },
+  });
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   return (
     <AuthLayout>
       <View className="items-center justify-end h-full w-full flex-col flex">
         <View className="flex h-1/4 items-end justify-end"></View>
         <View className="flex h-[43%] items-center justify-center">
           <Text className="font-black text-2xl mb-14">LOG IN</Text>
-          <View className="flex flex-col gap-3">
-            <FormField2
-              name="Email"
-              value={email}
-              placeholder="John Doe"
-              handleTextChange={(e) => {
-                setEmail(e);
-              }}
-              icon={user}
+          <View className="flex flex-col gap-12">
+            <Controller
+              control={control}
+              name="email"
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField2
+                  name="Email"
+                  value={value}
+                  placeholder="example@hcmut.edu.vn"
+                  handleTextChange={onChange}
+                  icon={user}
+                  errors={errors.email}
+                  numberOfLines={1}
+                  maxLength={50}
+                />
+              )}
             />
 
-            <FormField2
-              name="Password"
-              value={password}
-              placeholder="At least 8 characters."
-              handleTextChange={(e) => {
-                setPassword(e);
-              }}
-              icon={lock}
+            <Controller
+              control={control}
+              name="password"
+              defaultValue=""
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormField2
+                  name="Password"
+                  value={value}
+                  placeholder="At least 8 characters."
+                  handleTextChange={onChange}
+                  icon={lock}
+                  errors={errors.password}
+                  maxLength={50}
+                />
+              )}
             />
           </View>
         </View>
@@ -68,7 +118,7 @@ export default function Login() {
             text="LOGIN"
             buttonStyle="px-8 bg-[#00664F] flex-1 items-center mt-10"
             textStyle=""
-            handlePress={() => handleLogIn()}
+            handlePress={handleSubmit(loginMutation.mutate)}
           />
         </View>
       </View>

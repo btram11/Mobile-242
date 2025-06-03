@@ -55,7 +55,9 @@ const handleEventConnection = ({ connectionRedis }) => {
 
 const initRedis = () => {
   const instanceRedis = redis.createClient({
-    url: process.env.REDIS_URL || "redis://localhost:6379",
+    url:
+      process.env.REDIS_URL ||
+      "redis://:quangamingvn123@localhost:6379?ssl=false&abortConnect=true",
   });
   client.instanceRedis = instanceRedis.connect();
   handleEventConnection({ connectionRedis: instanceRedis });
@@ -68,7 +70,7 @@ const getRedisClient = async () => {
 
 const closeRedis = async () => {
   if (client.instanceRedis) {
-    await client.instanceRedis.quit();
+    await client.instanceRedis.fuckoff();
     console.log("Redis connection closed");
   }
 };

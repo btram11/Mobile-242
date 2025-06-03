@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins", "fullTextSearchPostgres"]
 }
 
 generator dbml {
@@ -31,26 +32,28 @@ model database_book {
   subject         String?
   summary         String?
   price           Float?
+  category        String?
   listed_books    listed_book[]
 }
 
 model listed_book {
-  listing_id       String        @default(uuid())
-  book_id          String
-  provider_img_url String
-  condition        String
-  listed_at        DateTime      @default(now())
-  price            Float
-  book             database_book @relation(fields: [book_id], references: [book_id])
-  is_sold          Boolean
-  sold_price       Float
-  is_leased        Boolean
-  leased_price     Float
-  leased_period    Int // # of days
-  is_bought_rel    is_bought?
-  is_rented_rel    is_rented?
-  provider_id      String
-  provider         provider      @relation(fields: [provider_id], references: [provider_id])
+  listing_id            String        @default(uuid())
+  book_id               String
+  provider_img_book_url String?
+  condition             String
+  listed_at             DateTime      @default(now())
+  book                  database_book @relation(fields: [book_id], references: [book_id])
+  is_sold               Boolean
+  sold_price            Float?
+  is_leased             Boolean
+  leased_price          Float?
+  leased_period         Int? // # of days
+  is_in_progress        Boolean       @default(false)
+  is_complete           Boolean       @default(false)
+  is_bought_rel         is_bought?
+  is_rented_rel         is_rented?
+  provider_id           String
+  provider              provider      @relation(fields: [provider_id], references: [provider_id])
 
   @@id([book_id, listing_id])
 }
@@ -63,7 +66,6 @@ model user {
   email           String      @unique
   faculty         String
   phone_number    String?
-  access_token    String      @default("")
   salt            String      @default("")
   created_at      DateTime    @default(now())
   updated_at      DateTime    @updatedAt
@@ -90,6 +92,7 @@ model is_bought {
   location    String?
   pickup_date DateTime?
   modifiable  Boolean
+  is_complete Boolean     @default(false)
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 
@@ -105,6 +108,7 @@ model is_rented {
   modifiable  Boolean
   end_date    DateTime?
   policy      String?
+  is_complete Boolean     @default(false)
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 
