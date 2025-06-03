@@ -24,6 +24,7 @@ const getBooks = async (
   isSold,
   isLeased,
   keyword = null,
+  category = null,
   sortby = ""
 ) => {
   // Limit offset
@@ -41,6 +42,11 @@ const getBooks = async (
         ...(isLeased && { is_leased: isLeased }),
       },
     };
+  }
+
+  console.log(category)
+  if (category) {
+    joinCondition.category = category; // Filter by category
   }
 
   // Search keyword
