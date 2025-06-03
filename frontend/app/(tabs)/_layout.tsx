@@ -131,6 +131,8 @@ export default function TabLayout() {
         name="discover"
         options={{
           title: "Discover",
+          statusBarStyle: "dark",
+          statusBarColor: "#ffffff",
           tabBarIcon: ({ focused, color }) => (
             <TabIcon
               focused={focused}

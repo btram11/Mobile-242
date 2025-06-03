@@ -38,6 +38,9 @@ import { getProviders } from "@/services/provider";
 
 import * as Sentry from "@sentry/react-native";
 import { router } from "expo-router";
+import { SUBJECTS } from "@/constants/category";
+import { presetColors } from "@/constants/Colors";
+import { capitalizeWords, getRandomNumInRange } from "@/lib";
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,8 +58,8 @@ export default function HomePage() {
     refetch: bookRefetch,
     isLoading: isBookLoading,
   } = useQuery({
-    queryKey: ["posts"],
-    queryFn: () => getBooks(),
+    queryKey: ["books-home"],
+    queryFn: () => getBooks({}),
   });
 
   const {
@@ -68,8 +71,8 @@ export default function HomePage() {
     queryFn: () => getProviders({ pageSize: 5 }),
   });
 
-  const books = booksData?.filter(
-    (book) => book.sold_price != null && book.leased_price != null
+  const books = booksData?.data?.filter(
+    (book) => book.sold_price != null || book.leased_price != null
   );
   return (
     <View style={styles.container} className="bg-viridian-500">
@@ -217,18 +220,27 @@ export default function HomePage() {
             </Text>
 
             <View className="flex-row mt-2 space-x-3">
-              <ScrollView
+              <FlatList
+                data={SUBJECTS}
                 horizontal
+                contentContainerStyle={{ padding: 8, gap: 12 }}
+                renderItem={({ item }) => (
+                  <SubjectCard
+                    href={{
+                      pathname: "/discover/[type]/[value]",
+                      params: { type: "category", value: item },
+                    }}
+                    color={
+                      presetColors[
+                        getRandomNumInRange(0, presetColors.length - 1)
+                      ]
+                    }
+                    subject={capitalizeWords(item)}
+                  />
+                )}
+                keyExtractor={(item) => item}
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{
-                  flexDirection: "row",
-                  gap: 8,
-                }}
-              >
-                <SubjectCard subject="Computer Science" color="purple" />
-                <SubjectCard subject="Chemistry" color="blue" />
-                <SubjectCard subject="Electrical Engineering" color="orange" />
-              </ScrollView>
+              />
             </View>
           </View>
         </View>

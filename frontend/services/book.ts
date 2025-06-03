@@ -8,23 +8,26 @@ export const getBooks = async ({
   pageSize = 10,
   keyword = "",
   sortby = "",
-  isSold,
-  isRented,
+  category = "",
+  issold,
+  isleased,
 }: {
   page?: number;
   pageSize?: number;
   keyword?: string;
   sortby?: string;
-  isSold?: boolean;
-  isRented?: boolean;
+  category?: string;
+  issold?: boolean;
+  isleased?: boolean;
 }) => {
   const params = new URLSearchParams({
     page: String(page),
     pagesize: String(pageSize),
-    issold: isSold?.toString() ?? "",
-    isleased: isRented?.toString() ?? "",
+    issold: issold?.toString() ?? "",
+    isleased: isleased?.toString() ?? "",
     keyword: keyword ?? "",
     sortby: sortby ?? "",
+    category: category ?? "",
   });
   const response = await fetch(`${BaseUrl}?${params.toString()}`, {
     method: "GET",
