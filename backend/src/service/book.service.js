@@ -34,6 +34,7 @@ class BookService {
     isSold = null,
     isLeased = null,
     keyword = null,
+    category = null,
     sortby = ""
   ) {
     const result = await getBooks(
@@ -42,6 +43,7 @@ class BookService {
       isSold,
       isLeased,
       keyword,
+      category,
       sortby
     );
     if (!result) {
