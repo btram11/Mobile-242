@@ -3,12 +3,12 @@ output "redis_private_ip" {
 }
 
 output "redis_ssl_connection_string" {
-  value     = "redis://${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.ssl_port},password=${azurerm_redis_cache.redis.primary_access_key},ssl=True,abortConnect=False"
+  value     = "redis://:${azurerm_redis_cache.redis.primary_access_key}@${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.ssl_port}?ssl=True&abortConnect=False"
   sensitive = true
 }
 
 output "redis_non_ssl_connection_string" {
-  value     = "redis://${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.port},password=${azurerm_redis_cache.redis.primary_access_key},ssl=False,abortConnect=False"
+  value     = "redis://:${azurerm_redis_cache.redis.primary_access_key}@${azurerm_redis_cache.redis.hostname}:${azurerm_redis_cache.redis.port}?ssl=False&abortConnect=False"
   sensitive = true
 }
 

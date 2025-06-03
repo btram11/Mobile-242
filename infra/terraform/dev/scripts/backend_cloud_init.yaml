@@ -6,17 +6,17 @@ packages:
   - npm
   - nginx
 write_files:
-  - path: /etc/systemd/system/nest-backend.service
+  - path: /etc/systemd/system/backend.service
     content: |
       [Unit]
-      Description=Start NestJS App
+      Description=Start Backend App
       After=network.target
       Before=nginx.service
 
       [Service]
       Type=exec
-      WorkingDirectory=/app/nest-backend
-      ExecStart=/bin/sh -c "/usr/bin/npx nest start"
+      WorkingDirectory=/app/backend
+      ExecStart=/bin/sh -c "/usr/bin/node server.js"
       Restart=always
 
       [Install]
@@ -38,7 +38,7 @@ runcmd:
   - npm install
   - npx prisma migrate dev --name init --skip-seed
   - npx prisma db seed
-  - systemctl enable --now nest-backend
+  - systemctl enable --now backend
   - cp nginx.conf /etc/nginx/
   - systemctl enable --now nginx
   - systemctl restart nginx

@@ -3,6 +3,8 @@ resource "azurerm_resource_group" "Mobile-242-dev" {
   location = "South East Asia"
 }
 
+
+
 module "key_vault" {
   source                  = "../modules/key_vault"
   resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
@@ -61,8 +63,8 @@ module "backend" {
   key_vault_id                  = module.key_vault.key_vault_id
 }
 
-module "cdn" {
-  source                  = "../modules/cdn"
-  resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
-  resource_group_location = azurerm_resource_group.Mobile-242-dev.location
-}
+# module "cdn" {
+#   source                  = "../modules/cdn"
+#   resource_group_name     = azurerm_resource_group.Mobile-242-dev.name
+#   resource_group_location = azurerm_resource_group.Mobile-242-dev.location
+# }
