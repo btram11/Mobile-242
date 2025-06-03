@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins", "fullTextSearchPostgres"]
 }
 
 generator dbml {
@@ -31,6 +32,7 @@ model database_book {
   subject         String?
   summary         String?
   price           Float?
+  category        String?
   listed_books    listed_book[]
 }
 
@@ -42,10 +44,12 @@ model listed_book {
   listed_at             DateTime      @default(now())
   book                  database_book @relation(fields: [book_id], references: [book_id])
   is_sold               Boolean
-  sold_price            Float
+  sold_price            Float?
   is_leased             Boolean
-  leased_price          Float
-  leased_period         Int // # of days
+  leased_price          Float?
+  leased_period         Int? // # of days
+  is_in_progress        Boolean       @default(false)
+  is_complete           Boolean       @default(false)
   is_bought_rel         is_bought?
   is_rented_rel         is_rented?
   provider_id           String
@@ -88,6 +92,7 @@ model is_bought {
   location    String?
   pickup_date DateTime?
   modifiable  Boolean
+  is_complete Boolean     @default(false)
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 
@@ -103,6 +108,7 @@ model is_rented {
   modifiable  Boolean
   end_date    DateTime?
   policy      String?
+  is_complete Boolean     @default(false)
   user        user        @relation(fields: [user_id], references: [user_id])
   listed_book listed_book @relation(fields: [book_id, listing_id], references: [book_id, listing_id])
 

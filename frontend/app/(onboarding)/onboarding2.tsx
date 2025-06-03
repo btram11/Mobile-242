@@ -16,6 +16,7 @@ import { CustomButtonOnboarding } from "@/components/CustomRoundButton";
 import { router } from "expo-router";
 import Onboarding1 from "./onboarding";
 import Permissions from "@/lib/permissions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const scrollX = new Animated.Value(0);
 
@@ -83,17 +84,27 @@ const OnboardingScreens = [
 export default function Onboarding2() {
   const { height, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
   const flatListRef = useRef<FlatList<any>>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const renderItem = ({ item }: any) => {
     if (item.id == 0) return item.screen(handleNext);
     return (
-      <SafeAreaView
-        className="bg-[#F6F6F7] flex flex-col justify-between items-center"
-        style={{ width: width, height: height - headerHeight + insets.top }}
-      >
+      <View className="bg-[#F6F6F7] flex flex-col justify-between items-center">
+        <CustomButtonOnboarding
+          style={{
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            paddingVertical: 8,
+            paddingHorizontal: 14,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            zIndex: 99999,
+          }}
+          text="Skip"
+          buttonStyle="items-center max-w-[100px] absolute right-0 top-16"
+          textStyle="text-xs"
+          handlePress={handleSkip}
+        />
         <ImageBackground
           source={item.image}
           resizeMode="stretch"
@@ -104,21 +115,7 @@ export default function Onboarding2() {
             position: "absolute",
             top: 0,
           }}
-        >
-          <CustomButtonOnboarding
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              paddingVertical: 8,
-              paddingHorizontal: 14,
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-            }}
-            text="Skip"
-            buttonStyle="items-center max-w-[100px] absolute right-0 top-16"
-            textStyle="text-xs"
-            handlePress={handleSkip}
-          />
-        </ImageBackground>
+        ></ImageBackground>
         <View
           className="w-full flex-1 flex flex-col-reverse"
           style={{ width: width }}
@@ -165,36 +162,42 @@ export default function Onboarding2() {
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     );
   };
 
   const handleNext = () => {
     if (currentIndex < OnboardingScreens.length - 1 && flatListRef.current) {
-      flatListRef.current.scrollToIndex({ index: currentIndex + 1 });
+      const nextIndex = currentIndex + 1;
+      flatListRef.current.scrollToOffset({
+        offset: nextIndex * width,
+        animated: true,
+      });
+      setCurrentIndex(nextIndex);
     } else {
+      AsyncStorage.setItem("ONBOARDED", "true");
       router.replace("/(auth)/login");
     }
   };
 
   const handleSkip = () => {
     new Promise((resolve) => {
-      flatListRef.current?.scrollToIndex({
-        index: OnboardingScreens.length - 1,
+      flatListRef.current?.scrollToOffset({
+        offset: width * (OnboardingScreens.length - 1),
         animated: true,
       });
       setTimeout(resolve, 300);
     }).then(() => {
+      AsyncStorage.setItem("ONBOARDED", "true");
       router.replace("/(auth)/login");
     });
   };
+  console.log("Onboarding2 insets:", insets, height);
+  console.log("Onboarding2 headerHeight:", height + insets.top + insets.bottom);
   return (
-    <SafeAreaView
-      style={{ width: width, height: height - headerHeight + insets.top }}
-    >
+    <View>
       <FlatList
-        style={{ marginTop: -insets.top }}
-        scrollEnabled={false}
+        scrollEnabled={true}
         ref={flatListRef}
         data={OnboardingScreens}
         keyExtractor={(item) => item.id}
@@ -213,6 +216,6 @@ export default function Onboarding2() {
         }}
       />
       {/* {renderItem()} */}
-    </SafeAreaView>
+    </View>
   );
 }

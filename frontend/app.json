@@ -8,6 +8,12 @@
     "scheme": "Mobile242-meomeo",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },          
     "ios": {
       "supportsTablet": true,
       "package": "com.meomeo.mobile242"
@@ -33,6 +39,16 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-font",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "note": "Use SENTRY_AUTH_TOKEN env to authenticate with Sentry.",
+          "project": "meomeo",
+          "organization": "meomeo"
         }
       ]
     ],

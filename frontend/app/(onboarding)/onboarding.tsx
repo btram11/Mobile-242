@@ -20,25 +20,27 @@ function Onboarding1({ handleNext }: { handleNext: () => void }) {
   const { height, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
-
+  console.log("Onboarding1 insets:", insets);
+  console.log("Onboarding1 headerHeight:", height + insets.top + insets.bottom);
+  const realHeight = height + insets.top + insets.bottom;
   return (
     <SafeAreaView
-      className="bg-[#00928C] flex flex-col"
-      style={{ width: width, height: height - headerHeight + insets.top }}
+      edges={["bottom", "left", "right"]}
+      className="bg-[#00928C]"
+      style={{ width: width, height: height + insets.top + insets.bottom }}
     >
       <ImageBackground
         source={require("@/assets/images/onboarding1.png")}
         resizeMode="cover"
         // className="flex-1 w-full h-full"
         style={{
-          flex: 1,
           width: width,
           height: height * 0.85,
           position: "absolute",
           bottom: 0,
         }}
       />
-      <View className="flex flex-1 items-center justify-start">
+      <View className="flex flex-1 items-center justify-end">
         <View className="flex flex-col justify-center items-center gap-4 h-1/4">
           <Image
             source={logo1}
