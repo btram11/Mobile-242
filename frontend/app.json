@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Mobile242-meomeo",
-    "slug": "mobile242-meomeo",
+    "slug": "Mobile242-meomeo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobile242-meomeo",
+    "scheme": "Mobile242-meomeo",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     
@@ -15,15 +15,15 @@
       "backgroundColor": "#ffffff"
     },          
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package": "com.meomeo.mobile242"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.meomeo.mobile242",
-      "edgeToEdgeEnabled": true
+        "backgroundColor": "#ffffff",
+        "package": "com.meomeo.mobile242"
+      }
     },
     "web": {
       "bundler": "metro",
@@ -55,13 +55,13 @@
     "experiments": {
       "typedRoutes": true
     },
-    "owner": "tram11",
+    "owner": "kng1259",
     "extra": {
       "router": {
         "origin": false
       },
       "eas": {
-        "projectId": "ae6a5ebe-127e-472e-88d8-20851e26d0a9"
+        "projectId": "291ead0a-c544-403e-808f-8536b56310a7"
       }
     }
   }
