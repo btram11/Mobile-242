@@ -4,6 +4,23 @@ packages:
   - postgresql-client-16
   - nodejs
   - npm
+  - nginx
+write_files:
+  - path: /etc/systemd/system/backend.service
+    content: |
+      [Unit]
+      Description=Start Backend App
+      After=network.target
+      Before=nginx.service
+
+      [Service]
+      Type=exec
+      WorkingDirectory=/app/backend
+      ExecStart=/bin/sh -c "/usr/bin/node server.js"
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
 runcmd:
   - mkdir app
   - cd app
@@ -19,5 +36,9 @@ runcmd:
     echo "DATABASE_URL=$(curl -H "Authorization: Bearer $TOKEN" "https://kv-meomeo.vault.azure.net/secrets/postgres-connection-string?api-version=7.4" | jq -r .value)" >> .env 
     echo "REDIS_URL=$(curl -H "Authorization: Bearer $TOKEN" "https://kv-meomeo.vault.azure.net/secrets/redis-connection-string?api-version=7.4" | jq -r .value)" >> .env
   - npm install
-  - npm run migrate_dev
-  - PORT=80 npm run start
+  - npx prisma migrate dev --name init --skip-seed
+  - npx prisma db seed
+  - systemctl enable --now backend
+  - cp nginx.conf /etc/nginx/
+  - systemctl enable --now nginx
+  - systemctl restart nginx

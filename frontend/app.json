@@ -15,12 +15,14 @@
       "backgroundColor": "#ffffff"
     },          
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package": "com.meomeo.mobile242"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "package": "com.meomeo.mobile242"
       },
       "package": "com.meomeo.mobile242",
       "edgeToEdgeEnabled": true

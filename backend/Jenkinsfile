@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    
+    environment {
+        identityFile = credentials('backend-vm-ssh-file')
+    }
+
+    stages{
+        stage('SSH'){
+            steps{
+                script {
+                    def remote = [
+                        name: 'backend-vm',
+                        host: 'meomeo-backend.southeastasia.cloudapp.azure.com',
+                        user: 'backendadmin',
+                        identityFile: identityFile,
+                        allowAnyHosts: true
+                    ]
+                    
+                    sshCommand remote: remote, command: 'sudo git pull && sudo systemctl restart backend.service'
+                }
+            }
+        }
+    }
+}
