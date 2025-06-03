@@ -87,7 +87,7 @@ resource "azurerm_linux_virtual_machine" "backend" {
   name                  = "backend-vm"
   resource_group_name   = var.resource_group_name
   location              = var.resource_group_location
-  size                  = "Standard_B1s"
+  size                  = "Standard_B2s"
   admin_username        = var.admin_username
   network_interface_ids = [azurerm_network_interface.backend.id]
   custom_data           = var.custom_data
