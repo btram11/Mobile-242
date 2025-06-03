@@ -56,7 +56,6 @@ const TabIcon = ({ focused, icon, name, color }) => {
 
 export default function TabLayout() {
   const { isLoading, loggedIn } = useGlobalContext();
-  console.log(isLoading, loggedIn);
   if (!isLoading && !loggedIn) {
     router.replace("/(auth)/login");
   }
@@ -158,7 +157,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="message"
         options={{
           title: "Message",
@@ -172,7 +171,7 @@ export default function TabLayout() {
             />
           ),
         }}
-      />
+      /> */}
 
       <Tabs.Screen
         name="profile"

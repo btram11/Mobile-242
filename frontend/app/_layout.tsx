@@ -110,12 +110,12 @@ const RootLayout = () => {
                   name="(profile)"
                   options={{ title: "Profile", headerShown: false }}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                   name="discover/[category]"
                   options={{
                     headerShown: true,
                   }}
-                />
+                /> */}
                 <Stack.Screen
                   name="book-info/[book_id]/index"
                   options={{

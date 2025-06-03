@@ -8,17 +8,18 @@ import { useCallback } from "react";
 import { Text, View } from "react-native";
 
 export default function ListedTab() {
-  const { data: sales, isLoading } = useInfiniteQuery<
-    { data: Sale[]; nextPage: number | undefined },
-    Error
-  >({
+  const {
+    data: sales,
+    isLoading,
+    fetchNextPage,
+  } = useInfiniteQuery<{ data: Sale[]; nextPage: number | undefined }, Error>({
     queryKey: ["sales-listed"],
     queryFn: async ({ pageParam = 1 }) => {
       const providerId = await AsyncStorage.getItem("userId");
       if (!providerId) {
         throw new Error("Provider ID not found in storage");
       }
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate network delay
+
       return await getListingsOfProvider({
         providerId,
         page: Number(pageParam),
@@ -55,9 +56,11 @@ export default function ListedTab() {
           ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
           contentContainerStyle={{ padding: 16 }}
           renderItem={renderItem}
-          estimatedItemSize={80}
+          estimatedItemSize={220}
           keyExtractor={(item) => item.listing_id}
           showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={0.5}
+          onEndReached={fetchNextPage}
         />
       ) : (
         <View className="flex-1 items-center justify-center px-8">

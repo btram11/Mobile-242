@@ -24,13 +24,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getProviderById } from "@/services/provider";
 
 const buttons = [
-  {
-    text: "Liked Books",
-    handlePress: () => {
-      router.push("/(profile)/liked-books");
-    },
-    icon: <BookHeart size={22} color="#31CFB6" />,
-  },
+  // {
+  //   text: "Liked Books",
+  //   handlePress: () => {
+  //     router.push("/(profile)/liked-books");
+  //   },
+  //   icon: <BookHeart size={22} color="#31CFB6" />,
+  // },
   {
     text: "My Orders",
     handlePress: () => {

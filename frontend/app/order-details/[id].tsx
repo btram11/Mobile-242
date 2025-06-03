@@ -165,15 +165,14 @@ export default function OrderDetails() {
         </View>
 
         {/* Buttons */}
-        <View style={styles.buttonGroup}>
-          {/* <CustomButtonPrimary title="Edit Order" onPress={handleEdit} /> */}
+        {/* <View style={styles.buttonGroup}>
           <CustomButtonOutlined
             title="Cancel Order"
             onPress={handleCancel}
             containerStyle={styles.outlinedButton}
             textStyle={styles.outlinedText}
           />
-        </View>
+        </View> */}
       </ScrollView>
       <View style={[styles.bottomBar, { paddingBottom: 12 }]}>
         <View className="flex flex-row justify-between gap-x-5">
@@ -183,7 +182,7 @@ export default function OrderDetails() {
             </TouchableOpacity>
           )}
 
-          {orderDetails.type === "rent" && (
+          {/* {orderDetails.type === "rent" && (
             <>
               <TouchableOpacity
                 className="flex-1 justify-center items-center border border-viridian-400 py-3 rounded"
@@ -198,7 +197,7 @@ export default function OrderDetails() {
                 <Text className="text-white text-base">Extend</Text>
               </TouchableOpacity>
             </>
-          )}
+          )} */}
         </View>
       </View>
     </View>

@@ -111,6 +111,17 @@ export default function HomePage() {
             </Text>
 
             <View className="flex-row mt-2 space-x-3">
+              {!isBookLoading && books?.length === 0 && (
+                <View className="items-center justify-center w-full mt-4 mb-6">
+                  <Text className="text-base text-gray-500 mb-2">
+                    No books available at the moment.
+                  </Text>
+                  <Text className="text-sm text-gray-400">
+                    Try refreshing or check back later.
+                  </Text>
+                </View>
+              )}
+
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {isBookLoading &&
                   [...Array(3)].map((_, idx) => (

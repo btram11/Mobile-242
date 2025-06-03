@@ -336,7 +336,7 @@ export function BookCardLandmark({ book }) {
             )}
             {book?.leased_price && (
               <Text className="text-base">
-                <Text>{`Buy from: `}</Text>
+                <Text>{`Leased from: `}</Text>
                 <Text className="font-semibold text-lightred">
                   {book?.leased_price || `N/A`}
                 </Text>

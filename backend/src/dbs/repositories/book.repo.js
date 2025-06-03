@@ -194,9 +194,36 @@ const getSimilarBooks = async (bookId, page, pageSize) => {
     },
     skip,
     take,
+    include: {
+      listed_books: {
+        where: {
+          is_in_progress: false,
+          is_complete: false,
+        },
+        orderBy: {
+          listed_at: "desc",
+        },
+        take: 1,
+      },
+    }
   });
 
-  return result;
+  return result.filter((book) => book.listed_books[0]?.listing_id).map((book) => {
+    const listing = book.listed_books[0];
+    return {
+      book_id: book.book_id,
+      title: book.title,
+      img_url: book.img_url,
+      author: book.author,
+      publisher: book.publisher,
+      publishing_year: book.publishing_year,
+      subject: book.subject,
+      summary: book.summary,
+      sold_price: listing?.is_sold ? listing?.sold_price : null,
+      leased_price: listing?.is_leased ? listing?.leased_price : null,
+      listing_id: listing?.listing_id ?? null,
+    };
+  });
 }
 
 const getListings = async (bookId, buyerId, sellerId, leaserId, renterId) => {

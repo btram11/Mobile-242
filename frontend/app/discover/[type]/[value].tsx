@@ -24,7 +24,6 @@ export default function DiscoverCategory() {
   const { type, value } = useLocalSearchParams();
   const navigation = useNavigation();
   useLayoutEffect(() => {
-    console.log("DiscoverCategory", type, value);
     if ((type as string) === "category") {
       const formatted = capitalizeWords(value as string);
       navigation.setOptions({ title: `Category: ${formatted}` });

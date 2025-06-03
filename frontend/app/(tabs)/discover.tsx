@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React from "react";
+import React, { useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinkProps, Link, useRouter } from "expo-router";
@@ -28,33 +29,17 @@ type HrefType = LinkProps["href"];
 const Discover = () => {
   const router = useRouter();
 
-  const { data: booksRentData, fetchNextPage: fetchNextBookRent } =
-    useInfiniteQuery<{ data: Book[]; nextPage: number | undefined }, Error>({
-      queryKey: ["books-discover", "rent"],
-      queryFn: async ({ pageParam = 1 }) => {
-        return await getBooks({
-          page: Number(pageParam),
-          pageSize: 6,
-          isRented: true,
-        });
-      },
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, allPages) => {
-        return lastPage.nextPage && lastPage.nextPage < 3;
-      },
-    });
-
   const {
-    data: booksSellData,
-    fetchNextPage: fetchNextBookSell,
-    isFetchingNextPage: isFetchingMoreSell,
+    data: booksRentData,
+    fetchNextPage: fetchNextBookRent,
+    refetch,
   } = useInfiniteQuery<{ data: Book[]; nextPage: number | undefined }, Error>({
-    queryKey: ["books-discover", "sold"],
+    queryKey: ["books-discover", "rent"],
     queryFn: async ({ pageParam = 1 }) => {
       return await getBooks({
         page: Number(pageParam),
         pageSize: 6,
-        isSold: true,
+        isleased: true,
       });
     },
     initialPageParam: 1,
@@ -63,10 +48,58 @@ const Discover = () => {
     },
   });
 
+  const {
+    data: booksSellData,
+    fetchNextPage: fetchNextBookSell,
+    isFetchingNextPage: isFetchingMoreSell,
+    refetch: refetchBookSell,
+  } = useInfiniteQuery<{ data: Book[]; nextPage: number | undefined }, Error>({
+    queryKey: ["books-discover", "sold"],
+    queryFn: async ({ pageParam = 1 }) => {
+      return await getBooks({
+        page: Number(pageParam),
+        pageSize: 6,
+        issold: true,
+      });
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.nextPage && lastPage.nextPage < 3;
+    },
+  });
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setIsRefreshing(true);
+    await refetch();
+    await refetchBookSell();
+    setIsRefreshing(false);
+  };
+
+  const subjectColorMap = useMemo(() => {
+    return SUBJECTS.reduce((acc, subject) => {
+      const randomColor =
+        presetColors[getRandomNumInRange(0, presetColors.length - 1)];
+      acc[subject] = randomColor;
+      return acc;
+    }, {} as Record<string, string>);
+  }, []);
+
   return (
     <SafeAreaView edges={["top"]} style={{ flex: 1 }}>
       <StatusBar style="dark" />
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={onRefresh}
+            colors={["#008C6E"]}
+          />
+        }
+      >
         {/* Major List */}
         <View style={styles.section}>
           <Text style={styles.title}>MAJOR</Text>
@@ -80,9 +113,7 @@ const Discover = () => {
                   pathname: "/discover/[type]/[value]",
                   params: { type: "category", value: item },
                 }}
-                color={
-                  presetColors[getRandomNumInRange(0, presetColors.length - 1)]
-                }
+                color={subjectColorMap[item]}
                 subject={capitalizeWords(item)}
               />
             )}

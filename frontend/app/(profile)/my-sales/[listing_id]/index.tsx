@@ -7,7 +7,7 @@ import {
   deleteListingByBookIdandListingId,
 } from "@/services/book";
 import { Ionicons } from "@expo/vector-icons";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useLayoutEffect } from "react";
 import {
@@ -29,6 +29,7 @@ const buyer = {
 
 export default function MySalesDetail() {
   const { listing_id, book_id } = useLocalSearchParams();
+  const queryClient = useQueryClient();
   const { data: saleDetail } = useQuery({
     queryKey: ["sale-detail", listing_id, book_id],
     queryFn: () =>
@@ -82,6 +83,7 @@ export default function MySalesDetail() {
       ),
     onSuccess: () => {
       console.log("Delete action successful");
+      queryClient.invalidateQueries({ queryKey: ["sales-listed"] });
       navigation.goBack(); // Quay lại trang trước sau khi xoá
     },
     onError: (error) => {
@@ -92,7 +94,6 @@ export default function MySalesDetail() {
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
-    console.log("Sale detail:", saleDetail);
     if (saleDetail && !saleDetail.is_in_progress && !saleDetail.is_complete) {
       navigation.setOptions({
         headerRight: () => (

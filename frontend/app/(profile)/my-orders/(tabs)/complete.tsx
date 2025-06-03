@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { useRouter } from "expo-router";
 import OrderItem from "@/components/OrderItem";
 
-export default function YourOrders() {
+export default function CompletedOrders() {
   const router = useRouter();
 
   const navigateToOrderDetails = (orderId: string) => {
@@ -13,81 +13,81 @@ export default function YourOrders() {
     {
       orderId: "1",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "2",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "3",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "4",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "5",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "6",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "7",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "8",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
@@ -97,17 +97,17 @@ export default function YourOrders() {
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
     {
       orderId: "10",
       title: "The name of the Rose",
-      status: "Waiting for confirmation",
+      status: "Complete",
       editableUntil: "19/02/2025",
       sellerName: "John Bookstore",
       sellerAvatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      bookImage: require("@/assets/images/book1.jpg"), // Added book image
+      // bookImage: require("@/assets/images/book1.jpg"), // Added book image
       price: "$15.99", // Added price
     },
   ];
@@ -124,7 +124,7 @@ export default function YourOrders() {
           status={item.status}
           editableUntil={item.editableUntil}
           sellerName={item.sellerName}
-          bookImage={item.bookImage}
+          bookImage={item?.bookImage}
           price={item.price}
           onPress={navigateToOrderDetails}
         />

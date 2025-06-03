@@ -1,7 +1,6 @@
 import { ScrollView, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
-import { mockedBooks } from "@/mocks/data";
 import {
   BookCardListing,
   BookCardSkeletonListing,
@@ -20,11 +19,11 @@ export default function Provider() {
     refetch,
     isLoading,
     isFetching,
+    fetchNextPage,
   } = useInfiniteQuery<{ data: Sale[]; nextPage: number | undefined }, Error>({
     queryKey: ["listings", provider_id],
     staleTime: 0,
     queryFn: async ({ pageParam = 1 }) => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       return await getListingsOfProvider({
         providerId: provider_id as string,
         page: Number(pageParam),
@@ -91,17 +90,26 @@ export default function Provider() {
           Description: {provider?.description || "N/A"}
         </Text>
       </View>
-
-      <FlashList
-        data={listingsData}
-        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-        contentContainerStyle={{ padding: 8 }}
-        renderItem={renderItem}
-        estimatedItemSize={80}
-        keyExtractor={(item) => item.listing_id}
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-      />
+      {listingsData.length === 0 ? (
+        <View className="items-center justify-center py-10 px-4">
+          <Text className="text-gray-400 text-center">
+            No listings available from this provider.
+          </Text>
+        </View>
+      ) : (
+        <FlashList
+          data={listingsData}
+          ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+          contentContainerStyle={{ padding: 8 }}
+          renderItem={renderItem}
+          estimatedItemSize={80}
+          keyExtractor={(item) => item.listing_id}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          onEndReached={fetchNextPage}
+          onEndReachedThreshold={0.5}
+        />
+      )}
     </ScrollView>
   );
 }

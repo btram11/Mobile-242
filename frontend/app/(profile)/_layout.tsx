@@ -78,6 +78,19 @@ export default function ProfileLayout() {
           ),
         }}
       />
+
+      <Stack.Screen
+        name="my-sales/add/select-book"
+        options={{
+          title: "Select a book",
+        }}
+      />
+      <Stack.Screen
+        name="my-sales/add/fill-details"
+        options={{
+          title: "Return to select book",
+        }}
+      />
     </Stack>
   );
 }
