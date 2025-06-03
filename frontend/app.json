@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff",
         "package": "com.meomeo.mobile242"
-      }
+      },
+      "package": "com.kng1259.Mobile242meomeo"
     },
     "web": {
       "bundler": "metro",
