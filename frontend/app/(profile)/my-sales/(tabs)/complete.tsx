@@ -8,10 +8,11 @@ import { useCallback } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function CompleteTab() {
-  const { data: sales, isLoading } = useInfiniteQuery<
-    { data: Sale[]; nextPage: number | undefined },
-    Error
-  >({
+  const {
+    data: sales,
+    isLoading,
+    fetchNextPage,
+  } = useInfiniteQuery<{ data: Sale[]; nextPage: number | undefined }, Error>({
     queryKey: ["sales-complete"],
     queryFn: async ({ pageParam = 1 }) => {
       const providerId = await AsyncStorage.getItem("userId");
@@ -35,7 +36,6 @@ export default function CompleteTab() {
     },
   });
   const salesData = sales?.pages.flatMap((page) => page.data) ?? [];
-  console.log("Sales data of CompleteTab:", salesData);
 
   const renderItem = useCallback(({ item }: { item: Sale }) => {
     return <SaleItem sale={item} />;
@@ -58,9 +58,11 @@ export default function CompleteTab() {
           ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
           contentContainerStyle={{ padding: 16 }}
           renderItem={renderItem}
-          estimatedItemSize={80}
+          estimatedItemSize={220}
           keyExtractor={(item) => item.listing_id}
           showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={0.5}
+          onEndReached={fetchNextPage}
         />
       ) : (
         <View className="flex-1 items-center justify-center px-8">

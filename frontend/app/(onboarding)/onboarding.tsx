@@ -19,10 +19,6 @@ import { CustomButtonLight } from "@/components/CustomRoundButton";
 function Onboarding1({ handleNext }: { handleNext: () => void }) {
   const { height, width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const headerHeight = useHeaderHeight();
-  console.log("Onboarding1 insets:", insets);
-  console.log("Onboarding1 headerHeight:", height + insets.top + insets.bottom);
-  const realHeight = height + insets.top + insets.bottom;
   return (
     <SafeAreaView
       edges={["bottom", "left", "right"]}

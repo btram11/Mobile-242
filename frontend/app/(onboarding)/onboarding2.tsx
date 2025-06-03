@@ -192,8 +192,6 @@ export default function Onboarding2() {
       router.replace("/(auth)/login");
     });
   };
-  console.log("Onboarding2 insets:", insets, height);
-  console.log("Onboarding2 headerHeight:", height + insets.top + insets.bottom);
   return (
     <View>
       <FlatList

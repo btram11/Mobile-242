@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import { CustomInput } from "@/components/CustomInput";
 import { CustomButtonPrimary } from "@/components/CustomRoundButton";
@@ -46,8 +47,16 @@ export default function Login() {
   const dispatch = useDispatch();
 
   const loginMutation = useMutation({
-    mutationFn: ({ email, password }: { email: string; password: string }) =>
-      login(email, password),
+    mutationFn: async ({
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    }) => {
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate network delay
+      return await login(email, password);
+    },
     onSuccess: async (data) => {
       const { userId, access_token } = data;
       await AsyncStorage.setItem("access_token", access_token);
@@ -71,6 +80,13 @@ export default function Login() {
   });
   return (
     <AuthLayout>
+      {loginMutation.isPending && (
+        <Modal statusBarTranslucent={true} transparent={true} visible={true}>
+          <View className="flex-1 justify-center items-center bg-black/40">
+            <ActivityIndicator size={36} color="#00664F" />
+          </View>
+        </Modal>
+      )}
       <View className="items-center justify-end h-full w-full flex-col flex">
         <View className="flex h-1/4 items-end justify-end"></View>
         <View className="flex h-[43%] items-center justify-center">

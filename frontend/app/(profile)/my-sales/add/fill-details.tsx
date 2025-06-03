@@ -16,6 +16,7 @@ import {
   Platform,
   ActivityIndicator,
   Alert,
+  Modal,
 } from "react-native";
 import { Book } from "@/types/book";
 import { useForm, Controller, set } from "react-hook-form";
@@ -160,8 +161,7 @@ export default function FillDetails() {
       ]);
     },
     onError: (error) => {
-      console.error("Error posting listing:", error);
-      setError("root", { message: "Failed to post listing" });
+      Alert.alert("Error", "Failed to post listing. Please try again.");
     },
   });
   const handleAddListing = async (data: any) => {
@@ -208,18 +208,27 @@ export default function FillDetails() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
+      {submitMutation.isPending && (
+        <Modal statusBarTranslucent={true} transparent={true} visible={true}>
+          <View className="flex-1 justify-center items-center bg-black/40">
+            <ActivityIndicator size={36} color="#00664F" />
+          </View>
+        </Modal>
+      )}
       <ScrollView contentContainerStyle={styles.container}>
         {/* Book Info */}
         <Text style={styles.title}>{selectedBook.title}</Text>
-        <View style={styles.noImage}>
-          {selectedBook.img_url ? (
-            <Image
-              source={{ uri: selectedBook.img_url }}
-              style={styles.image}
-            />
-          ) : (
-            <Text>No image available</Text>
-          )}
+        <View style={{ marginHorizontal: 16 }}>
+          <View style={styles.noImage}>
+            {selectedBook.img_url ? (
+              <Image
+                source={{ uri: selectedBook.img_url }}
+                style={styles.image}
+              />
+            ) : (
+              <Text>No image available</Text>
+            )}
+          </View>
         </View>
         <Text style={styles.label}>Author: {selectedBook.author}</Text>
         <Text style={styles.label}>Publisher: {selectedBook.publisher}</Text>
@@ -363,17 +372,23 @@ export default function FillDetails() {
           </>
         )}
 
-        {(errors as any)[""]?.message && (
-          <Text style={styles.error}>{(errors as any)[""]?.message}</Text>
-        )}
+        <View style={styles.inputGroup}>
+          {(errors as any)[""]?.message && (
+            <Text style={styles.error}>{(errors as any)[""]?.message}</Text>
+          )}
+        </View>
 
         {/* Submit */}
-        <TouchableOpacity
-          style={styles.submitBtn}
-          onPress={handleSubmit(handleAddListing)}
-        >
-          <Text style={styles.submitBtnText}>Post Listing</Text>
-        </TouchableOpacity>
+        <View style={styles.inputGroup}>
+          <TouchableOpacity
+            style={styles.submitBtn}
+            onPress={handleSubmit(handleAddListing)}
+            disabled={submitMutation.isPending}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.submitBtnText}>Post Listing</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -381,7 +396,7 @@ export default function FillDetails() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    overflow: "visible",
   },
   centered: {
     flex: 1,
@@ -396,11 +411,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 16,
+    marginHorizontal: 16,
   },
   label: {
     fontSize: 14,
     marginBottom: 4,
     color: "#555",
+    marginHorizontal: 16,
   },
   image: {
     width: "auto",
@@ -422,11 +439,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginVertical: 12,
+    marginHorizontal: 16,
   },
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
     marginBottom: 12,
+    marginHorizontal: 8,
   },
   conditionBtn: {
     padding: 10,
@@ -450,9 +469,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 12,
+    paddingHorizontal: 16,
   },
   inputGroup: {
     marginBottom: 16,
+    paddingHorizontal: 16,
   },
   input: {
     borderWidth: 1,
