@@ -23,7 +23,9 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff",
         "package": "com.meomeo.mobile242"
-      }
+      },
+      "package": "com.meomeo.mobile242",
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
